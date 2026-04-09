@@ -136,12 +136,16 @@ export function Contact() {
                     placeholder={t('Waar wil je mee aan de slag?', 'What would you like to work on?')}
                   />
                 </div>
+                {error && (
+                  <p className="text-sm text-red-500">{error}</p>
+                )}
                 <button
                   type="submit"
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90"
+                  disabled={sending}
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90 disabled:opacity-60"
                   style={{ background: '#c96442' }}
                 >
-                  {t('Verstuur bericht', 'Send message')}
+                  {sending ? t('Versturen...', 'Sending...') : t('Verstuur bericht', 'Send message')}
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </form>
