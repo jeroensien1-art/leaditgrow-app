@@ -41,8 +41,9 @@ export async function generateMetadata(): Promise<Metadata> {
           ? 'https://leaditgrow.be'
           : 'https://leaditgrow.com',
       languages: {
-        'nl-BE': 'https://leaditgrow.be',
-        en: 'https://leaditgrow.com',
+        'nl-BE': 'https://leaditgrow.be/',
+        en: 'https://leaditgrow.com/',
+        'x-default': 'https://leaditgrow.com/',
       },
     },
   }
@@ -53,12 +54,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang={lang} suppressHydrationWarning>
-      <head>
-        {/* Hreflang links for SEO */}
-        <link rel="alternate" hrefLang="nl-BE" href="https://leaditgrow.be/" />
-        <link rel="alternate" hrefLang="en" href="https://leaditgrow.com/" />
-        <link rel="alternate" hrefLang="x-default" href="https://leaditgrow.com/" />
-      </head>
       <body className={`${instrumentSans.variable} ${instrumentSerif.variable} font-sans antialiased`}>
         <LangProvider>{children}</LangProvider>
       </body>
