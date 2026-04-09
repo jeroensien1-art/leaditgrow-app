@@ -55,9 +55,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang={lang} suppressHydrationWarning>
       <head>
         {/* Hreflang links for SEO */}
-        <link rel="alternate" hreflang="nl-BE" href="https://leaditgrow.be/" />
-        <link rel="alternate" hreflang="en" href="https://leaditgrow.com/" />
-        <link rel="alternate" hreflang="x-default" href="https://leaditgrow.com/" />
+        <link rel="alternate" hrefLang="nl-BE" href="https://leaditgrow.be/" />
+        <link rel="alternate" hrefLang="en" href="https://leaditgrow.com/" />
+        <link rel="alternate" hrefLang="x-default" href="https://leaditgrow.com/" />
       </head>
       <body className={`${instrumentSans.variable} ${instrumentSerif.variable} font-sans antialiased`}>
         <LangProvider>{children}</LangProvider>
