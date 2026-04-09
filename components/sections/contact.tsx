@@ -7,15 +7,29 @@ import { useLang } from '@/components/lang-context'
 export function Contact() {
   const { t } = useLang()
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Simple mailto fallback — replace with form API if needed
-    window.location.href = `mailto:jeroen@leaditgrow.com?subject=Contact via leaditgrow.com&body=Naam: ${name}%0AEmail: ${email}%0A%0A${message}`
-    setSent(true)
+    setSending(true)
+    setError('')
+    try {
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      })
+      if (!res.ok) throw new Error('Failed')
+      setSent(true)
+    } catch {
+      setError(t('Er ging iets mis. Probeer het opnieuw.', 'Something went wrong. Please try again.'))
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
