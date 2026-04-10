@@ -83,8 +83,8 @@ export function Contact() {
                 </p>
                 <p className="text-sm leading-relaxed" style={{ color: '#83827d' }}>
                   {t(
-                    'Check je inbox — en ook je spammap. Je ontvangt een persoonlijk bericht met de link om een kennismakingsgesprek in te plannen.',
-                    'Check your inbox — and your spam folder. You\'ll receive a personal message with a link to book your orientation call.'
+                    'Check je inbox — en ook je spammap. Je ontvangt zo een persoonlijk bericht van Jeroen.',
+                    'Check your inbox — and your spam folder. You\'ll receive a personal message from Jeroen shortly.'
                   )}
                 </p>
               </div>
