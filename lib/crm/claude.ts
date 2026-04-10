@@ -66,7 +66,7 @@ Do the following and respond with valid JSON only (no markdown, no explanation):
   "summary": "<one sentence describing this lead>",
   "painPoints": ["<pain point 1>", "<pain point 2>"],
   "emailSubject": "<email subject line, personal and specific>",
-  "emailBody": "<full HTML email body — warm, direct, personal. If qualified (score >= 6): include the Calendly 5-min call link with a clear CTA. If not qualified: ask 1-2 qualifying questions to understand their situation better. Sign as Jeroen, Lead it, Grow.>"
+  "emailBody": "<full HTML email body — warm, direct, personal. Always write as Jeroen, in first person. Always include the Calendly orientation call link (https://calendly.com/sovereign-now333/free-intro-call-clone) with a clear CTA to book a free intro call — regardless of score. If score >= 6: be enthusiastic and concrete about what you can do for them. If score < 6: ask 1-2 short questions to understand their situation better, then invite them to book a call to talk it through. Never use hollow phrases. Sign as Jeroen, Lead it, Grow.>"
 }`
       }
     ]

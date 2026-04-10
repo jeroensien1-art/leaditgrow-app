@@ -72,12 +72,20 @@ export function Contact() {
           >
             {sent ? (
               <div className="flex flex-col items-center justify-center h-full gap-4 py-8 text-center">
-                <div className="text-3xl">✓</div>
+                <div
+                  className="w-12 h-12 rounded-full flex items-center justify-center"
+                  style={{ background: 'rgba(201,100,66,0.1)' }}
+                >
+                  <Mail className="w-5 h-5" style={{ color: '#c96442' }} />
+                </div>
                 <p className="font-semibold" style={{ color: '#3d3929' }}>
-                  {t('Bericht verstuurd!', 'Message sent!')}
+                  {t('Bericht ontvangen!', 'Message received!')}
                 </p>
-                <p className="text-sm" style={{ color: '#83827d' }}>
-                  {t('Ik neem zo snel mogelijk contact op.', 'I\'ll be in touch as soon as possible.')}
+                <p className="text-sm leading-relaxed" style={{ color: '#83827d' }}>
+                  {t(
+                    'Check je inbox — en ook je spammap. Je ontvangt een persoonlijk bericht met de link om een kennismakingsgesprek in te plannen.',
+                    'Check your inbox — and your spam folder. You\'ll receive a personal message with a link to book your orientation call.'
+                  )}
                 </p>
               </div>
             ) : (

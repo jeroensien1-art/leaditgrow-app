@@ -12,34 +12,46 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
     }
 
-    // 1. Claude qualifies and drafts a personalised reply
-    const result = await qualifyAndDraft({ name, email, message })
+    const id = randomUUID()
+    const submittedAt = Date.now()
 
-    // 2. Build lead record
-    const lead: Lead = {
-      id: randomUUID(),
-      name,
-      email,
-      message,
-      lang: result.lang,
-      submittedAt: Date.now(),
-      qualified: result.qualified,
-      score: result.score,
-      status: 'new',
-    }
-
-    // 3. Save to Supabase
-    await saveLead(lead)
-
-    // 4. Send personalised reply to the lead
-    await sendToLead(email, result.emailSubject, result.emailBody)
-
-    // 5. Notify Jeroen
-    await notifyJeroen(name, email, result.score, result.qualified, result.summary)
+    // Return immediately — process in background so the form doesn't hang
+    processLead({ id, name, email, message, submittedAt }).catch(err =>
+      console.error('[leads] background error:', err)
+    )
 
     return NextResponse.json({ ok: true })
   } catch (err) {
     console.error('[leads] error:', err)
     return NextResponse.json({ error: 'Internal error' }, { status: 500 })
   }
+}
+
+async function processLead({
+  id, name, email, message, submittedAt
+}: {
+  id: string; name: string; email: string; message: string; submittedAt: number
+}) {
+  // 1. Claude qualifies and drafts personalised reply
+  const result = await qualifyAndDraft({ name, email, message })
+
+  // 2. Save to Supabase
+  const lead: Lead = {
+    id,
+    name,
+    email,
+    message,
+    lang: result.lang,
+    submittedAt,
+    qualified: result.qualified,
+    score: result.score,
+    status: 'new',
+  }
+  await saveLead(lead)
+
+  // 3. Send personalised reply to the lead
+  await sendToLead(email, result.emailSubject, result.emailBody)
+
+  // 4. Notify Jeroen
+  await notifyJeroen(name, email, result.score, result.qualified, result.summary)
 }
