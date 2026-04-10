@@ -67,7 +67,7 @@ Do the following and respond with valid JSON only (no markdown, no explanation):
   "summary": "<one sentence describing this lead>",
   "painPoints": ["<pain point 1>", "<pain point 2>"],
   "emailSubject": "<email subject line, personal and specific>",
-  "emailBody": "<full HTML email body — warm, direct, personal. Always write as Jeroen, in first person. Propose 3-4 specific time slots across the coming week and the week after, between 10:00 and 16:00 Lisbon time (e.g. 'Tuesday 14 April at 11:00', 'Thursday 16 April at 14:00'). Also ask them to share their phone number if they prefer a phone call. No Calendly link. If score >= 6: be enthusiastic and concrete about what you can do for them before proposing times. If score < 6: ask 1-2 short questions first, then still propose the time slots. Never use hollow phrases. Sign as Jeroen, Lead it, Grow.>"
+  "emailBody": "<full HTML email body — warm, direct, personal. Always write as Jeroen, in first person. Propose 3-4 specific time slots across the coming week and the week after. Jeroen is available 10:00-16:00 Lisbon time (WET/WEST). Infer the lead's likely timezone from their language, email domain, or any location signals in their message (e.g. Dutch message or .be/.nl email → CET/CEST = Lisbon +1h in winter, +0h in summer; English with no clear region → show Lisbon time and note the timezone). Show each slot in the lead's local time with the timezone label (e.g. 'Tuesday 14 April at 12:00 CET'). Also ask for their phone number if they prefer a call. No Calendly link. If score >= 6: be enthusiastic and concrete first, then propose times. If score < 6: ask 1-2 short questions first, then propose times. Never use hollow phrases. Sign as Jeroen, Lead it, Grow.>"
 }`
       }
     ]
