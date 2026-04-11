@@ -4,7 +4,7 @@ import { useLang } from '@/components/lang-context'
 
 const stats = [
   { value: '78%', labelNl: 'van leads gaat verloren bij opvolging na meer dan 2 uur', labelEn: 'of leads are lost when follow-up takes more than 2 hours' },
-  { value: 'tot 40%', labelNl: 'meer leads te converteren — bereken het nu', labelEn: 'more leads you could convert — calculate now' },
+  { value: 'tot 40%', labelNl: 'meer leads te converteren, bereken het nu', labelEn: 'more leads you could convert, calculate now' },
   { value: '4 weken', labelNl: 'van constante druk naar systeem', labelEn: 'from constant pressure to system' },
   { value: '80%', labelNl: 'minder manueel werk', labelEn: 'less manual work' },
 ]

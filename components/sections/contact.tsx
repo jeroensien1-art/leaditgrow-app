@@ -342,8 +342,8 @@ export function Contact() {
               </div>
               <p className="text-sm leading-relaxed" style={{ color: 'rgba(250,249,245,0.75)' }}>
                 {t(
-                  'Begin met de gratis diagnose. Geen verplichting, wel direct inzicht in wat jouw bedrijf tegenhoudt.',
-                  "Start with the free diagnostic. No commitment, immediate insight into what's holding your business back."
+                  'De gratis diagnose en het eerste gesprek zijn volledig vrijblijvend. Zelfs ons Actiehandboek heeft een 14-daagse terugbetalingsgarantie als je er niet volledig tevreden mee bent.',
+                  'The free diagnostic and first call are completely no-obligation. Even our Action Manual comes with a 14-day money-back guarantee if you are not fully satisfied.'
                 )}
               </p>
             </div>

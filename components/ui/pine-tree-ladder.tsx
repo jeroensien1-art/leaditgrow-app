@@ -50,8 +50,8 @@ const levels: GrowthLevel[] = [
     id: 5, phase: { nl: 'Level 5', en: 'Level 5' },
     title: { nl: 'Visionair Leiderschap', en: 'Visionary Leadership' },
     signals: {
-      nl: ['Jij leidt de visie — anderen voeren uit', 'Bedrijfsimpact reikt verder dan jijzelf', 'Jij kiest wanneer en hoe jij betrokken bent', 'Systemen draaien, het team leidt', 'Erkend denker en leider in jouw sector'],
-      en: ['You lead the vision — others execute', 'Company impact reaches beyond yourself', 'You choose when and how you\'re involved', 'Systems run, the team leads', 'Recognized thought leader in your field'],
+      nl: ['Jij leidt de visie, anderen voeren uit', 'Bedrijfsimpact reikt verder dan jijzelf', 'Jij kiest wanneer en hoe jij betrokken bent', 'Systemen draaien, het team leidt', 'Erkend denker en leider in jouw sector'],
+      en: ['You lead the vision, others execute', 'Company impact reaches beyond yourself', 'You choose when and how you\'re involved', 'Systems run, the team leads', 'Recognized thought leader in your field'],
     },
     fillColor: '#0a2412', glowColor: '#4ade80', width: 160, height: 118,
   },
@@ -86,8 +86,8 @@ const levels: GrowthLevel[] = [
     id: 1, phase: { nl: 'Level 1', en: 'Level 1' },
     title: { nl: 'De Oprichtersbottleneck', en: 'The Founder Bottleneck' },
     signals: {
-      nl: ['Alles loopt via jou — jij bent het bedrijf', 'Reactief werken, constant brandjes blussen', 'Geen systemen — groei hangt af van jouw energie', 'Leads vallen door de mazen van het net', 'Omzet plafonneerd aan jouw persoonlijke capaciteit'],
-      en: ['Everything runs through you — you are the business', 'Reactive mode, constant firefighting', 'No systems — growth depends on your energy', 'Leads fall through the cracks', 'Revenue capped by your personal capacity'],
+      nl: ['Alles loopt via jou, jij bent het bedrijf', 'Reactief werken, constant brandjes blussen', 'Geen systemen, groei hangt af van jouw energie', 'Leads vallen door de mazen van het net', 'Omzet plafonneerd aan jouw persoonlijke capaciteit'],
+      en: ['Everything runs through you, you are the business', 'Reactive mode, constant firefighting', 'No systems, growth depends on your energy', 'Leads fall through the cracks', 'Revenue capped by your personal capacity'],
     },
     fillColor: '#153824', glowColor: '#bbf7d0', width: 518, height: 214,
   },
@@ -213,11 +213,11 @@ export function PineTreeLadder() {
                     </ul>
                     <div className="flex flex-col gap-2">
                       <a
-                        href="#contact"
+                        href="/diagnostic"
                         className="flex items-center justify-center gap-2 w-full py-2.5 px-3 rounded-lg text-[12.5px] font-semibold text-white transition-opacity hover:opacity-85 text-center leading-snug"
                         style={{ background: '#15803d' }}
                       >
-                        {t('Doe de 2-min test — ontdek jouw groeikans', 'Take the 2-min test — find your growth opportunity')}
+                        {t('Gratis diagnose', 'Free diagnostic')}
                         <ArrowRight className="w-3.5 h-3.5 flex-shrink-0" />
                       </a>
                       {level.id < 5 && level.id === visibleCount && (
