@@ -140,8 +140,8 @@ export function ChatWidget() {
   }
 
   const challenges = nl
-    ? ['Te weinig leads', 'Leads die niet converteren', 'Geen tijd meer', 'Iets anders']
-    : ['Not enough leads', 'Leads not converting', 'No time left', 'Something else']
+    ? ['Te weinig leads', 'Leads die niet converteren', 'Tijd en handen tekort om te groeien', 'Iets anders']
+    : ['Not enough leads', 'Leads not converting', 'Not enough time and capacity to grow', 'Something else']
 
   return (
     <>
