@@ -21,7 +21,7 @@ export function Nav() {
         }}
       >
         <a href="#home">
-          <LogoFull height={32} textColor="#3d3929" />
+          <LogoFull height={64} textColor="#3d3929" />
         </a>
 
         <div className="w-px h-4" style={{ background: 'rgba(61,57,41,0.2)' }} />

@@ -247,7 +247,7 @@ export function ChatWidget() {
               />
             </div>
             <div style={{ flex: 1 }}>
-              <LogoFull height={28} textColor="#faf9f5" />
+              <LogoFull height={56} textColor="#faf9f5" />
             </div>
             <button
               onClick={() => setOpen(false)}
