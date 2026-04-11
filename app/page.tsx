@@ -4,6 +4,7 @@ import { Services } from '@/components/sections/services'
 import { Tools } from '@/components/sections/tools'
 import { About } from '@/components/sections/about'
 import { Contact } from '@/components/sections/contact'
+import { ChatWidget } from '@/components/chat-widget'
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       >
         © {new Date().getFullYear()} Lead it, Grow · leaditgrow.com · leaditgrow.be
       </footer>
+      <ChatWidget />
     </>
   )
 }

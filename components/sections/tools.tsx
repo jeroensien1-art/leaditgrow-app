@@ -22,10 +22,11 @@ export function Tools() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Revenue Calculator — coming soon */}
-          <div
-            className="rounded-2xl p-8 flex flex-col gap-4"
-            style={{ background: '#f3f1eb', border: '1px solid rgba(61,57,41,0.08)', opacity: 0.7 }}
+          {/* Revenue Calculator */}
+          <a
+            href="/calculator"
+            className="rounded-2xl p-8 flex flex-col gap-4 transition-all hover:-translate-y-1 hover:shadow-lg"
+            style={{ background: '#fff', border: '1px solid rgba(61,57,41,0.12)', boxShadow: '0 4px 20px rgba(0,0,0,0.06)', textDecoration: 'none' }}
           >
             <div
               className="w-11 h-11 rounded-xl flex items-center justify-center"
@@ -47,15 +48,11 @@ export function Tools() {
                 )}
               </p>
             </div>
-            <div className="mt-auto">
-              <span
-                className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full"
-                style={{ background: 'rgba(61,57,41,0.08)', color: '#83827d' }}
-              >
-                {t('Binnenkort beschikbaar', 'Coming soon')}
-              </span>
+            <div className="mt-auto flex items-center gap-2 text-sm font-semibold" style={{ color: '#c96442' }}>
+              {t('Bereken mijn verlies', 'Calculate my leak')}
+              <ArrowRight className="w-4 h-4" />
             </div>
-          </div>
+          </a>
 
           {/* Business Diagnostic */}
           <a
