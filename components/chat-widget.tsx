@@ -1,8 +1,9 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { X, ArrowRight, MessageCircle } from 'lucide-react'
+import { X, ArrowRight } from 'lucide-react'
 import { useLang } from '@/components/lang-context'
+import { LogoFull } from '@/components/ui/logo-svg'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -17,16 +18,6 @@ type BotStep =
 interface Message {
   from: 'bot' | 'user'
   text: string
-}
-
-// ── Hook: delay helper ─────────────────────────────────────────────────────────
-
-function useTypingDelay(fn: () => void, ms: number, deps: unknown[]) {
-  useEffect(() => {
-    const t = setTimeout(fn, ms)
-    return () => clearTimeout(t)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps)
 }
 
 // ── Main component ─────────────────────────────────────────────────────────────
@@ -45,6 +36,16 @@ export function ChatWidget() {
   const [bookSending, setBookSending] = useState(false)
   const [selectedChallenge, setSelectedChallenge] = useState('')
   const bottomRef = useRef<HTMLDivElement>(null)
+
+  // Auto-open after 5 seconds on first load
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setBadge(false)
+      setOpen(true)
+    }, 5000)
+    return () => clearTimeout(t)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // Add welcome message when first opened
   useEffect(() => {
@@ -173,7 +174,11 @@ export function ChatWidget() {
           ;(e.currentTarget as HTMLElement).style.transform = 'scale(1)'
         }}
       >
-        <MessageCircle size={24} />
+        <img
+          src="/jeroen.jpg"
+          alt="Jeroen"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
+        />
         {badge && (
           <span style={{
             position: 'absolute',
@@ -224,21 +229,21 @@ export function ChatWidget() {
             borderRadius: '16px 16px 0 0',
           }}>
             <div style={{
-              width: 36,
-              height: 36,
+              width: 38,
+              height: 38,
               borderRadius: '50%',
-              background: '#c96442',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: 14,
-              fontWeight: 700,
-              color: '#fff',
+              overflow: 'hidden',
               flexShrink: 0,
-            }}>J</div>
+              border: '2px solid rgba(250,249,245,0.2)',
+            }}>
+              <img
+                src="/jeroen.jpg"
+                alt="Jeroen"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: '#faf9f5' }}>Jeroen</div>
-              <div style={{ fontSize: 11, color: 'rgba(250,249,245,0.55)' }}>Lead it, Grow</div>
+              <LogoFull height={22} textColor="#faf9f5" />
             </div>
             <button
               onClick={() => setOpen(false)}
