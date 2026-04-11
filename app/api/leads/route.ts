@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { randomUUID } from 'crypto'
+import { waitUntil } from '@vercel/functions'
 import { qualifyAndDraft, type Lead } from '@/lib/crm/claude'
 import { sendToLead, notifyJeroen } from '@/lib/crm/email'
 import { saveLead } from '@/lib/crm/store'
@@ -15,10 +16,10 @@ export async function POST(req: NextRequest) {
     const id = randomUUID()
     const submittedAt = Date.now()
 
-    // Return immediately — process in background so the form doesn't hang
-    processLead({ id, name, email, message, submittedAt }).catch(err =>
+    // waitUntil ensures Vercel keeps the function alive until processing completes
+    waitUntil(processLead({ id, name, email, message, submittedAt }).catch(err =>
       console.error('[leads] background error:', err)
-    )
+    ))
 
     return NextResponse.json({ ok: true })
   } catch (err) {

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { randomUUID } from 'crypto'
+import { waitUntil } from '@vercel/functions'
 import { createClient } from '@supabase/supabase-js'
 import { generateDiagnosticReport, type DiagnosticSubmission } from '@/lib/crm/diagnostic'
 import { sendToLead } from '@/lib/crm/email'
@@ -24,10 +25,10 @@ export async function POST(req: NextRequest) {
 
     const id = randomUUID()
 
-    // Return immediately — process in background
-    processDiagnostic(id, body).catch(err =>
+    // waitUntil ensures Vercel keeps the function alive until processing completes
+    waitUntil(processDiagnostic(id, body).catch(err =>
       console.error('[diagnostic] background error:', err)
-    )
+    ))
 
     return NextResponse.json({ ok: true })
   } catch (err) {

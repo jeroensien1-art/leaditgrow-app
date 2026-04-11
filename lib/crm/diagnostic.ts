@@ -37,16 +37,16 @@ function estimateRevenueLeak(submission: DiagnosticSubmission): string {
   const { monthlyLeads, avgDealValue } = submission.context
 
   const leadsMap: Record<string, number> = {
-    'Fewer than 5': 3,
-    '5 to 20': 12,
-    '20 to 50': 35,
-    'More than 50': 65,
+    'Fewer than 5': 3, 'Minder dan 5': 3,
+    '5 to 20': 12, '5 tot 20': 12,
+    '20 to 50': 35, '20 tot 50': 35,
+    'More than 50': 65, 'Meer dan 50': 65,
   }
   const dealMap: Record<string, number> = {
-    'Under €1,000': 600,
-    '€1,000 to €5,000': 2500,
-    '€5,000 to €20,000': 10000,
-    'Over €20,000': 25000,
+    'Under €1,000': 600, 'Onder €1.000': 600,
+    '€1,000 to €5,000': 2500, '€1.000 tot €5.000': 2500,
+    '€5,000 to €20,000': 10000, '€5.000 tot €20.000': 10000,
+    'Over €20,000': 25000, 'Boven €20.000': 25000,
   }
 
   const leads = leadsMap[monthlyLeads] ?? 10

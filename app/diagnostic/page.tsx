@@ -469,6 +469,8 @@ export default function DiagnosticPage() {
   const [answers, setAnswers]     = useState<Record<string, number>>({})
   const [name, setName]           = useState('')
   const [email, setEmail]         = useState('')
+  const [website, setWebsite]     = useState('')
+  const [noWebsite, setNoWebsite] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [animScore, setAnimScore] = useState(0)
 
@@ -513,7 +515,7 @@ export default function DiagnosticPage() {
       await fetch('/api/diagnostic', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, context: ctxAnswers, answers, score: overallScore, topLevers: scored.map(s => s.key) }),
+        body: JSON.stringify({ name, email, website: noWebsite ? 'geen website' : website, context: ctxAnswers, answers, score: overallScore, topLevers: scored.map(s => s.key) }),
       })
     } catch { /* fire and forget */ }
     setStep('thanks')
@@ -714,6 +716,25 @@ export default function DiagnosticPage() {
                 <input className="text-input" type="text" placeholder={T.firstName} value={name} onChange={e => setName(e.target.value)} />
                 <label className="field-label">{T.emailAddress}</label>
                 <input className="text-input" type="email" placeholder="you@email.com" value={email} onChange={e => setEmail(e.target.value)} />
+                <label className="field-label">{nl ? 'Website' : 'Website'} <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0, fontSize: 11 }}>({nl ? 'optioneel' : 'optional'})</span></label>
+                <input
+                  className="text-input"
+                  type="text"
+                  placeholder="https://jouwbedrijf.be"
+                  value={noWebsite ? '' : website}
+                  disabled={noWebsite}
+                  onChange={e => setWebsite(e.target.value)}
+                  style={{ opacity: noWebsite ? 0.4 : 1 }}
+                />
+                <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: -4, marginBottom: 10, cursor: 'pointer' }}>
+                  <input
+                    type="checkbox"
+                    checked={noWebsite}
+                    onChange={e => setNoWebsite(e.target.checked)}
+                    style={{ accentColor: 'var(--rust)', width: 14, height: 14 }}
+                  />
+                  <span style={{ fontSize: 12, color: 'var(--ink-muted)' }}>{nl ? 'Ik heb nog geen website' : "I don't have a website yet"}</span>
+                </label>
                 <button className="btn-primary" disabled={submitting || !email.includes('@') || !name.trim()} onClick={handleSubmit}>
                   {submitting ? T.sending : T.sendReport}
                 </button>
