@@ -132,7 +132,7 @@ Respond with valid JSON only:
 }`
 
   const response = await client.messages.create({
-    model: 'claude-opus-4-6',
+    model: 'claude-sonnet-4-6',
     max_tokens: 4000,
     system: 'You are Jeroen from Lead it, Grow. Generate personalised diagnostic reports as instructed. Respond with valid JSON only.',
     messages: [{ role: 'user', content: prompt }],

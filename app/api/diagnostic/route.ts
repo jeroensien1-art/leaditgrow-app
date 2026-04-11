@@ -6,6 +6,9 @@ import { generateDiagnosticReport, type DiagnosticSubmission } from '@/lib/crm/d
 import { sendToLead } from '@/lib/crm/email'
 import { Resend } from 'resend'
 
+// Allow up to 60s (requires Vercel Pro; ignored on Hobby but harmless)
+export const maxDuration = 60
+
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_KEY!
@@ -25,9 +28,28 @@ export async function POST(req: NextRequest) {
 
     const id = randomUUID()
 
-    // waitUntil ensures Vercel keeps the function alive until processing completes
-    waitUntil(processDiagnostic(id, body).catch(err =>
-      console.error('[diagnostic] background error:', err)
+    // 1. Save to Supabase synchronously BEFORE returning — data always lands
+    const { error: insertError } = await supabase.from('diagnostics').insert({
+      id,
+      name: body.name,
+      email: body.email,
+      score: body.score,
+      industry: body.context.industry,
+      monthly_leads: body.context.monthlyLeads,
+      avg_deal_value: body.context.avgDealValue,
+      team_size: body.context.teamSize,
+      answers: body.answers,
+      top_levers: body.topLevers,
+    })
+
+    if (insertError) {
+      console.error('[diagnostic] supabase insert error:', insertError)
+      // Continue anyway — still generate the report
+    }
+
+    // 2. Claude + email run in background (waitUntil extends function lifetime)
+    waitUntil(sendReport(id, body).catch(err =>
+      console.error('[diagnostic] report/email error:', err)
     ))
 
     return NextResponse.json({ ok: true })
@@ -37,28 +59,17 @@ export async function POST(req: NextRequest) {
   }
 }
 
-async function processDiagnostic(id: string, submission: DiagnosticSubmission) {
-  // 1. Save to Supabase
-  await supabase.from('diagnostics').insert({
-    id,
-    name: submission.name,
-    email: submission.email,
-    score: submission.score,
-    industry: submission.context.industry,
-    monthly_leads: submission.context.monthlyLeads,
-    avg_deal_value: submission.context.avgDealValue,
-    team_size: submission.context.teamSize,
-    answers: submission.answers,
-    top_levers: submission.topLevers,
-  })
-
-  // 2. Generate personalised report with Claude
+async function sendReport(id: string, submission: DiagnosticSubmission) {
+  // Generate report with Claude Sonnet (fast — typically 5-10s)
   const report = await generateDiagnosticReport(submission)
 
-  // 3. Send report to the business owner
+  // Mark report as sent in Supabase
+  await supabase.from('diagnostics').update({ report_sent: true }).eq('id', id)
+
+  // Send personalised report to lead
   await sendToLead(submission.email, report.subject, report.html)
 
-  // 4. Notify Jeroen
+  // Notify Jeroen
   await resend.emails.send({
     from: FROM,
     to: NOTIFY,

@@ -45,7 +45,7 @@ ALWAYS detect the language of the incoming message and respond in the same langu
 
 export async function qualifyAndDraft(lead: Omit<Lead, 'id' | 'submittedAt' | 'qualified' | 'score' | 'status' | 'lang'>): Promise<QualificationResult> {
   const response = await client.messages.create({
-    model: 'claude-opus-4-6',
+    model: 'claude-sonnet-4-6',
     max_tokens: 2000,
     thinking: { type: 'adaptive' },
     system: SYSTEM_PROMPT,
@@ -82,7 +82,7 @@ Do the following and respond with valid JSON only (no markdown, no explanation):
 
 export async function draftFollowUp(lead: Lead): Promise<{ subject: string; body: string }> {
   const response = await client.messages.create({
-    model: 'claude-opus-4-6',
+    model: 'claude-sonnet-4-6',
     max_tokens: 1000,
     system: SYSTEM_PROMPT,
     messages: [
