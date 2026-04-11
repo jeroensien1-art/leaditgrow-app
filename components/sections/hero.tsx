@@ -137,6 +137,14 @@ export function Hero() {
             {t('Plan een gesprek', 'Book a call')}
           </a>
         </div>
+
+        <a
+          href="/diagnostic"
+          className="mt-5 text-sm transition-all hover:opacity-100"
+          style={{ color: 'rgba(250,249,245,0.45)' }}
+        >
+          {t('Waar zit mijn grootste groeikans? → Gratis diagnose', 'Where is my biggest growth gap? → Free diagnostic')}
+        </a>
       </div>
 
 
