@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { X, ArrowRight } from 'lucide-react'
 import { useLang } from '@/components/lang-context'
-import { LogoFull } from '@/components/ui/logo-svg'
+import { LogoFull, LogoSVG } from '@/components/ui/logo-svg'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -174,11 +174,7 @@ export function ChatWidget() {
           ;(e.currentTarget as HTMLElement).style.transform = 'scale(1)'
         }}
       >
-        <img
-          src="/jeroen.jpg"
-          alt="Jeroen"
-          style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
-        />
+        <LogoSVG size={28} />
         {badge && (
           <span style={{
             position: 'absolute',
@@ -229,21 +225,29 @@ export function ChatWidget() {
             borderRadius: '16px 16px 0 0',
           }}>
             <div style={{
-              width: 38,
-              height: 38,
+              width: 40,
+              height: 40,
               borderRadius: '50%',
               overflow: 'hidden',
               flexShrink: 0,
-              border: '2px solid rgba(250,249,245,0.2)',
+              border: '2px solid rgba(250,249,245,0.25)',
+              background: '#c96442',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: 15,
+              fontWeight: 700,
+              color: '#fff',
             }}>
               <img
                 src="/jeroen.jpg"
                 alt="Jeroen"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
               />
             </div>
             <div style={{ flex: 1 }}>
-              <LogoFull height={22} textColor="#faf9f5" />
+              <LogoFull height={28} textColor="#faf9f5" />
             </div>
             <button
               onClick={() => setOpen(false)}
