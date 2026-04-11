@@ -222,8 +222,8 @@ export function Contact() {
             <div className="px-1">
               <p className="text-sm leading-relaxed" style={{ color: '#83827d' }}>
                 {t(
-                  'Je kan ook een kort gesprek inplannen van 15 min door je gegevens achter te laten — je krijgt direct enkele beschikbare contactmomenten in je mailbox.',
-                  'You can also book a quick 15-min call by leaving your details — you will receive available time slots directly in your inbox.'
+                  'Je kan ook een kort gesprek inplannen van 15 min door je gegevens achter te laten. Je krijgt direct enkele beschikbare contactmomenten in je mailbox.',
+                  'You can also book a quick 15-min call by leaving your details. You will receive available time slots directly in your inbox.'
                 )}
               </p>
             </div>
@@ -240,7 +240,7 @@ export function Contact() {
                 </div>
                 <div>
                   <div className="text-sm font-semibold mb-0.5">{t('Plan een gesprek', 'Book a call')}</div>
-                  <div className="text-sm" style={{ color: '#83827d' }}>{t('30 min · Gratis kennismaking', '30 min · Free intro call')}</div>
+                  <div className="text-sm" style={{ color: '#83827d' }}>{t('15 min · Kennismakingsgesprek', '15 min · Intro call')}</div>
                 </div>
                 <ArrowRight className="w-4 h-4 ml-auto flex-shrink-0" style={{ color: '#c96442' }} />
               </button>
