@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowRight, Calendar, Clock, Reply } from 'lucide-react'
+import { ArrowRight, Calendar, Reply } from 'lucide-react'
 import { useLang } from '@/components/lang-context'
 
 const inputStyle = {
@@ -218,23 +218,14 @@ export function Contact() {
           {/* ── Right: how it works + book-a-call ── */}
           <div className="flex flex-col gap-5">
 
-            {/* How it works */}
-            <div className="flex flex-col gap-3 p-6 rounded-2xl" style={cardBase}>
-              <div className="text-[10px] font-bold uppercase tracking-widest" style={{ color: '#c96442' }}>
-                {t('Hoe het werkt', 'How it works')}
-              </div>
-              {[
-                [Clock, t('Je stuurt een bericht of vult de gespreksvragen in', 'You send a message or fill in the call questions')],
-                [Reply, t('Jeroen bereidt een persoonlijk antwoord voor', 'Jeroen prepares a personal reply')],
-                [Calendar, t('Je ontvangt tijdstip-voorstellen in je inbox binnen 24u', 'You receive time slot proposals in your inbox within 24h')],
-              ].map(([Icon, text], i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: 'rgba(201,100,66,0.1)' }}>
-                    <span className="text-xs font-bold" style={{ color: '#c96442' }}>{i + 1}</span>
-                  </div>
-                  <p className="text-sm leading-relaxed" style={{ color: '#83827d' }}>{text as string}</p>
-                </div>
-              ))}
+            {/* Short intro above book-a-call */}
+            <div className="px-1">
+              <p className="text-sm leading-relaxed" style={{ color: '#83827d' }}>
+                {t(
+                  'Je kan ook een kort gesprek inplannen van 15 min door je gegevens achter te laten — je krijgt direct enkele beschikbare contactmomenten in je mailbox.',
+                  'You can also book a quick 15-min call by leaving your details — you will receive available time slots directly in your inbox.'
+                )}
+              </p>
             </div>
 
             {/* Book a call — toggles into qualification form */}
