@@ -29,6 +29,7 @@ export function Nav() {
         <a href="#services" className="hover:text-[#c96442] transition-colors">{t('Diensten', 'Services')}</a>
         <a href="#about" className="hover:text-[#c96442] transition-colors">{t('Over', 'About')}</a>
         <a href="#contact" className="hover:text-[#c96442] transition-colors">{t('Contact', 'Contact')}</a>
+        <a href="/diagnostic" className="hover:text-[#c96442] transition-colors font-semibold" style={{ color: '#c96442' }}>{t('Gratis diagnose', 'Free diagnostic')}</a>
 
         <div className="w-px h-4" style={{ background: 'rgba(61,57,41,0.2)' }} />
 

@@ -58,7 +58,7 @@ const questions: Question[] = [
     lever: 'time',
     theme: 'Your time',
     meta: 'Time and freedom',
-    label: 'When did you last have a full day completely off — no messages, no checking in, no thinking about the business?',
+    label: 'When did you last have a full day completely off, no messages, no checking in, no thinking about the business?',
     emotion: 'Not a holiday where you just quickly checked in. A real day.',
     options: [
       { main: 'Last week, I have proper boundaries.', feel: 'Time is protected, the business runs without me', score: 0 },
@@ -72,7 +72,7 @@ const questions: Question[] = [
     theme: 'Your role',
     meta: 'Leadership and team',
     label: 'When something goes wrong in the business, what usually happens?',
-    emotion: 'Think about the last real problem — how did it get resolved?',
+    emotion: 'Think about the last real problem. How did it get resolved?',
     options: [
       { main: 'My team handles it. I hear about it after.', feel: 'Systems and people work without me', score: 0 },
       { main: 'Someone flags it and waits for my call.', feel: 'Decisions still run through me', score: 1 },
@@ -84,7 +84,7 @@ const questions: Question[] = [
     lever: 'speed_to_lead',
     theme: 'Your leads',
     meta: 'Speed-to-lead',
-    label: 'When a new enquiry comes in — a form, a DM, a call — how quickly does your business respond?',
+    label: 'When a new enquiry comes in, a form, a DM, a call, how quickly does your business respond?',
     emotion: 'On a Saturday afternoon. Or a Tuesday evening when your team has gone home.',
     options: [
       { main: 'Within 5 minutes, automatically.', feel: 'A system handles first contact every time', score: 0 },
@@ -110,7 +110,7 @@ const questions: Question[] = [
     lever: 'marketing',
     theme: 'Your visibility',
     meta: 'Online presence',
-    label: 'If you stopped all active outreach tomorrow — no referral chasing, no DMs, no networking — what would happen?',
+    label: 'If you stopped all active outreach tomorrow, no referral chasing, no DMs, no networking, what would happen?',
     emotion: 'Honest answer.',
     options: [
       { main: 'Pipeline keeps running. Inbound handles it.', feel: 'Strong online presence working on its own', score: 0 },
@@ -174,12 +174,12 @@ const leverDetail: Record<string, { title: string; emotion: string; desc: string
     title: 'Never let a lead go cold again',
     emotion: '"We paid to get that lead. Someone replied six hours later."',
     desc: 'Research shows responding in under 5 minutes makes you 100x more likely to connect with a lead vs 30 minutes. Slow response is your most expensive hidden cost.',
-    action: 'Set up an automated first-response that fires in under 60 seconds — including weekends and after hours.',
+    action: 'Set up an automated first-response that fires in under 60 seconds, including weekends and after hours.',
   },
   pipeline: {
     title: 'Build a follow-up system that never forgets',
     emotion: '"They were interested. Then they just went quiet."',
-    desc: '80% of sales require 5+ follow-ups. Most businesses stop at one. The money is not in the first contact — it is in the sequence.',
+    desc: '80% of sales require 5+ follow-ups. Most businesses stop at one. The money is not in the first contact. It is in the sequence.',
     action: 'Map your last 10 lost deals. How many follow-ups happened? Build a 5-touch sequence for every warm lead this week.',
   },
   marketing: {
@@ -191,13 +191,13 @@ const leverDetail: Record<string, { title: string; emotion: string; desc: string
   sales: {
     title: 'Close more of the right conversations',
     emotion: '"Great meeting. They seemed so interested. Then nothing."',
-    desc: 'Most close rate problems are not a persuasion issue — they are a qualification and framing issue. The right leads, with the right expectations, close themselves.',
+    desc: 'Most close rate problems are not a persuasion issue. They are a qualification and framing issue. The right leads, with the right expectations, close themselves.',
     action: 'Review your last 5 lost deals. Find the moment the conversation shifted. That single insight is your fix.',
   },
   retention: {
     title: 'Turn every client into a growth engine',
     emotion: '"I keep finding new clients instead of growing the ones I have."',
-    desc: 'Acquiring a new client costs 5–7x more than retaining one. Your existing clients are your cheapest source of new revenue — and most businesses ignore them after delivery.',
+    desc: 'Acquiring a new client costs 5 to 7x more than retaining one. Your existing clients are your cheapest source of new revenue, and most businesses ignore them after delivery.',
     action: 'List every client from the last 12 months. Email the top 5 with a simple check-in this week.',
   },
 }
@@ -289,7 +289,7 @@ const css = `
   .what-in { background:var(--cream); border-radius:10px; padding:1.2rem 1.4rem; margin-top:1.4rem; text-align:left; }
   .what-in-title { font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--rust); margin-bottom:10px; }
   .what-item { font-size:13px; color:var(--ink-mid); line-height:1.9; display:flex; gap:8px; }
-  .what-item::before { content:'—'; color:var(--ink-faint); flex-shrink:0; }
+  .what-item::before { content:'·'; color:var(--ink-faint); flex-shrink:0; }
   .italic-note { font-family:var(--font-display); font-size:13px; font-style:italic; color:var(--ink-muted); margin-bottom:1.6rem; line-height:1.6; }
 `
 
@@ -318,7 +318,7 @@ export default function DiagnosticPage() {
   const getVerdict = (score: number) => {
     if (score < 25) return ['You have built something that works for you.', 'The foundation is solid. The gains from here are about protecting your time and making sure it stays this way as you grow.']
     if (score < 50) return ['Good momentum, but something is pulling against you.', 'Real strengths here, and one or two places where the business is costing you more than it should. Fix the top lever and the others often follow.']
-    if (score < 75) return ['The business is running you more than you are running it.', 'Multiple areas are draining your time and revenue. You do not need to fix everything — fix them in the right order and the others sort themselves out.']
+    if (score < 75) return ['The business is running you more than you are running it.', 'Multiple areas are draining your time and revenue. You do not need to fix everything. Fix them in the right order and the others sort themselves out.']
     return ['You are carrying too much. This is not sustainable.', 'High scores across the board usually mean one thing: the business was built around you, not for you. One focused quarter, fixing the right things in sequence, changes everything.']
   }
 
@@ -375,7 +375,7 @@ export default function DiagnosticPage() {
               <div>
                 <div className="eyebrow">For business owners</div>
                 <div className="headline">You built this business.<br />Is it <em>working for you?</em></div>
-                <div className="subline">7 honest questions. You get a clear picture of which one change — in leadership, systems, sales or time — would give you the most back.</div>
+                <div className="subline">7 honest questions. You get a clear picture of which one change, in leadership, systems, sales or time, would give you the most back.</div>
                 <div className="moments">
                   {[
                     ['Revenue is up, but so is everything else', 'More clients, more problems, more of your time. Growth feels like it costs more than it gives back.'],
@@ -389,7 +389,7 @@ export default function DiagnosticPage() {
                   ))}
                 </div>
                 <div className="italic-note">This diagnostic finds which lever to pull first, so you can grow revenue, lead better and build a business that gives you your life back.</div>
-                <button className="btn-primary" onClick={() => setStep('context')}>Start my diagnostic — 4 minutes</button>
+                <button className="btn-primary" onClick={() => setStep('context')}>Show me what is holding my business back</button>
               </div>
             )}
 
@@ -510,7 +510,7 @@ export default function DiagnosticPage() {
                 })}
                 <div className="cta-box">
                   <div className="cta-title">Get your personalised 30-day action plan</div>
-                  <div className="cta-sub">A full breakdown of your top 3 gaps, exact next steps, what each is costing you — and a personalised plan to fix it.</div>
+                  <div className="cta-sub">A full breakdown of your top 3 gaps, exact next steps, what each is costing you, and a personalised plan to fix it.</div>
                   <button className="btn-primary" onClick={() => setStep('capture')}>Get my free report</button>
                 </div>
               </div>
@@ -544,7 +544,7 @@ export default function DiagnosticPage() {
                 <div className="what-in">
                   <div className="what-in-title">What is in your report</div>
                   <div className="what-item">Your #1 lever with an honest diagnosis of what it is costing you</div>
-                  <div className="what-item">Your top 3 fixes — specific to your business type and size</div>
+                  <div className="what-item">Your top 3 fixes, specific to your business type and size</div>
                   <div className="what-item">A 30-day implementation plan with one action per day</div>
                   <div className="what-item">Industry-specific scripts and templates you can use immediately</div>
                 </div>
