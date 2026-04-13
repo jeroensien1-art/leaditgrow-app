@@ -78,6 +78,18 @@
 body { background: var(--background); color: var(--foreground); }
 html { scroll-behavior: smooth; }
 
+/* ── BLOG CONTENT ── */
+.blog-content { line-height: 1.75; color: #3d3929; }
+.blog-content .blog-intro { font-size: 19px; line-height: 1.7; color: #535146; margin-bottom: 2rem; font-family: var(--font-serif); font-style: italic; }
+.blog-content p { margin-bottom: 1.4rem; font-size: 16px; }
+.blog-content h2 { font-family: var(--font-serif); font-size: clamp(22px, 3vw, 30px); font-weight: 400; color: #0a1e10; margin: 3rem 0 1rem; line-height: 1.2; }
+.blog-content h3 { font-size: 18px; font-weight: 600; color: #0a1e10; margin: 2rem 0 0.75rem; }
+.blog-content ul { padding-left: 1.25rem; margin-bottom: 1.4rem; }
+.blog-content ul li { margin-bottom: 0.5rem; font-size: 16px; }
+.blog-content .faq-item { padding: 1.5rem; border-radius: 12px; background: #f5f3ee; margin-bottom: 1rem; border: 1px solid rgba(61,57,41,0.08); }
+.blog-content .faq-item h3 { font-size: 16px; font-weight: 600; color: #0a1e10; margin: 0 0 0.6rem; }
+.blog-content .faq-item p { font-size: 15px; color: #535146; margin: 0; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
