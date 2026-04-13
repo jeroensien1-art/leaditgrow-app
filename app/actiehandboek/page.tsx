@@ -52,10 +52,10 @@ const LEVERS = [
 ]
 
 const INCLUDES = [
-  { nl: '7-hefboom diagnose — scoor jezelf voor je begint', en: '7-lever diagnostic — score yourself before you start' },
+  { nl: '7-hefboom diagnose: scoor jezelf voor je begint', en: '7-lever diagnostic: score yourself before you start' },
   { nl: 'Volledige scripts voor elke opvolgstap', en: 'Full scripts for every follow-up step' },
   { nl: '30-dagenplan met week-voor-week acties', en: '30-day plan with week-by-week actions' },
-  { nl: 'GTM-kader gebaseerd op Maja Voje methodologie', en: 'GTM framework based on Maja Voje methodology' },
+  { nl: 'Bewezen GTM-kader voor servicebedrijven', en: 'Proven GTM framework for service businesses' },
   { nl: 'Droomklantenlijst template', en: 'Dream client list template' },
   { nl: 'Revenue leak calculator', en: 'Revenue leak calculator' },
   { nl: 'Digitale PDF, direct toegankelijk', en: 'Digital PDF, instant access' },
@@ -63,11 +63,11 @@ const INCLUDES = [
 
 function HeroTitle({ lang }: { lang: Lang }) {
   if (lang === 'nl') return (
-    <>Breng meer leads binnen op autopilot, zodat je je klanten kunt behandelen met{' '}
-    <em style={{ color: '#c96442' }}>volledige aandacht</em>.</>
+    <>Breng leads binnen op autopilot, zodat je klanten je{' '}
+    <em style={{ color: '#c96442' }}>volledige aandacht</em> kan geven.</>
   )
   return (
-    <>Handle your leads on autopilot, so you can handle your customers with{' '}
+    <>Handle your leads on autopilot, so your customers get your{' '}
     <em style={{ color: '#c96442' }}>full attention</em>.</>
   )
 }
