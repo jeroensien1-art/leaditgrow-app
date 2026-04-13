@@ -78,6 +78,9 @@
 body { background: var(--background); color: var(--foreground); }
 html { scroll-behavior: smooth; }
 
+/* ── BLOG LIST ── */
+.blog-list-item:hover { opacity: 0.75; }
+
 /* ── BLOG CONTENT ── */
 .blog-content { line-height: 1.75; color: #3d3929; }
 .blog-content .blog-intro { font-size: 19px; line-height: 1.7; color: #535146; margin-bottom: 2rem; font-family: var(--font-serif); font-style: italic; }

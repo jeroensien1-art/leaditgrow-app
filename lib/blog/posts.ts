@@ -23,15 +23,46 @@ export const posts: BlogPost[] = [
     excerpt: 'Meer dan 6 op 10 Vlaamse zaakvoerders zeggen dat ze te druk zijn om hun bedrijf écht te laten groeien. Niet omdat ze niet hard genoeg werken, maar omdat alles via hen loopt.',
     schema: {
       '@context': 'https://schema.org',
-      '@type': 'Article',
-      headline: 'Waarom Vlaamse ondernemers vastlopen in hun eigen bedrijf (en hoe je dat oplost)',
-      description: 'Meer dan 6 op 10 Vlaamse zaakvoerders zijn de bottleneck in hun eigen bedrijf. Ontdek de 3 oorzaken en hoe Antwerpse en Gentse ondernemers dit structureel oplossen.',
-      datePublished: '2026-04-13',
-      author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
-      publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: 'Waarom Vlaamse ondernemers vastlopen in hun eigen bedrijf (en hoe je dat oplost)',
+          description: 'Meer dan 6 op 10 Vlaamse zaakvoerders zijn de bottleneck in hun eigen bedrijf. Ontdek de 3 oorzaken en hoe Antwerpse en Gentse ondernemers dit structureel oplossen.',
+          datePublished: '2026-04-13',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'Hoe weet ik of ik de bottleneck ben in mijn eigen bedrijf?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Een duidelijk teken is dat je bedrijf merkbaar trager draait als jij ziek bent, op vakantie bent of gewoon een drukke week hebt. Als beslissingen wachten op jou, als leads niet worden opgevolgd omdat jij er niet bij bent, ben jij de bottleneck. Dit is niet erg. Het is de eerste groeifase. Het probleem is als je er jarenlang inblijft zonder het te beseffen.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Is er ondersteuning beschikbaar voor zaakvoerders in Antwerpen en Gent?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Ja. Naast ons digitale groeitraject bieden we ook persoonlijke begeleiding aan voor zaakvoerders in de Antwerpse en Gentse regio. Een gratis kennismakingsgesprek van 15 minuten volstaat om te zien of er een match is.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Hoeveel kost het om een groeisysteem op te zetten?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Voor een eenvoudig automatisch lead-opvolgingssysteem starten de kosten rond 600 euro eenmalig. Een volledig uitgewerkt groeisysteem begint rond 2.000 euro. De meeste klanten verdienen dat terug binnen 60 dagen via betere leadconversie.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Wat is het verschil tussen een groeisysteem en een CRM?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Een CRM is een tool. Een groeisysteem is een aanpak. Een CRM registreert contacten. Een groeisysteem zorgt ervoor dat die contacten automatisch worden opgevolgd, gekwalificeerd en omgezet in klanten, ook als jij er niet actief mee bezig bent.' },
+            },
+          ],
+        },
+      ],
     },
     content: `
 <p class="blog-intro">Meer dan 6 op 10 Vlaamse zaakvoerders zeggen dat ze te druk zijn om hun bedrijf écht te laten groeien. Niet omdat ze niet hard genoeg werken, maar omdat alles via hen loopt. Elke beslissing, elke lead, elke klacht. Ze hebben geen bedrijf gebouwd. Ze hebben zichzelf een job gegeven met meer verantwoordelijkheid dan ooit.</p>
+
+<p><strong>Een groeisysteem is een set van processen en automaties die ervoor zorgen dat jouw bedrijf leads aantrekt, opvolgt en omzet in klanten, ook als jij er niet actief bij betrokken bent.</strong> Het is het tegenovergestelde van een zaakvoerder die alles zelf doet.</p>
 
 <p>Dit is geen Vlaams fenomeen, maar het speelt bijzonder sterk bij owner-operated bedrijven in regio's zoals Antwerpen, Gent en het Waasland, waar de ondernemerscultuur diep geworteld is in persoonlijke betrokkenheid en vakmanschap. De zaakvoerder is het gezicht, het brein en de motor. Dat werkt tot een bepaald punt. Daarna wordt het een rem.</p>
 
@@ -103,15 +134,46 @@ export const posts: BlogPost[] = [
     excerpt: 'Er is een patroon in hoe succesvolle Vlaamse zaakvoerders leiding geven. Het heeft niets te maken met charisma of hard werken. Het heeft alles te maken met zelfkennis.',
     schema: {
       '@context': 'https://schema.org',
-      '@type': 'Article',
-      headline: 'Leiderschapsprofiel: wat de beste zaakvoerders in Antwerpen en Gent gemeen hebben',
-      description: 'Wat onderscheidt groeiende zaakvoerders in Antwerpen en Gent van wie blijft hangen? Onderzoek naar leiderschapsprofielen van Vlaamse ondernemers.',
-      datePublished: '2026-04-13',
-      author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
-      publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: 'Leiderschapsprofiel: wat de beste zaakvoerders in Antwerpen en Gent gemeen hebben',
+          description: 'Wat onderscheidt groeiende zaakvoerders in Antwerpen en Gent van wie blijft hangen? Onderzoek naar leiderschapsprofielen van Vlaamse ondernemers.',
+          datePublished: '2026-04-13',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'Wat is een leiderschapsprofiel en hoe wordt het opgemaakt?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Een leiderschapsprofiel is een gestructureerde analyse van hoe jij als leider functioneert: je sterktes, je valkuilen, je communicatiestijl, je manier van beslissen en delegeren. Het wordt opgemaakt via een wetenschappelijk onderbouwde vragenlijst en een diepgaand persoonlijk gesprek van 75 minuten.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Welke zaakvoerders in Antwerpen en Gent hebben baat bij een leiderschapsanalyse?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Elke zaakvoerder van een groeiend bedrijf heeft er baat bij, maar het is het meest impactvol voor wie een groeiplafond ervaart, moeite heeft met delegeren, mensen verliest of aanwerft die niet passen, of gewoon het gevoel heeft dat het slimmer kan.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Is er een leiderschapsanalyse beschikbaar in Antwerpen of Gent?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Ja. Via ons partnernetwerk is een gratis leiderschapsanalyse beschikbaar voor zaakvoerders in de regio. Het gesprek vindt plaats op jouw kantoor. Stuur een e-mail naar jeroen@leaditgrow.be met als onderwerp "Leiderschapsanalyse".' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Hoe verschilt een leiderschapsanalyse van een persoonlijkheidstest zoals MBTI of DISC?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Persoonlijkheidstests meten hoe je bent. Een leiderschapsanalyse kijkt naar hoe jij in de context van jouw bedrijf functioneert: wat jouw specifieke impact is op je team, je klanten en je resultaten. Het is contextueler, praktischer en direct toepasbaar.' },
+            },
+          ],
+        },
+      ],
     },
     content: `
 <p class="blog-intro">Er is een patroon in hoe succesvolle Vlaamse zaakvoerders leiding geven. Het heeft niets te maken met charisma, extraversie of zelfs hard werken. Het heeft alles te maken met zelfkennis: weten wie je bent als leider, wat je drijft, waar je blind spots zitten, en hoe je omgeving op jou reageert.</p>
+
+<p><strong>Een leiderschapsprofiel is een gestructureerde analyse van hoe jij als leider functioneert: je sterktes, je valkuilen, je communicatiestijl en de impact die jij hebt op je team en bedrijfsresultaten.</strong> Het is geen persoonlijkheidstest. Het is een praktische spiegel die direct toepasbaar is.</p>
 
 <p>In gesprekken met tientallen ondernemers uit regio Antwerpen en Gent, van bouwbedrijven in het Waasland tot consultancykantoren in de Gentse Kuip, komt steeds hetzelfde naar voren. De zaakvoerders die groeien zonder zichzelf te verliezen, zijn niet de slimste of de hardste werkers. Ze zijn de meest bewuste.</p>
 
@@ -185,15 +247,46 @@ export const posts: BlogPost[] = [
     excerpt: 'In een economie waar AI het technische werk overneemt, worden zachte vaardigheden het echte onderscheid. Vlaamse groeibedrijven in Antwerpen en Gent investeren massaal in leiderschapsontwikkeling.',
     schema: {
       '@context': 'https://schema.org',
-      '@type': 'Article',
-      headline: 'Soft skills zijn de harde valuta voor Vlaamse groeibedrijven in 2025',
-      description: 'Soft skills bepalen wie groeit en wie stagneert in 2025. Waarom Vlaamse bedrijven in Antwerpen en Gent investeren in zachte vaardigheden als groeistrategie.',
-      datePublished: '2026-04-13',
-      author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
-      publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: 'Soft skills zijn de harde valuta voor Vlaamse groeibedrijven in 2025',
+          description: 'Soft skills bepalen wie groeit en wie stagneert in 2025. Waarom Vlaamse bedrijven in Antwerpen en Gent investeren in zachte vaardigheden als groeistrategie.',
+          datePublished: '2026-04-13',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'Waarom zijn soft skills belangrijker dan ooit in 2025?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Omdat AI steeds meer technische taken overneemt, worden menselijke vaardigheden het echte onderscheid. Vertrouwen bouwen, motiveren, onderhandelen en verbinden zijn taken die AI niet kan overnemen. Zaakvoerders die hierin investeren, worden waardevoller naarmate automatisering toeneemt.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Hoe train je soft skills als zaakvoerder?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Niet via klassieke opleidingen. Soft skills ontwikkel je door zelfkennis, reflectie en oefening in de echte context van je bedrijf. De meest effectieve aanpak: begin met een grondige leiderschapsanalyse die blootlegt welke patronen jou helpen en welke jou remmen.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Welke soft skills zijn het meest relevant voor Vlaamse kmo-zaakvoerders?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Op basis van praktijkervaring met bedrijven in Antwerpen en Gent: delegeren met vertrouwen, feedbackcultuur bouwen en moeilijke gesprekken voeren. Dit zijn de drie vaardigheden die het meest direct impact hebben op groei, retentie en de mentale belasting van de zaakvoerder.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Zijn er gratis trajecten beschikbaar voor leiderschapsontwikkeling in Antwerpen of Gent?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Ja. Via ons partnernetwerk is een gratis leiderschapsanalyse beschikbaar voor zaakvoerders in de regio. Stuur een e-mail naar jeroen@leaditgrow.be met als onderwerp "Leiderschapsanalyse" voor meer informatie.' },
+            },
+          ],
+        },
+      ],
     },
     content: `
 <p class="blog-intro">In een economie waar artificiële intelligentie steeds meer technische taken overneemt, worden zachte vaardigheden het échte onderscheid. Niet als nice-to-have, maar als strategische competentie die bepaalt wie klanten bindt, mensen motiveert en markten wint. Vlaamse groeibedrijven in Antwerpen en Gent beginnen dit te begrijpen.</p>
+
+<p><strong>Soft skills zijn de menselijke vaardigheden die niet automatiseerbaar zijn: communiceren, delegeren, verbinden, motiveren en conflicten omzetten in groei.</strong> In de context van een Vlaamse zaakvoerder zijn ze de directe voorspeller van hoe snel een bedrijf kan schalen zonder dat de kwaliteit of het team eronder lijdt.</p>
 
 <p>Toch is er een grote kloof tussen dit besef en de praktijk. Een enquête van Voka Antwerpen-Waasland uit 2024 toont dat slechts 22% van de bevraagde kmo's structureel investeert in de ontwikkeling van soft skills bij hun management. De rest geeft aan dat het "op de agenda staat" maar dat andere prioriteiten voorgaan.</p>
 <p>Die andere prioriteiten zijn begrijpelijk. Operationele druk, personeelstekorten, stijgende kosten. Maar de ironie is dat de meeste van die problemen een soft skills-probleem zijn in vermomming. Een slecht functionerend team heeft zelden een technisch probleem. Het heeft een communicatie-, delegatie- of vertrouwensprobleem.</p>

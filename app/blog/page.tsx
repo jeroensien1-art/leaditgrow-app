@@ -42,14 +42,13 @@ export default function BlogPage() {
                 style={{ textDecoration: 'none', color: 'inherit' }}
               >
                 <article
+                  className="blog-list-item"
                   style={{
                     padding: '2rem 0',
                     borderBottom: '1px solid rgba(61,57,41,0.1)',
                     cursor: 'pointer',
                     transition: 'opacity 0.2s',
                   }}
-                  onMouseEnter={e => (e.currentTarget.style.opacity = '0.75')}
-                  onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '0.75rem' }}>
                     <span
