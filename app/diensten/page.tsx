@@ -41,7 +41,7 @@ const services = [
     icon: TrendingUp,
     tag: 'Betaald · Vanaf €600',
     title: 'Speed-to-Lead Systeem',
-    outcome: 'Elke lead krijgt binnen 60 seconden een persoonlijk klinkend antwoord — ook om 23u op vrijdag.',
+    outcome: 'Behoud meer potentiële klanten doordat ze info of een afspraak krijgen terwijl jij aan iets anders werkt, of slaapt.',
     description: 'We bouwen een geautomatiseerd opvolgsysteem dat reageert op elke aanvraag, tijdssloten voorstelt en de lead warm houdt tot jij het gesprek overneemt. Inbegrepen: opzetkosten, copywriting en maandelijks onderhoud.',
     cta: 'Plan een gesprek',
     href: '/#contact',
@@ -104,8 +104,8 @@ export default function DienstenPage() {
               Diensten
             </div>
             <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(28px, 5vw, 48px)', fontWeight: 400, lineHeight: 1.15, color: '#faf9f5', margin: '0 0 1.25rem' }}>
-              Elke dienst heeft één doel:<br />
-              <em style={{ color: 'rgba(250,249,245,0.6)' }}>jouw bedrijf losgekoppeld van jouw aanwezigheid.</em>
+              Jouw business is een ketting.<br />
+              <em style={{ color: 'rgba(250,249,245,0.6)' }}>Leer welk onderdeel jou het meeste omzet en energie kost, en vind de oplossing hier.</em>
             </h1>
             <p style={{ fontSize: '16px', color: 'rgba(250,249,245,0.5)', lineHeight: 1.7, maxWidth: '520px', margin: 0 }}>
               Start gratis met de diagnose of calculator. Ga verder met wat past bij jouw fase.
