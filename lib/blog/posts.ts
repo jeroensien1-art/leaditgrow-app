@@ -6,6 +6,7 @@ export interface BlogPost {
   publishDate: string
   readingTime: number
   category: string
+  region?: string
   excerpt: string
   content: string
   schema: object
@@ -20,6 +21,7 @@ export const posts: BlogPost[] = [
     publishDate: '2026-04-13',
     readingTime: 8,
     category: 'Groei & Systemen',
+    region: 'België · Vlaanderen',
     excerpt: 'Meer dan 6 op 10 Vlaamse zaakvoerders zeggen dat ze te druk zijn om hun bedrijf écht te laten groeien. Niet omdat ze niet hard genoeg werken, maar omdat alles via hen loopt.',
     schema: {
       '@context': 'https://schema.org',
@@ -131,6 +133,7 @@ export const posts: BlogPost[] = [
     publishDate: '2026-04-13',
     readingTime: 9,
     category: 'Leiderschap',
+    region: 'België · Vlaanderen',
     excerpt: 'Er is een patroon in hoe succesvolle Vlaamse zaakvoerders leiding geven. Het heeft niets te maken met charisma of hard werken. Het heeft alles te maken met zelfkennis.',
     schema: {
       '@context': 'https://schema.org',
@@ -244,6 +247,7 @@ export const posts: BlogPost[] = [
     publishDate: '2026-04-13',
     readingTime: 7,
     category: 'Leiderschap',
+    region: 'België · Vlaanderen',
     excerpt: 'In een economie waar AI het technische werk overneemt, worden zachte vaardigheden het echte onderscheid. Vlaamse groeibedrijven in Antwerpen en Gent investeren massaal in leiderschapsontwikkeling.',
     schema: {
       '@context': 'https://schema.org',

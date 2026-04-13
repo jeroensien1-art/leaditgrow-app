@@ -58,10 +58,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <ArrowLeft size={12} /> Blog
             </Link>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1.5rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
               <span style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#c96442', background: 'rgba(201,100,66,0.12)', padding: '3px 10px', borderRadius: '999px', border: '1px solid rgba(201,100,66,0.2)' }}>
                 {post.category}
               </span>
+              {post.region && (
+                <span style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(250,249,245,0.5)', background: 'rgba(250,249,245,0.08)', padding: '3px 10px', borderRadius: '999px', border: '1px solid rgba(250,249,245,0.12)' }}>
+                  {post.region}
+                </span>
+              )}
               <span style={{ fontFamily: 'monospace', fontSize: '10px', color: 'rgba(250,249,245,0.3)' }}>
                 {date} · {post.readingTime} min lezen
               </span>

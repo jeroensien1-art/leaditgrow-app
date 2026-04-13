@@ -27,11 +27,11 @@ export default function BlogPage() {
           <h1
             style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 400, lineHeight: 1.1, color: '#0a1e10', marginBottom: '1rem' }}
           >
-            Inzichten voor<br /><em style={{ color: '#c96442' }}>Vlaamse ondernemers</em>
+            Laatste inzichten<br /><em style={{ color: '#c96442' }}>voor ondernemers</em>
           </h1>
 
           <p style={{ fontSize: '17px', color: '#83827d', lineHeight: 1.7, marginBottom: '3.5rem', maxWidth: '520px' }}>
-            Over groeisystemen, leiderschap en leads binnenbrengen op autopilot. Voor zaakvoerders in Antwerpen, Gent en Vlaanderen.
+            Over groeisystemen, leiderschap en leads binnenbrengen op autopilot.
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', borderTop: '1px solid rgba(61,57,41,0.1)' }}>
@@ -50,12 +50,19 @@ export default function BlogPage() {
                     transition: 'opacity 0.2s',
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '0.75rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.75rem', flexWrap: 'wrap' }}>
                     <span
                       style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#c96442', background: 'rgba(201,100,66,0.08)', padding: '3px 10px', borderRadius: '999px', border: '1px solid rgba(201,100,66,0.2)' }}
                     >
                       {post.category}
                     </span>
+                    {post.region && (
+                      <span
+                        style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#535146', background: 'rgba(61,57,41,0.06)', padding: '3px 10px', borderRadius: '999px', border: '1px solid rgba(61,57,41,0.12)' }}
+                      >
+                        {post.region}
+                      </span>
+                    )}
                     <span style={{ fontFamily: 'monospace', fontSize: '10px', color: '#b4b2a7' }}>
                       {post.readingTime} min lezen
                     </span>

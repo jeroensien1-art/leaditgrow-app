@@ -20,16 +20,16 @@ export function Nav() {
           color: '#3d3929',
         }}
       >
-        <a href="#home">
+        <a href="/#home">
           <LogoFull height={64} textColor="#3d3929" />
         </a>
 
         <div className="w-px h-4" style={{ background: 'rgba(61,57,41,0.2)' }} />
 
-        <a href="#services" className="hover:text-[#c96442] transition-colors">{t('Diensten', 'Services')}</a>
-        <a href="#about" className="hover:text-[#c96442] transition-colors">{t('Over', 'About')}</a>
+        <a href="/diensten" className="hover:text-[#c96442] transition-colors">{t('Diensten', 'Services')}</a>
+        <a href="/#about" className="hover:text-[#c96442] transition-colors">{t('Over', 'About')}</a>
         <a href="/blog" className="hover:text-[#c96442] transition-colors">{t('Blog', 'Blog')}</a>
-        <a href="#contact" className="hover:text-[#c96442] transition-colors">{t('Contact', 'Contact')}</a>
+        <a href="/#contact" className="hover:text-[#c96442] transition-colors">{t('Contact', 'Contact')}</a>
         <a href="/diagnostic" className="hover:text-[#c96442] transition-colors font-semibold" style={{ color: '#c96442' }}>{t('Gratis diagnose', 'Free diagnostic')}</a>
 
         <div className="w-px h-4" style={{ background: 'rgba(61,57,41,0.2)' }} />
