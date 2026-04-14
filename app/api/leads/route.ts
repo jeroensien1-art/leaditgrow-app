@@ -3,11 +3,11 @@ import { randomUUID } from 'crypto'
 import { waitUntil } from '@vercel/functions'
 import { qualifyAndDraft, type Lead } from '@/lib/crm/claude'
 import { sendToLead, notifyJeroen } from '@/lib/crm/email'
-import { saveLead } from '@/lib/crm/store'
+import { saveLead, updateLead } from '@/lib/crm/store'
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, message } = await req.json()
+    const { name, email, message, source } = await req.json()
 
     if (!name || !email || !message) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
@@ -16,8 +16,23 @@ export async function POST(req: NextRequest) {
     const id = randomUUID()
     const submittedAt = Date.now()
 
-    // waitUntil ensures Vercel keeps the function alive until processing completes
-    waitUntil(processLead({ id, name, email, message, submittedAt }).catch(err =>
+    // Save stub immediately — entry always lands in dashboard even if Claude fails
+    const stub: Lead = {
+      id,
+      name,
+      email,
+      message,
+      lang: 'nl',
+      submittedAt,
+      qualified: false,
+      score: 0,
+      status: 'new',
+      source: source ?? 'widget',
+    }
+    await saveLead(stub)
+
+    // Claude qualification + email run in background
+    waitUntil(processLead({ id, name, email, message }).catch(err =>
       console.error('[leads] background error:', err)
     ))
 
@@ -29,26 +44,21 @@ export async function POST(req: NextRequest) {
 }
 
 async function processLead({
-  id, name, email, message, submittedAt
+  id, name, email, message,
 }: {
-  id: string; name: string; email: string; message: string; submittedAt: number
+  id: string; name: string; email: string; message: string
 }) {
   // 1. Claude qualifies and drafts personalised reply
   const result = await qualifyAndDraft({ name, email, message })
 
-  // 2. Save to Supabase
-  const lead: Lead = {
-    id,
-    name,
-    email,
-    message,
+  // 2. Update the stub with real qualification data
+  await updateLead(id, {
     lang: result.lang,
-    submittedAt,
     qualified: result.qualified,
     score: result.score,
-    status: 'new',
-  }
-  await saveLead(lead)
+    status: 'replied',
+    repliedAt: Date.now(),
+  })
 
   // 3. Send personalised reply to the lead
   await sendToLead(email, result.emailSubject, result.emailBody)

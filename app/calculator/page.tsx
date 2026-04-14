@@ -152,14 +152,23 @@ export default function CalculatorPage() {
   const handleCapture = async () => {
     if (!captureEmail.includes('@') || !captureName.trim()) return
     setSubmitting(true)
-    const msg = nl
-      ? `Revenue Calculator resultaat\n\nLeads/maand: ${leads}\nGem. opdracht: ${deal}\nResponsetijd: ${speed}\nOpvolging: ${followup}\nMaandelijks verlies: ${fmt(result.monthly)}`
-      : `Revenue Calculator result\n\nLeads/month: ${leads}\nAvg deal: ${deal}\nResponse time: ${speed}\nFollow-up: ${followup}\nMonthly leak: ${fmt(result.monthly)}`
     try {
-      await fetch('/api/leads', {
+      await fetch('/api/calculator', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: captureName, email: captureEmail, message: msg, source: 'calculator' }),
+        body: JSON.stringify({
+          name: captureName,
+          email: captureEmail,
+          lang: nl ? 'nl' : 'en',
+          leads,
+          deal,
+          speed,
+          followup,
+          monthly: result.monthly,
+          annual: result.annual,
+          speedLeak: result.speedLeak,
+          followupLeak: result.followupLeak,
+        }),
       })
     } catch { /* fire and forget */ }
     setStep('thanks')

@@ -16,6 +16,7 @@ function toRow(lead: Lead) {
     qualified: lead.qualified,
     score: lead.score,
     status: lead.status,
+    source: lead.source ?? 'widget',
     replied_at: lead.repliedAt ? new Date(lead.repliedAt).toISOString() : null,
     followed_up_at: lead.followedUpAt ? new Date(lead.followedUpAt).toISOString() : null,
   }
@@ -31,6 +32,7 @@ function fromRow(row: Record<string, unknown>): Lead {
     qualified: row.qualified as boolean,
     score: row.score as number,
     status: row.status as Lead['status'],
+    source: (row.source as Lead['source']) ?? 'widget',
     submittedAt: new Date(row.created_at as string).getTime(),
     repliedAt: row.replied_at ? new Date(row.replied_at as string).getTime() : undefined,
     followedUpAt: row.followed_up_at ? new Date(row.followed_up_at as string).getTime() : undefined,
@@ -51,6 +53,9 @@ export async function getLead(id: string): Promise<Lead | null> {
 export async function updateLead(id: string, patch: Partial<Lead>): Promise<void> {
   const updates: Record<string, unknown> = {}
   if (patch.status !== undefined) updates.status = patch.status
+  if (patch.qualified !== undefined) updates.qualified = patch.qualified
+  if (patch.score !== undefined) updates.score = patch.score
+  if (patch.lang !== undefined) updates.lang = patch.lang
   if (patch.repliedAt !== undefined) updates.replied_at = new Date(patch.repliedAt).toISOString()
   if (patch.followedUpAt !== undefined) updates.followed_up_at = new Date(patch.followedUpAt).toISOString()
 

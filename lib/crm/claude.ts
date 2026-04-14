@@ -14,6 +14,7 @@ export interface Lead {
   qualified: boolean
   score: number
   status: 'new' | 'replied' | 'followed_up' | 'booked' | 'closed'
+  source?: 'widget' | 'calculator' | 'diagnostic'
 }
 
 export interface QualificationResult {

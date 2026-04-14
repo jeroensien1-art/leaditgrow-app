@@ -8,6 +8,12 @@ import type { Lead } from '@/lib/crm/claude'
 
 const STATUS_OPTIONS: Lead['status'][] = ['new', 'replied', 'followed_up', 'booked', 'closed']
 
+const SOURCE_STYLE: Record<string, { bg: string; color: string; label: string }> = {
+  widget:     { bg: 'rgba(61,57,41,0.08)',    color: '#83827d',  label: 'Widget' },
+  calculator: { bg: 'rgba(52,130,246,0.12)',  color: '#3b82f6',  label: 'Calculator' },
+  diagnostic: { bg: 'rgba(201,100,66,0.12)',  color: '#c96442',  label: 'Diagnostic' },
+}
+
 const STATUS_STYLE: Record<string, { bg: string; color: string }> = {
   new:          { bg: 'rgba(201,100,66,0.15)',  color: '#e07a52' },
   replied:      { bg: 'rgba(61,186,110,0.12)',  color: '#3dba6e' },
@@ -214,6 +220,7 @@ export default function Dashboard() {
                 <tr style={{ borderBottom: '1px solid rgba(61,57,41,0.08)', background: '#faf9f5' }}>
                   {([
                     { col: 'name' as keyof Lead, label: 'Name' },
+                    { col: 'source' as keyof Lead, label: 'Source' },
                     { col: 'status' as keyof Lead, label: 'Status' },
                     { col: 'score' as keyof Lead, label: 'Score' },
                     { col: 'lang' as keyof Lead, label: 'Lang' },
@@ -244,6 +251,17 @@ export default function Dashboard() {
                       <td style={{ padding: '12px 16px' }}>
                         <div style={{ fontWeight: 600, color: '#3d3929' }}>{lead.name}</div>
                         <div style={{ fontSize: 12, color: '#83827d' }}>{lead.email}</div>
+                      </td>
+                      {/* Source */}
+                      <td style={{ padding: '12px 16px' }}>
+                        {(() => {
+                          const s = SOURCE_STYLE[lead.source ?? 'widget'] ?? SOURCE_STYLE.widget
+                          return (
+                            <span style={{ fontSize: 11, fontWeight: 700, background: s.bg, color: s.color, borderRadius: 5, padding: '2px 7px', whiteSpace: 'nowrap' }}>
+                              {s.label}
+                            </span>
+                          )
+                        })()}
                       </td>
                       {/* Status */}
                       <td style={{ padding: '12px 16px' }} onClick={e => e.stopPropagation()}>
@@ -288,7 +306,7 @@ export default function Dashboard() {
                     {/* Expanded row */}
                     {expandedId === lead.id && (
                       <tr key={`${lead.id}-exp`} style={{ background: '#faf9f5', borderBottom: '1px solid rgba(61,57,41,0.06)' }}>
-                        <td colSpan={6} style={{ padding: '16px 24px' }}>
+                        <td colSpan={7} style={{ padding: '16px 24px' }}>
                           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
                             {/* Message */}
                             <div>
