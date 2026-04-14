@@ -5,7 +5,7 @@ import { sendToLead } from '@/lib/crm/email'
 import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
-const FROM = 'Jeroen — Lead it, Grow <jeroen@leaditgrow.be>'
+const FROM = 'Jeroen | Lead it, Grow <jeroen@leaditgrow.be>'
 const NOTIFY = 'jeroen@leaditgrow.be'
 
 export interface CalculatorSubmission {
@@ -37,8 +37,8 @@ function buildEmail(s: CalculatorSubmission): { subject: string; html: string } 
         ? `${s.name}, jij laat ${fmt(s.monthly, 'nl')}/maand liggen`
         : `${s.name}, you're losing ${fmt(s.monthly, 'en')}/month`)
     : (nl
-        ? `${s.name}, jouw systemen werken goed — hier is wat nog beter kan`
-        : `${s.name}, your systems are solid — here's what to sharpen next`)
+        ? `${s.name}, jouw systemen werken goed  - hier is wat nog beter kan`
+        : `${s.name}, your systems are solid  - here's what to sharpen next`)
 
   const leakSection = hasLeak ? `
     <div style="background:#3d3929;border-radius:14px;padding:28px 32px;margin-bottom:24px;text-align:center">
@@ -90,7 +90,7 @@ function buildEmail(s: CalculatorSubmission): { subject: string; html: string } 
     <!-- Header -->
     <div style="margin-bottom:28px">
       <div style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c96442;margin-bottom:4px">Lead it, Grow</div>
-      <div style="font-size:11px;color:#b0aea8">${nl ? 'Revenue Calculator — jouw resultaat' : 'Revenue Calculator — your result'}</div>
+      <div style="font-size:11px;color:#b0aea8">${nl ? 'Revenue Calculator  - jouw resultaat' : 'Revenue Calculator  - your result'}</div>
     </div>
 
     <!-- Card -->
@@ -115,8 +115,8 @@ function buildEmail(s: CalculatorSubmission): { subject: string; html: string } 
         </div>
         <p style="font-size:13px;color:#535146;line-height:1.65;margin:0 0 16px">
           ${nl
-            ? 'De Business Impact Diagnose kijkt ook naar leiderschap, sales, retentie en marketing. Je ontvangt een volledig persoonlijk rapport met je top 3 fixes — gratis, 10 minuten.'
-            : 'The Business Impact Diagnostic also covers leadership, sales, retention and marketing. You get a full personalised report with your top 3 fixes — free, 10 minutes.'}
+            ? 'De Business Impact Diagnose kijkt ook naar leiderschap, sales, retentie en marketing. Je ontvangt een volledig persoonlijk rapport met je top 3 fixes  - gratis, 10 minuten.'
+            : 'The Business Impact Diagnostic also covers leadership, sales, retention and marketing. You get a full personalised report with your top 3 fixes  - free, 10 minutes.'}
         </p>
         <a href="https://leaditgrow.be/diagnostic"
            style="display:inline-block;background:#15803d;color:#fff;text-decoration:none;padding:12px 22px;border-radius:9px;font-size:14px;font-weight:600">
@@ -126,8 +126,8 @@ function buildEmail(s: CalculatorSubmission): { subject: string; html: string } 
 
       <p style="font-size:13px;color:#83827d;line-height:1.65;margin:0">
         ${nl
-          ? 'Of stuur me gewoon een reply als je vragen hebt — ik lees alles zelf.'
-          : 'Or just reply to this email if you have questions — I read everything myself.'}
+          ? 'Of stuur me gewoon een reply als je vragen hebt  - ik lees alles zelf.'
+          : 'Or just reply to this email if you have questions  - I read everything myself.'}
       </p>
 
     </div>
@@ -135,7 +135,7 @@ function buildEmail(s: CalculatorSubmission): { subject: string; html: string } 
     <!-- Footer -->
     <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(61,57,41,.1)">
       <div style="font-size:13px;font-weight:600;color:#3d3929">Jeroen</div>
-      <div style="font-size:12px;color:#83827d">Lead it, Grow — jeroen@leaditgrow.be</div>
+      <div style="font-size:12px;color:#83827d">Lead it, Grow  - jeroen@leaditgrow.be</div>
       <div style="font-size:11px;color:#b0aea8;margin-top:6px">
         ${nl
           ? 'Berekeningen gebaseerd op gepubliceerd B2B sales onderzoek. Schattingen, geen garanties.'
@@ -165,7 +165,7 @@ export async function POST(req: NextRequest) {
       id,
       name: body.name,
       email: body.email,
-      message: `Revenue Calculator — monthly leak: ${fmt(body.monthly, body.lang)} | speed: ${body.speed} | follow-up: ${body.followup} | leads/mo: ${body.leads} | avg deal: ${body.deal}`,
+      message: `Revenue Calculator  - monthly leak: ${fmt(body.monthly, body.lang)} | speed: ${body.speed} | follow-up: ${body.followup} | leads/mo: ${body.leads} | avg deal: ${body.deal}`,
       lang: body.lang,
       submittedAt: Date.now(),
       qualified: body.monthly > 5000,   // treat as qualified if meaningful leak
@@ -182,7 +182,7 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from: FROM,
       to: NOTIFY,
-      subject: `Calculator lead: ${body.name} — ${fmt(body.monthly, body.lang)}/mo leak`,
+      subject: `Calculator lead: ${body.name}  - ${fmt(body.monthly, body.lang)}/mo leak`,
       html: `
         <h2 style="font-family:sans-serif;color:#3d3929">Calculator submission</h2>
         <p style="font-family:sans-serif;color:#535146"><strong>Name:</strong> ${body.name}</p>
