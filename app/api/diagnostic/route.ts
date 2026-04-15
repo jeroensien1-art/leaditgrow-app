@@ -110,7 +110,7 @@ const LEVER_NL: Record<string, LeverContent> = {
         result: 'Je bouwt zichtbaarheid die werkt terwijl jij met klanten bezig bent of slaapt. De eerste resultaten zijn merkbaar na 6-8 weken.',
       },
       {
-        action: 'Maak een content-batch van 4 weken in een dag: 4 posts, 4 thema's, ingepland. Gebruik echte klantproblemen als basis. Plan ze in via Buffer, Later of direct op LinkedIn.',
+        action: "Maak een content-batch van 4 weken in een dag: 4 posts, 4 thema's, ingepland. Gebruik echte klantproblemen als basis. Plan ze in via Buffer, Later of direct op LinkedIn.",
         result: 'Jouw aanwezigheid wordt voorspelbaar. Je stopt met vanuit paniek posten of weken lang niets laten horen.',
       },
       {
