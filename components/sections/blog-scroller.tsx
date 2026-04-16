@@ -3,8 +3,10 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { posts } from '@/lib/blog/posts'
+import { useLang } from '@/components/lang-context'
 
 export function BlogScroller() {
+  const { t } = useLang()
   // Duplicate posts for seamless infinite scroll
   const doubled = [...posts, ...posts]
 
@@ -15,18 +17,20 @@ export function BlogScroller() {
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 1.5rem 3rem', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
         <div>
           <p style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c96442', marginBottom: '0.75rem' }}>
-            Van de blog
+            {t('Van de blog', 'From the blog')}
           </p>
           <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(26px, 4vw, 40px)', fontWeight: 400, color: '#faf9f5', margin: 0, lineHeight: 1.15 }}>
-            Inzichten voor Vlaamse<br />
-            <span style={{ fontStyle: 'italic', color: 'rgba(250,249,245,0.55)' }}>zaakvoerders die willen groeien</span>
+            {t('Inzichten voor Vlaamse', 'Insights for European')}<br />
+            <span style={{ fontStyle: 'italic', color: 'rgba(250,249,245,0.55)' }}>
+              {t('zaakvoerders die willen groeien', 'Business growth')}
+            </span>
           </h2>
         </div>
         <Link
           href="/blog"
           style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontFamily: 'monospace', fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#c96442', textDecoration: 'none', whiteSpace: 'nowrap' }}
         >
-          Alle artikels <ArrowRight size={12} />
+          {t('Alle artikels', 'All articles')} <ArrowRight size={12} />
         </Link>
       </div>
 
@@ -92,10 +96,10 @@ export function BlogScroller() {
                 {/* Footer */}
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <span style={{ fontFamily: 'monospace', fontSize: '10px', color: 'rgba(250,249,245,0.25)', letterSpacing: '0.05em' }}>
-                    {post.readingTime} min lezen
+                    {post.readingTime} {t('min lezen', 'min read')}
                   </span>
                   <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#c96442' }}>
-                    Lees meer <ArrowRight size={10} />
+                    {t('Lees meer', 'Read more')} <ArrowRight size={10} />
                   </span>
                 </div>
               </article>
