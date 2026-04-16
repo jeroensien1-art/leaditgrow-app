@@ -1,11 +1,9 @@
 import type { MetadataRoute } from 'next'
-import { getAllSlugs } from '@/lib/blog/posts'
+import { posts } from '@/lib/blog/posts'
 
 const BASE_URL = 'https://leaditgrow.be'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const blogSlugs = getAllSlugs()
-
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
@@ -45,9 +43,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  const blogRoutes: MetadataRoute.Sitemap = blogSlugs.map(slug => ({
-    url: `${BASE_URL}/blog/${slug}`,
-    lastModified: new Date('2026-04-15'),
+  const blogRoutes: MetadataRoute.Sitemap = posts.map(post => ({
+    url: `${BASE_URL}/blog/${post.slug}`,
+    lastModified: new Date(post.publishDate),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
