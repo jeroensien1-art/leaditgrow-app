@@ -4,6 +4,7 @@ import { Services } from '@/components/sections/services'
 import { Tools } from '@/components/sections/tools'
 import { About } from '@/components/sections/about'
 import { Contact } from '@/components/sections/contact'
+import { BlogScroller } from '@/components/sections/blog-scroller'
 import { ChatWidget } from '@/components/chat-widget'
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         <Tools />
         <About />
         <Contact />
+        <BlogScroller />
       </main>
       <footer
         className="py-8 text-center text-xs"
