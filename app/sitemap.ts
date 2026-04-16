@@ -9,37 +9,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
-      lastModified: new Date(),
+      lastModified: new Date('2026-04-15'),
       changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
       url: `${BASE_URL}/diensten`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-04-15'),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/diagnostic`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-04-15'),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/calculator`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-04-15'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${BASE_URL}/actiehandboek`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-04-15'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${BASE_URL}/blog`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-04-15'),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
@@ -47,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const blogRoutes: MetadataRoute.Sitemap = blogSlugs.map(slug => ({
     url: `${BASE_URL}/blog/${slug}`,
-    lastModified: new Date(),
+    lastModified: new Date('2026-04-15'),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
