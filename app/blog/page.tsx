@@ -1,75 +1,73 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { posts } from '@/lib/blog/posts'
 import { Nav } from '@/components/nav'
+import { getLang } from '@/lib/lang'
+import { getLocalizedPosts } from '@/lib/blog'
 
-export const metadata: Metadata = {
-  title: 'Blog — Groei, leiderschap en systemen voor Vlaamse ondernemers | Lead it, Grow',
-  description: 'Praktische inzichten voor zaakvoerders in Antwerpen, Gent en Vlaanderen. Over groeisystemen, leiderschap en leads binnenbrengen op autopilot.',
-  alternates: {
-    canonical: 'https://leaditgrow.be/blog',
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const lang = await getLang()
+  return lang === 'en'
+    ? {
+        title: 'Blog — Growth Systems and Lead Follow-Up for European Entrepreneurs | Lead it, Grow',
+        description: 'Practical insights for founders and SME owners in Europe. On growth systems, leadership, and bringing in leads on autopilot.',
+        alternates: { canonical: 'https://leaditgrow.com/blog' },
+      }
+    : {
+        title: 'Blog — Groei, leiderschap en systemen voor Vlaamse ondernemers | Lead it, Grow',
+        description: 'Praktische inzichten voor zaakvoerders in Antwerpen, Gent en Vlaanderen. Over groeisystemen, leiderschap en leads binnenbrengen op autopilot.',
+        alternates: { canonical: 'https://leaditgrow.be/blog' },
+      }
 }
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const lang = await getLang()
+  const posts = getLocalizedPosts(lang)
+
+  const heading = lang === 'en'
+    ? { label: 'Blog', title: 'Latest insights', sub: 'for entrepreneurs', desc: 'On growth systems, leadership, and bringing in leads on autopilot.' }
+    : { label: 'Blog', title: 'Laatste inzichten', sub: 'voor ondernemers', desc: 'Over groeisystemen, leiderschap en leads binnenbrengen op autopilot.' }
+
+  const minRead = lang === 'en' ? 'min read' : 'min lezen'
+
   return (
     <>
       <Nav />
       <main style={{ background: '#faf9f5', minHeight: '100vh', paddingTop: '6rem' }}>
         <div style={{ maxWidth: '760px', margin: '0 auto', padding: '4rem 1.5rem' }}>
 
-          <div
-            style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c96442', marginBottom: '1rem' }}
-          >
-            Blog
+          <div style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c96442', marginBottom: '1rem' }}>
+            {heading.label}
           </div>
 
-          <h1
-            style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 400, lineHeight: 1.1, color: '#0a1e10', marginBottom: '1rem' }}
-          >
-            Laatste inzichten<br /><em style={{ color: '#c96442' }}>voor ondernemers</em>
+          <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 400, lineHeight: 1.1, color: '#0a1e10', marginBottom: '1rem' }}>
+            {heading.title}<br /><em style={{ color: '#c96442' }}>{heading.sub}</em>
           </h1>
 
           <p style={{ fontSize: '17px', color: '#83827d', lineHeight: 1.7, marginBottom: '3.5rem', maxWidth: '520px' }}>
-            Over groeisystemen, leiderschap en leads binnenbrengen op autopilot.
+            {heading.desc}
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', borderTop: '1px solid rgba(61,57,41,0.1)' }}>
             {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                style={{ textDecoration: 'none', color: 'inherit' }}
-              >
+              <Link key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <article
                   className="blog-list-item"
-                  style={{
-                    padding: '2rem 0',
-                    borderBottom: '1px solid rgba(61,57,41,0.1)',
-                    cursor: 'pointer',
-                    transition: 'opacity 0.2s',
-                  }}
+                  style={{ padding: '2rem 0', borderBottom: '1px solid rgba(61,57,41,0.1)', cursor: 'pointer', transition: 'opacity 0.2s' }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.75rem', flexWrap: 'wrap' }}>
-                    <span
-                      style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#c96442', background: 'rgba(201,100,66,0.08)', padding: '3px 10px', borderRadius: '999px', border: '1px solid rgba(201,100,66,0.2)' }}
-                    >
+                    <span style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#c96442', background: 'rgba(201,100,66,0.08)', padding: '3px 10px', borderRadius: '999px', border: '1px solid rgba(201,100,66,0.2)' }}>
                       {post.category}
                     </span>
                     {post.region && (
-                      <span
-                        style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#535146', background: 'rgba(61,57,41,0.06)', padding: '3px 10px', borderRadius: '999px', border: '1px solid rgba(61,57,41,0.12)' }}
-                      >
+                      <span style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#535146', background: 'rgba(61,57,41,0.06)', padding: '3px 10px', borderRadius: '999px', border: '1px solid rgba(61,57,41,0.12)' }}>
                         {post.region}
                       </span>
                     )}
                     <span style={{ fontFamily: 'monospace', fontSize: '10px', color: '#b4b2a7' }}>
-                      {post.readingTime} min lezen
+                      {post.readingTime} {minRead}
                     </span>
                   </div>
-                  <h2
-                    style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(20px, 3vw, 26px)', fontWeight: 400, lineHeight: 1.25, color: '#0a1e10', marginBottom: '0.75rem' }}
-                  >
+                  <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(20px, 3vw, 26px)', fontWeight: 400, lineHeight: 1.25, color: '#0a1e10', marginBottom: '0.75rem' }}>
                     {post.title}
                   </h2>
                   <p style={{ fontSize: '15px', color: '#83827d', lineHeight: 1.65, margin: 0 }}>

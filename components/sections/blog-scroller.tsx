@@ -2,12 +2,12 @@
 
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import { posts } from '@/lib/blog/posts'
+import { getLocalizedPosts } from '@/lib/blog'
 import { useLang } from '@/components/lang-context'
 
 export function BlogScroller() {
-  const { t } = useLang()
-  // Duplicate posts for seamless infinite scroll
+  const { t, lang } = useLang()
+  const posts = getLocalizedPosts(lang)
   const doubled = [...posts, ...posts]
 
   return (
