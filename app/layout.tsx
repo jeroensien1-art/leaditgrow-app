@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Instrument_Sans, Instrument_Serif } from 'next/font/google'
 import { headers } from 'next/headers'
+import Script from 'next/script'
 import './globals.css'
 import { LangProvider } from '@/components/lang-context'
 import { seoMetadata } from '@/lib/seo'
@@ -54,6 +55,30 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang={lang} suppressHydrationWarning>
+      <head>
+        {/* ConsentEase: Set default consent BEFORE Google Tag Manager */}
+        <Script id="consent-default" strategy="beforeInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'functionality_storage': 'denied',
+            'personalization_storage': 'denied',
+            'security_storage': 'granted',
+            'wait_for_update': 500
+          });
+          gtag('set', 'ads_data_redaction', true);
+          gtag('set', 'url_passthrough', true);
+        `}</Script>
+        {/* ConsentEase: Load consent banner (handles user interaction) */}
+        <Script
+          src="https://consentease.io/api/consent/4byewd8k045a/script.js?v=1776284702523"
+          strategy="afterInteractive"
+        />
+      </head>
       <body className={`${instrumentSans.variable} ${instrumentSerif.variable} font-sans antialiased`}>
         <LangProvider>{children}</LangProvider>
       </body>
