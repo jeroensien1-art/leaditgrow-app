@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Visual 1 · Aanwerving · Lead it, Grow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      padding: 0;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+    }
+
+    .page-label { display: none; }
+
+    .card {
+      width: 1080px;
+      height: 1080px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #faf9f5;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 0% 100%, rgba(201,100,66,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse at 100% 0%, rgba(201,100,66,0.06) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-quote {
+      position: absolute;
+      left: -30px;
+      top: 60px;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      font-size: 600px;
+      line-height: 1;
+      color: rgba(201,100,66,0.055);
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+
+    .accent-top {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #c96442 0%, #e0836a 60%, transparent 100%);
+      z-index: 3;
+    }
+
+    .accent-left {
+      position: absolute;
+      top: 5px; left: 0; bottom: 0;
+      width: 5px;
+      background: #c96442;
+      z-index: 3;
+    }
+
+    .content {
+      position: absolute;
+      inset: 0;
+      padding: 80px 96px 72px 108px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 2;
+    }
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .brand-wordmark {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: 22px;
+      font-weight: 400;
+      color: #3d3929;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-wordmark span { color: #c96442; font-weight: 500; }
+
+    .tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #c96442;
+      background: rgba(201,100,66,0.1);
+      border: 1px solid rgba(201,100,66,0.2);
+      padding: 6px 14px;
+    }
+
+    .middle {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9e9a92;
+    }
+
+    .main-quote {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: 52px;
+      font-weight: 400;
+      line-height: 1.15;
+      color: #3d3929;
+      letter-spacing: -0.01em;
+    }
+
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: #c96442;
+    }
+
+    .answer {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: #2a2720;
+    }
+
+    .answer em {
+      font-style: italic;
+      color: #c96442;
+    }
+
+    .sub {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #5c5849;
+      max-width: 640px;
+    }
+
+    .bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #dad9d4;
+      padding-top: 32px;
+    }
+
+    .cta-block {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cta-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #c96442;
+    }
+
+    .cta-text {
+      font-size: 17px;
+      font-weight: 500;
+      color: #2a2720;
+      line-height: 1.4;
+    }
+
+    .cta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #c96442;
+      color: #faf9f5;
+      padding: 11px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      width: fit-content;
+      margin-top: 4px;
+    }
+
+    .source-line {
+      position: absolute;
+      bottom: 24px;
+      right: 96px;
+      font-size: 10px;
+      color: #b0aca4;
+      letter-spacing: 0.08em;
+      z-index: 3;
+    }
+  </style>
+</head>
+<body>
+  <p class="page-label">Visual 1 · Aanwerving · 1080 × 1080px · Lead it, Grow</p>
+
+  <div class="card">
+    <div class="accent-top"></div>
+    <div class="accent-left"></div>
+    <div class="bg-quote">"</div>
+
+    <div class="content">
+
+      <div class="top-row">
+        <div class="brand-wordmark">Lead it, <span>Grow</span></div>
+        <div class="tag">Leiderschap · Aanwerving</div>
+      </div>
+
+      <div class="middle">
+        <div class="eyebrow">De vraag die je niet stelde</div>
+        <div class="main-quote">"We hebben al veel mensen<br>geprobeerd, maar het klopt nooit."</div>
+        <div class="divider"></div>
+        <div class="answer">
+          Het begint niet<br>bij de kandidaat.<br>
+          <em>Het begint bij jou.</em>
+        </div>
+        <div class="sub">
+          Wie jij bent als leider, bepaalt wie bij jou gedijt.<br>
+          Ken jij jouw leiderschapsprofiel?
+        </div>
+      </div>
+
+      <div class="bottom-row">
+        <div class="cta-block">
+          <div class="cta-label">Gratis · 35+ jaar ervaring</div>
+          <div class="cta-text">Stuur me een bericht of doe de analyse onderaan</div>
+          <div class="cta-pill">Gratis leiderschapsanalyse <span>→</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="source-line">Uman · Lead it, Grow · leaditgrow.be</div>
+  </div>
+</body>
+</html>

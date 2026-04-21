@@ -905,6 +905,227 @@ export const posts: BlogPost[] = [
 </div>
 `,
   },
+  {
+    slug: 'foute-aanwerving-begint-bij-de-leider',
+    title: '"Het klopt nooit" — waarom foute aanwervingen bij de leider beginnen (en hoe je het stopt)',
+    metaTitle: 'Foute aanwerving? Het begint bij jou als leider — en zo stop je het | Lead it, Grow',
+    metaDescription: 'Elke foute aanwerving begint niet bij de kandidaat, maar bij de leider. Ontdek waarom Vlaamse zaakvoerders steeds dezelfde aanwervingsfout maken en hoe een leiderschapsprofiel het patroon doorbreekt.',
+    publishDate: '2026-04-21',
+    readingTime: 7,
+    category: 'Leiderschap',
+    region: 'België · Vlaanderen',
+    excerpt: '"We hebben al veel mensen geprobeerd, maar het klopt nooit." Als je dit herkent, ligt het zelden aan de kandidaten. Het ligt aan het profiel van de leider die ze moet kiezen en begeleiden.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: '"Het klopt nooit" — waarom foute aanwervingen bij de leider beginnen (en hoe je het stopt)',
+          description: 'Elke foute aanwerving begint niet bij de kandidaat, maar bij de leider. Ontdek waarom Vlaamse zaakvoerders steeds dezelfde aanwervingsfout maken.',
+          datePublished: '2026-04-21',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            { '@type': 'Question', name: 'Waarom mislukken aanwervingen zo vaak bij KMOs?', acceptedAnswer: { '@type': 'Answer', text: 'De meest voorkomende oorzaak is niet dat de kandidaat slecht was, maar dat de zaakvoerder zichzelf nooit objectief heeft geanalyseerd als leider. Wie jij bent als leider bepaalt welk type medewerker bij je past, hoe je feedback geeft, hoe je delegeert en welk gedrag je onbewust aantrekt of afstoot. Zonder dat inzicht aanwerven is raden.' } },
+            { '@type': 'Question', name: 'Wat is een leiderschapsprofiel en hoe helpt het bij aanwerving?', acceptedAnswer: { '@type': 'Answer', text: 'Een leiderschapsprofiel brengt in kaart wie jij bent als leider: je communicatiestijl, je manier van beslissen, je verwachtingen en blinde vlekken. Bij aanwerving gebruik je dat profiel om te bepalen welk type kandidaat bij jouw stijl en cultuur gedijt, in plaats van te zoeken naar "iemand die goed is in zijn vak".' } },
+            { '@type': 'Question', name: 'Hoe weet ik of ik steeds dezelfde aanwervingsfout maak?', acceptedAnswer: { '@type': 'Answer', text: 'Een duidelijk signaal is het patroon: elke nieuwe medewerker lijkt in het begin goed, maar na 3 tot 9 maanden ontstaan dezelfde fricties. Dat is geen toeval en geen pech. Dat is een systeem dat zichzelf herhaalt omdat de variabele die niet verandert, de leider zelf is.' } },
+            { '@type': 'Question', name: 'Hoe lang duurt het om een aanwervingspatroon te doorbreken?', acceptedAnswer: { '@type': 'Answer', text: 'Met een gerichte leiderschapsanalyse en bewuste aanpassing van je aanwervingscriteria kunnen zaakvoerders het patroon al bij de volgende aanwerving doorbreken. De diepere gedragsverandering, hoe je mensen begeleidt en feedback geeft, duurt gemiddeld 3 tot 6 maanden.' } },
+            { '@type': 'Question', name: 'Is een gratis leiderschapsanalyse beschikbaar voor Vlaamse zaakvoerders?', acceptedAnswer: { '@type': 'Answer', text: 'Ja. Via Lead it, Grow bieden we een gratis, persoonlijke leiderschapsanalyse aan, gebouwd op 35 jaar ervaring met Vlaamse KMOs. Stuur een bericht via leaditgrow.be of comment "Leiderschap" op LinkedIn om te starten.' } },
+          ],
+        },
+      ],
+    },
+    content: `
+<div class="blog-tldr">
+  <strong>Direct antwoord:</strong> Foute aanwervingen beginnen zelden bij de kandidaat. Ze beginnen bij de leider die aanwerft zonder te weten welk type medewerker bij zijn of haar stijl gedijt. Een leiderschapsprofiel maakt dat patroon zichtbaar en doorbreekbaar.
+</div>
+
+<p class="blog-intro">"We hebben al veel mensen geprobeerd, maar het klopt nooit." Als je dit herkent, ligt het antwoord zelden in een betere vacaturetekst of een uitgebreider sollicitatiegesprek. Het antwoord ligt in de spiegel.</p>
+
+<p>Wie jij bent als leider, hoe je communiceert, hoe je verwachtingen stelt, hoe je feedback geeft en wat je onbewust aantrekt of afstoot, bepaalt wie bij jou gedijt. En als je dat niet kent, is elke aanwerving een gok.</p>
+
+<h2>Het patroon dat te veel zaakvoerders herkennen</h2>
+
+<p>De nieuwe medewerker start goed. Enthousiast, gemotiveerd, bekwaam. Maar na drie, zes, negen maanden ontstaan de fricties. Communicatieproblemen. Verwachtingen die niet kloppen. Een sfeer die verandert. En de zaakvoerder denkt: "Die persoon paste toch niet."</p>
+
+<p>Tot het een tweede keer gebeurt. En een derde keer. Op dat moment is het geen pech meer. Het is een patroon. En het enige element dat niet verandert in dat patroon, bent jijzelf.</p>
+
+<div class="blog-visual">
+  <iframe src="/visuals/linkedin-visual-aanwerving-1.html" title="Foute aanwerving begint bij de leider, niet de kandidaat" scrolling="no"></iframe>
+</div>
+<p class="blog-visual-caption">Lead it, Grow · Aanwerving & Leiderschap</p>
+
+<h2>Drie redenen waarom aanwervingen mislukken bij de leider</h2>
+
+<h3>1. Je werft op vakmanschap, niet op match</h3>
+<p>De meeste zaakvoerders beoordelen kandidaten op wat ze kunnen: cv, ervaring, referenties. Zelden op of ze passen bij de manier waarop de leider zelf functioneert. Een directieve leider die een autonome zelfsturende professional aanwerft, krijgt onvermijdelijk conflict. Niet omdat die medewerker slecht is, maar omdat de verwachtingen structureel botsen.</p>
+
+<h3>2. Je stelt verwachtingen impliciet</h3>
+<p>Vlaamse zaakvoerders zijn doorgaans sterk in vakmanschap en minder sterk in het expliciteren van verwachtingen. Ze verwachten dat medewerkers aanvoelen wat ze bedoelen. Maar aanvoelen is geen systeem. Een medewerker die niet weet wat "goed" er concreet uitziet, kan het nooit consistent leveren, hoe gemotiveerd hij ook is.</p>
+
+<h3>3. Je blinde vlekken als leider herhalen zich</h3>
+<p>Elk leiderschapsprofiel heeft blinde vlekken: gedrag dat je vertoont zonder je ervan bewust te zijn, impact die je hebt zonder het te zien. Een leider met een hoog controlepatroon trekt mensen aan die veel bevestiging zoeken, en stoot autonome profielen af. Een leider met een vermijdend conflictstijl duldt onderpresteerders te lang en verliest zijn sterkste medewerkers aan frustratie.</p>
+<p>Die blinde vlekken herhalen zich bij elke aanwerving, tenzij je ze in kaart brengt.</p>
+
+<h2>Wat een leiderschapsprofiel concreet verandert</h2>
+
+<p>Een objectieve leiderschapsanalyse brengt drie dingen in kaart die direct impact hebben op aanwerving:</p>
+
+<ul>
+  <li><strong>Je communicatiestijl</strong> — welk type medewerker begrijpt jou vanzelf, en wie heeft structureel vertaalhulp nodig</li>
+  <li><strong>Je delegatiestijl</strong> — hoeveel autonomie jij echt kunt loslaten, en wat dat betekent voor wie je zoekt</li>
+  <li><strong>Je cultuurprofiel</strong> — welke waarden en werkstijlen jij onbewust selecteert en welke je uitsluit</li>
+</ul>
+
+<p>Met die informatie verschuift de aanwervingsvraag van "is deze persoon goed?" naar "past deze persoon bij hoe ik leid?" Dat is een fundamenteel andere vraag, en ze leidt tot fundamenteel betere resultaten.</p>
+
+<h2>De aanwerving die je te lang houdt</h2>
+
+<p>Naast de verkeerde aanwerving is er een nog duurder probleem: de medewerker die je te lang houdt terwijl je al weet dat het niet werkt. Gemiddeld 8 maanden twijfelen voordat actie volgt. In die tijd verslechtert de teamsfeer, daalt de productiviteit van de omgeving en groeit de kostprijs, zowel financieel als menselijk.</p>
+
+<p>Een leider met een helder profiel weet sneller of een aanwerving werkt. En durft sneller te handelen als dat niet het geval is.</p>
+
+<h2>Veelgestelde vragen</h2>
+
+<div class="faq-item">
+  <h3>Waarom mislukken aanwervingen zo vaak bij KMOs?</h3>
+  <p>De meest voorkomende oorzaak is niet dat de kandidaat slecht was, maar dat de zaakvoerder zichzelf nooit objectief heeft geanalyseerd als leider. Wie jij bent als leider bepaalt welk type medewerker bij je past, hoe je feedback geeft, hoe je delegeert en welk gedrag je onbewust aantrekt of afstoot. Zonder dat inzicht aanwerven is raden.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Wat is een leiderschapsprofiel en hoe helpt het bij aanwerving?</h3>
+  <p>Een leiderschapsprofiel brengt in kaart wie jij bent als leider: je communicatiestijl, je manier van beslissen, je verwachtingen en blinde vlekken. Bij aanwerving gebruik je dat profiel om te bepalen welk type kandidaat bij jouw stijl en cultuur gedijt, in plaats van te zoeken naar "iemand die goed is in zijn vak".</p>
+</div>
+
+<div class="faq-item">
+  <h3>Hoe weet ik of ik steeds dezelfde aanwervingsfout maak?</h3>
+  <p>Een duidelijk signaal is het patroon: elke nieuwe medewerker lijkt in het begin goed, maar na 3 tot 9 maanden ontstaan dezelfde fricties. Dat is geen toeval en geen pech. Dat is een systeem dat zichzelf herhaalt omdat de variabele die niet verandert, de leider zelf is.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Hoe lang duurt het om een aanwervingspatroon te doorbreken?</h3>
+  <p>Met een gerichte leiderschapsanalyse en bewuste aanpassing van je aanwervingscriteria kunnen zaakvoerders het patroon al bij de volgende aanwerving doorbreken. De diepere gedragsverandering, hoe je mensen begeleidt en feedback geeft, duurt gemiddeld 3 tot 6 maanden.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Is een gratis leiderschapsanalyse beschikbaar voor Vlaamse zaakvoerders?</h3>
+  <p>Ja. Via Lead it, Grow bieden we een gratis, persoonlijke leiderschapsanalyse aan, gebouwd op 35 jaar ervaring met Vlaamse KMOs. Stuur een bericht via leaditgrow.be of comment "Leiderschap" op LinkedIn om te starten.</p>
+</div>
+`,
+  },
+
+  {
+    slug: 'kost-foute-aanwerving-30000-euro-hoe-voorkomen',
+    title: '€30.000 kwijt aan een foute aanwerving — wat het écht kost en hoe je het voorkomt',
+    metaTitle: 'Foute aanwerving kost €30.000 — de echte kost en hoe je het voorkomt | Lead it, Grow',
+    metaDescription: 'Een foute aanwerving kost gemiddeld €30.000. Maar de financiele factuur is het kleinste deel. Ontdek wat een foute aanwerving écht kost voor Vlaamse KMOs en hoe je het structureel voorkomt.',
+    publishDate: '2026-04-21',
+    readingTime: 6,
+    category: 'Leiderschap',
+    region: 'België · Vlaanderen',
+    excerpt: 'De factuur van een foute aanwerving is €30.000. Maar dat is enkel wat je ziet. De echte kost zit in de teamsfeer die stilletjes verandert, de maanden twijfelen en de productiviteit die weglekt.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: '€30.000 kwijt aan een foute aanwerving — wat het écht kost en hoe je het voorkomt',
+          description: 'Een foute aanwerving kost gemiddeld €30.000 aan directe kosten. De indirecte kosten zijn hoger. Ontdek de echte impact en hoe je het structureel voorkomt.',
+          datePublished: '2026-04-21',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            { '@type': 'Question', name: 'Hoeveel kost een foute aanwerving gemiddeld?', acceptedAnswer: { '@type': 'Answer', text: 'De directe kost van een foute aanwerving bedraagt gemiddeld €30.000 bij een bediende met een bruto maandloon van €3.000. Dat omvat wervingskosten, loon tijdens de inwerkperiode, productiviteitsverlies en de kost van vervanging. De indirecte kosten, teamsfeer, motivatieverlies bij collega\'s, managementtijd, zijn minstens even hoog.' } },
+            { '@type': 'Question', name: 'Hoe lang wachten zaakvoerders gemiddeld voordat ze ingrijpen bij een slechte aanwerving?', acceptedAnswer: { '@type': 'Answer', text: 'Gemiddeld 6 tot 8 maanden. De meeste zaakvoerders weten al na 2 tot 3 maanden dat het niet werkt, maar wachten uit hoop, loyaliteit of angst voor conflict. Elke maand extra uitstel verhoogt de totale kost significant.' } },
+            { '@type': 'Question', name: 'Hoe voorkom ik foute aanwervingen als zaakvoerder?', acceptedAnswer: { '@type': 'Answer', text: 'De meest effectieve preventie begint bij jezelf: een objectieve leiderschapsanalyse brengt in kaart welk type medewerker bij jouw leiderschapsstijl gedijt. Aanwerven op basis van dat profiel, in plaats van alleen op vakmanschap, vermindert het risico op een mismatch drastisch.' } },
+            { '@type': 'Question', name: 'Wat is de duurste aanwerving voor een KMO?', acceptedAnswer: { '@type': 'Answer', text: 'De duurste aanwerving is niet de medewerker die snel vertrekt, maar de medewerker die je te lang houdt. Die kost je niet alleen zijn loon, maar ook de productiviteitsderving van zijn omgeving, de teamsfeer en de kansen die je mist omdat je energie en aandacht naar het probleem gaan in plaats van naar groei.' } },
+          ],
+        },
+      ],
+    },
+    content: `
+<div class="blog-tldr">
+  <strong>Direct antwoord:</strong> Een foute aanwerving kost gemiddeld €30.000 aan directe kosten. De indirecte kosten, teamsfeer, motivatieverlies, managementtijd, zijn minstens even hoog. De oplossing begint niet bij een beter sollicitatiegesprek, maar bij een helder leiderschapsprofiel.
+</div>
+
+<p class="blog-intro">€30.000. Dat is de gemiddelde directe kost van een foute aanwerving bij een bediende met een bruto maandloon van €3.000. Maar dat is enkel de factuur van wat je kunt tellen. De echte kost is groter, en moeilijker te zien.</p>
+
+<h2>Wat die €30.000 bevat — en wat niet</h2>
+
+<p>De directe kosten van een foute aanwerving zijn reëel en concreet:</p>
+<ul>
+  <li>Wervingskosten: advertenties, bureau of time-cost van de zaakvoerder</li>
+  <li>Onboardingkost: begeleiding, opleiding, verloren productiviteit in de inwerkperiode</li>
+  <li>Loonkost tijdens de periode dat het niet werkte</li>
+  <li>Vertrekkost: opzegvergoeding, administratie, overgangsperiode</li>
+  <li>Vervanging: het volledige proces opnieuw</li>
+</ul>
+
+<p>Maar de indirecte kosten worden zelden meegerekend:</p>
+<ul>
+  <li><strong>8 maanden twijfelen</strong> terwijl je het antwoord al wist</li>
+  <li><strong>De sfeer in je team</strong> die stilletjes verandert als iedereen ziet wat er speelt maar niemand het uitspreekt</li>
+  <li><strong>De aandacht en energie</strong> van de zaakvoerder die naar het probleem gaat in plaats van naar groei</li>
+  <li><strong>De sterkste medewerkers</strong> die vertrekken uit frustratie over wat er wordt getolereerd</li>
+</ul>
+
+<p>De duurste aanwerving is niet wie snel vertrekt. Het is wie je te lang houdt.</p>
+
+<h2>Waarom zaakvoerders te lang wachten</h2>
+
+<p>Gemiddeld weten zaakvoerders al na 2 tot 3 maanden dat het niet werkt. Toch duurt het nog eens 5 tot 6 maanden voor er actie volgt. Dat is geen zwakheid. Het zijn begrijpelijke redenen:</p>
+
+<ul>
+  <li>Loyaliteit: "Hij heeft zijn best gedaan."</li>
+  <li>Hoop: "Misschien wordt het beter als we hem meer tijd geven."</li>
+  <li>Angst voor conflict: "Ik wil geen slechte sfeer creëren."</li>
+  <li>Schuldgevoel: "Misschien heb ik hem niet goed genoeg begeleid."</li>
+</ul>
+
+<p>Die redenen zijn menselijk. Maar ze hebben een prijs. Elke maand uitstel verhoogt de totale kost met 3.000 tot 5.000 euro. En die prijs betaalt niet alleen de zaakvoerder, maar het hele team.</p>
+
+<h2>Hoe je het structureel voorkomt</h2>
+
+<p>De meest voorkomende aanpak bij foute aanwervingen is dezelfde fout herhalen met een beter cv-filter. Dat lost niets op. De structurele oplossing ligt elders.</p>
+
+<h3>Stap 1: Ken je eigen leiderschapsprofiel</h3>
+<p>Wie jij bent als leider bepaalt wie bij jou gedijt. Een objectieve leiderschapsanalyse brengt in kaart welk type medewerker bij jouw communicatiestijl, delegatiestijl en cultuurprofiel past. Dat is de basis voor elke aanwerving die werkt.</p>
+
+<h3>Stap 2: Werk met een matchprofiel, niet alleen een functieprofiel</h3>
+<p>Een functieprofiel beschrijft wat iemand moet kunnen. Een matchprofiel beschrijft hoe iemand moet functioneren om bij jou en je team te passen. Snelheid van handelen, nood aan structuur, mate van autonomie, feedbackstijl. Die dimensies bepalen of het klikt, niet het cv.</p>
+
+<h3>Stap 3: Verkorte proeftijd met expliciete checkpoints</h3>
+<p>Na 30, 60 en 90 dagen: een gestructureerd gesprek met duidelijke vragen. Werkt het? Zijn de verwachtingen helder? Is er een patroon dat je herkent? Drie korte gesprekken vervangen 8 maanden twijfelen.</p>
+
+<h2>Veelgestelde vragen</h2>
+
+<div class="faq-item">
+  <h3>Hoeveel kost een foute aanwerving gemiddeld?</h3>
+  <p>De directe kost van een foute aanwerving bedraagt gemiddeld €30.000 bij een bediende met een bruto maandloon van €3.000. Dat omvat wervingskosten, loon tijdens de inwerkperiode, productiviteitsverlies en de kost van vervanging. De indirecte kosten, teamsfeer, motivatieverlies bij collega's, managementtijd, zijn minstens even hoog.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Hoe lang wachten zaakvoerders gemiddeld voordat ze ingrijpen bij een slechte aanwerving?</h3>
+  <p>Gemiddeld 6 tot 8 maanden. De meeste zaakvoerders weten al na 2 tot 3 maanden dat het niet werkt, maar wachten uit hoop, loyaliteit of angst voor conflict. Elke maand extra uitstel verhoogt de totale kost significant.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Hoe voorkom ik foute aanwervingen als zaakvoerder?</h3>
+  <p>De meest effectieve preventie begint bij jezelf: een objectieve leiderschapsanalyse brengt in kaart welk type medewerker bij jouw leiderschapsstijl gedijt. Aanwerven op basis van dat profiel, in plaats van alleen op vakmanschap, vermindert het risico op een mismatch drastisch.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Wat is de duurste aanwerving voor een KMO?</h3>
+  <p>De duurste aanwerving is niet de medewerker die snel vertrekt, maar de medewerker die je te lang houdt. Die kost je niet alleen zijn loon, maar ook de productiviteitsderving van zijn omgeving, de teamsfeer en de kansen die je mist omdat je energie en aandacht naar het probleem gaan in plaats van naar groei.</p>
+</div>
+`,
+  },
 ]
 
 export function getPost(slug: string): BlogPost | undefined {

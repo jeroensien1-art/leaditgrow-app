@@ -710,4 +710,220 @@ export const postsEn: BlogPost[] = [
 </div>
 `,
   },
+
+  {
+    slug: 'foute-aanwerving-begint-bij-de-leider',
+    title: '"It never works out" — why bad hires start with the leader, not the candidate',
+    metaTitle: 'Bad Hire? It Starts With You as a Leader — and How to Stop the Pattern | Lead it, Grow',
+    metaDescription: 'Every bad hire starts not with the candidate but with the leader who makes the hire without knowing their own leadership profile. Discover how to break the pattern.',
+    publishDate: '2026-04-21',
+    readingTime: 7,
+    category: 'Leadership',
+    region: 'Europe',
+    excerpt: '"We\'ve tried many people but it never works out." If you recognise this, it rarely lies with the candidates. It lies with the leader who selects and leads them.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: '"It never works out" — why bad hires start with the leader, not the candidate',
+          description: 'Every bad hire starts not with the candidate but with the leader who makes the hire without knowing their own leadership profile.',
+          datePublished: '2026-04-21',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.com' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.com' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            { '@type': 'Question', name: 'Why do hires so often fail in owner-operated businesses?', acceptedAnswer: { '@type': 'Answer', text: 'The most common cause is not that the candidate was wrong, but that the business owner has never objectively analysed themselves as a leader. Who you are as a leader determines which type of employee thrives under you — your communication style, how you delegate, how you give feedback. Hiring without that insight is guesswork.' } },
+            { '@type': 'Question', name: 'What is a leadership profile and how does it help with hiring?', acceptedAnswer: { '@type': 'Answer', text: 'A leadership profile maps who you are as a leader: your communication style, decision-making approach, expectations and blind spots. In hiring, you use that profile to determine which type of candidate will thrive in your style and culture — rather than searching for "someone who is good at the job".' } },
+            { '@type': 'Question', name: 'How do I know if I keep making the same hiring mistake?', acceptedAnswer: { '@type': 'Answer', text: 'A clear signal is the pattern: each new hire seems good at first, but after 3 to 9 months the same friction emerges. That is not bad luck. It is a system repeating itself because the one variable that does not change is you, the leader.' } },
+            { '@type': 'Question', name: 'How long does it take to break a hiring pattern?', acceptedAnswer: { '@type': 'Answer', text: 'With a targeted leadership analysis and conscious adjustment of your hiring criteria, business owners can break the pattern at the very next hire. Deeper behavioural change — how you coach and give feedback — takes on average 3 to 6 months.' } },
+          ],
+        },
+      ],
+    },
+    content: `
+<div class="blog-tldr">
+  <strong>Direct answer:</strong> Bad hires rarely start with the candidate. They start with a leader who hires without knowing which type of person thrives under their leadership style. A leadership profile makes that pattern visible — and breakable.
+</div>
+
+<p class="blog-intro">"We've tried many people but it never works out." If this sounds familiar, the answer rarely lies in a better job posting or a longer interview process. The answer is in the mirror.</p>
+
+<p>Who you are as a leader — how you communicate, how you set expectations, how you give feedback, what you unconsciously attract or repel — determines who thrives under you. If you don't know that profile, every hire is a guess.</p>
+
+<h2>The pattern too many founders recognise</h2>
+
+<p>The new hire starts well. Motivated, capable, enthusiastic. But after three, six, nine months the friction begins. Communication gaps. Expectations that don't land. A team dynamic that quietly shifts. And the business owner thinks: "That person just wasn't the right fit."</p>
+
+<p>Until it happens a second time. And a third. At that point it is no longer bad luck. It is a pattern. And the one element that hasn't changed in that pattern is you.</p>
+
+<div class="blog-visual">
+  <iframe src="/visuals/linkedin-visual-aanwerving-1.html" title="Bad hires start with the leader, not the candidate" scrolling="no"></iframe>
+</div>
+<p class="blog-visual-caption">Lead it, Grow · Leadership & Hiring</p>
+
+<h2>Three reasons why hiring failures start with the leader</h2>
+
+<h3>1. You hire on competence, not on match</h3>
+<p>Most business owners assess candidates on what they can do: CV, experience, references. Rarely on whether they fit the way the leader themselves functions. A directive leader who hires an autonomous self-starter will inevitably face conflict — not because that employee is bad, but because the expectations structurally clash.</p>
+
+<h3>2. You set expectations implicitly</h3>
+<p>Many founders are excellent at their craft and less strong at making expectations explicit. They expect employees to sense what they mean. But sensing is not a system. An employee who doesn't know what "good" looks like concretely can never deliver it consistently — no matter how motivated they are.</p>
+
+<h3>3. Your blind spots as a leader repeat themselves</h3>
+<p>Every leadership profile has blind spots: behaviour you exhibit without awareness, impact you have without seeing it. A leader with a high-control pattern attracts people who seek constant confirmation and repels autonomous profiles. A leader with an avoidant conflict style tolerates underperformers too long and loses their strongest people to frustration.</p>
+<p>Those blind spots repeat with every hire — unless you map them.</p>
+
+<h2>What a leadership profile concretely changes</h2>
+
+<p>An objective leadership analysis maps three things that directly affect hiring quality:</p>
+
+<ul>
+  <li><strong>Your communication style</strong> — which type of employee instinctively understands you, and who needs structural translation</li>
+  <li><strong>Your delegation style</strong> — how much autonomy you can genuinely release, and what that means for who you look for</li>
+  <li><strong>Your culture profile</strong> — which values and working styles you unconsciously select for and which you screen out</li>
+</ul>
+
+<p>With that information, the hiring question shifts from "is this person good?" to "does this person fit how I lead?" That is a fundamentally different question — and it produces fundamentally better results.</p>
+
+<h2>The hire you keep too long</h2>
+
+<p>Beyond the wrong hire, there is an even more expensive problem: the employee you keep too long when you already know it isn't working. On average 8 months of doubt before action follows. During that time team morale deteriorates, productivity in the surrounding team drops, and the cost compounds — financially and humanly.</p>
+
+<p>A leader with a clear profile knows faster whether a hire is working. And has the courage to act sooner when it is not.</p>
+
+<h2>Frequently asked questions</h2>
+
+<div class="faq-item">
+  <h3>Why do hires so often fail in owner-operated businesses?</h3>
+  <p>The most common cause is not that the candidate was wrong, but that the business owner has never objectively analysed themselves as a leader. Who you are as a leader determines which type of employee thrives under you — your communication style, how you delegate, how you give feedback. Hiring without that insight is guesswork.</p>
+</div>
+
+<div class="faq-item">
+  <h3>What is a leadership profile and how does it help with hiring?</h3>
+  <p>A leadership profile maps who you are as a leader: your communication style, decision-making approach, expectations and blind spots. In hiring, you use that profile to determine which type of candidate will thrive in your style and culture — rather than searching for "someone who is good at the job".</p>
+</div>
+
+<div class="faq-item">
+  <h3>How do I know if I keep making the same hiring mistake?</h3>
+  <p>A clear signal is the pattern: each new hire seems good at first, but after 3 to 9 months the same friction emerges. That is not bad luck. It is a system repeating itself because the one variable that does not change is you, the leader.</p>
+</div>
+
+<div class="faq-item">
+  <h3>How long does it take to break a hiring pattern?</h3>
+  <p>With a targeted leadership analysis and conscious adjustment of your hiring criteria, business owners can break the pattern at the very next hire. Deeper behavioural change — how you coach and give feedback — takes on average 3 to 6 months.</p>
+</div>
+`,
+  },
+
+  {
+    slug: 'kost-foute-aanwerving-30000-euro-hoe-voorkomen',
+    title: 'A bad hire costs €30,000 — the real cost and how to prevent it',
+    metaTitle: 'Bad Hire Costs €30,000 — The Real Cost and How to Prevent It | Lead it, Grow',
+    metaDescription: 'A bad hire costs an average of €30,000 in direct costs alone. The indirect cost is higher. Discover what a wrong hire really costs your business and how to prevent it structurally.',
+    publishDate: '2026-04-21',
+    readingTime: 6,
+    category: 'Leadership',
+    region: 'Europe',
+    excerpt: 'The invoice for a bad hire is €30,000. But that is only what you can count. The real cost sits in the team culture that quietly changes, the months of doubt, and the productivity that leaks away.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: 'A bad hire costs €30,000 — the real cost and how to prevent it',
+          description: 'A bad hire costs an average of €30,000 in direct costs. The indirect costs are higher. Discover the real impact and how to prevent it structurally.',
+          datePublished: '2026-04-21',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.com' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.com' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            { '@type': 'Question', name: 'How much does a bad hire cost on average?', acceptedAnswer: { '@type': 'Answer', text: 'The direct cost of a bad hire averages €30,000 for an employee with a gross monthly salary of €3,000. This includes recruitment costs, salary during the onboarding period, lost productivity, and the cost of replacement. The indirect costs — team culture, motivation loss among colleagues, management time — are at least as high.' } },
+            { '@type': 'Question', name: 'How long do business owners typically wait before acting on a bad hire?', acceptedAnswer: { '@type': 'Answer', text: 'On average 6 to 8 months. Most business owners know within 2 to 3 months that it isn\'t working, but wait out of hope, loyalty or fear of conflict. Every month of delay increases the total cost significantly.' } },
+            { '@type': 'Question', name: 'How do I prevent bad hires as a business owner?', acceptedAnswer: { '@type': 'Answer', text: 'The most effective prevention starts with yourself: an objective leadership analysis maps which type of employee thrives under your leadership style. Hiring on the basis of that profile — rather than only on technical competence — dramatically reduces the risk of mismatch.' } },
+            { '@type': 'Question', name: 'What is the most expensive hire for an SME?', acceptedAnswer: { '@type': 'Answer', text: 'The most expensive hire is not the employee who leaves quickly, but the employee you keep too long. They cost you not just their salary, but the productivity loss of those around them, the team culture, and the opportunities you miss because your energy and attention go to the problem rather than to growth.' } },
+          ],
+        },
+      ],
+    },
+    content: `
+<div class="blog-tldr">
+  <strong>Direct answer:</strong> A bad hire costs an average of €30,000 in direct costs alone. The indirect costs — team culture damage, motivation loss, management time diverted — are at least as high. The solution does not start with a better interview, but with a clear leadership profile.
+</div>
+
+<p class="blog-intro">€30,000. That is the average direct cost of a bad hire for an employee with a gross monthly salary of €3,000. But that is only the invoice for what you can count. The real cost is larger — and harder to see.</p>
+
+<h2>What those €30,000 contain — and what they don't</h2>
+
+<p>The direct costs of a bad hire are real and concrete:</p>
+<ul>
+  <li>Recruitment costs: job ads, agency fees or the owner's own time</li>
+  <li>Onboarding cost: supervision, training, lost productivity during the ramp-up period</li>
+  <li>Salary during the period when it wasn't working</li>
+  <li>Exit cost: severance, administration, transition period</li>
+  <li>Replacement: running the entire process again</li>
+</ul>
+
+<p>But the indirect costs are rarely counted:</p>
+<ul>
+  <li><strong>8 months of doubt</strong> while you already knew the answer</li>
+  <li><strong>The team culture</strong> that quietly changes when everyone sees what is happening but no one says it</li>
+  <li><strong>The owner's attention and energy</strong> going to the problem instead of to growth</li>
+  <li><strong>Your strongest people</strong> leaving out of frustration with what is being tolerated</li>
+</ul>
+
+<p>The most expensive hire is not the one who leaves quickly. It is the one you keep too long.</p>
+
+<h2>Why business owners wait too long</h2>
+
+<p>On average, business owners already know after 2 to 3 months that it isn't working. Yet it takes another 5 to 6 months before action follows. These are understandable reasons:</p>
+
+<ul>
+  <li>Loyalty: "He's been trying his best."</li>
+  <li>Hope: "Maybe it will improve if we give it more time."</li>
+  <li>Fear of conflict: "I don't want to create a bad atmosphere."</li>
+  <li>Guilt: "Maybe I didn't support him well enough."</li>
+</ul>
+
+<p>Those reasons are human. But they carry a price. Every month of delay increases the total cost by €3,000 to €5,000. And that price is paid not only by the business owner, but by the entire team.</p>
+
+<h2>How to prevent it structurally</h2>
+
+<p>The most common response to a bad hire is to repeat the same mistake with a better CV filter. That solves nothing. The structural solution lies elsewhere.</p>
+
+<h3>Step 1: Know your own leadership profile</h3>
+<p>Who you are as a leader determines who thrives under you. An objective leadership analysis maps which type of employee fits your communication style, delegation style and culture profile. That is the foundation for every hire that works.</p>
+
+<h3>Step 2: Use a match profile, not just a job profile</h3>
+<p>A job profile describes what someone needs to be able to do. A match profile describes how someone needs to function to fit you and your team — pace, need for structure, degree of autonomy, feedback style. Those dimensions determine whether it clicks, not the CV.</p>
+
+<h3>Step 3: Shortened probation with explicit checkpoints</h3>
+<p>After 30, 60 and 90 days: a structured conversation with clear questions. Is it working? Are expectations clear? Is there a pattern you recognise? Three short conversations replace 8 months of doubt.</p>
+
+<h2>Frequently asked questions</h2>
+
+<div class="faq-item">
+  <h3>How much does a bad hire cost on average?</h3>
+  <p>The direct cost of a bad hire averages €30,000 for an employee with a gross monthly salary of €3,000. This includes recruitment costs, salary during the onboarding period, lost productivity, and the cost of replacement. The indirect costs — team culture, motivation loss among colleagues, management time — are at least as high.</p>
+</div>
+
+<div class="faq-item">
+  <h3>How long do business owners typically wait before acting on a bad hire?</h3>
+  <p>On average 6 to 8 months. Most business owners know within 2 to 3 months that it isn't working, but wait out of hope, loyalty or fear of conflict. Every month of delay increases the total cost significantly.</p>
+</div>
+
+<div class="faq-item">
+  <h3>How do I prevent bad hires as a business owner?</h3>
+  <p>The most effective prevention starts with yourself: an objective leadership analysis maps which type of employee thrives under your leadership style. Hiring on the basis of that profile — rather than only on technical competence — dramatically reduces the risk of mismatch.</p>
+</div>
+
+<div class="faq-item">
+  <h3>What is the most expensive hire for an SME?</h3>
+  <p>The most expensive hire is not the employee who leaves quickly, but the employee you keep too long. They cost you not just their salary, but the productivity loss of those around them, the team culture, and the opportunities you miss because your energy and attention go to the problem rather than to growth.</p>
+</div>
+`,
+  },
 ]
