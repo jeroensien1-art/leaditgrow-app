@@ -4,6 +4,28 @@ import { waitUntil } from '@vercel/functions'
 import { qualifyAndDraft, type Lead } from '@/lib/crm/claude'
 import { sendToLead, notifyJeroen } from '@/lib/crm/email'
 import { saveLead, updateLead } from '@/lib/crm/store'
+import Redis from 'ioredis'
+
+// Max 3 submissions per IP per hour
+const RATE_LIMIT = 3
+const WINDOW_SECONDS = 60 * 60
+
+let redis: Redis | null = null
+function getRedis() {
+  if (!redis && process.env.REDIS_URL) {
+    redis = new Redis(process.env.REDIS_URL, { lazyConnect: true, enableReadyCheck: false })
+  }
+  return redis
+}
+
+async function checkRateLimit(ip: string): Promise<boolean> {
+  const client = getRedis()
+  if (!client) return true // no Redis configured — allow
+  const key = `rate:leads:${ip}`
+  const count = await client.incr(key)
+  if (count === 1) await client.expire(key, WINDOW_SECONDS)
+  return count <= RATE_LIMIT
+}
 
 async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
   const secret = process.env.TURNSTILE_SECRET_KEY
@@ -25,7 +47,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
     }
 
-    const ip = req.headers.get('x-forwarded-for') ?? '127.0.0.1'
+    const ip = (req.headers.get('x-forwarded-for') ?? '127.0.0.1').split(',')[0].trim()
+
+    const allowed = await checkRateLimit(ip)
+    if (!allowed) {
+      return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
+    }
+
     const valid = await verifyTurnstile(turnstileToken ?? '', ip)
     if (!valid) {
       return NextResponse.json({ error: 'Bot check failed' }, { status: 403 })
