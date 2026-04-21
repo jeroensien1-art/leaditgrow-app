@@ -326,16 +326,20 @@ function estimateRevenueLeak(submission: DiagnosticSubmission): number {
 function stepBlock(step: { action: string; result: string }, index: number, nl: boolean): string {
   return `
   <div style="margin-bottom:10px">
-    <div style="display:flex;gap:12px;align-items:flex-start">
-      <div style="min-width:24px;height:24px;border-radius:50%;background:#c96442;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">${index + 1}</div>
-      <div>
-        <p style="font-size:13px;color:#3d3929;line-height:1.65;margin:0 0 6px;font-weight:500">${step.action}</p>
-        <div style="background:#f0faf4;border-left:3px solid #3dba6e;border-radius:0 6px 6px 0;padding:8px 12px">
-          <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#3dba6e">${nl ? 'Resultaat' : 'Result'}: </span>
-          <span style="font-size:12px;color:#535146;line-height:1.5">${step.result}</span>
-        </div>
-      </div>
-    </div>
+    <table cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td style="width:32px;vertical-align:top;padding-right:12px">
+          <div style="width:24px;height:24px;border-radius:50%;background:#c96442;color:#fff;font-size:11px;font-weight:800;text-align:center;line-height:24px">${index + 1}</div>
+        </td>
+        <td style="vertical-align:top">
+          <p style="font-size:13px;color:#3d3929;line-height:1.65;margin:0 0 6px;font-weight:500">${step.action}</p>
+          <div style="background:#f0faf4;border-left:3px solid #3dba6e;border-radius:0 6px 6px 0;padding:8px 12px">
+            <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#3dba6e">${nl ? 'Resultaat' : 'Result'}: </span>
+            <span style="font-size:12px;color:#535146;line-height:1.5">${step.result}</span>
+          </div>
+        </td>
+      </tr>
+    </table>
   </div>`
 }
 
@@ -350,24 +354,32 @@ function buildReport(submission: DiagnosticSubmission): { subject: string; html:
   const monthly = estimateRevenueLeak(submission)
   const annual = monthly * 12
 
-  const healthPct = 100 - submission.score
-  const healthColor = healthPct >= 70 ? '#3dba6e' : healthPct >= 40 ? '#e8a838' : '#e05b3a'
+  const scoreDisplay = submission.score  // GAP score (0-100), higher = more problems — matches website display
+  const healthColor = scoreDisplay <= 30 ? '#3dba6e' : scoreDisplay <= 60 ? '#e8a838' : '#e05b3a'
 
   const subject = nl
     ? `${submission.name}, jouw diagnose-rapport: ${top1Data?.label ?? top1}`
     : `${submission.name}, your diagnostic report: ${top1Data?.label ?? top1}`
 
   const leakBlock = monthly > 0 ? `
-    <div style="background:#fdf4f0;border:1.5px solid rgba(201,100,66,.25);border-radius:12px;padding:16px 20px;margin-bottom:24px;display:flex;align-items:center;gap:16px">
-      <div style="text-align:center;min-width:80px">
-        <div style="font-size:28px;font-weight:800;color:#c96442;line-height:1">${fmt(monthly)}</div>
-        <div style="font-size:10px;color:#b0aea8;margin-top:2px">${nl ? 'per maand' : 'per month'}</div>
-      </div>
-      <div>
-        <div style="font-size:12px;font-weight:700;color:#3d3929;margin-bottom:3px">${nl ? 'Geschat maandelijks omzetverlies' : 'Estimated monthly revenue leak'}</div>
-        <div style="font-size:12px;color:#83827d;line-height:1.5">${nl ? `${fmt(annual)} per jaar, op basis van jouw leads, dealwaarde en opvolggedrag.` : `${fmt(annual)} per year, based on your leads, deal value and follow-up behaviour.`}</div>
-      </div>
-    </div>` : ''
+    <table width="100%" cellpadding="0" cellspacing="0" style="background:#fdf4f0;border:1.5px solid rgba(201,100,66,.25);border-radius:12px;margin-bottom:24px">
+      <tr>
+        <td style="padding:16px 20px;vertical-align:middle">
+          <table cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td style="text-align:center;width:90px;padding-right:16px;vertical-align:middle">
+                <div style="font-size:28px;font-weight:800;color:#c96442;line-height:1">${fmt(monthly)}</div>
+                <div style="font-size:10px;color:#b0aea8;margin-top:2px">${nl ? 'per maand' : 'per month'}</div>
+              </td>
+              <td style="vertical-align:middle">
+                <div style="font-size:12px;font-weight:700;color:#3d3929;margin-bottom:3px">${nl ? 'Geschat maandelijks omzetverlies' : 'Estimated monthly revenue leak'}</div>
+                <div style="font-size:12px;color:#83827d;line-height:1.5">${nl ? `${fmt(annual)} per jaar, op basis van jouw leads, dealwaarde en opvolggedrag.` : `${fmt(annual)} per year, based on your leads, deal value and follow-up behaviour.`}</div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>` : ''
 
   const top1Block = top1Data ? `
     <div style="background:#3d3929;border-radius:14px;padding:24px 26px;margin-bottom:28px">
@@ -376,21 +388,23 @@ function buildReport(submission: DiagnosticSubmission): { subject: string; html:
       </div>
       <div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:10px">${top1Data.label}</div>
       <p style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.65;margin:0 0 18px">${top1Data.cost}</p>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        ${top1Data.steps.map((s, i) => `
-        <div style="background:rgba(255,255,255,.07);border-radius:8px;padding:14px 16px">
-          <div style="display:flex;gap:10px;align-items:flex-start">
-            <div style="min-width:20px;height:20px;border-radius:50%;background:#c96442;color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">${i + 1}</div>
-            <div>
+      ${top1Data.steps.map((s, i) => `
+      <div style="background:rgba(255,255,255,.07);border-radius:8px;padding:14px 16px;margin-bottom:8px">
+        <table cellpadding="0" cellspacing="0" width="100%">
+          <tr>
+            <td style="width:28px;vertical-align:top;padding-right:10px">
+              <div style="width:20px;height:20px;border-radius:50%;background:#c96442;color:#fff;font-size:10px;font-weight:800;text-align:center;line-height:20px">${i + 1}</div>
+            </td>
+            <td style="vertical-align:top">
               <p style="font-size:13px;color:rgba(255,255,255,.9);line-height:1.6;margin:0 0 8px">${s.action}</p>
               <div style="background:rgba(61,186,110,.15);border-left:2px solid #3dba6e;padding:6px 10px;border-radius:0 5px 5px 0">
                 <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#3dba6e">${nl ? 'Resultaat' : 'Result'}: </span>
                 <span style="font-size:12px;color:rgba(255,255,255,.7)">${s.result}</span>
               </div>
-            </div>
-          </div>
-        </div>`).join('')}
-      </div>
+            </td>
+          </tr>
+        </table>
+      </div>`).join('')}
       <div style="margin-top:16px;background:rgba(201,100,66,.2);border-radius:8px;padding:12px 16px">
         <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#c96442;margin-bottom:5px">${nl ? 'Gewenste uitkomst' : 'Desired outcome'}</div>
         <p style="font-size:13px;color:rgba(255,255,255,.85);line-height:1.6;margin:0">${top1Data.outcome}</p>
@@ -438,18 +452,26 @@ function buildReport(submission: DiagnosticSubmission): { subject: string; html:
       ${nl ? 'Hier is jouw persoonlijk rapport op basis van de Business Impact Diagnose. Per hefboom krijg je de exacte stappen en het verwachte resultaat.' : 'Here is your personal report based on the Business Impact Diagnostic. For each lever you get the exact steps and expected result.'}
     </p>
 
-    <div style="background:#f3f1eb;border-radius:12px;padding:14px 18px;margin-bottom:24px;display:flex;align-items:center;gap:14px">
-      <div style="text-align:center;min-width:52px">
-        <div style="font-size:32px;font-weight:800;color:${healthColor};line-height:1">${healthPct}</div>
-        <div style="font-size:10px;color:#83827d;font-weight:600">/100</div>
-      </div>
-      <div>
-        <div style="font-size:12px;font-weight:700;color:#3d3929;margin-bottom:2px">${nl ? 'Systeem-gezondheidsscore' : 'System health score'}</div>
-        <div style="font-size:12px;color:#535146;line-height:1.5">
-          ${healthPct >= 70 ? (nl ? 'Sterke basis. Focus op optimalisatie.' : 'Strong foundation. Focus on optimisation.') : healthPct >= 40 ? (nl ? 'Goede basis, duidelijke groeikansen.' : 'Good base, clear growth opportunities.') : (nl ? 'Significante groeikansen. Laaghangend fruit aanwezig.' : 'Significant growth opportunities. Low-hanging fruit available.')}
-        </div>
-      </div>
-    </div>
+    <table width="100%" cellpadding="0" cellspacing="0" style="background:#f3f1eb;border-radius:12px;margin-bottom:24px">
+      <tr>
+        <td style="padding:14px 18px;vertical-align:middle">
+          <table cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="text-align:center;min-width:52px;padding-right:14px;vertical-align:middle">
+                <div style="font-size:32px;font-weight:800;color:${healthColor};line-height:1">${scoreDisplay}</div>
+                <div style="font-size:10px;color:#83827d;font-weight:600">/100</div>
+              </td>
+              <td style="vertical-align:middle">
+                <div style="font-size:12px;font-weight:700;color:#3d3929;margin-bottom:2px">${nl ? 'Bedrijfsimpact score' : 'Business impact score'}</div>
+                <div style="font-size:12px;color:#535146;line-height:1.5">
+                  ${scoreDisplay <= 30 ? (nl ? 'Sterke basis. Focus op optimalisatie.' : 'Strong foundation. Focus on optimisation.') : scoreDisplay <= 60 ? (nl ? 'Goede basis, duidelijke groeikansen.' : 'Good base, clear growth opportunities.') : (nl ? 'Significante groeikansen. Laaghangend fruit aanwezig.' : 'Significant growth opportunities. Low-hanging fruit available.')}
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
 
     ${leakBlock}
     ${top1Block}

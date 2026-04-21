@@ -5,12 +5,30 @@ import { qualifyAndDraft, type Lead } from '@/lib/crm/claude'
 import { sendToLead, notifyJeroen } from '@/lib/crm/email'
 import { saveLead, updateLead } from '@/lib/crm/store'
 
+async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY
+  if (!secret) return true // skip in dev if key not set
+  const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ secret, response: token, remoteip: ip }),
+  })
+  const data = await res.json()
+  return data.success === true
+}
+
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, message, source } = await req.json()
+    const { name, email, message, source, turnstileToken } = await req.json()
 
     if (!name || !email || !message) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
+    }
+
+    const ip = req.headers.get('x-forwarded-for') ?? '127.0.0.1'
+    const valid = await verifyTurnstile(turnstileToken ?? '', ip)
+    if (!valid) {
+      return NextResponse.json({ error: 'Bot check failed' }, { status: 403 })
     }
 
     const id = randomUUID()

@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
       const { subject, body } = await draftFollowUp(lead)
       await sendToLead(lead.email, subject, body)
       await markFollowedUp(lead.id)
-      console.log(`[followup] sent to ${lead.email}`)
+      console.log(`[followup] sent to lead ${lead.id}`)
     })
   )
 

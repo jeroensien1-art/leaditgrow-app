@@ -1,8 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { ArrowRight, Calendar, Reply } from 'lucide-react'
 import { useLang } from '@/components/lang-context'
+import { Turnstile } from '@marsidev/react-turnstile'
+import type { TurnstileInstance } from '@marsidev/react-turnstile'
 
 const inputStyle = {
   background: '#f3f1eb',
@@ -49,6 +51,8 @@ export function Contact() {
   const [website, setWebsite] = useState('')
   const [noWebsite, setNoWebsite] = useState(false)
   const [message, setMessage] = useState('')
+  const [turnstileToken, setTurnstileToken] = useState('')
+  const turnstileRef = useRef<TurnstileInstance>(null)
 
   // — Book-a-call form —
   const [bookOpen, setBookOpen] = useState(false)
@@ -60,6 +64,8 @@ export function Contact() {
   const [bookNoWebsite, setBookNoWebsite] = useState(false)
   const [bookChallenge, setBookChallenge] = useState('')
   const [bookTimeline, setBookTimeline] = useState('')
+  const [bookTurnstileToken, setBookTurnstileToken] = useState('')
+  const bookTurnstileRef = useRef<TurnstileInstance>(null)
 
   const challenges = nl
     ? ['Te weinig leads', 'Leads die niet converteren', 'Geen tijd meer', 'Team te afhankelijk van mij', 'Andere uitdaging']
@@ -76,12 +82,13 @@ export function Contact() {
       const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, website: noWebsite ? 'geen website' : website, message }),
+        body: JSON.stringify({ name, email, website: noWebsite ? 'geen website' : website, message, turnstileToken }),
       })
       if (!res.ok) throw new Error('Failed')
       setSent(true)
     } catch {
       setError(t('Er ging iets mis. Probeer het opnieuw.', 'Something went wrong. Please try again.'))
+      turnstileRef.current?.reset()
     } finally {
       setSending(false)
     }
@@ -104,6 +111,7 @@ export function Contact() {
           website: bookNoWebsite ? 'geen website' : bookWebsite,
           message: msg,
           source: 'call_request',
+          turnstileToken: bookTurnstileToken,
         }),
       })
     } catch { /* fire and forget */ }
@@ -202,9 +210,17 @@ export function Contact() {
                   />
                 </div>
                 {error && <p className="text-sm text-red-500">{error}</p>}
+                <Turnstile
+                  ref={turnstileRef}
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                  onSuccess={setTurnstileToken}
+                  onError={() => setTurnstileToken('')}
+                  onExpire={() => setTurnstileToken('')}
+                  options={{ appearance: 'interaction-only' }}
+                />
                 <button
                   type="submit"
-                  disabled={sending}
+                  disabled={sending || !turnstileToken}
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90 disabled:opacity-60"
                   style={{ background: '#c96442' }}
                 >
@@ -301,9 +317,17 @@ export function Contact() {
                       {timelines.map(tl => <option key={tl} value={tl}>{tl}</option>)}
                     </select>
                   </div>
+                  <Turnstile
+                    ref={bookTurnstileRef}
+                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                    onSuccess={setBookTurnstileToken}
+                    onError={() => setBookTurnstileToken('')}
+                    onExpire={() => setBookTurnstileToken('')}
+                    options={{ appearance: 'interaction-only' }}
+                  />
                   <button
                     type="submit"
-                    disabled={bookSending || !bookChallenge || !bookTimeline}
+                    disabled={bookSending || !bookChallenge || !bookTimeline || !bookTurnstileToken}
                     className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90 disabled:opacity-60"
                     style={{ background: '#c96442' }}
                   >
