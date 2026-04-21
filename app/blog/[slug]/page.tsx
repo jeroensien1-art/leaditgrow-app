@@ -2,17 +2,25 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { headers } from 'next/headers'
 import { getAllSlugs, getLocalizedPost } from '@/lib/blog'
-import { getLang } from '@/lib/lang'
 import { Nav } from '@/components/nav'
+
+export const dynamic = 'force-dynamic'
 
 export function generateStaticParams() {
   return getAllSlugs().map(slug => ({ slug }))
 }
 
+async function getLangFromHost(): Promise<'nl' | 'en'> {
+  const headersList = await headers()
+  const host = headersList.get('host') || ''
+  return host.includes('leaditgrow.com') ? 'en' : 'nl'
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
-  const lang = await getLang()
+  const lang = await getLangFromHost()
   const post = getLocalizedPost(slug, lang)
   if (!post) return {}
   const baseUrl = lang === 'en' ? 'https://leaditgrow.com' : 'https://leaditgrow.be'
@@ -32,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const lang = await getLang()
+  const lang = await getLangFromHost()
   const post = getLocalizedPost(slug, lang)
   if (!post) notFound()
 
