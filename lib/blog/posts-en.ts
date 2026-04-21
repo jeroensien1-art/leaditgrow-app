@@ -659,7 +659,7 @@ export const postsEn: BlogPost[] = [
 <p>They have never looked at themselves objectively. Not out of arrogance, but because no one has ever offered them that mirror in a practical, applicable way. Personality tests say something about who you are. A leadership analysis says something about what impact you have on the results of your business. That is a fundamentally different conversation.</p>
 
 <div class="blog-visual">
-  <iframe src="/visuals/linkedin-onepager-winstlekkage.html" title="Profit leakage in SMEs: the 4 leadership gaps visualised"></iframe>
+  <iframe src="/visuals/linkedin-onepager-winstlekkage.html" title="Profit leakage in SMEs: the 4 leadership gaps visualised" scrolling="no"></iframe>
 </div>
 <p class="blog-visual-caption">Profit Leakage Report 2025 · Thexton Armstrong · Lead it, Grow</p>
 

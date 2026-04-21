@@ -854,7 +854,7 @@ export const posts: BlogPost[] = [
 <p>Ze zijn nooit objectief naar zichzelf gaan kijken. Niet uit arrogantie, maar omdat niemand hun dat ooit heeft aangeboden op een manier die praktisch en toepasbaar was. Persoonlijkheidstests zeggen iets over wie je bent. Een leiderschapsanalyse zegt iets over wat jouw impact is op de resultaten van je bedrijf. Dat is een fundamenteel ander gesprek.</p>
 
 <div class="blog-visual">
-  <iframe src="/visuals/linkedin-onepager-winstlekkage.html" title="Winstlekkage bij KMOs: de 4 leiderschapslekken in beeld"></iframe>
+  <iframe src="/visuals/linkedin-onepager-winstlekkage.html" title="Winstlekkage bij KMOs: de 4 leiderschapslekken in beeld" scrolling="no"></iframe>
 </div>
 <p class="blog-visual-caption">Winstlekkage Rapport 2025 · Thexton Armstrong · Lead it, Grow</p>
 
