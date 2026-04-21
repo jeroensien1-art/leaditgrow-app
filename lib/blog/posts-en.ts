@@ -566,4 +566,143 @@ export const postsEn: BlogPost[] = [
 </div>
 `,
   },
+
+  {
+    slug: 'winstlekkage-kmos-leiderschap-oorzaak-oplossing',
+    title: '9% of Revenue Leaks Away in SMEs: The Real Cause Is Leadership (and Here Is the Fix)',
+    metaTitle: 'SME Profit Leakage: Leadership Is the Root Cause — and the Fix | Lead it, Grow',
+    metaDescription: 'On average 9% of revenue leaks away in SMEs, according to the 2025 Profit Leakage Report. The cause is not marketing — it is leadership patterns. Discover the 4 root causes and the concrete solution.',
+    publishDate: '2026-04-21',
+    readingTime: 9,
+    category: 'Leadership',
+    region: 'Europe · Belgium',
+    excerpt: 'On average 9% of revenue leaks away in SMEs every year — not because of bad marketing or too few leads, but because of leadership patterns the business owner cannot see. Here is what is really happening and how to fix it.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: '9% of Revenue Leaks Away in SMEs: The Real Cause Is Leadership (and Here Is the Fix)',
+          description: 'On average 9% of revenue leaks away in SMEs. The cause is not marketing but leadership patterns. Discover the 4 root causes and the concrete solution.',
+          datePublished: '2026-04-21',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.com' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.com' },
+          citation: {
+            '@type': 'CreativeWork',
+            name: 'Profit Leakage Report 2025',
+            author: { '@type': 'Organization', name: 'Thexton Armstrong' },
+            url: 'https://thextonarmstrong.be/9-op-de-10-kmos-laat-ongemerkt-winst-liggen-wat-zegt-het-nieuwe-winstlekkage-rapport-2025/',
+          },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'How much revenue leaks away in an average SME?',
+              acceptedAnswer: { '@type': 'Answer', text: 'On average 9% of revenue, according to the Profit Leakage Report 2025 by Thexton Armstrong. For a business with 1 million euros in revenue, that is 90,000 euros per year leaking away structurally and unnoticed.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'What is the real cause of profit leakage in SMEs?',
+              acceptedAnswer: { '@type': 'Answer', text: 'The real cause is structure and leadership, not marketing or sales. Processes that are too dependent on the business owner, teams that cannot work autonomously, decisions that stay centralised, and a blind spot for one\'s own leadership patterns are the four main causes.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'How do you stop profit leakage as a business owner?',
+              acceptedAnswer: { '@type': 'Answer', text: 'The first step is an objective analysis of your own leadership profile. Profit leakage caused by structure and leadership can only be solved when the business owner maps their own blind spots. After that come three concrete steps: decoupling processes from the owner, giving the team the space to work autonomously, and consciously delegating decisions.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'What is the Profit Leakage Report 2025?',
+              acceptedAnswer: { '@type': 'Answer', text: 'The Profit Leakage Report 2025 is an annual study by Thexton Armstrong on structural revenue loss in SMEs. The report shows that 9 in 10 Belgian SMEs unknowingly leave profit on the table, on average 9% of their revenue. Root causes include cost management, debtor management, sales, and operational structure.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'How do I know if my leadership is causing profit leakage?',
+              acceptedAnswer: { '@type': 'Answer', text: 'A clear sign is that processes slow down or stop when you are not around. If decisions wait for you, if your team cannot work independently, or if you are always the person solving problems, your business structure is too dependent on you as an individual. That is the most direct cause of hidden profit leakage.' },
+            },
+          ],
+        },
+      ],
+    },
+    content: `
+<div class="blog-tldr">
+  <div class="tldr-label">TL;DR · Short answer</div>
+  <p>On average 9% of SME revenue leaks away structurally (Profit Leakage Report 2025, Thexton Armstrong). The root cause is not insufficient marketing — it is leadership patterns: processes built around the owner, teams without autonomy, and a blind spot for one's own way of leading. The fix starts with an objective leadership analysis, followed by three structural interventions that seal the leak.</p>
+</div>
+
+<p class="blog-intro">9 in 10 SMEs unknowingly leave profit on the table. On average more than 9% of revenue, as shown by the Profit Leakage Report 2025 by Thexton Armstrong. For a business turning over 1 million euros, that is 90,000 euros a year leaking away — structurally, invisibly. The instinct of most business owners? Look at sales. But the real cause sits somewhere else entirely.</p>
+
+<h2>What does the average business owner do when results dip?</h2>
+
+<p>Generate more leads. Optimise marketing. Negotiate better margins. These are not bad ideas in themselves — but they do not fix the problem when the real cause lies elsewhere.</p>
+
+<p>Conversations with dozens of business owners across sectors from construction to professional services reveal the same pattern: the leaks are not in the commercial story. They are in the structure and leadership of the business. And they are invisible to the very person creating them.</p>
+
+<h2>The 4 places where profit leakage actually sits</h2>
+
+<h3>1. Processes are built around you as a person</h3>
+<p>When the owner goes on holiday, the business slows down. When they are ill, follow-up stalls. Clients call them directly. Decisions wait until they are available. This is not a sign of commitment — it is a structural problem. Processes have been built around one person rather than a system.</p>
+<p>Every hour you spend on operational tasks that a team member or automation could handle is an hour not invested in growth, strategy, or client relationships. Multiply that across a year and you understand where a large share of that 9% disappears.</p>
+
+<h3>2. Your team cannot work autonomously</h3>
+<p>Not because team members lack capability, but because they were never given the framework and the space to do so. Autonomy in a team is not a property of people — it is a property of the structure the business owner has or has not built.</p>
+<p>Teams that cannot work autonomously escalate everything. They wait for approval. They do not take initiative — not from disinterest, but from a lack of clarity about what is expected and what they are allowed to decide. The result: slow processes, missed opportunities, and an owner who always feels they need to be everywhere.</p>
+
+<h3>3. Decisions stay centralised</h3>
+<p>In many SMEs, decisions that a team member or department head could perfectly handle are routinely escalated to the owner. Not because that person could not manage it, but because it has never been explicitly delegated. This costs time, slows execution, and creates an organisation that is structurally slower than it needs to be.</p>
+<p>The fastest-growing SMEs share one characteristic: they have a deliberate delegated decision structure. Not everything sits with everyone, but every type of decision has a clear owner — and for operational matters, that owner is rarely the business owner themselves.</p>
+
+<h3>4. The blind spot: your own leadership patterns</h3>
+<p>This is the most impactful, and least discussed, cause of profit leakage. Most business owners know how their market works, how their product works, how their team works. But how they themselves function as a leader, as a decision-maker, as an environment for their people — that is a blind spot.</p>
+<p>They have never looked at themselves objectively. Not out of arrogance, but because no one has ever offered them that mirror in a practical, applicable way. Personality tests say something about who you are. A leadership analysis says something about what impact you have on the results of your business. That is a fundamentally different conversation.</p>
+
+<h2>Why the solution takes courage</h2>
+
+<p>Looking at yourself objectively as a leader is not comfortable. It requires a willingness to see how you yourself contribute to the problems you want to solve. To recognise patterns you may have carried for years — patterns that once worked well but now limit growth.</p>
+
+<p>But it is the most valuable investment a business owner can make. Not because it is pleasant, but because it is the only way to improve structurally. Every other intervention — better marketing, more staff, new tools — runs into the same ceiling if the leadership structure does not change.</p>
+
+<h2>What the fix looks like in practice</h2>
+
+<p>An effective approach to stopping leadership-driven profit leakage works in three steps:</p>
+
+<h3>Step 1: Objective leadership analysis</h3>
+<p>A structured analysis, built on 35 years of experience with SMEs, maps which leadership patterns move your business forward and which hold it back. Not as a theoretical model, but as a practical mirror: this is the impact you have on your team, your processes, and your results.</p>
+
+<h3>Step 2: Decouple processes from the person</h3>
+<p>Identify the three processes that break down first when you are not there, then systematically document and transfer them. Not a full quality manual — just the maximum leverage for minimum effort.</p>
+
+<h3>Step 3: Build a conscious delegation structure</h3>
+<p>Assign a clear owner to each type of decision. Give the team the space to work autonomously, with the framework and expectations that requires. This is an active choice by the business owner — and it begins with the willingness to let go of what they have always done themselves.</p>
+
+<h2>Frequently asked questions</h2>
+
+<div class="faq-item">
+  <h3>How much revenue leaks away in an average SME?</h3>
+  <p>On average 9% of revenue, according to the Profit Leakage Report 2025 by Thexton Armstrong. For a business turning over 1 million euros, that is 90,000 euros per year. For a business at 2 million euros, that rises to 180,000 euros — structurally and unnoticed.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Is profit leakage always a leadership problem?</h3>
+  <p>Not always, but more often than business owners realise. The Profit Leakage Report 2025 points to multiple causes: cost management, debtor management, sales. But structural leaks — the ones that return year after year — are almost always connected to leadership and structural patterns. These are rarely addressed because they are invisible to the person creating them.</p>
+</div>
+
+<div class="faq-item">
+  <h3>How long does it take to stop profit leakage through leadership?</h3>
+  <p>The first visible effects appear within 60 to 90 days of a targeted leadership analysis and structural intervention. Structural improvement — where the business genuinely becomes less dependent on the owner — takes on average 6 to 12 months. That is fast for a problem that has often been simmering for years.</p>
+</div>
+
+<div class="faq-item">
+  <h3>What is the difference between a leadership analysis and a coaching programme?</h3>
+  <p>A coaching programme works on behaviour change over time. A leadership analysis is a one-time, in-depth mirror: this is who you are as a leader, this is the impact you have, and these are the concrete patterns influencing your business results. That analysis is the foundation for any effective coaching or change programme afterwards. Without that mirror, you are working blind.</p>
+</div>
+
+<div class="faq-item">
+  <h3>How do I start a leadership analysis for my business?</h3>
+  <p>Through Lead it, Grow we offer a free, personal leadership analysis built on 35 years of experience with SMEs. Comment "Leadership" on LinkedIn or send a message via leaditgrow.com to get started. No sales call, no obligation — just an honest conversation about what is really going on.</p>
+</div>
+`,
+  },
 ]

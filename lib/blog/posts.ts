@@ -761,6 +761,145 @@ export const posts: BlogPost[] = [
 </div>
 `,
   },
+
+  {
+    slug: 'winstlekkage-kmos-leiderschap-oorzaak-oplossing',
+    title: '9% van je omzet lekt weg als KMO: de echte oorzaak is leiderschap (en dit is de oplossing)',
+    metaTitle: 'Winstlekkage KMO: oorzaak in leiderschap en de oplossing | Lead it, Grow',
+    metaDescription: 'Gemiddeld 9% van de omzet lekt weg bij KMOs, zo blijkt uit het Winstlekkage Rapport 2025. De oorzaak zit niet in marketing maar in leiderschapspatronen. Ontdek de 4 lekken en de concrete oplossing.',
+    publishDate: '2026-04-21',
+    readingTime: 9,
+    category: 'Leiderschap',
+    region: 'België · Vlaanderen',
+    excerpt: 'Gemiddeld 9% van de omzet lekt structureel weg bij KMOs. Niet door slechte marketing of te weinig leads, maar door leiderschapspatronen die de zaakvoerder zelf niet ziet. Hier is wat er echt speelt en hoe je het oplost.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: '9% van je omzet lekt weg als KMO: de echte oorzaak is leiderschap (en dit is de oplossing)',
+          description: 'Gemiddeld 9% van de omzet lekt weg bij KMOs. De oorzaak zit niet in marketing maar in leiderschapspatronen. Ontdek de 4 lekken en de concrete oplossing.',
+          datePublished: '2026-04-21',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+          citation: {
+            '@type': 'CreativeWork',
+            name: 'Winstlekkage Rapport 2025',
+            author: { '@type': 'Organization', name: 'Thexton Armstrong' },
+            url: 'https://thextonarmstrong.be/9-op-de-10-kmos-laat-ongemerkt-winst-liggen-wat-zegt-het-nieuwe-winstlekkage-rapport-2025/',
+          },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'Hoeveel winst lekt er weg bij een gemiddelde KMO?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Gemiddeld 9% van de omzet, zo blijkt uit het Winstlekkage Rapport 2025 van Thexton Armstrong. Bij een bedrijf met 1 miljoen euro omzet is dat 90.000 euro per jaar die structureel weglekt, zonder dat de zaakvoerder het doorheeft.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Waar zit de echte oorzaak van winstlekkage bij KMOs?',
+              acceptedAnswer: { '@type': 'Answer', text: 'De echte oorzaak zit in structuur en leiderschap, niet in marketing of verkoop. Processen die te afhankelijk zijn van de zaakvoerder, teams die niet autonoom kunnen werken, beslissingen die centraal blijven hangen, en een blinde vlek voor de eigen leiderschapspatronen zijn de vier hoofdoorzaken.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Hoe stop je winstlekkage als zaakvoerder?',
+              acceptedAnswer: { '@type': 'Answer', text: 'De eerste stap is een objectieve analyse van je eigen leiderschapsprofiel. Winstlekkage door structuur en leiderschap is alleen op te lossen als de zaakvoerder zijn eigen blinde vlekken in kaart brengt. Daarna volgen concrete stappen: processen losmaken van de persoon van de zaakvoerder, het team de ruimte geven om autonoom te werken, en beslissingen bewust delegeren.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Wat is het Winstlekkage Rapport 2025?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Het Winstlekkage Rapport 2025 is een jaarlijks onderzoek van Thexton Armstrong naar structureel omzetverlies bij KMOs. Het rapport toont aan dat 9 op 10 Belgische KMOs ongemerkt winst laten liggen, gemiddeld 9% van hun omzet. De oorzaken liggen in kostenbeheer, debiteurenbeheer, sales en operationele structuur.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Hoe weet ik of mijn leiderschap winstlekkage veroorzaakt?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Een duidelijk teken is dat processen vastlopen als jij er niet bij bent. Als beslissingen wachten op jou, als je team niet autonoom kan werken, of als jij altijd de persoon bent die problemen oplost, dan is de structuur van je bedrijf te afhankelijk van jou als persoon. Dat is de meest directe oorzaak van verborgen winstlekkage.' },
+            },
+          ],
+        },
+      ],
+    },
+    content: `
+<div class="blog-tldr">
+  <div class="tldr-label">TL;DR · Kort antwoord</div>
+  <p>Gemiddeld 9% van de omzet lekt weg bij KMOs (Winstlekkage Rapport 2025, Thexton Armstrong). De echte oorzaak is niet te weinig marketing, maar leiderschapspatronen: processen die draaien op de persoon van de zaakvoerder, een team zonder autonomie, en een blinde vlek voor het eigen functioneren als leider. De oplossing begint met een objectieve leiderschapsanalyse, gevolgd door drie concrete structuuringrepen die het lek dichten.</p>
+</div>
+
+<p class="blog-intro">9 op 10 KMOs laten ongemerkt winst liggen. Gemiddeld meer dan 9% van de omzet, zo toont het Winstlekkage Rapport 2025 van Thexton Armstrong. Bij een bedrijf met 1 miljoen euro omzet is dat 90.000 euro per jaar die structureel weglekt, zonder dat de zaakvoerder het ziet. De reflex van de meeste zaakvoerders? Kijken naar hun verkoop. Maar de echte oorzaak zit ergens anders.</p>
+
+<h2>Wat doet de gemiddelde zaakvoerder als het minder gaat?</h2>
+
+<p>Meer leads genereren. Marketing optimaliseren. Betere marges bedingen. Dat zijn geen slechte ideeën op zich, maar ze lossen het probleem niet op als de echte oorzaak elders zit.</p>
+
+<p>Uit gesprekken met tientallen Vlaamse zaakvoerders in sectoren van bouw tot professionele dienstverlening blijkt steeds hetzelfde patroon: de lekken zitten niet in het commercieel verhaal. Ze zitten in de structuur en het leiderschap van het bedrijf. En ze zijn onzichtbaar voor de persoon die ze zelf veroorzaakt.</p>
+
+<h2>De 4 plaatsen waar winstlekkage echt zit</h2>
+
+<h3>1. Processen hangen aan jou als persoon</h3>
+<p>Als de zaakvoerder op vakantie gaat, vertraagt het bedrijf. Als hij ziek is, stokt de opvolging. Klanten bellen naar hem direct. Beslissingen wachten tot hij beschikbaar is. Dit is geen teken van betrokkenheid, maar van een structureel probleem: de processen zijn gebouwd rond één persoon in plaats van rond een systeem.</p>
+<p>Elk uur dat jij besteedt aan operationele taken die een medewerker of een automatisering had kunnen doen, is een uur dat je niet investeert in groei, strategie of klantrelaties. Vermenigvuldig dat over een jaar, en je begrijpt waar een groot deel van de 9% naartoe gaat.</p>
+
+<h3>2. Je team kan niet autonoom werken</h3>
+<p>Niet omdat de medewerkers niet capabel zijn, maar omdat ze het kader en de ruimte nooit hebben gekregen. Autonomie in een team is geen eigenschap van mensen, het is een eigenschap van de structuur die de zaakvoerder al dan niet heeft gebouwd.</p>
+<p>Teams die niet autonoom werken, escaleren alles. Ze wachten op goedkeuring. Ze nemen geen initiatief, niet uit desinteresse, maar uit onduidelijkheid over wat verwacht wordt en wat ze mogen beslissen. Het gevolg: trage processen, gemiste kansen en een zaakvoerder die altijd het gevoel heeft dat hij overal bij moet zijn.</p>
+
+<h3>3. Beslissingen blijven centraal hangen</h3>
+<p>In veel KMOs worden beslissingen die perfect door een teamlid of afdelingshoofd kunnen worden genomen, standaard doorgestuurd naar de zaakvoerder. Niet omdat die persoon het niet zou kunnen, maar omdat het nooit expliciet gedelegeerd is. Dat kost tijd, vertraagt uitvoering en zorgt voor een organisatie die structureel trager is dan nodig.</p>
+<p>De meest groeiende KMOs in Vlaanderen hebben één ding gemeen: ze hebben een bewuste gedelegeerde beslissingsstructuur. Niet alles ligt bij iedereen, maar elk type beslissing heeft een duidelijke eigenaar, en die eigenaar is zelden de zaakvoerder zelf voor operationele zaken.</p>
+
+<h3>4. De blinde vlek: je eigen leiderschapspatronen</h3>
+<p>Dit is de meest impactvolle, en tegelijk de minst besproken oorzaak van winstlekkage. De meeste zaakvoerders weten hoe hun markt werkt, hoe hun product werkt, hoe hun team werkt. Maar hoe zij zelf werken als leider, als beslisser, als omgeving voor hun mensen, dat is een blinde vlek.</p>
+<p>Ze zijn nooit objectief naar zichzelf gaan kijken. Niet uit arrogantie, maar omdat niemand hun dat ooit heeft aangeboden op een manier die praktisch en toepasbaar was. Persoonlijkheidstests zeggen iets over wie je bent. Een leiderschapsanalyse zegt iets over wat jouw impact is op de resultaten van je bedrijf. Dat is een fundamenteel ander gesprek.</p>
+
+<h2>Waarom de oplossing moed vraagt</h2>
+
+<p>Objectief in de spiegel kijken als leider is niet aangenaam. Het vraagt dat je bereid bent te zien hoe jij zelf bijdraagt aan de problemen die je wil oplossen. Dat je patronen herkent die je misschien al jaren hebt, patronen die lang goed werkten, maar die nu groei remmen.</p>
+
+<p>Maar het is de meest waardevolle investering die een zaakvoerder kan doen. Niet omdat het aangenaam is, maar omdat het de enige manier is om structureel te verbeteren. Elke andere interventie, betere marketing, meer personeel, nieuwe tools, botst op hetzelfde plafond als de leiderschapsstructuur niet verandert.</p>
+
+<h2>Wat de oplossing er concreet uitziet</h2>
+
+<p>Een doeltreffende aanpak om winstlekkage via leiderschap te stoppen werkt in drie stappen:</p>
+
+<h3>Stap 1: Objectieve leiderschapsanalyse</h3>
+<p>Een gestructureerde analyse, gebouwd op 35 jaar ervaring met Vlaamse KMOs, brengt in kaart welke leiderschapspatronen je bedrijf vooruit helpen en welke het remmen. Niet als theoretisch model, maar als praktische spiegel: dit is de impact die jij hebt op je team, je processen en je resultaten.</p>
+
+<h3>Stap 2: Processen losmaken van de persoon</h3>
+<p>De drie processen identificeren die als eerste vastlopen als jij er niet bent, en die systematisch documenteren en overdragen. Niet een volledig kwaliteitshandboek, maar de maximale hefboom voor minimale inspanning.</p>
+
+<h3>Stap 3: Bewuste delegatiestructuur bouwen</h3>
+<p>Per type beslissing een duidelijke eigenaar aanwijzen. Het team de ruimte geven om autonoom te werken, met het kader en de verwachtingen die daarvoor nodig zijn. Dit is een actieve keuze van de zaakvoerder, en het begint met de bereidheid om los te laten wat hij altijd zelf heeft gedaan.</p>
+
+<h2>Veelgestelde vragen</h2>
+
+<div class="faq-item">
+  <h3>Hoeveel winst lekt er weg bij een gemiddelde KMO?</h3>
+  <p>Gemiddeld 9% van de omzet, zo blijkt uit het Winstlekkage Rapport 2025 van Thexton Armstrong. Bij een bedrijf met 1 miljoen euro omzet is dat 90.000 euro per jaar. Bij een bedrijf met 2 miljoen euro omzet loopt dat op tot 180.000 euro, structureel en ongemerkt.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Is winstlekkage altijd een leiderschapsprobleem?</h3>
+  <p>Niet altijd, maar vaker dan zaakvoerders denken. Het Winstlekkage Rapport 2025 wijst op meerdere oorzaken: kostenbeheer, debiteurenbeheer, sales. Maar de structurele lekken, de lekken die jaar na jaar terugkomen, zijn bijna altijd verbonden aan leiderschaps- en structuurpatronen. Die worden zelden aangepakt omdat ze onzichtbaar zijn voor de persoon die ze veroorzaakt.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Hoe lang duurt het om winstlekkage te stoppen via leiderschap?</h3>
+  <p>De eerste zichtbare effecten zijn merkbaar binnen 60 tot 90 dagen na een gerichte leiderschapsanalyse en structuuringreep. Structurele verbetering, waarbij het bedrijf echt minder afhankelijk is van de zaakvoerder, duurt gemiddeld 6 tot 12 maanden. Dat is snel voor een probleem dat soms al jaren sluimert.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Wat is het verschil tussen een leiderschapsanalyse en een coaching traject?</h3>
+  <p>Een coaching traject werkt aan gedragsverandering over tijd. Een leiderschapsanalyse is een eenmalige, diepgaande spiegel: dit is wie jij bent als leider, dit is de impact die jij hebt, en dit zijn de concrete patronen die je bedrijfsresultaten beinvloeden. Die analyse is de basis voor elk effectief coaching- of veranderingstraject daarna. Zonder die spiegel werk je blind.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Hoe begin ik met een leiderschapsanalyse voor mijn KMO?</h3>
+  <p>Via Lead it, Grow bieden we een gratis, persoonlijke leiderschapsanalyse aan, gebouwd op 35 jaar ervaring met Vlaamse KMOs. Comment "Leiderschap" op LinkedIn of stuur een bericht via leaditgrow.be om te starten. Geen verkoopsgesprek, geen verplichting. Gewoon een eerlijk gesprek over wat er speelt.</p>
+</div>
+`,
+  },
 ]
 
 export function getPost(slug: string): BlogPost | undefined {

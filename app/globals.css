@@ -92,6 +92,9 @@ html { scroll-behavior: smooth; }
 .blog-content .faq-item { padding: 1.5rem; border-radius: 12px; background: #f5f3ee; margin-bottom: 1rem; border: 1px solid rgba(61,57,41,0.08); }
 .blog-content .faq-item h3 { font-size: 16px; font-weight: 600; color: #0a1e10; margin: 0 0 0.6rem; }
 .blog-content .faq-item p { font-size: 15px; color: #535146; margin: 0; }
+.blog-content .blog-tldr { padding: 1.5rem 1.75rem; border-radius: 12px; background: rgba(201,100,66,0.07); border-left: 4px solid #c96442; margin-bottom: 2.5rem; }
+.blog-content .blog-tldr .tldr-label { font-family: monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #c96442; font-weight: 600; margin-bottom: 0.6rem; }
+.blog-content .blog-tldr p { font-size: 16px; color: #2a2720; margin: 0; line-height: 1.65; font-weight: 500; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
