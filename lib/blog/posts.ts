@@ -853,6 +853,11 @@ export const posts: BlogPost[] = [
 <p>Dit is de meest impactvolle, en tegelijk de minst besproken oorzaak van winstlekkage. De meeste zaakvoerders weten hoe hun markt werkt, hoe hun product werkt, hoe hun team werkt. Maar hoe zij zelf werken als leider, als beslisser, als omgeving voor hun mensen, dat is een blinde vlek.</p>
 <p>Ze zijn nooit objectief naar zichzelf gaan kijken. Niet uit arrogantie, maar omdat niemand hun dat ooit heeft aangeboden op een manier die praktisch en toepasbaar was. Persoonlijkheidstests zeggen iets over wie je bent. Een leiderschapsanalyse zegt iets over wat jouw impact is op de resultaten van je bedrijf. Dat is een fundamenteel ander gesprek.</p>
 
+<div class="blog-visual">
+  <iframe src="/visuals/linkedin-onepager-winstlekkage.html" title="Winstlekkage bij KMOs: de 4 leiderschapslekken in beeld"></iframe>
+</div>
+<p class="blog-visual-caption">Winstlekkage Rapport 2025 · Thexton Armstrong · Lead it, Grow</p>
+
 <h2>Waarom de oplossing moed vraagt</h2>
 
 <p>Objectief in de spiegel kijken als leider is niet aangenaam. Het vraagt dat je bereid bent te zien hoe jij zelf bijdraagt aan de problemen die je wil oplossen. Dat je patronen herkent die je misschien al jaren hebt, patronen die lang goed werkten, maar die nu groei remmen.</p>

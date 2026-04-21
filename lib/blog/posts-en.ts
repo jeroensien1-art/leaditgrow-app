@@ -658,6 +658,11 @@ export const postsEn: BlogPost[] = [
 <p>This is the most impactful, and least discussed, cause of profit leakage. Most business owners know how their market works, how their product works, how their team works. But how they themselves function as a leader, as a decision-maker, as an environment for their people — that is a blind spot.</p>
 <p>They have never looked at themselves objectively. Not out of arrogance, but because no one has ever offered them that mirror in a practical, applicable way. Personality tests say something about who you are. A leadership analysis says something about what impact you have on the results of your business. That is a fundamentally different conversation.</p>
 
+<div class="blog-visual">
+  <iframe src="/visuals/linkedin-onepager-winstlekkage.html" title="Profit leakage in SMEs: the 4 leadership gaps visualised"></iframe>
+</div>
+<p class="blog-visual-caption">Profit Leakage Report 2025 · Thexton Armstrong · Lead it, Grow</p>
+
 <h2>Why the solution takes courage</h2>
 
 <p>Looking at yourself objectively as a leader is not comfortable. It requires a willingness to see how you yourself contribute to the problems you want to solve. To recognise patterns you may have carried for years — patterns that once worked well but now limit growth.</p>

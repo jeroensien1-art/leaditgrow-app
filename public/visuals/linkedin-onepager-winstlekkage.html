@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>LinkedIn One-Pager · Winstlekkage · Lead it, Grow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #1a1916;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 40px 20px 60px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .page-label {
+      color: #535146;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    /* ── 1080 × 1080px · LinkedIn square post ── */
+    .card {
+      width: 1080px;
+      height: 1080px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #faf9f5;
+    }
+
+    /* Warm radial atmosphere */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 100% 0%, rgba(201,100,66,0.14) 0%, transparent 52%),
+        radial-gradient(ellipse at 0% 100%, rgba(201,100,66,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(250,248,242,0.6) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Large decorative J in background */
+    .bg-letter {
+      position: absolute;
+      right: -60px;
+      bottom: -120px;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      font-size: 720px;
+      line-height: 1;
+      color: rgba(201,100,66,0.045);
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.04em;
+      z-index: 0;
+    }
+
+    /* Top accent bar */
+    .accent-top {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #c96442 0%, #e0836a 60%, transparent 100%);
+      z-index: 3;
+    }
+
+    /* Left accent bar */
+    .accent-left {
+      position: absolute;
+      top: 5px; left: 0; bottom: 0;
+      width: 5px;
+      background: #c96442;
+      z-index: 3;
+    }
+
+    /* Main content wrapper */
+    .content {
+      position: absolute;
+      inset: 0;
+      padding: 72px 80px 64px 90px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 2;
+    }
+
+    /* ── TOP: brand + stat badge ── */
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .brand-wordmark {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: 22px;
+      font-weight: 400;
+      color: #3d3929;
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+
+    .brand-wordmark span {
+      color: #c96442;
+      font-weight: 500;
+    }
+
+    .stat-badge {
+      background: #c96442;
+      color: #faf9f5;
+      padding: 12px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .stat-badge .stat-num {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-badge .stat-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.88;
+    }
+
+    /* ── MIDDLE: hook + body ── */
+    .middle {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .hook {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #c96442;
+    }
+
+    .headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 66px;
+      font-weight: 700;
+      line-height: 1.06;
+      letter-spacing: -0.025em;
+      color: #2a2720;
+    }
+
+    .headline em {
+      font-style: italic;
+      color: #c96442;
+    }
+
+    .sub-headline {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.55;
+      color: #5c5849;
+      max-width: 780px;
+    }
+
+    .sub-headline strong {
+      color: #2a2720;
+      font-weight: 600;
+    }
+
+    /* Divider */
+    .divider {
+      width: 56px;
+      height: 2px;
+      background: #c96442;
+      margin: -12px 0;
+    }
+
+    /* Pain points grid */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 40px;
+    }
+
+    .pain-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .pain-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #c96442;
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    .pain-text {
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #3d3929;
+    }
+
+    .pain-text strong {
+      font-weight: 600;
+      color: #2a2720;
+    }
+
+    /* ── BOTTOM: money stat + CTA row ── */
+    .bottom-row {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      border-top: 1px solid #dad9d4;
+      padding-top: 36px;
+    }
+
+    .money-block {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-right: 40px;
+      border-right: 1px solid #dad9d4;
+    }
+
+    .money-context {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #9e9a92;
+    }
+
+    .money-amount {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #2a2720;
+    }
+
+    .money-sub {
+      font-size: 14px;
+      font-weight: 400;
+      color: #7a7670;
+      line-height: 1.4;
+    }
+
+    /* CTA block */
+    .cta-block {
+      flex: 1.1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+      padding-left: 40px;
+    }
+
+    .cta-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #c96442;
+    }
+
+    .cta-text {
+      font-size: 19px;
+      font-weight: 500;
+      line-height: 1.45;
+      color: #2a2720;
+    }
+
+    .cta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #2a2720;
+      color: #faf9f5;
+      padding: 11px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+
+    .cta-pill .arrow {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    /* Source line */
+    .source-line {
+      position: absolute;
+      bottom: 24px;
+      right: 80px;
+      font-size: 10px;
+      color: #b0aca4;
+      letter-spacing: 0.08em;
+      z-index: 3;
+    }
+  </style>
+</head>
+<body>
+  <p class="page-label">LinkedIn One-Pager · 1080 × 1080px · Lead it, Grow</p>
+
+  <div class="card">
+    <div class="accent-top"></div>
+    <div class="accent-left"></div>
+    <div class="bg-letter">J</div>
+
+    <div class="content">
+
+      <!-- TOP ROW -->
+      <div class="top-row">
+        <div class="brand-wordmark">Lead it, <span>Grow</span></div>
+        <div class="stat-badge">
+          <div class="stat-num">9 op 10</div>
+          <div class="stat-label">Vlaamse KMOs</div>
+        </div>
+      </div>
+
+      <!-- MIDDLE -->
+      <div class="middle">
+        <div class="hook">
+          <div class="eyebrow">Winstlekkage Rapport 2025 · Thexton Armstrong</div>
+          <div class="headline">
+            Je kijkt<br>naar verkoop.<br>
+            <em>Het lek zit<br>bij jou.</em>
+          </div>
+          <div class="sub-headline">
+            Gemiddeld <strong>9% van de omzet</strong> lekt structureel weg bij Vlaamse KMOs.
+            Niet door slechte marketing. Maar door leiderschap dat zichzelf
+            nooit objectief heeft bekeken.
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="pain-grid">
+          <div class="pain-item">
+            <div class="pain-dot"></div>
+            <div class="pain-text"><strong>Alles draait om jou</strong>, processen hangen aan jou als persoon</div>
+          </div>
+          <div class="pain-item">
+            <div class="pain-dot"></div>
+            <div class="pain-text"><strong>Team werkt niet autonoom</strong>, kader en ruimte ontbreken</div>
+          </div>
+          <div class="pain-item">
+            <div class="pain-dot"></div>
+            <div class="pain-text"><strong>Beslissingen blijven centraal</strong>, terwijl het team het kan</div>
+          </div>
+          <div class="pain-item">
+            <div class="pain-dot"></div>
+            <div class="pain-text"><strong>Blinde vlek als leider</strong>, je weet hoe alles werkt, behalve jezelf</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOM ROW -->
+      <div class="bottom-row">
+        <div class="money-block">
+          <div class="money-context">Bij 1M omzet betekent dit</div>
+          <div class="money-amount">€90.000</div>
+          <div class="money-sub">per jaar die structureel weglekt<br>zonder dat je het ziet</div>
+        </div>
+        <div class="cta-block">
+          <div class="cta-label">Gratis · Gebouwd op 35+ jaar ervaring</div>
+          <div class="cta-text">Durf jij objectief in de spiegel te kijken als leider?</div>
+          <div class="cta-pill">
+            Comment "Leiderschap" voor een gratis, persoonlijke analyse
+            <span class="arrow">→</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="source-line">Bron: Winstlekkage Rapport 2025 · Thexton Armstrong</div>
+  </div>
+</body>
+</html>

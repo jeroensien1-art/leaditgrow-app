@@ -95,6 +95,9 @@ html { scroll-behavior: smooth; }
 .blog-content .blog-tldr { padding: 1.5rem 1.75rem; border-radius: 12px; background: rgba(201,100,66,0.07); border-left: 4px solid #c96442; margin-bottom: 2.5rem; }
 .blog-content .blog-tldr .tldr-label { font-family: monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #c96442; font-weight: 600; margin-bottom: 0.6rem; }
 .blog-content .blog-tldr p { font-size: 16px; color: #2a2720; margin: 0; line-height: 1.65; font-weight: 500; }
+.blog-content .blog-visual { width: 100%; overflow: hidden; border-radius: 12px; margin: 3rem 0; box-shadow: 0 8px 40px rgba(0,0,0,0.1); position: relative; height: 700px; }
+.blog-content .blog-visual iframe { width: 1080px; height: 1080px; border: none; transform: scale(0.648); transform-origin: top left; pointer-events: none; }
+.blog-content .blog-visual-caption { font-size: 12px; color: #9e9a92; text-align: center; margin-top: -2rem; margin-bottom: 2.5rem; font-family: monospace; letter-spacing: 0.08em; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
