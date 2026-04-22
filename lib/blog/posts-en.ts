@@ -34,12 +34,12 @@ export const postsEn: BlogPost[] = [
     content: `
 <p class="blog-intro">More than 6 in 10 business owners say they are too busy to actually grow their company. Not because they don't work hard enough, but because everything runs through them. Every decision, every lead, every complaint. They haven't built a business. They've given themselves a job with more responsibility than ever.</p>
 
-<p><strong>A growth system is a set of processes and automations that ensure your business attracts leads, follows them up, and converts them into clients — even when you're not actively involved.</strong></p>
+<p><strong>A growth system is a set of processes and automations that ensure your business attracts leads, follows them up, and converts them into clients,even when you're not actively involved.</strong></p>
 
 <h2>The Three Symptoms of a Stalled Growth System</h2>
 
 <h3>1. You react to leads instead of managing them</h3>
-<p>Research from InsideSales shows that your chance of converting a lead drops by 80% if you don't respond within 5 minutes. Most service businesses are structurally leaving revenue on the table — not because their offer isn't good, but because they're too slow. The solution isn't a better calendar. It's a system that automates the first response so every lead gets a personalised reply within 60 seconds — even at 11pm on a Friday.</p>
+<p>Research from InsideSales shows that your chance of converting a lead drops by 80% if you don't respond within 5 minutes. Most service businesses are structurally leaving revenue on the table,not because their offer isn't good, but because they're too slow. The solution isn't a better calendar. It's a system that automates the first response so every lead gets a personalised reply within 60 seconds,even at 11pm on a Friday.</p>
 
 <h3>2. Your pipeline depends on your personal energy</h3>
 <p>In the early growth phases, that works. You are the business. But the moment you want to scale, you hit a wall: there is only one of you. The most successful growing businesses decouple their commercial activity from the owner's presence. A well-configured CRM, automated follow-up sequences, and a clear onboarding journey do the heavy lifting. The owner closes the deal and delivers the quality.</p>
@@ -53,7 +53,7 @@ export const postsEn: BlogPost[] = [
 <p>Every lead who reaches out gets a response within a minute. Personalised. From the company's domain. With concrete time slots for a call. This isn't mass mailing. This is an intelligent system that understands the context of the enquiry and crafts a reply that sounds as if the owner wrote it personally.</p>
 
 <h3>A clear leadership profile</h3>
-<p>The owners who delegate best know exactly what their strengths and weaknesses are as a leader. They know which decisions they need to make themselves and which ones they can safely hand off. A thorough leadership analysis brings this into focus — not as a theoretical model, but as a practical mirror.</p>
+<p>The owners who delegate best know exactly what their strengths and weaknesses are as a leader. They know which decisions they need to make themselves and which ones they can safely hand off. A thorough leadership analysis brings this into focus,not as a theoretical model, but as a practical mirror.</p>
 
 <h3>SOPs for the top 3 processes that break down</h3>
 <p>Not 20 procedures. Not a complete quality manual. Just the three processes that grind to a halt first when you go on holiday. That's the maximum leverage for minimum effort.</p>
@@ -62,7 +62,7 @@ export const postsEn: BlogPost[] = [
 
 <div class="faq-item">
   <h3>How do I know if I am the bottleneck in my own company?</h3>
-  <p>A clear sign is that your business slows down noticeably when you are sick, on holiday, or simply have a busy week. If decisions wait for you and leads go unattended when you are not around, you are the bottleneck. This is not necessarily a problem — it's the first growth phase. The issue is staying there for years without realising it.</p>
+  <p>A clear sign is that your business slows down noticeably when you are sick, on holiday, or simply have a busy week. If decisions wait for you and leads go unattended when you are not around, you are the bottleneck. This is not necessarily a problem,it's the first growth phase. The issue is staying there for years without realising it.</p>
 </div>
 
 <div class="faq-item">
@@ -81,7 +81,7 @@ export const postsEn: BlogPost[] = [
     readingTime: 7,
     category: 'Leadership',
     region: 'Europe',
-    excerpt: 'There is a clear pattern in the businesses that grow consistently while the owner works fewer hours. It starts with a specific type of leadership — not harder, but smarter.',
+    excerpt: 'There is a clear pattern in the businesses that grow consistently while the owner works fewer hours. It starts with a specific type of leadership,not harder, but smarter.',
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -96,18 +96,18 @@ export const postsEn: BlogPost[] = [
       ],
     },
     content: `
-<p class="blog-intro">There is a clear pattern in the businesses that grow consistently while the owner works fewer hours. It doesn't start with a better product or a bigger marketing budget. It starts with a specific type of leadership — one that most founders develop too late, if at all.</p>
+<p class="blog-intro">There is a clear pattern in the businesses that grow consistently while the owner works fewer hours. It doesn't start with a better product or a bigger marketing budget. It starts with a specific type of leadership,one that most founders develop too late, if at all.</p>
 
 <h2>The Three Leadership Patterns That Drive Growth</h2>
 
 <h3>1. They delegate with trust, not control</h3>
-<p>The founders who scale effectively have learned to hand off not just tasks, but outcomes. They don't check in every hour. They set clear expectations, provide the right tools, and step back. This requires a deep understanding of their own leadership style — what they do well, and where they get in the way.</p>
+<p>The founders who scale effectively have learned to hand off not just tasks, but outcomes. They don't check in every hour. They set clear expectations, provide the right tools, and step back. This requires a deep understanding of their own leadership style,what they do well, and where they get in the way.</p>
 
 <h3>2. They build feedback loops, not just hierarchies</h3>
 <p>The best-run owner-operated businesses we work with have one thing in common: the owner actively seeks feedback from their team and their clients. Not once a year in a performance review. Continuously, structurally. This feedback shapes decisions before they become problems.</p>
 
 <h3>3. They have difficult conversations early</h3>
-<p>Avoiding friction is the single most expensive habit in owner-operated businesses. A team member who isn't performing. A client relationship that has soured. A process that everyone knows is broken but no one talks about. The founders who grow fastest are the ones who address these things early and directly — before the cost compounds.</p>
+<p>Avoiding friction is the single most expensive habit in owner-operated businesses. A team member who isn't performing. A client relationship that has soured. A process that everyone knows is broken but no one talks about. The founders who grow fastest are the ones who address these things early and directly,before the cost compounds.</p>
 
 <h2>What a Leadership Analysis Reveals</h2>
 <p>A thorough leadership analysis doesn't tell you what kind of person you are in general. It tells you specifically: this is how your leadership style affects your team's performance, these are the decisions you should keep, and these are the patterns that are limiting your growth right now.</p>
@@ -115,7 +115,7 @@ export const postsEn: BlogPost[] = [
 
 <div class="faq-item">
   <h3>Can leadership be learned, or is it innate?</h3>
-  <p>Leadership skills can absolutely be developed. What cannot change easily is personality — but the good news is that effective leadership is not about having a specific personality. It's about understanding your own tendencies and building systems that complement them.</p>
+  <p>Leadership skills can absolutely be developed. What cannot change easily is personality,but the good news is that effective leadership is not about having a specific personality. It's about understanding your own tendencies and building systems that complement them.</p>
 </div>
 `,
   },
@@ -124,12 +124,12 @@ export const postsEn: BlogPost[] = [
     slug: 'soft-skills-vlaamse-groeibedrijven-2025',
     title: 'The Soft Skills That Separate Growing Businesses from Stagnating Ones',
     metaTitle: 'Soft Skills for Business Growth in 2026 | Lead it, Grow',
-    metaDescription: 'The soft skills that matter most for founder-led businesses in 2026. From delegation to feedback culture — what actually drives growth when hard skills plateau.',
+    metaDescription: 'The soft skills that matter most for founder-led businesses in 2026. From delegation to feedback culture,what actually drives growth when hard skills plateau.',
     publishDate: '2026-04-15',
     readingTime: 6,
     category: 'Leadership',
     region: 'Europe',
-    excerpt: 'At a certain point, technical skills stop being the limiting factor in business growth. What takes over is something harder to measure — and harder to develop.',
+    excerpt: 'At a certain point, technical skills stop being the limiting factor in business growth. What takes over is something harder to measure,and harder to develop.',
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -144,21 +144,21 @@ export const postsEn: BlogPost[] = [
       ],
     },
     content: `
-<p class="blog-intro">At a certain point, technical skills stop being the limiting factor in business growth. A contractor with 15 years of experience doesn't lose deals because his craft isn't good enough. An accountant with a spotless track record doesn't lose clients because her numbers are wrong. What limits them is something harder to see — and harder to fix.</p>
+<p class="blog-intro">At a certain point, technical skills stop being the limiting factor in business growth. A contractor with 15 years of experience doesn't lose deals because his craft isn't good enough. An accountant with a spotless track record doesn't lose clients because her numbers are wrong. What limits them is something harder to see,and harder to fix.</p>
 
 <h2>The Three Soft Skills That Matter Most in 2026</h2>
 
 <h3>1. Delegating with clarity</h3>
-<p>Most founders delegate tasks. The best founders delegate outcomes. The difference: when you delegate a task, you remain responsible for the result. When you delegate an outcome, your team member owns it. This shift requires you to be precise about what success looks like, and then genuinely step back. That's a soft skill — and it's learnable.</p>
+<p>Most founders delegate tasks. The best founders delegate outcomes. The difference: when you delegate a task, you remain responsible for the result. When you delegate an outcome, your team member owns it. This shift requires you to be precise about what success looks like, and then genuinely step back. That's a soft skill,and it's learnable.</p>
 
 <h3>2. Building a feedback culture</h3>
 <p>Businesses that grow sustainably are businesses where information flows upward, not just downward. Where a team member can tell the founder that a process isn't working. Where clients can flag a problem before it turns into a lost contract. This kind of culture doesn't emerge by accident. It's built deliberately, through consistent behaviour from the top.</p>
 
 <h3>3. Having difficult conversations early</h3>
-<p>The single most expensive soft skill failure in founder-led businesses is avoidance. Avoiding the conversation with the underperforming team member. Avoiding the honest update to the client whose project is running late. Avoiding the partner who needs to be let go. Every avoided conversation has a cost — and the cost compounds.</p>
+<p>The single most expensive soft skill failure in founder-led businesses is avoidance. Avoiding the conversation with the underperforming team member. Avoiding the honest update to the client whose project is running late. Avoiding the partner who needs to be let go. Every avoided conversation has a cost,and the cost compounds.</p>
 
 <h2>Why Soft Skills Are Now Business-Critical</h2>
-<p>In a world where AI handles more of the technical execution, the differentiator is increasingly human. How you communicate, how you lead, how you build trust with clients and team members — these are the skills that determine whether your business grows, stagnates, or breaks under pressure.</p>
+<p>In a world where AI handles more of the technical execution, the differentiator is increasingly human. How you communicate, how you lead, how you build trust with clients and team members,these are the skills that determine whether your business grows, stagnates, or breaks under pressure.</p>
 <p>The founders who invest in developing these skills in 2026 are building a competitive advantage that no competitor can copy with a software tool.</p>
 
 <div class="faq-item">
@@ -177,7 +177,7 @@ export const postsEn: BlogPost[] = [
     readingTime: 9,
     category: 'Sector · Real Estate',
     region: 'Europe',
-    excerpt: 'Every real estate agency offers a free valuation. That\'s exactly why it no longer makes any difference — unless you understand how to stand out and automatically convert every enquiry before your competitor even responds.',
+    excerpt: 'Every real estate agency offers a free valuation. That\'s exactly why it no longer makes any difference,unless you understand how to stand out and automatically convert every enquiry before your competitor even responds.',
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -206,7 +206,7 @@ export const postsEn: BlogPost[] = [
 <p><strong>Agency A</strong> sends an email the next morning: "Thank you for your enquiry, we'll be in touch shortly."</p>
 <p><strong>Agency B</strong> calls Tuesday at 10am. He's in a meeting. No callback.</p>
 <p><strong>Agency C</strong> responds Monday at 7:31pm with a personalised message: his name, the property address, three concrete time slots for a viewing, and a brief introduction from the agent handling the file.</p>
-<p>Which agency gets the listing? In 78% of cases, the fastest one — not the most experienced, not the cheapest.</p>
+<p>Which agency gets the listing? In 78% of cases, the fastest one,not the most experienced, not the cheapest.</p>
 
 <h2>The Solution: An Automated Valuation System with Lead Widget</h2>
 
@@ -242,7 +242,7 @@ export const postsEn: BlogPost[] = [
     readingTime: 7,
     category: 'Lead Follow-Up',
     region: 'Europe',
-    excerpt: 'At 10pm someone fills out your contact form. You\'re asleep. So is your competitor — but his system isn\'t. At 10:01pm that person gets a response from your competitor. By 9am the next morning, when you finally respond, they already have an appointment.',
+    excerpt: 'At 10pm someone fills out your contact form. You\'re asleep. So is your competitor,but his system isn\'t. At 10:01pm that person gets a response from your competitor. By 9am the next morning, when you finally respond, they already have an appointment.',
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -262,10 +262,10 @@ export const postsEn: BlogPost[] = [
 <p>At 10:16pm they get a response from your competitor. Personal in tone. With their name. With three concrete time slots for a call. By 9am the next morning, when you open your inbox for the first time, they've already confirmed an appointment. Your email lands in an inbox they barely open that day.</p>
 
 <h2>Over 40% of Enquiries Come Outside Business Hours</h2>
-<p>Analysis of contact forms at service businesses consistently shows that more than 40% of all enquiries come in outside standard working hours: between 6pm and 11pm on weekdays, and on Saturday and Sunday mornings. These are exactly the moments when people have time to research their options and make a decision — and exactly the moments when most business owners aren't available.</p>
+<p>Analysis of contact forms at service businesses consistently shows that more than 40% of all enquiries come in outside standard working hours: between 6pm and 11pm on weekdays, and on Saturday and Sunday mornings. These are exactly the moments when people have time to research their options and make a decision,and exactly the moments when most business owners aren't available.</p>
 <p>Every night, every weekend, every holiday: revenue leaks to competitors who are simply faster. Not better. Not cheaper. Faster.</p>
 
-<h2>The Problem Is Not Your Availability — It's Your System</h2>
+<h2>The Problem Is Not Your Availability,It's Your System</h2>
 <p>The instinct of most business owners is: I need to respond faster. But you can't realistically expect anyone to respond to every enquiry within 5 minutes, 7 days a week, 24 hours a day. The only real solution is a system that never sleeps.</p>
 <p>The moment someone fills out your contact form, the system automatically triggers a response. Not a generic confirmation email, but a personalised message: the lead's name, a reference to their question, and concrete time slots for a conversation. This happens within 60 seconds. At 10:15pm. At 7am on Saturday. On Christmas Day. Always.</p>
 
@@ -278,7 +278,7 @@ export const postsEn: BlogPost[] = [
 </div>
 <div class="faq-item">
   <h3>How do I prevent leads from going to competitors outside business hours?</h3>
-  <p>By setting up an automated follow-up system that responds to every enquiry within 60 seconds, regardless of the time. The system sends a personalised reply and offers concrete time slots for a call. So you're always the first to respond — even while you sleep.</p>
+  <p>By setting up an automated follow-up system that responds to every enquiry within 60 seconds, regardless of the time. The system sends a personalised reply and offers concrete time slots for a call. So you're always the first to respond,even while you sleep.</p>
 </div>
 `,
   },
@@ -292,7 +292,7 @@ export const postsEn: BlogPost[] = [
     readingTime: 6,
     category: 'Lead Follow-Up',
     region: 'Europe',
-    excerpt: 'Most business owners don\'t know how much slow follow-up is costing them. Not because they don\'t want to know — but because they\'ve never done the calculation. Run the numbers and you\'ll immediately see what\'s being left on the table every month.',
+    excerpt: 'Most business owners don\'t know how much slow follow-up is costing them. Not because they don\'t want to know,but because they\'ve never done the calculation. Run the numbers and you\'ll immediately see what\'s being left on the table every month.',
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -307,16 +307,16 @@ export const postsEn: BlogPost[] = [
       ],
     },
     content: `
-<p class="blog-intro">There is one question most business owners can't answer: how many leads come in per month through my website? And a second: how many of those actually become clients? Those two numbers — and the gap between them — are the most underestimated growth lever in their business.</p>
+<p class="blog-intro">There is one question most business owners can't answer: how many leads come in per month through my website? And a second: how many of those actually become clients? Those two numbers,and the gap between them,are the most underestimated growth lever in their business.</p>
 
 <h2>The Calculation Most Owners Avoid</h2>
-<p>Let's make it concrete. Say you receive 30 leads per month, your average deal is worth 2,500 euros, and your current conversion rate is 20% — that's 6 clients = 15,000 euros per month. What if your conversion rate improved from 20% to 30% through faster follow-up? That's 9 clients per month. 22,500 euros instead of 15,000 euros. <strong>7,500 euros extra per month — without spending a single extra euro on marketing.</strong> Over a year: 90,000 euros that's currently flowing to competitors.</p>
+<p>Let's make it concrete. Say you receive 30 leads per month, your average deal is worth 2,500 euros, and your current conversion rate is 20%,that's 6 clients = 15,000 euros per month. What if your conversion rate improved from 20% to 30% through faster follow-up? That's 9 clients per month. 22,500 euros instead of 15,000 euros. <strong>7,500 euros extra per month,without spending a single extra euro on marketing.</strong> Over a year: 90,000 euros that's currently flowing to competitors.</p>
 <p>Want to calculate your own number? Use our <a href="/calculator">free revenue calculator</a>. Three inputs, instant result.</p>
 
 <h2>Three Types of Revenue Loss from Slow Follow-Up</h2>
 
 <h3>1. The lost lead</h3>
-<p>They filled out your form but didn't wait. They bought from a competitor before you called back. This is the most visible loss — and the easiest to quantify if you track your incoming enquiries.</p>
+<p>They filled out your form but didn't wait. They bought from a competitor before you called back. This is the most visible loss,and the easiest to quantify if you track your incoming enquiries.</p>
 
 <h3>2. The cooled lead</h3>
 <p>They responded to your first email but then went quiet. You got busy. You forgot to follow up. Three weeks later you send a reminder, but their urgency has gone. With an automated follow-up sequence, this wouldn't have happened.</p>
@@ -328,7 +328,7 @@ export const postsEn: BlogPost[] = [
 <p><strong>Step 1:</strong> Measure your incoming leads. Know exactly how many enquiries arrive per month and through which channel.<br/>
 <strong>Step 2:</strong> Automate the first response. Every enquiry deserves a response within 60 seconds. An automated system does this without any action from you.<br/>
 <strong>Step 3:</strong> Build a follow-up sequence. Day 2, day 4, day 7. Friendly. Personal. Never pushy.</p>
-<p>The combination of these three steps is what we call a <strong>speed-to-lead system</strong> — the most direct path from more leads to more revenue.</p>
+<p>The combination of these three steps is what we call a <strong>speed-to-lead system</strong>,the most direct path from more leads to more revenue.</p>
 
 <div class="faq-item">
   <h3>How do I calculate my own revenue loss from slow follow-up?</h3>
@@ -368,7 +368,7 @@ export const postsEn: BlogPost[] = [
       ],
     },
     content: `
-<p class="blog-intro">In 2011, InsideSales.com published a study that turned the sales world upside down. They analysed over 100,000 leads and asked one question: what is the impact of response time on conversion? The answer was unambiguous. If you don't respond within 5 minutes, your chance of conversion drops by 80%. After an hour, the chance of making contact at all has fallen by 60%. This became known as the 5-minute rule. And in 2026, most businesses violate it structurally — every single day.</p>
+<p class="blog-intro">In 2011, InsideSales.com published a study that turned the sales world upside down. They analysed over 100,000 leads and asked one question: what is the impact of response time on conversion? The answer was unambiguous. If you don't respond within 5 minutes, your chance of conversion drops by 80%. After an hour, the chance of making contact at all has fallen by 60%. This became known as the 5-minute rule. And in 2026, most businesses violate it structurally,every single day.</p>
 
 <h2>Why 5 Minutes Is So Critical</h2>
 <p>It has nothing to do with impatience. It has everything to do with the psychology of decisions. At the moment someone fills out a contact form, they are in a state of decision readiness. They have defined their problem and taken action. That state is fleeting. After 10 minutes they're back at their work. After an hour their urgency has faded. The competitor who already responded is already in their head. You're a name on a list.</p>
@@ -390,7 +390,7 @@ export const postsEn: BlogPost[] = [
 </div>
 <div class="faq-item">
   <h3>How do I apply the 5-minute rule without being constantly available?</h3>
-  <p>By automating your first response. An automated system detects every new enquiry and sends a personalised reply within 60 seconds, with the lead's name and concrete time slots for a call. So you always comply with the 5-minute rule — even outside business hours.</p>
+  <p>By automating your first response. An automated system detects every new enquiry and sends a personalised reply within 60 seconds, with the lead's name and concrete time slots for a call. So you always comply with the 5-minute rule,even outside business hours.</p>
 </div>
 `,
   },
@@ -422,18 +422,18 @@ export const postsEn: BlogPost[] = [
 <p class="blog-intro">Luk runs a construction company. Eight people on staff. Ten years of experience. A strong local reputation for renovation and new-build projects. And yet, at the start of our conversation, he said something I've heard dozens of times since: "I'm working harder than ever, but it feels like I'm going backwards." His problem wasn't a lack of leads. He had plenty of enquiries. His problem was what happened to those enquiries after they came in.</p>
 
 <h2>The Situation Before the System</h2>
-<p>Luk received an average of 35 enquiries per month — through his website, word of mouth, and a local architect network. They came in through email, his contact form, and sometimes WhatsApp. He'd read them in the evening after work, send a confirmation if he remembered, and try to call back the next day. When he was on site, he couldn't call. Some enquiries sat unanswered for 3 to 4 days. Of those 35 enquiries, an average of 6 or 7 became clients: an 18 to 20% conversion rate. The other 28 went to a competitor who simply picked up faster.</p>
+<p>Luk received an average of 35 enquiries per month,through his website, word of mouth, and a local architect network. They came in through email, his contact form, and sometimes WhatsApp. He'd read them in the evening after work, send a confirmation if he remembered, and try to call back the next day. When he was on site, he couldn't call. Some enquiries sat unanswered for 3 to 4 days. Of those 35 enquiries, an average of 6 or 7 became clients: an 18 to 20% conversion rate. The other 28 went to a competitor who simply picked up faster.</p>
 
 <h2>What We Changed</h2>
 
 <h3>Step 1: All enquiries in one place</h3>
-<p>All enquiries, regardless of channel, routed to one central inbox monitored by the system. Website, architect partners, WhatsApp — everything in one place.</p>
+<p>All enquiries, regardless of channel, routed to one central inbox monitored by the system. Website, architect partners, WhatsApp,everything in one place.</p>
 
 <h3>Step 2: Automatic first response within 60 seconds</h3>
 <p>The moment an enquiry arrives, the system sends an automatic reply from Luk: his name, the lead's name, the type of project, and three time slots for a site visit. The message looks like a personal email from Luk because the system knows his availability and only offers slots when he's genuinely free.</p>
 
 <h3>Step 3: Follow-up sequence for sent quotes</h3>
-<p>Luk used to send quotes and wait. "I don't want to seem pushy." Understandable — but the result was that deals died that a simple reminder would have saved. We built an automated follow-up sequence: three days after the quote a friendly check-in, seven days later a reminder with reference photos from a similar project, fourteen days later a final message.</p>
+<p>Luk used to send quotes and wait. "I don't want to seem pushy." Understandable,but the result was that deals died that a simple reminder would have saved. We built an automated follow-up sequence: three days after the quote a friendly check-in, seven days later a reminder with reference photos from a similar project, fourteen days later a final message.</p>
 
 <h2>Results After 60 Days</h2>
 <ul>
@@ -446,7 +446,7 @@ export const postsEn: BlogPost[] = [
 
 <div class="faq-item">
   <h3>Is automated follow-up impersonal for a craft-based business like construction?</h3>
-  <p>On the contrary. The system responds faster and more personally than most contractors can manually. All personal contact afterwards — the site visit, the quote discussion, the execution — remains fully human. The system only handles the repetitive, time-sensitive part.</p>
+  <p>On the contrary. The system responds faster and more personally than most contractors can manually. All personal contact afterwards,the site visit, the quote discussion, the execution,remains fully human. The system only handles the repetitive, time-sensitive part.</p>
 </div>
 `,
   },
@@ -460,7 +460,7 @@ export const postsEn: BlogPost[] = [
     readingTime: 7,
     category: 'Sector · Financial Services',
     region: 'Europe',
-    excerpt: 'An independent accountant grows through referrals — until they dry up. How do you build a system that consistently attracts, follows up, and onboards new clients without spending hours on it yourself?',
+    excerpt: 'An independent accountant grows through referrals,until they dry up. How do you build a system that consistently attracts, follows up, and onboards new clients without spending hours on it yourself?',
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -475,7 +475,7 @@ export const postsEn: BlogPost[] = [
       ],
     },
     content: `
-<p class="blog-intro">Most independent accountants have the same growth story: the first few years they grow through referrals. Happy clients bring new clients. It works well — until it doesn't. Until growth stalls at 40 or 60 files and the owner realises they have no more capacity, but also no system to create that capacity or fill it intelligently.</p>
+<p class="blog-intro">Most independent accountants have the same growth story: the first few years they grow through referrals. Happy clients bring new clients. It works well,until it doesn't. Until growth stalls at 40 or 60 files and the owner realises they have no more capacity, but also no system to create that capacity or fill it intelligently.</p>
 
 <h2>The Specific Challenge of the Accountant as Business Owner</h2>
 <p>An accountant is naturally oriented towards precision and structure in their work for clients. But that same rigour is often absent in their own commercial operation. New enquiries are handled when there's time. Follow-up on potential clients happens sporadically. Onboarding of new clients varies each time depending on that week's diary. The result: the practice grows, but the owner works more hours, not fewer.</p>
@@ -483,20 +483,20 @@ export const postsEn: BlogPost[] = [
 <h2>Three Growth Levers for an Accounting Practice</h2>
 
 <h3>1. Structured lead flow through the website</h3>
-<p>Most accounting firms have a website that looks professional but generates few enquiries. There's no clear conversion action. A simple addition that works well: a "Free quarterly check" widget or a "Am I saving enough in tax?" mini-calculator. Low barrier, high relevance. The demand for a proactive accountant is large — most accountants know this, but wait passively for those clients to find them through referrals.</p>
+<p>Most accounting firms have a website that looks professional but generates few enquiries. There's no clear conversion action. A simple addition that works well: a "Free quarterly check" widget or a "Am I saving enough in tax?" mini-calculator. Low barrier, high relevance. The demand for a proactive accountant is large,most accountants know this, but wait passively for those clients to find them through referrals.</p>
 
 <h3>2. Automatic follow-up on enquiries</h3>
 <p>When someone submits an enquiry, they want to know quickly: can this accountant help me? An automated system answers within a minute: a confirmation of the enquiry, a brief introduction of the practice, and a link to self-book a 20-minute discovery call. No back-and-forth emails about scheduling. No forgotten enquiries. No leads going to a competitor because they had to wait three days for a response.</p>
 
 <h3>3. Standardised onboarding that impresses</h3>
-<p>The first weeks after signing determine whether a client stays loyal or switches after two years. A structured onboarding process — with automated checklists and scheduled check-ins — ensures every new client has the same strong experience, regardless of how busy the practice is. This is also what fuels word-of-mouth.</p>
+<p>The first weeks after signing determine whether a client stays loyal or switches after two years. A structured onboarding process,with automated checklists and scheduled check-ins,ensures every new client has the same strong experience, regardless of how busy the practice is. This is also what fuels word-of-mouth.</p>
 
 <h2>What a Growth System Delivers</h2>
 <p>An independent accountant we worked with was averaging 2 new files per month through referrals. After setting up a website widget, automated follow-up, and a structured onboarding process: an average of 5 new files per month, 2 of which came through direct website enquiries. Investment: 800 euros one-time plus 4 hours of their own time. Payback period at an average client lifetime value of 1,500 euros per year: less than one month.</p>
 
 <div class="faq-item">
   <h3>Is a growth system relevant for a small accounting practice with fewer than 50 clients?</h3>
-  <p>Yes — especially for smaller practices, a growth system adds significant value. The investment is smaller than for larger implementations, and the proportional impact on growth is much greater.</p>
+  <p>Yes,especially for smaller practices, a growth system adds significant value. The investment is smaller than for larger implementations, and the proportional impact on growth is much greater.</p>
 </div>
 `,
   },
@@ -532,7 +532,7 @@ export const postsEn: BlogPost[] = [
       ],
     },
     content: `
-<p class="blog-intro">In 2026, generating website traffic is no longer the main challenge for most SMEs. Google Ads, SEO, social media — they can bring visitors to your site. The problem is what happens after that. The visitor fills out a form. And then a process begins that at most businesses is still manual, slow, and inconsistent. This article isn't about how to attract more visitors. It's about how to get more from the visitors you already have.</p>
+<p class="blog-intro">In 2026, generating website traffic is no longer the main challenge for most SMEs. Google Ads, SEO, social media,they can bring visitors to your site. The problem is what happens after that. The visitor fills out a form. And then a process begins that at most businesses is still manual, slow, and inconsistent. This article isn't about how to attract more visitors. It's about how to get more from the visitors you already have.</p>
 
 <h2>Two Levers You're Not Using</h2>
 <p>The average SME website converts 1 to 3% of visitors into an enquiry. Of those enquiries, 20 to 25% eventually become clients. Two levers can improve this significantly without needing more traffic:</p>
@@ -549,7 +549,7 @@ export const postsEn: BlogPost[] = [
 
 <h2>What Works in 2026</h2>
 <p><strong>Context-specific lead widgets.</strong> Multiple small widgets on relevant pages, each matching the intent of the visitor on that page. On the services page: "Request a free analysis." On the pricing page: "Calculate your potential." On the homepage: "Discover where your business stands."</p>
-<p><strong>Automated first response within 60 seconds.</strong> With the lead's name, a reference to their question, and a concrete next step. This is now the market's expectation — not a nice-to-have.</p>
+<p><strong>Automated first response within 60 seconds.</strong> With the lead's name, a reference to their question, and a concrete next step. This is now the market's expectation,not a nice-to-have.</p>
 <p><strong>A smart follow-up sequence.</strong> Day 2: a friendly follow-up. Day 5: a message with added value. Day 10: a final contact attempt. Day 14: move to a long-term nurture sequence.</p>
 <p><strong>Measurement and optimisation.</strong> A simple dashboard showing how many enquiries come in per week, how many respond to the first email, and how many become clients. That data is priceless.</p>
 
@@ -570,13 +570,13 @@ export const postsEn: BlogPost[] = [
   {
     slug: 'winstlekkage-kmos-leiderschap-oorzaak-oplossing',
     title: '9% of Revenue Leaks Away in SMEs: The Real Cause Is Leadership (and Here Is the Fix)',
-    metaTitle: 'SME Profit Leakage: Leadership Is the Root Cause — and the Fix | Lead it, Grow',
-    metaDescription: 'On average 9% of revenue leaks away in SMEs, according to the 2025 Profit Leakage Report. The cause is not marketing — it is leadership patterns. Discover the 4 root causes and the concrete solution.',
+    metaTitle: 'SME Profit Leakage: Leadership Is the Root Cause,and the Fix | Lead it, Grow',
+    metaDescription: 'On average 9% of revenue leaks away in SMEs, according to the 2025 Profit Leakage Report. The cause is not marketing,it is leadership patterns. Discover the 4 root causes and the concrete solution.',
     publishDate: '2026-04-21',
     readingTime: 9,
     category: 'Leadership',
     region: 'Europe · Belgium',
-    excerpt: 'On average 9% of revenue leaks away in SMEs every year — not because of bad marketing or too few leads, but because of leadership patterns the business owner cannot see. Here is what is really happening and how to fix it.',
+    excerpt: 'On average 9% of revenue leaks away in SMEs every year,not because of bad marketing or too few leads, but because of leadership patterns the business owner cannot see. Here is what is really happening and how to fix it.',
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -629,33 +629,33 @@ export const postsEn: BlogPost[] = [
     content: `
 <div class="blog-tldr">
   <div class="tldr-label">TL;DR · Short answer</div>
-  <p>On average 9% of SME revenue leaks away structurally (Profit Leakage Report 2025, Thexton Armstrong). The root cause is not insufficient marketing — it is leadership patterns: processes built around the owner, teams without autonomy, and a blind spot for one's own way of leading. The fix starts with an objective leadership analysis, followed by three structural interventions that seal the leak.</p>
+  <p>On average 9% of SME revenue leaks away structurally (Profit Leakage Report 2025, Thexton Armstrong). The root cause is not insufficient marketing,it is leadership patterns: processes built around the owner, teams without autonomy, and a blind spot for one's own way of leading. The fix starts with an objective leadership analysis, followed by three structural interventions that seal the leak.</p>
 </div>
 
-<p class="blog-intro">9 in 10 SMEs unknowingly leave profit on the table. On average more than 9% of revenue, as shown by the Profit Leakage Report 2025 by Thexton Armstrong. For a business turning over 1 million euros, that is 90,000 euros a year leaking away — structurally, invisibly. The instinct of most business owners? Look at sales. But the real cause sits somewhere else entirely.</p>
+<p class="blog-intro">9 in 10 SMEs unknowingly leave profit on the table. On average more than 9% of revenue, as shown by the Profit Leakage Report 2025 by Thexton Armstrong. For a business turning over 1 million euros, that is 90,000 euros a year leaking away,structurally, invisibly. The instinct of most business owners? Look at sales. But the real cause sits somewhere else entirely.</p>
 
 <h2>What does the average business owner do when results dip?</h2>
 
-<p>Generate more leads. Optimise marketing. Negotiate better margins. These are not bad ideas in themselves — but they do not fix the problem when the real cause lies elsewhere.</p>
+<p>Generate more leads. Optimise marketing. Negotiate better margins. These are not bad ideas in themselves,but they do not fix the problem when the real cause lies elsewhere.</p>
 
 <p>Conversations with dozens of business owners across sectors from construction to professional services reveal the same pattern: the leaks are not in the commercial story. They are in the structure and leadership of the business. And they are invisible to the very person creating them.</p>
 
 <h2>The 4 places where profit leakage actually sits</h2>
 
 <h3>1. Processes are built around you as a person</h3>
-<p>When the owner goes on holiday, the business slows down. When they are ill, follow-up stalls. Clients call them directly. Decisions wait until they are available. This is not a sign of commitment — it is a structural problem. Processes have been built around one person rather than a system.</p>
+<p>When the owner goes on holiday, the business slows down. When they are ill, follow-up stalls. Clients call them directly. Decisions wait until they are available. This is not a sign of commitment,it is a structural problem. Processes have been built around one person rather than a system.</p>
 <p>Every hour you spend on operational tasks that a team member or automation could handle is an hour not invested in growth, strategy, or client relationships. Multiply that across a year and you understand where a large share of that 9% disappears.</p>
 
 <h3>2. Your team cannot work autonomously</h3>
-<p>Not because team members lack capability, but because they were never given the framework and the space to do so. Autonomy in a team is not a property of people — it is a property of the structure the business owner has or has not built.</p>
-<p>Teams that cannot work autonomously escalate everything. They wait for approval. They do not take initiative — not from disinterest, but from a lack of clarity about what is expected and what they are allowed to decide. The result: slow processes, missed opportunities, and an owner who always feels they need to be everywhere.</p>
+<p>Not because team members lack capability, but because they were never given the framework and the space to do so. Autonomy in a team is not a property of people,it is a property of the structure the business owner has or has not built.</p>
+<p>Teams that cannot work autonomously escalate everything. They wait for approval. They do not take initiative,not from disinterest, but from a lack of clarity about what is expected and what they are allowed to decide. The result: slow processes, missed opportunities, and an owner who always feels they need to be everywhere.</p>
 
 <h3>3. Decisions stay centralised</h3>
 <p>In many SMEs, decisions that a team member or department head could perfectly handle are routinely escalated to the owner. Not because that person could not manage it, but because it has never been explicitly delegated. This costs time, slows execution, and creates an organisation that is structurally slower than it needs to be.</p>
-<p>The fastest-growing SMEs share one characteristic: they have a deliberate delegated decision structure. Not everything sits with everyone, but every type of decision has a clear owner — and for operational matters, that owner is rarely the business owner themselves.</p>
+<p>The fastest-growing SMEs share one characteristic: they have a deliberate delegated decision structure. Not everything sits with everyone, but every type of decision has a clear owner,and for operational matters, that owner is rarely the business owner themselves.</p>
 
 <h3>4. The blind spot: your own leadership patterns</h3>
-<p>This is the most impactful, and least discussed, cause of profit leakage. Most business owners know how their market works, how their product works, how their team works. But how they themselves function as a leader, as a decision-maker, as an environment for their people — that is a blind spot.</p>
+<p>This is the most impactful, and least discussed, cause of profit leakage. Most business owners know how their market works, how their product works, how their team works. But how they themselves function as a leader, as a decision-maker, as an environment for their people,that is a blind spot.</p>
 <p>They have never looked at themselves objectively. Not out of arrogance, but because no one has ever offered them that mirror in a practical, applicable way. Personality tests say something about who you are. A leadership analysis says something about what impact you have on the results of your business. That is a fundamentally different conversation.</p>
 
 <div class="blog-visual">
@@ -665,9 +665,9 @@ export const postsEn: BlogPost[] = [
 
 <h2>Why the solution takes courage</h2>
 
-<p>Looking at yourself objectively as a leader is not comfortable. It requires a willingness to see how you yourself contribute to the problems you want to solve. To recognise patterns you may have carried for years — patterns that once worked well but now limit growth.</p>
+<p>Looking at yourself objectively as a leader is not comfortable. It requires a willingness to see how you yourself contribute to the problems you want to solve. To recognise patterns you may have carried for years,patterns that once worked well but now limit growth.</p>
 
-<p>But it is the most valuable investment a business owner can make. Not because it is pleasant, but because it is the only way to improve structurally. Every other intervention — better marketing, more staff, new tools — runs into the same ceiling if the leadership structure does not change.</p>
+<p>But it is the most valuable investment a business owner can make. Not because it is pleasant, but because it is the only way to improve structurally. Every other intervention,better marketing, more staff, new tools,runs into the same ceiling if the leadership structure does not change.</p>
 
 <h2>What the fix looks like in practice</h2>
 
@@ -677,26 +677,26 @@ export const postsEn: BlogPost[] = [
 <p>A structured analysis, built on 35 years of experience with SMEs, maps which leadership patterns move your business forward and which hold it back. Not as a theoretical model, but as a practical mirror: this is the impact you have on your team, your processes, and your results.</p>
 
 <h3>Step 2: Decouple processes from the person</h3>
-<p>Identify the three processes that break down first when you are not there, then systematically document and transfer them. Not a full quality manual — just the maximum leverage for minimum effort.</p>
+<p>Identify the three processes that break down first when you are not there, then systematically document and transfer them. Not a full quality manual,just the maximum leverage for minimum effort.</p>
 
 <h3>Step 3: Build a conscious delegation structure</h3>
-<p>Assign a clear owner to each type of decision. Give the team the space to work autonomously, with the framework and expectations that requires. This is an active choice by the business owner — and it begins with the willingness to let go of what they have always done themselves.</p>
+<p>Assign a clear owner to each type of decision. Give the team the space to work autonomously, with the framework and expectations that requires. This is an active choice by the business owner,and it begins with the willingness to let go of what they have always done themselves.</p>
 
 <h2>Frequently asked questions</h2>
 
 <div class="faq-item">
   <h3>How much revenue leaks away in an average SME?</h3>
-  <p>On average 9% of revenue, according to the Profit Leakage Report 2025 by Thexton Armstrong. For a business turning over 1 million euros, that is 90,000 euros per year. For a business at 2 million euros, that rises to 180,000 euros — structurally and unnoticed.</p>
+  <p>On average 9% of revenue, according to the Profit Leakage Report 2025 by Thexton Armstrong. For a business turning over 1 million euros, that is 90,000 euros per year. For a business at 2 million euros, that rises to 180,000 euros,structurally and unnoticed.</p>
 </div>
 
 <div class="faq-item">
   <h3>Is profit leakage always a leadership problem?</h3>
-  <p>Not always, but more often than business owners realise. The Profit Leakage Report 2025 points to multiple causes: cost management, debtor management, sales. But structural leaks — the ones that return year after year — are almost always connected to leadership and structural patterns. These are rarely addressed because they are invisible to the person creating them.</p>
+  <p>Not always, but more often than business owners realise. The Profit Leakage Report 2025 points to multiple causes: cost management, debtor management, sales. But structural leaks,the ones that return year after year,are almost always connected to leadership and structural patterns. These are rarely addressed because they are invisible to the person creating them.</p>
 </div>
 
 <div class="faq-item">
   <h3>How long does it take to stop profit leakage through leadership?</h3>
-  <p>The first visible effects appear within 60 to 90 days of a targeted leadership analysis and structural intervention. Structural improvement — where the business genuinely becomes less dependent on the owner — takes on average 6 to 12 months. That is fast for a problem that has often been simmering for years.</p>
+  <p>The first visible effects appear within 60 to 90 days of a targeted leadership analysis and structural intervention. Structural improvement,where the business genuinely becomes less dependent on the owner,takes on average 6 to 12 months. That is fast for a problem that has often been simmering for years.</p>
 </div>
 
 <div class="faq-item">
@@ -706,15 +706,15 @@ export const postsEn: BlogPost[] = [
 
 <div class="faq-item">
   <h3>How do I start a leadership analysis for my business?</h3>
-  <p>Through Lead it, Grow we offer a free, personal leadership analysis built on 35 years of experience with SMEs. Comment "Leadership" on LinkedIn or send a message via leaditgrow.com to get started. No sales call, no obligation — just an honest conversation about what is really going on.</p>
+  <p>Through Lead it, Grow we offer a free, personal leadership analysis built on 35 years of experience with SMEs. Comment "Leadership" on LinkedIn or send a message via leaditgrow.com to get started. No sales call, no obligation,just an honest conversation about what is really going on.</p>
 </div>
 `,
   },
 
   {
     slug: 'foute-aanwerving-begint-bij-de-leider',
-    title: '"It never works out" — why bad hires start with the leader, not the candidate',
-    metaTitle: 'Bad Hire? It Starts With You as a Leader — and How to Stop the Pattern | Lead it, Grow',
+    title: '"It never works out",why bad hires start with the leader, not the candidate',
+    metaTitle: 'Bad Hire? It Starts With You as a Leader,and How to Stop the Pattern | Lead it, Grow',
     metaDescription: 'Every bad hire starts not with the candidate but with the leader who makes the hire without knowing their own leadership profile. Discover how to break the pattern.',
     publishDate: '2026-04-21',
     readingTime: 7,
@@ -726,7 +726,7 @@ export const postsEn: BlogPost[] = [
       '@graph': [
         {
           '@type': 'Article',
-          headline: '"It never works out" — why bad hires start with the leader, not the candidate',
+          headline: '"It never works out",why bad hires start with the leader, not the candidate',
           description: 'Every bad hire starts not with the candidate but with the leader who makes the hire without knowing their own leadership profile.',
           datePublished: '2026-04-21',
           author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.com' },
@@ -735,22 +735,22 @@ export const postsEn: BlogPost[] = [
         {
           '@type': 'FAQPage',
           mainEntity: [
-            { '@type': 'Question', name: 'Why do hires so often fail in owner-operated businesses?', acceptedAnswer: { '@type': 'Answer', text: 'The most common cause is not that the candidate was wrong, but that the business owner has never objectively analysed themselves as a leader. Who you are as a leader determines which type of employee thrives under you — your communication style, how you delegate, how you give feedback. Hiring without that insight is guesswork.' } },
-            { '@type': 'Question', name: 'What is a leadership profile and how does it help with hiring?', acceptedAnswer: { '@type': 'Answer', text: 'A leadership profile maps who you are as a leader: your communication style, decision-making approach, expectations and blind spots. In hiring, you use that profile to determine which type of candidate will thrive in your style and culture — rather than searching for "someone who is good at the job".' } },
+            { '@type': 'Question', name: 'Why do hires so often fail in owner-operated businesses?', acceptedAnswer: { '@type': 'Answer', text: 'The most common cause is not that the candidate was wrong, but that the business owner has never objectively analysed themselves as a leader. Who you are as a leader determines which type of employee thrives under you,your communication style, how you delegate, how you give feedback. Hiring without that insight is guesswork.' } },
+            { '@type': 'Question', name: 'What is a leadership profile and how does it help with hiring?', acceptedAnswer: { '@type': 'Answer', text: 'A leadership profile maps who you are as a leader: your communication style, decision-making approach, expectations and blind spots. In hiring, you use that profile to determine which type of candidate will thrive in your style and culture,rather than searching for "someone who is good at the job".' } },
             { '@type': 'Question', name: 'How do I know if I keep making the same hiring mistake?', acceptedAnswer: { '@type': 'Answer', text: 'A clear signal is the pattern: each new hire seems good at first, but after 3 to 9 months the same friction emerges. That is not bad luck. It is a system repeating itself because the one variable that does not change is you, the leader.' } },
-            { '@type': 'Question', name: 'How long does it take to break a hiring pattern?', acceptedAnswer: { '@type': 'Answer', text: 'With a targeted leadership analysis and conscious adjustment of your hiring criteria, business owners can break the pattern at the very next hire. Deeper behavioural change — how you coach and give feedback — takes on average 3 to 6 months.' } },
+            { '@type': 'Question', name: 'How long does it take to break a hiring pattern?', acceptedAnswer: { '@type': 'Answer', text: 'With a targeted leadership analysis and conscious adjustment of your hiring criteria, business owners can break the pattern at the very next hire. Deeper behavioural change,how you coach and give feedback,takes on average 3 to 6 months.' } },
           ],
         },
       ],
     },
     content: `
 <div class="blog-tldr">
-  <strong>Direct answer:</strong> Bad hires rarely start with the candidate. They start with a leader who hires without knowing which type of person thrives under their leadership style. A leadership profile makes that pattern visible — and breakable.
+  <strong>Direct answer:</strong> Bad hires rarely start with the candidate. They start with a leader who hires without knowing which type of person thrives under their leadership style. A leadership profile makes that pattern visible,and breakable.
 </div>
 
 <p class="blog-intro">"We've tried many people but it never works out." If this sounds familiar, the answer rarely lies in a better job posting or a longer interview process. The answer is in the mirror.</p>
 
-<p>Who you are as a leader — how you communicate, how you set expectations, how you give feedback, what you unconsciously attract or repel — determines who thrives under you. If you don't know that profile, every hire is a guess.</p>
+<p>Who you are as a leader,how you communicate, how you set expectations, how you give feedback, what you unconsciously attract or repel,determines who thrives under you. If you don't know that profile, every hire is a guess.</p>
 
 <h2>The pattern too many founders recognise</h2>
 
@@ -766,30 +766,30 @@ export const postsEn: BlogPost[] = [
 <h2>Three reasons why hiring failures start with the leader</h2>
 
 <h3>1. You hire on competence, not on match</h3>
-<p>Most business owners assess candidates on what they can do: CV, experience, references. Rarely on whether they fit the way the leader themselves functions. A directive leader who hires an autonomous self-starter will inevitably face conflict — not because that employee is bad, but because the expectations structurally clash.</p>
+<p>Most business owners assess candidates on what they can do: CV, experience, references. Rarely on whether they fit the way the leader themselves functions. A directive leader who hires an autonomous self-starter will inevitably face conflict,not because that employee is bad, but because the expectations structurally clash.</p>
 
 <h3>2. You set expectations implicitly</h3>
-<p>Many founders are excellent at their craft and less strong at making expectations explicit. They expect employees to sense what they mean. But sensing is not a system. An employee who doesn't know what "good" looks like concretely can never deliver it consistently — no matter how motivated they are.</p>
+<p>Many founders are excellent at their craft and less strong at making expectations explicit. They expect employees to sense what they mean. But sensing is not a system. An employee who doesn't know what "good" looks like concretely can never deliver it consistently,no matter how motivated they are.</p>
 
 <h3>3. Your blind spots as a leader repeat themselves</h3>
 <p>Every leadership profile has blind spots: behaviour you exhibit without awareness, impact you have without seeing it. A leader with a high-control pattern attracts people who seek constant confirmation and repels autonomous profiles. A leader with an avoidant conflict style tolerates underperformers too long and loses their strongest people to frustration.</p>
-<p>Those blind spots repeat with every hire — unless you map them.</p>
+<p>Those blind spots repeat with every hire,unless you map them.</p>
 
 <h2>What a leadership profile concretely changes</h2>
 
 <p>An objective leadership analysis maps three things that directly affect hiring quality:</p>
 
 <ul>
-  <li><strong>Your communication style</strong> — which type of employee instinctively understands you, and who needs structural translation</li>
-  <li><strong>Your delegation style</strong> — how much autonomy you can genuinely release, and what that means for who you look for</li>
-  <li><strong>Your culture profile</strong> — which values and working styles you unconsciously select for and which you screen out</li>
+  <li><strong>Your communication style</strong>,which type of employee instinctively understands you, and who needs structural translation</li>
+  <li><strong>Your delegation style</strong>,how much autonomy you can genuinely release, and what that means for who you look for</li>
+  <li><strong>Your culture profile</strong>,which values and working styles you unconsciously select for and which you screen out</li>
 </ul>
 
-<p>With that information, the hiring question shifts from "is this person good?" to "does this person fit how I lead?" That is a fundamentally different question — and it produces fundamentally better results.</p>
+<p>With that information, the hiring question shifts from "is this person good?" to "does this person fit how I lead?" That is a fundamentally different question,and it produces fundamentally better results.</p>
 
 <h2>The hire you keep too long</h2>
 
-<p>Beyond the wrong hire, there is an even more expensive problem: the employee you keep too long when you already know it isn't working. On average 8 months of doubt before action follows. During that time team morale deteriorates, productivity in the surrounding team drops, and the cost compounds — financially and humanly.</p>
+<p>Beyond the wrong hire, there is an even more expensive problem: the employee you keep too long when you already know it isn't working. On average 8 months of doubt before action follows. During that time team morale deteriorates, productivity in the surrounding team drops, and the cost compounds,financially and humanly.</p>
 
 <p>A leader with a clear profile knows faster whether a hire is working. And has the courage to act sooner when it is not.</p>
 
@@ -797,12 +797,12 @@ export const postsEn: BlogPost[] = [
 
 <div class="faq-item">
   <h3>Why do hires so often fail in owner-operated businesses?</h3>
-  <p>The most common cause is not that the candidate was wrong, but that the business owner has never objectively analysed themselves as a leader. Who you are as a leader determines which type of employee thrives under you — your communication style, how you delegate, how you give feedback. Hiring without that insight is guesswork.</p>
+  <p>The most common cause is not that the candidate was wrong, but that the business owner has never objectively analysed themselves as a leader. Who you are as a leader determines which type of employee thrives under you,your communication style, how you delegate, how you give feedback. Hiring without that insight is guesswork.</p>
 </div>
 
 <div class="faq-item">
   <h3>What is a leadership profile and how does it help with hiring?</h3>
-  <p>A leadership profile maps who you are as a leader: your communication style, decision-making approach, expectations and blind spots. In hiring, you use that profile to determine which type of candidate will thrive in your style and culture — rather than searching for "someone who is good at the job".</p>
+  <p>A leadership profile maps who you are as a leader: your communication style, decision-making approach, expectations and blind spots. In hiring, you use that profile to determine which type of candidate will thrive in your style and culture,rather than searching for "someone who is good at the job".</p>
 </div>
 
 <div class="faq-item">
@@ -812,15 +812,15 @@ export const postsEn: BlogPost[] = [
 
 <div class="faq-item">
   <h3>How long does it take to break a hiring pattern?</h3>
-  <p>With a targeted leadership analysis and conscious adjustment of your hiring criteria, business owners can break the pattern at the very next hire. Deeper behavioural change — how you coach and give feedback — takes on average 3 to 6 months.</p>
+  <p>With a targeted leadership analysis and conscious adjustment of your hiring criteria, business owners can break the pattern at the very next hire. Deeper behavioural change,how you coach and give feedback,takes on average 3 to 6 months.</p>
 </div>
 `,
   },
 
   {
     slug: 'kost-foute-aanwerving-30000-euro-hoe-voorkomen',
-    title: 'A bad hire costs €30,000 — the real cost and how to prevent it',
-    metaTitle: 'Bad Hire Costs €30,000 — The Real Cost and How to Prevent It | Lead it, Grow',
+    title: 'A bad hire costs €30,000,the real cost and how to prevent it',
+    metaTitle: 'Bad Hire Costs €30,000,The Real Cost and How to Prevent It | Lead it, Grow',
     metaDescription: 'A bad hire costs an average of €30,000 in direct costs alone. The indirect cost is higher. Discover what a wrong hire really costs your business and how to prevent it structurally.',
     publishDate: '2026-04-21',
     readingTime: 6,
@@ -832,7 +832,7 @@ export const postsEn: BlogPost[] = [
       '@graph': [
         {
           '@type': 'Article',
-          headline: 'A bad hire costs €30,000 — the real cost and how to prevent it',
+          headline: 'A bad hire costs €30,000,the real cost and how to prevent it',
           description: 'A bad hire costs an average of €30,000 in direct costs. The indirect costs are higher. Discover the real impact and how to prevent it structurally.',
           datePublished: '2026-04-21',
           author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.com' },
@@ -841,9 +841,9 @@ export const postsEn: BlogPost[] = [
         {
           '@type': 'FAQPage',
           mainEntity: [
-            { '@type': 'Question', name: 'How much does a bad hire cost on average?', acceptedAnswer: { '@type': 'Answer', text: 'The direct cost of a bad hire averages €30,000 for an employee with a gross monthly salary of €3,000. This includes recruitment costs, salary during the onboarding period, lost productivity, and the cost of replacement. The indirect costs — team culture, motivation loss among colleagues, management time — are at least as high.' } },
+            { '@type': 'Question', name: 'How much does a bad hire cost on average?', acceptedAnswer: { '@type': 'Answer', text: 'The direct cost of a bad hire averages €30,000 for an employee with a gross monthly salary of €3,000. This includes recruitment costs, salary during the onboarding period, lost productivity, and the cost of replacement. The indirect costs,team culture, motivation loss among colleagues, management time,are at least as high.' } },
             { '@type': 'Question', name: 'How long do business owners typically wait before acting on a bad hire?', acceptedAnswer: { '@type': 'Answer', text: 'On average 6 to 8 months. Most business owners know within 2 to 3 months that it isn\'t working, but wait out of hope, loyalty or fear of conflict. Every month of delay increases the total cost significantly.' } },
-            { '@type': 'Question', name: 'How do I prevent bad hires as a business owner?', acceptedAnswer: { '@type': 'Answer', text: 'The most effective prevention starts with yourself: an objective leadership analysis maps which type of employee thrives under your leadership style. Hiring on the basis of that profile — rather than only on technical competence — dramatically reduces the risk of mismatch.' } },
+            { '@type': 'Question', name: 'How do I prevent bad hires as a business owner?', acceptedAnswer: { '@type': 'Answer', text: 'The most effective prevention starts with yourself: an objective leadership analysis maps which type of employee thrives under your leadership style. Hiring on the basis of that profile,rather than only on technical competence,dramatically reduces the risk of mismatch.' } },
             { '@type': 'Question', name: 'What is the most expensive hire for an SME?', acceptedAnswer: { '@type': 'Answer', text: 'The most expensive hire is not the employee who leaves quickly, but the employee you keep too long. They cost you not just their salary, but the productivity loss of those around them, the team culture, and the opportunities you miss because your energy and attention go to the problem rather than to growth.' } },
           ],
         },
@@ -851,12 +851,12 @@ export const postsEn: BlogPost[] = [
     },
     content: `
 <div class="blog-tldr">
-  <strong>Direct answer:</strong> A bad hire costs an average of €30,000 in direct costs alone. The indirect costs — team culture damage, motivation loss, management time diverted — are at least as high. The solution does not start with a better interview, but with a clear leadership profile.
+  <strong>Direct answer:</strong> A bad hire costs an average of €30,000 in direct costs alone. The indirect costs,team culture damage, motivation loss, management time diverted,are at least as high. The solution does not start with a better interview, but with a clear leadership profile.
 </div>
 
-<p class="blog-intro">€30,000. That is the average direct cost of a bad hire for an employee with a gross monthly salary of €3,000. But that is only the invoice for what you can count. The real cost is larger — and harder to see.</p>
+<p class="blog-intro">€30,000. That is the average direct cost of a bad hire for an employee with a gross monthly salary of €3,000. But that is only the invoice for what you can count. The real cost is larger,and harder to see.</p>
 
-<h2>What those €30,000 contain — and what they don't</h2>
+<h2>What those €30,000 contain,and what they don't</h2>
 
 <p>The direct costs of a bad hire are real and concrete:</p>
 <ul>
@@ -898,7 +898,7 @@ export const postsEn: BlogPost[] = [
 <p>Who you are as a leader determines who thrives under you. An objective leadership analysis maps which type of employee fits your communication style, delegation style and culture profile. That is the foundation for every hire that works.</p>
 
 <h3>Step 2: Use a match profile, not just a job profile</h3>
-<p>A job profile describes what someone needs to be able to do. A match profile describes how someone needs to function to fit you and your team — pace, need for structure, degree of autonomy, feedback style. Those dimensions determine whether it clicks, not the CV.</p>
+<p>A job profile describes what someone needs to be able to do. A match profile describes how someone needs to function to fit you and your team,pace, need for structure, degree of autonomy, feedback style. Those dimensions determine whether it clicks, not the CV.</p>
 
 <h3>Step 3: Shortened probation with explicit checkpoints</h3>
 <p>After 30, 60 and 90 days: a structured conversation with clear questions. Is it working? Are expectations clear? Is there a pattern you recognise? Three short conversations replace 8 months of doubt.</p>
@@ -907,7 +907,7 @@ export const postsEn: BlogPost[] = [
 
 <div class="faq-item">
   <h3>How much does a bad hire cost on average?</h3>
-  <p>The direct cost of a bad hire averages €30,000 for an employee with a gross monthly salary of €3,000. This includes recruitment costs, salary during the onboarding period, lost productivity, and the cost of replacement. The indirect costs — team culture, motivation loss among colleagues, management time — are at least as high.</p>
+  <p>The direct cost of a bad hire averages €30,000 for an employee with a gross monthly salary of €3,000. This includes recruitment costs, salary during the onboarding period, lost productivity, and the cost of replacement. The indirect costs,team culture, motivation loss among colleagues, management time,are at least as high.</p>
 </div>
 
 <div class="faq-item">
@@ -917,7 +917,7 @@ export const postsEn: BlogPost[] = [
 
 <div class="faq-item">
   <h3>How do I prevent bad hires as a business owner?</h3>
-  <p>The most effective prevention starts with yourself: an objective leadership analysis maps which type of employee thrives under your leadership style. Hiring on the basis of that profile — rather than only on technical competence — dramatically reduces the risk of mismatch.</p>
+  <p>The most effective prevention starts with yourself: an objective leadership analysis maps which type of employee thrives under your leadership style. Hiring on the basis of that profile,rather than only on technical competence,dramatically reduces the risk of mismatch.</p>
 </div>
 
 <div class="faq-item">

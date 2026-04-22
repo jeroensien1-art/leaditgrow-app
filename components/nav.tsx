@@ -61,18 +61,19 @@ export function Nav() {
           <div className="w-px h-4" style={{ background: 'rgba(61,57,41,0.2)' }} />
         </div>
 
-        {/* Lang toggle — always visible */}
-        <button
-          onClick={() => setLang(lang === 'nl' ? 'en' : 'nl')}
+        {/* Lang toggle — redirects between .be (NL) and .com (EN) */}
+        <a
+          href={lang === 'nl' ? 'https://leaditgrow.com' : 'https://leaditgrow.be'}
           className="flex items-center rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all"
           style={{
             background: 'rgba(201,100,66,0.1)',
             color: '#c96442',
             border: '1px solid rgba(201,100,66,0.25)',
+            textDecoration: 'none',
           }}
         >
           {lang === 'nl' ? 'EN' : 'NL'}
-        </button>
+        </a>
 
         {/* ── Hamburger (mobile only) ── */}
         <button
