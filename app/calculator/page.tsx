@@ -391,6 +391,52 @@ export default function CalculatorPage() {
           </p>
         </div>
       </div>
+
+      {/* SEO content section */}
+      <section style={{ maxWidth: 680, margin: '0 auto', padding: '3rem 1.5rem 4rem', color: '#3d3929' }}>
+        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 24, fontWeight: 400, marginBottom: '1rem', color: '#2a2720' }}>
+          {nl ? 'Hoe werkt de omzetverlies calculator?' : 'How does the revenue leak calculator work?'}
+        </h2>
+        <p style={{ fontSize: 15, lineHeight: 1.75, color: '#5c5849', marginBottom: '1.5rem' }}>
+          {nl
+            ? 'De calculator gebruikt twee bewezen oorzaken van omzetverlies: reactiesnelheid op leads en de kwaliteit van opvolging. Op basis van gepubliceerd B2B-verkooponderzoek (InsideSales, HubSpot) berekent de tool je geschat maandelijks verlies per categorie.'
+            : 'The calculator uses two proven drivers of revenue leakage: lead response speed and follow-up quality. Based on published B2B sales research (InsideSales, HubSpot), the tool estimates your monthly loss per category.'}
+        </p>
+
+        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 24, fontWeight: 400, marginBottom: '1rem', color: '#2a2720' }}>
+          {nl ? 'Waarom lopen de meeste bedrijven omzet mis?' : 'Why do most businesses leak revenue?'}
+        </h2>
+        <p style={{ fontSize: 15, lineHeight: 1.75, color: '#5c5849', marginBottom: '1rem' }}>
+          {nl
+            ? 'Twee oorzaken domineren. Ten eerste: trage reactiesnelheid. Onderzoek toont aan dat de conversiekans met 80% daalt als je niet binnen 5 minuten reageert op een nieuwe aanvraag. Ten tweede: onvoldoende opvolging. 80% van de verkopen vereist 5 of meer contactmomenten. De meeste bedrijven stoppen bij één.'
+            : 'Two causes dominate. First: slow response speed. Research shows that conversion probability drops by 80% if you do not respond within 5 minutes of a new enquiry. Second: insufficient follow-up. 80% of sales require 5 or more contact moments. Most businesses stop at one.'}
+        </p>
+        <p style={{ fontSize: 15, lineHeight: 1.75, color: '#5c5849', marginBottom: '1.5rem' }}>
+          {nl
+            ? 'Samen verklaren deze twee factoren het merendeel van de omzet die maandelijks ongemerkt wegvloeit bij servicebedrijven.'
+            : 'Together these two factors explain the majority of revenue that silently leaks away each month in service businesses.'}
+        </p>
+
+        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 24, fontWeight: 400, marginBottom: '1rem', color: '#2a2720' }}>
+          {nl ? 'Veelgestelde vragen' : 'Frequently asked questions'}
+        </h2>
+        <div style={{ borderTop: '1px solid rgba(61,57,41,0.1)', paddingTop: '1.5rem', display: 'flex', flexDirection: 'column' as const, gap: '1.5rem' }}>
+          {(nl ? [
+            ['Is de calculator gratis?', 'Ja, volledig gratis. Geen registratie, geen betaalwall. Je vult 4 vragen in en ziet meteen jouw geschat maandelijks verlies.'],
+            ['Hoe nauwkeurig is het resultaat?', 'Het resultaat is een onderbouwde schatting op basis van jouw input en gepubliceerde branchegemiddelden. Het is geen accountantsrapport, maar geeft een betrouwbaar beeld van de grootte van het probleem.'],
+            ['Wat moet ik doen met het resultaat?', 'Het resultaat wijst naar de oorzaak. Als het verlies vooral in reactiesnelheid zit, is een geautomatiseerd antwoordsysteem de eerste stap. Als opvolging het probleem is, is een gestructureerde follow-up sequentie de oplossing. De gratis diagnose gaat dieper in op alle 7 groeihefbomen.'],
+          ] : [
+            ['Is the calculator free?', 'Yes, completely free. No registration, no paywall. You answer 4 questions and immediately see your estimated monthly loss.'],
+            ['How accurate is the result?', 'The result is a well-founded estimate based on your input and published industry averages. It is not an accountancy report, but gives a reliable picture of the scale of the problem.'],
+            ['What should I do with the result?', 'The result points to the cause. If the loss is mainly in response speed, an automated reply system is the first step. If follow-up is the problem, a structured follow-up sequence is the fix. The free diagnostic goes deeper on all 7 growth levers.'],
+          ]).map(([q, a]) => (
+            <div key={q as string}>
+              <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: '0.5rem', color: '#2a2720' }}>{q}</h3>
+              <p style={{ fontSize: 14, lineHeight: 1.75, color: '#5c5849', margin: 0 }}>{a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </>
   )
 }

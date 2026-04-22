@@ -759,6 +759,51 @@ export default function DiagnosticPage() {
           </div>
         </div>
       </div>
+
+      {/* SEO content section */}
+      <section style={{ background: '#faf9f5', padding: '3rem 1.5rem 4rem' }}>
+        <div style={{ maxWidth: 680, margin: '0 auto', color: '#3d3929' }}>
+          <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 24, fontWeight: 400, marginBottom: '1rem', color: '#2a2720' }}>
+            {nl ? 'Wat meet de groeidiagnose?' : 'What does the business diagnostic measure?'}
+          </h2>
+          <p style={{ fontSize: 15, lineHeight: 1.75, color: '#5c5849', marginBottom: '1.5rem' }}>
+            {nl
+              ? 'De diagnose brengt 7 groeihefbomen in kaart die bepalen of jouw bedrijf voor jou werkt of tegen jou: tijd van de zaakvoerder, leiderschap en team, snelheid van leadopvolging, pipeline en nurture, online aanwezigheid, sluitingspercentage en klantbehoud. Elke hefboom vertegenwoordigt een specifiek gebied waar de meeste bedrijven structureel omzet of energie laten liggen.'
+              : 'The diagnostic maps 7 growth levers that determine whether your business works for you or against you: owner time freedom, leadership and team, speed-to-lead, pipeline and follow-up, online presence, sales close rate, and client retention. Each lever represents a specific area where most businesses structurally leave revenue or energy on the table.'}
+          </p>
+
+          <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 24, fontWeight: 400, marginBottom: '1rem', color: '#2a2720' }}>
+            {nl ? 'Voor wie is de diagnose bedoeld?' : 'Who is the diagnostic designed for?'}
+          </h2>
+          <p style={{ fontSize: 15, lineHeight: 1.75, color: '#5c5849', marginBottom: '1.5rem' }}>
+            {nl
+              ? 'De diagnose is ontworpen voor zaakvoerders van servicebedrijven met 1 tot 20 medewerkers die het gevoel hebben dat hun bedrijf meer van hen vraagt dan het teruggeeft. Ze werken hard, de omzet groeit, maar de vrijheid blijft uit. De diagnose legt bloot welke hefboom als eerste vastloopt.'
+              : 'The diagnostic is designed for owners of service businesses with 1 to 20 employees who feel their business demands more from them than it gives back. They work hard, revenue grows, but freedom stays out of reach. The diagnostic reveals which lever breaks down first.'}
+          </p>
+
+          <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 24, fontWeight: 400, marginBottom: '1rem', color: '#2a2720' }}>
+            {nl ? 'Veelgestelde vragen' : 'Frequently asked questions'}
+          </h2>
+          <div style={{ borderTop: '1px solid rgba(61,57,41,0.1)', paddingTop: '1.5rem', display: 'flex', flexDirection: 'column' as const, gap: '1.5rem' }}>
+            {(nl ? [
+              ['Is de diagnose echt gratis?', 'Ja. De diagnose en het persoonlijk rapport zijn volledig gratis. Er is geen verkoopsgesprek aan gekoppeld.'],
+              ['Hoe lang duurt de diagnose?', 'De meeste zaakvoerders ronden de diagnose af in 4 tot 6 minuten. Er zijn 4 contextvragen en 7 scoringsvragen.'],
+              ['Wat ontvang ik na de diagnose?', 'Je ontvangt een persoonlijk rapport met jouw bedrijfsimpactscore, jouw top 3 groeihefbomen op prioriteit, en een concreet 30-dagenactieplan per gap. Afgeleverd per e-mail binnen enkele minuten.'],
+              ['Wat zijn de 7 groeihefbomen?', 'Tijd van de zaakvoerder, leiderschap en team, snelheid van opvolging, pipeline en nurture, online aanwezigheid en marketing, sluitingspercentage en klantbehoud en doorverwijzingen.'],
+            ] : [
+              ['Is the diagnostic really free?', 'Yes. The diagnostic and the personalised report are completely free. There is no sales call attached.'],
+              ['How long does the diagnostic take?', 'Most business owners complete it in 4 to 6 minutes. There are 4 context questions and 7 scored questions.'],
+              ['What do I receive after the diagnostic?', 'You receive a personalised report with your business impact score, your top 3 growth levers by priority, and a concrete 30-day action plan per gap. Delivered by email within minutes.'],
+              ['What are the 7 growth levers?', 'Owner time freedom, leadership and team, speed-to-lead, pipeline and follow-up, online presence and marketing, sales close rate, and client retention and referrals.'],
+            ]).map(([q, a]) => (
+              <div key={q as string}>
+                <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: '0.5rem', color: '#2a2720' }}>{q}</h3>
+                <p style={{ fontSize: 14, lineHeight: 1.75, color: '#5c5849', margin: 0 }}>{a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   )
 }
