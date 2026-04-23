@@ -13,5 +13,7 @@ export function getLocalizedPost(slug: string, lang: 'nl' | 'en'): BlogPost | un
 }
 
 export function getAllSlugs(): string[] {
-  return posts.map(p => p.slug)
+  const nlSlugs = posts.map(p => p.slug)
+  const enSlugs = postsEn.map(p => p.slug)
+  return Array.from(new Set([...nlSlugs, ...enSlugs]))
 }

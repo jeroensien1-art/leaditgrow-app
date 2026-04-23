@@ -1126,6 +1126,292 @@ export const posts: BlogPost[] = [
 </div>
 `,
   },
+
+  {
+    slug: 'why-do-i-feel-guilty-delegating',
+    title: 'Waarom voel ik me schuldig als ik taken delegeer aan mijn team?',
+    metaTitle: 'Schuldig over delegeren? Zo doorbreek je het patroon | Lead it, Grow',
+    metaDescription: 'Schuldgevoel bij delegeren is geen karakterfout. Het is een leiderschapspatroon dat geworteld is in je persoonlijkheid. Ontdek de 4 profielen en een 3-stappenplan.',
+    publishDate: '2026-04-22',
+    readingTime: 7,
+    category: 'Leiderschap',
+    region: 'België · Vlaanderen',
+    excerpt: 'Je hebt een capabel team. Je weet dat je niet alles zelf kunt doen. En toch zegt er elke keer een stemmetje: "Ik doe het gewoon zelf, dat gaat sneller." Die stem heeft een naam, en hij kost je bedrijf meer dan je denkt.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: 'Waarom voel ik me schuldig als ik taken delegeer aan mijn team?',
+          description: 'Schuldgevoel bij delegeren is geen karakterfout. Het is een leiderschapspatroon geworteld in je persoonlijkheid. Ontdek de 4 profielen en een 3-stappenplan.',
+          datePublished: '2026-04-22',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            { '@type': 'Question', name: 'Is schuldgevoel bij delegeren normaal voor zaakvoerders?', acceptedAnswer: { '@type': 'Answer', text: 'Ja, het is bijzonder gebruikelijk, vooral bij oprichters die hun bedrijf gebouwd hebben door persoonlijke inzet. Het schuldgevoel is een signaal dat je leiderschapsidentiteit nog steeds gekoppeld is aan doen in plaats van leiden. Het is geen karakterfout. Het is een patroon dat veranderd kan worden zodra het zichtbaar gemaakt wordt.' } },
+            { '@type': 'Question', name: 'Hoe delegeer ik zonder te micromanagen?', acceptedAnswer: { '@type': 'Answer', text: 'Delegeer uitkomsten, geen taken. Definieer wat "goed gedaan" er concreet uitziet, spreek een check-in moment af en stap daarna volledig terug. De drang om eerder in te grijpen is het micromanagement-impulse. Benoem het en weerstà het.' } },
+            { '@type': 'Question', name: 'Wat als mijn team de gedelegeerde taken echt niet aankan?', acceptedAnswer: { '@type': 'Answer', text: 'Dan is het probleem geen delegeren, maar het ontwikkelen van capaciteit. Begin met taken die je teamleden licht uitrekken, niet overweldigen. Delegeren op het juiste niveau bouwt bekwaamheid op. Te ver vooruit delegeren creëert mislukking en bevestigt de schuldcyclus.' } },
+          ],
+        },
+      ],
+    },
+    content: `
+<div class="blog-tldr">
+  <div class="tldr-label">Kort antwoord</div>
+  <p>Schuldgevoel bij delegeren gaat niet over je team. Het gaat over je leiderschapsidentiteit. Er zijn vier onderscheiden patronen, elk geworteld in een specifiek persoonlijkheidstype. Jouw patroon identificeren is de eerste stap. De Delegeer-Schuldaudit geeft je een praktisch systeem om het deze week te overwinnen.</p>
+</div>
+
+<p class="blog-intro">Je hebt een capabel team. Je weet, rationeel gezien, dat je niet alles zelf kunt doen. En toch zegt er elke keer een inwendig stemmetje: "Ik doe het gewoon zelf. Dat gaat sneller. Ze hebben het al druk. Stel dat het fout loopt." Dat stemmetje is geen teken van hoge standaarden. Het is delgeerschuld, en het is een van de duurste patronen in founder-geleide bedrijven.</p>
+
+<h2>Waarom schuldgevoel bij delegeren niets met je team te maken heeft</h2>
+
+<p>De meeste zaakvoerders nemen aan dat hun schuldgevoel bij delegeren iets zegt over de kwaliteit van hun team. Als mijn team maar sterker was, denken ze, zou ik meer delegeren. Maar na het werken met tientallen oprichters doorheen sectoren heen, komt een ander patroon consistent naar boven: het schuldgevoel gaat bijna nooit over de werkelijke capaciteit van het team. Het gaat over de identiteit van de leider en de onbewuste overtuigingen die ze meedragen over wat het betekent een goede leider te zijn.</p>
+
+<h2>De 4 delegeer-schuldprofielen</h2>
+
+<h3>1. De Perfectionistische Leider</h3>
+<p>Je hebt hoge standaarden en een precies beeld van hoe dingen gedaan moeten worden. Wanneer je delegeert, aanvaard je dat iemand het anders, of slechter, kan doen. Het schuldgevoel verschijnt als een constante achtergrondangst: wat als het niet aan de juiste standaard voldoet?</p>
+<p>De verschuiving die werkt: scheid de standaard van de methode. Je kunt definiëren hoe "goed gedaan" er concreet uitziet, terwijl je de controle over hoe het bereikt wordt loslaat. Jouw standaard is niet jouw methode.</p>
+
+<h3>2. De Dienende Leider</h3>
+<p>Je geeft diep om het welzijn van je team. Wanneer je delegeert, voelt het alsof je extra werk op mensen laadt die al zwaar belast zijn. Dit is empathie, maar ze is verkeerd gericht. Een team dat nooit zinvol, uitdagend werk krijgt, wordt niet beschermd. Het wordt onderschat, en raakt stilaan gedesengageerd.</p>
+<p>De verschuiving die werkt: herdefinieer delegeren als investering. Je voegt geen last toe. Je geeft hen de kans om te groeien en op een hoger niveau bij te dragen. Dat is een cadeau, geen burden.</p>
+
+<h3>3. De Controlegerichte Leider</h3>
+<p>Je buikgevoel zegt dat als jij er niet bij betrokken bent, dingen fout lopen. Deze overtuiging is vaak geworteld in vroege ervaringen, toen jij werkelijk de enige persoon was die problemen kon oplossen. Dat was toen misschien waar. Het is op jouw huidige schaal bijna zeker niet meer waar. Maar de overtuiging blijft.</p>
+<p>De verschuiving die werkt: voer een gecontroleerd experiment uit. Delegeer één duidelijk afgebakende taak met een specifiek check-in moment, en grijp daarvoor niet in, wat er ook gebeurt. Meestal gebeurt de gevreesde mislukking niet. Het patroon verzwakt elke keer dat het getest en ontkracht wordt.</p>
+
+<h3>4. De Imposter-Leider</h3>
+<p>Diep van binnen voel je dat je niet echt het recht hebt om mensen taken te vragen. Leiderschap voelt nog steeds als een rol die je speelt in plaats van wie je bent. Delegeren voelt als blootstelling. Dit patroon komt vaker voor dan de meeste oprichters toegeven, en wordt het meest direct aangepakt door een objectieve leiderschapsanalyse.</p>
+
+<h2>De Delegeer-Schuldaudit: een 3-stappensysteem</h2>
+
+<h3>Stap 1: Benoem het patroon</h3>
+<p>Voordat je een taak start die je aarzelend wilt delegeren, neem 60 seconden. Welk van de vier profielen hierboven spreekt nu? Perfectionistisch, dienend, controlerend, of imposter? Benoem het hardop of schrijf het op. Het benoemen van het patroon scheidt jou ervan.</p>
+
+<h3>Stap 2: Delegeer de uitkomst, niet de taak</h3>
+<p>In plaats van uit te leggen hoe de taak gedaan moet worden, definieer wat succes eruitziet. "De klant ontvangt donderdag een antwoord dat deze drie punten dekt" is een uitkomst. "Stuur de klant een e-mail en zorg dat je..." is een taak waarbij jij nog steeds betrokken bent. Op uitkomsten gebaseerd delegeren bouwt het oordeel van je team op. Op taken gebaseerd delegeren bouwt hun afhankelijkheid van jouw instructies op.</p>
+
+<h3>Stap 3: Plan een review, geen overname</h3>
+<p>Spreek op voorhand één moment af om de voortgang te reviewen, geen open kanaal om in te checken wanneer de angst stijgt. Dit geeft je team de ruimte om zelfstandig te werken en geeft jou een legitiem ventiel voor het schuldgevoel. De review is een systeem. Het schuldgevoel is een gevoel. Systemen winnen.</p>
+
+<h2>Wat jouw schuldpatroon onthult over je leiderschapsprofiel</h2>
+
+<p>Het specifieke schuldpatroon dat je draagt is niet willekeurig. Het is een directe uitdrukking van je leiderschapsprofiel: de som van hoe je communiceert, beslissingen neemt, en wat je onbewust gelooft over jouw rol. Een gestructureerde leiderschapsanalyse maakt dat profiel expliciet. En eenmaal zichtbaar, is het veranderbaar, niet door wilskracht, maar door structurele aanpassingen aan hoe je leidt.</p>
+
+<div class="faq-item">
+  <h3>Is schuldgevoel bij delegeren normaal voor zaakvoerders?</h3>
+  <p>Ja, bijzonder gebruikelijk. Het is een signaal dat je leiderschapsidentiteit nog steeds gekoppeld is aan doen in plaats van leiden. Het is geen karakterfout. Het is een patroon dat veranderd kan worden zodra het zichtbaar gemaakt wordt.</p>
+</div>
+<div class="faq-item">
+  <h3>Hoe delegeer ik zonder te micromanagen?</h3>
+  <p>Delegeer uitkomsten, geen taken. Definieer wat succes eruitziet, spreek een check-in af en stap dan volledig terug. De drang om eerder in te grijpen is het micromanagement-impulse. Benoem het en weerstà het.</p>
+</div>
+<div class="faq-item">
+  <h3>Wat als mijn team de gedelegeerde taken echt niet aankan?</h3>
+  <p>Dan is het probleem geen delegeren, maar capaciteitsontwikkeling. Begin met taken die je teamleden licht uitrekken. Delegeren op het juiste niveau bouwt bekwaamheid op. Te ver vooruit delegeren creëert mislukking en bevestigt de schuldcyclus.</p>
+</div>
+`,
+  },
+
+  {
+    slug: 'how-to-stop-doing-everything-yourself',
+    title: 'Hoe stop ik met alles zelf doen op het werk?',
+    metaTitle: 'Alles Zelf Doen als Zaakvoerder: Hoe Stop Je Ermee | Lead it, Grow',
+    metaDescription: 'Alles zelf doen is geen productiviteitsgewoonte. Het is een structureel leiderschapspatroon. Ontdek het 3-Lagen Taakfilter en hoe je de cyclus permanent doorbreekt.',
+    publishDate: '2026-04-22',
+    readingTime: 7,
+    category: 'Leiderschap',
+    region: 'België · Vlaanderen',
+    excerpt: 'Je eindigt een lange dag en beseft dat de helft van wat je deed, door iemand van je team had kunnen worden gedaan. Je wist dat al toen je eraan begon. Maar je deed het toch. Dit is geen disciplineprobleem. Het is een structureel probleem, en het heeft een structurele oplossing.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: 'Hoe stop ik met alles zelf doen op het werk?',
+          description: 'Alles zelf doen is geen productiviteitsgewoonte. Het is een structureel leiderschapspatroon. Ontdek het 3-Lagen Taakfilter en een 3-weeksenplan.',
+          datePublished: '2026-04-22',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            { '@type': 'Question', name: 'Hoe weet ik welke taken alleen ik kan doen?', acceptedAnswer: { '@type': 'Answer', text: 'Stel jezelf één vraag: vereist deze taak mijn specifieke expertise, relaties of autoriteit, of gewoon mijn vertrouwdheid ermee? Vertrouwdheid is geen uniciteit. De meeste taken die zaakvoerders vasthouden, worden vastgehouden omdat ze weten hoe het moet, niet omdat niemand anders het zou kunnen leren.' } },
+            { '@type': 'Question', name: 'Wat als delegeren meer tijd kost dan het zelf doen?', acceptedAnswer: { '@type': 'Answer', text: 'De eerste keer zal dat waarschijnlijk zo zijn. Dat is een investering, geen kost. Elke volgende keer kost het je niets. De vraag is niet of delegeren vandaag sneller is, maar of het voor altijd zelf doen houdbaar is.' } },
+            { '@type': 'Question', name: 'Hoe begin ik met delegeren als mijn team nog onervaren is?', acceptedAnswer: { '@type': 'Answer', text: 'Begin met taken die je teamleden licht uitrekken, niet ver daarboven. Delegeren is hoe ervaring wordt opgebouwd. Een team dat alleen taken krijgt die het al beheerst, groeit nooit, en jij krijgt nooit capaciteit terug.' } },
+          ],
+        },
+      ],
+    },
+    content: `
+<div class="blog-tldr">
+  <div class="tldr-label">Kort antwoord</div>
+  <p>"Ik doe het gewoon zelf" is geen tijdmanagementprobleem. Het is een leiderschapsidentiteitspatroon. Het 3-Lagen Taakfilter geeft je een concrete methode om deze week te identificeren welke taken je moet stoppen te doen, met een 3-weeksenplan om ze permanent over te dragen.</p>
+</div>
+
+<p class="blog-intro">Je eindigt een lange dag en beseft dat de helft van wat je gedaan hebt, door iemand van je team had kunnen worden gedaan. Je wist dat al toen je eraan begon. Maar je deed het toch, omdat het sneller ging, omdat je er al aan dacht, of omdat vragen meer moeite voelde dan het gewoon te doen. Dit is geen disciplineprobleem. Het is een structureel patroon, en het heeft een structurele oplossing.</p>
+
+<h2>Waarom "ik doe het zelf" geen productiviteitsgewoonte is</h2>
+
+<p>De kortetermijnlogica klopt. Je weet hoe het moet. Je doet het sneller dan het uitleggen. Je doet het precies goed. Allemaal waar, op korte termijn. Maar de langetermijnkost is zwaar: je team ontwikkelt nooit capaciteit, je bedrijf draait nooit zonder jou, en je blijft permanent gevangen in de operationele laag van een bedrijf dat je gebouwd hebt om jou vrijheid te geven.</p>
+
+<p>Elke keer dat je iets zelf doet wat iemand anders had kunnen doen, neem je twee beslissingen tegelijk: je lost de taak van vandaag op, en je garandeert dat je dezelfde categorie van taken persoonlijk zult moeten oplossen, voor altijd. Dat samengesteld effect is waar zaakvoerders jaren aan verliezen.</p>
+
+<h2>De identiteit achter de gewoonte</h2>
+
+<p>Het "alles zelf doen"-patroon gaat niet primair over tijdsbeheer. Het gaat over leiderschapsidentiteit. Voor de meeste oprichters is doen hoe ze hier gekomen zijn. De uitvoeringsgewoonte is niet alleen efficiënt, het is deel van wie ze zijn. Verschillende leiderschapspersoonlijkheden ervaren dit patroon anders:</p>
+
+<ul>
+  <li><strong>Controleprofielen</strong> houden vast omdat ze niet vertrouwen dat de output aan hun standaard voldoet zonder hun betrokkenheid.</li>
+  <li><strong>Empathieprofielen</strong> houden vast omdat vragen aan iemand anders voelt als een last opleggen.</li>
+  <li><strong>Prestatieprofielen</strong> houden vast omdat delegeren voelt als vertragen, stappen toevoegen, wrijving introduceren.</li>
+  <li><strong>Identiteit-als-doener-profielen</strong> houden vast omdat taken loslaten voelt als hun waarde in het bedrijf loslaten.</li>
+</ul>
+
+<h2>Het 3-Lagen Taakfilter</h2>
+
+<p>Voer elke taak door drie vragen in volgorde. Stop bij het eerste "nee."</p>
+
+<h3>Laag 1: Vereist deze taak mij specifiek?</h3>
+<p>Niet mijn vertrouwdheid. Niet mijn voorkeuren. Mijn specifieke expertise, mijn specifieke relaties of mijn specifieke autoriteit. Als het eerlijke antwoord is "nee, iemand anders zou dit kunnen leren", ga dan naar Laag 2.</p>
+
+<h3>Laag 2: Kan iemand van mijn team dit aan met een korte context-overdracht?</h3>
+<p>Niet een volledig handboek. Niet een opleidingsprogramma. Een korte, duidelijke beschrijving van wat nodig is en hoe succes eruitziet. Als ja, behoort deze taak in iemand anders zijn week, niet de jouwe.</p>
+
+<h3>Laag 3: Kan dit getemplated of geautomatiseerd worden?</h3>
+<p>Als dezelfde taak regelmatig verschijnt en een voorspelbaar patroon volgt, mag ze niet in iemands actieve takenlijst leven. Ze moet een systeem zijn. Terugkerende rapporten, standaard klantenupdates, factureringssequenties, onboarding-checklists: dit zijn automatiseringsmogelijkheden vermomd als werk.</p>
+
+<h2>Het 3-weeksenplan voor overdracht</h2>
+
+<h3>Week 1: Audit</h3>
+<p>Traceer elke taak die je gedurende vijf werkdagen doet. Schrijf elke taak op en markeer hem: Laag 1, 2 of 3. Verander je gedrag nog niet. Observeer en registreer gewoon. De meeste oprichters zijn oncomfortabel met deze stap, omdat de data onmiskenbaar is.</p>
+
+<h3>Week 2: Breng in kaart</h3>
+<p>Voor elke Laag 2 en Laag 3 taak, identificeer wie de eigenaar is of welk systeem het zou kunnen afhandelen. Delegeer nog niet. Breng alleen in kaart. Dit voorkomt de gebruikelijke fout van te veel te snel delegeren.</p>
+
+<h3>Week 3: Overdragen</h3>
+<p>Begin met de twee of drie taken met de duidelijkste eigenaar en de laagste inzet. Draag ze over met een gedefinieerde uitkomst, een check-in datum, en niets anders. Weerstà de drang om vroeger in te checken. Review op de afgesproken datum. Pas aan indien nodig. Herhaal.</p>
+
+<div class="faq-item">
+  <h3>Hoe weet ik welke taken alleen ik kan doen?</h3>
+  <p>Vraag: vereist dit mijn specifieke expertise, relaties of autoriteit, of gewoon mijn vertrouwdheid ermee? Vertrouwdheid is geen uniciteit. De meeste taken worden vastgehouden omdat je weet hoe het moet, niet omdat niemand anders het zou kunnen leren.</p>
+</div>
+<div class="faq-item">
+  <h3>Wat als delegeren meer tijd kost dan het zelf doen?</h3>
+  <p>De eerste keer waarschijnlijk wel. Dat is een investering, geen kost. Elke volgende keer kost het je niets. De vraag is niet of delegeren vandaag sneller is, maar of het voor altijd zelf doen houdbaar is.</p>
+</div>
+<div class="faq-item">
+  <h3>Hoe begin ik met delegeren als mijn team nog onervaren is?</h3>
+  <p>Begin met taken die je teamleden licht uitrekken. Delegeren is hoe ervaring wordt opgebouwd. Een team dat alleen al bekende taken krijgt, groeit nooit, en jij krijgt nooit capaciteit terug.</p>
+</div>
+`,
+  },
+
+  {
+    slug: 'what-tasks-should-you-delegate-as-a-manager',
+    title: 'Welke taken moet je delegeren als manager? Een praktisch systeem',
+    metaTitle: 'Welke Taken Delegeren als Manager: een Praktisch Systeem | Lead it, Grow',
+    metaDescription: 'De meeste managers weten dat ze meer moeten delegeren. De moeilijkere vraag is welke taken, aan wie, en wanneer. Ontdek het 5-vragensysteem voor delegatiebeslissingen.',
+    publishDate: '2026-04-22',
+    readingTime: 8,
+    category: 'Leiderschap',
+    region: 'België · Vlaanderen',
+    excerpt: 'De meeste managers weten dat ze meer moeten delegeren. Wat ze moeilijk vinden is de specifieke vraag: welke taken, aan wie, en wanneer? Het antwoord zit niet in een generieke prioriteitsmatrix. Het zit in een eerlijke blik op wat je vasthoudt, en waarom.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: 'Welke taken moet je delegeren als manager? Een praktisch systeem',
+          description: 'De meeste managers weten dat ze meer moeten delegeren. Ontdek de 4 taakcategorieën die je onmiddellijk kunt delegeren en het 5-vragensysteem.',
+          datePublished: '2026-04-22',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            { '@type': 'Question', name: 'Hoe beslis ik of ik een taak delegeer, automatiseer of stop?', acceptedAnswer: { '@type': 'Answer', text: 'Gebruik drie filters in volgorde. Eerst: creëert deze taak überhaupt waarde? Zo niet, stop ermee. Ten tweede: gebeurt het op een vast ritme met voorspelbare stappen? Zo ja, automatiseer het. Ten derde: vereist het menselijk oordeel maar niet specifiek het jouwe? Zo ja, delegeer het. Wat overblijft is jouw echte werk.' } },
+            { '@type': 'Question', name: 'Wat als de kwaliteit daalt nadat ik een taak delegeer?', acceptedAnswer: { '@type': 'Answer', text: 'Kwaliteitsdaling is feedback, geen mislukking. Het vertelt je dat de uitkomst niet duidelijk genoeg was gedefinieerd, of dat de persoon meer context of ontwikkeling nodig heeft. Beide zijn oplosbaar. Het antwoord is nooit de taak permanent terugnemen, want dat lost structureel niets op.' } },
+            { '@type': 'Question', name: 'Hoe delegeer ik zonder mezelf meer werk te geven met alles uitleggen?', acceptedAnswer: { '@type': 'Answer', text: 'De eerste overdracht vraagt altijd meer tijd. Investeer eenmalig in het duidelijk documenteren van de uitkomst. Elke volgende delegatie van dezelfde categorie kost een fractie van de originele tijd. De investering betaalt zich terug na drie à vier herhalingen.' } },
+          ],
+        },
+      ],
+    },
+    content: `
+<div class="blog-tldr">
+  <div class="tldr-label">Kort antwoord</div>
+  <p>De taken die je het moeilijkst loslaat, zijn bijna altijd de taken die je het eerst moet delegeren. Je delegatieblinde vlekken zijn een directe kaart van je leiderschapsprofiel. Het 5-vragensysteem en de 90-minutenaudit aan het einde van dit artikel geven je een concreet startpunt deze week.</p>
+</div>
+
+<p class="blog-intro">De meeste managers weten dat ze meer moeten delegeren. De moeilijkere vraag is altijd specifiek: welke taken, aan wie, en wanneer? Generiek advies zegt "focus op hoog-waardige activiteiten" en "laat los wat anderen kunnen doen." Dat is waar maar niet bruikbaar zonder een concrete methode. Dit artikel geeft je die methode, en verbindt ze aan de leiderschapsprofielen die bepalen waar jouw specifieke blinde vlekken liggen.</p>
+
+<h2>De delegatieparadox</h2>
+
+<p>De taken die het meest de moeite waard zijn om te delegeren, zijn doorgaans degenen die het moeilijkst los te laten voelen. Niet omdat ze jouw unieke expertise vereisen, maar omdat ze veilig, vertrouwd, of belangrijk voor jouw identiteit als leider aanvoelen. De manager die klantencontact niet kan delegeren, beschermt vaak niet de kwaliteit. Ze beschermen hun gevoel van onmisbaarheid, wat een leiderschapspatroon is, geen bedrijfsnoodzaak.</p>
+
+<h2>Vier taakcategorieën die je onmiddellijk kunt delegeren</h2>
+
+<h3>1. Terugkerende operationele taken</h3>
+<p>Alles wat op een vast ritme gebeurt en een voorspelbaar patroon volgt. Wekelijkse rapportage, agenda- en planningsbeheer, opvolging van facturatie, leverancierscoördinatie, standaard klantenstatussen. Deze taken kunnen gedocumenteerd worden in een korte standaardprocedure en permanent gedelegeerd. Ze consumeren jouw tijd aan volledige kost terwijl ze geen waarde genereren die alleen jij kunt creëren.</p>
+
+<h3>2. Taken die je team ontwikkelen</h3>
+<p>Werk dat iets boven het huidige comfortniveau van je teamlid ligt, is precies het werk dat capaciteit opbouwt. Niet zo ver daarboven dat het mislukking creëert, maar ver genoeg dat het inspanning en groei vereist. Alleen delegeren wat al eenvoudig is, houdt je team klein. Delegeren wat hen uitrekt, vergroot de totale capaciteit van je organisatie en vermindert je eigen toekomstige werklast tegelijk.</p>
+
+<h3>3. Taken die je uit gewoonte doet, niet uit noodzaak</h3>
+<p>Je doet bepaalde dingen al sedert het begin van het bedrijf. Die geschiedenis maakt ze niet van jou. Een nuttige test: als je een functiebeschrijving schreef voor een zaakvoerder op de huidige schaal van jouw bedrijf, zou deze taak daarin verschijnen? Zo niet, behoort ze niet in jouw week. Ze behoort aan de rol waarvoor ze altijd bedoeld was, zodra het bedrijf groot genoeg was om de functies te scheiden.</p>
+
+<h3>4. Taken waar snelheid meer telt dan perfectie</h3>
+<p>Eerste-draft documenten. Klantenstatussen. Initiële reacties op rechttoe-rechtaan vragen. Vergadervoorbereiding voor standaardgesprekken. Dit zijn taken waarbij de kost van vertraging, omdat jij te druk bent om er aan toe te komen, hoger is dan de kost van onvolmaakte uitvoering. Delegeer met een duidelijke standaard, review snel, en stuur bij. Het alternatief is een flessenhals die dagelijks groeit.</p>
+
+<h2>Jouw leiderschapsprofiel als delegatiekaart</h2>
+
+<p>Wat je vasthoudt, onthult wie je bent als leider. Dit is geen oordeel. Het is data.</p>
+
+<ul>
+  <li><strong>Perfectionistische profielen</strong> houden outputkwaliteitstaken vast. Ze vrezen dat gedelegeerd werk niet aan de standaard voldoet.</li>
+  <li><strong>Controleprofielen</strong> houden klantgericht werk vast. Ze geloven dat de relatie hun persoonlijke betrokkenheid vereist bij elk contactmoment.</li>
+  <li><strong>Empathieprofielen</strong> houden operationele taken vast. Ze voelen dat delegeren lasten op een al druk team legt.</li>
+  <li><strong>Expert-identiteitsprofielen</strong> houden technische taken vast. Hun eigenwaarde is verbonden met de meest vaardige persoon in de kamer zijn.</li>
+</ul>
+
+<p>Zodra je je profiel kent, schrijft de delegatiekaart zichzelf. De categorie die je het sterkst vasthoudt, is precies waar je hoogste-hefboom delegatiemogelijkheden liggen. Een objectieve leiderschapsanalyse maakt dit expliciet, en vervangt buikgevoel door een gestructureerd beeld van waar je goed leidt en waar je patronen het bedrijf beperken.</p>
+
+<h2>Het 5-vragensysteem voor delegatiebeslissingen</h2>
+
+<ol>
+  <li><strong>Vereist deze taak mijn specifieke expertise, of gewoon mijn vertrouwdheid ermee?</strong> Vertrouwdheid is geen uniciteit.</li>
+  <li><strong>Wat is de werkelijke kost van dit zelf doen in plaats van een teamlid?</strong> Inclusief opportuniteitskost: welk hoger-waardige werk doe ik niet terwijl ik dit doe?</li>
+  <li><strong>Wat zou ik moeten documenteren om dit veilig over te dragen?</strong> Als het antwoord "niets, het is rechttoe rechtaan" is, delegeer onmiddellijk. Als documentatie nodig is, schrijf het eenmalig en delegeer permanent.</li>
+  <li><strong>Wie van mijn team zou groeien door dit te doen?</strong> Formuleer delegeren als ontwikkeling, niet als lossen.</li>
+  <li><strong>Als ik morgen niet beschikbaar was, zou deze taak gedaan worden?</strong> Als het antwoord nee is, is dit een structureel risico voor je bedrijf. Het delegeren ervan is risicobeheer.</li>
+</ol>
+
+<h2>Start met een 90-minutenaudit</h2>
+
+<p>Blokkeer 90 minuten deze week. Maak een lijst van elke taak die je de afgelopen twee weken gedaan hebt. Pas de vijf vragen toe op elk. Markeer de uitkomst: bewaren, delegeren aan wie, of er een systeem voor bouwen.</p>
+
+<p>De meeste zaakvoerders die deze audit uitvoeren, vinden 5 tot 10 taken die ze binnen dezelfde week kunnen delegeren, zonder extra voorbereiding. Begin daar. De gewoonte bouwt op vanuit de eerste succesvolle overdracht, niet vanuit een perfect delegatiesysteem dat van tevoren gebouwd is.</p>
+
+<div class="faq-item">
+  <h3>Hoe beslis ik of ik een taak delegeer, automatiseer of stop?</h3>
+  <p>Drie filters in volgorde. Eerst: creëert deze taak überhaupt waarde? Zo niet, stop ermee. Ten tweede: gebeurt het op een vast ritme? Zo ja, automatiseer. Ten derde: vereist het menselijk oordeel maar niet specifiek het jouwe? Zo ja, delegeer. Wat overblijft is jouw echte werk.</p>
+</div>
+<div class="faq-item">
+  <h3>Wat als de kwaliteit daalt nadat ik een taak delegeer?</h3>
+  <p>Kwaliteitsdaling is feedback, geen mislukking. Het vertelt je dat de uitkomst niet duidelijk genoeg was of dat de persoon meer context nodig heeft. Beide zijn oplosbaar. De taak permanent terugnemen lost structureel niets op.</p>
+</div>
+<div class="faq-item">
+  <h3>Hoe delegeer ik zonder mezelf meer werk te geven met uitleggen?</h3>
+  <p>De eerste overdracht vraagt meer tijd. Investeer eenmalig in het duidelijk documenteren van de uitkomst. Elke volgende delegatie van dezelfde categorie kost een fractie van de originele tijd. De investering betaalt zich terug na drie à vier herhalingen.</p>
+</div>
+`,
+  },
 ]
 
 export function getPost(slug: string): BlogPost | undefined {
