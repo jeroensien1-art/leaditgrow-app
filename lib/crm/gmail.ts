@@ -17,13 +17,18 @@ export interface GmailReply {
 }
 
 async function getAccessToken(): Promise<string> {
-  const res = await fetch('https://oauth2.googleapis.com/token', {
+  const tokenJson = process.env.GMAIL_TOKEN_JSON
+  if (!tokenJson) throw new Error('GMAIL_TOKEN_JSON not set')
+  const creds = JSON.parse(tokenJson) as {
+    client_id: string; client_secret: string; refresh_token: string; token_uri: string
+  }
+  const res = await fetch(creds.token_uri, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({
-      client_id:     process.env.GMAIL_CLIENT_ID!,
-      client_secret: process.env.GMAIL_CLIENT_SECRET!,
-      refresh_token: process.env.GMAIL_REFRESH_TOKEN!,
+      client_id:     creds.client_id,
+      client_secret: creds.client_secret,
+      refresh_token: creds.refresh_token,
       grant_type:    'refresh_token',
     }),
   })
