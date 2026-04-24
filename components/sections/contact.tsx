@@ -161,8 +161,8 @@ export function Contact() {
                 <p className="font-semibold" style={{ color: '#3d3929' }}>{t('Bericht ontvangen!', 'Message received!')}</p>
                 <p className="text-sm leading-relaxed" style={{ color: '#83827d' }}>
                   {t(
-                    'Check je inbox — en ook je spammap. Je ontvangt zo een persoonlijk bericht van Jeroen.',
-                    "Check your inbox — and your spam folder. You'll receive a personal message from Jeroen shortly."
+                    'Check je inbox (en ook je spammap). Je krijgt de info die je zoekt binnen enkele minuten.',
+                    "Check your inbox (and spam folder). You'll get the info you're looking for within a few minutes."
                   )}
                 </p>
               </div>

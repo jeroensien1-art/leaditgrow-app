@@ -20,11 +20,15 @@ function getRedis() {
 
 async function checkRateLimit(ip: string): Promise<boolean> {
   const client = getRedis()
-  if (!client) return true // no Redis configured — allow
-  const key = `rate:leads:${ip}`
-  const count = await client.incr(key)
-  if (count === 1) await client.expire(key, WINDOW_SECONDS)
-  return count <= RATE_LIMIT
+  if (!client) return true
+  try {
+    const key = `rate:leads:${ip}`
+    const count = await client.incr(key)
+    if (count === 1) await client.expire(key, WINDOW_SECONDS)
+    return count <= RATE_LIMIT
+  } catch {
+    return true // Redis unavailable — allow request
+  }
 }
 
 async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
@@ -54,9 +58,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
     }
 
-    const valid = await verifyTurnstile(turnstileToken ?? '', ip)
-    if (!valid) {
-      return NextResponse.json({ error: 'Bot check failed' }, { status: 403 })
+    // Widget/chatbot submissions have no Turnstile token — skip check if token absent
+    if (turnstileToken) {
+      const valid = await verifyTurnstile(turnstileToken, ip)
+      if (!valid) {
+        return NextResponse.json({ error: 'Bot check failed' }, { status: 403 })
+      }
     }
 
     const id = randomUUID()
