@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getUnreadReplies, markProcessed } from '@/lib/crm/gmail'
-
-export const maxDuration = 60
 import { classifyAndReply } from '@/lib/crm/reply'
 import { Resend } from 'resend'
+
+export const maxDuration = 60
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 const FROM   = 'Jeroen Sienaert <jeroen@leaditgrow.be>'
@@ -25,7 +25,6 @@ async function processReplies() {
 
   for (const reply of replies) {
     try {
-      // Mark processed first — prevents double-send if Claude/Resend fails midway
       await markProcessed(reply.id)
 
       const result = await classifyAndReply({
