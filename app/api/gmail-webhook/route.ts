@@ -15,6 +15,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
+  if (process.env.OUTREACH_PAUSED === 'true') {
+    console.log('[gmail-webhook] paused')
+    return NextResponse.json({ ok: true, paused: true })
+  }
+
   try {
     await processReplies()
     return NextResponse.json({ ok: true })
