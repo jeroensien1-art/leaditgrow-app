@@ -47,40 +47,47 @@ ${bodyHtml}
 }
 
 const WEBSITE_KNOWLEDGE = `
-Lead it, Grow — kerninfo voor het beantwoorden van vragen:
+Lead it, Grow — volledige dienstverlening (gebruik dit om vragen correct te beantwoorden):
 
-Wat we doen: groeisystemen bouwen voor Vlaamse KMO-zaakvoerders zodat hun omzet niet meer afhangt van wat zij persoonlijk doen of opvolgen.
+Wie is Jeroen Sienaert:
+Jeroen is oprichter van Lead it, Grow. Hij bouwt groeisystemen voor Vlaamse KMO-zaakvoerders (5-50 medewerkers, €1M+ omzet) zodat hun omzet niet meer afhangt van wat zij persoonlijk doen of opvolgen. Tagline: "Lead with clear impact."
 
-Aanbod (offer ladder):
-- Gratis: Omzetcalculator (2 min, geeft direct inzicht) — https://leaditgrow.be/calculator
-- Gratis: Business Diagnostic (volledig rapport van je groeifase) — https://leaditgrow.be/diagnostic
-- €97-297: Actiehandboek (30-dagenplan, top 3 fixes voor jouw situatie)
-- €997-2500: BD Sprint — 4 weken done-with-you. We bouwen de automatische opvolgings-engine zodat elke lead binnen minuten een reactie krijgt zonder extra mensen.
+Aanbod (offer ladder — altijd in deze volgorde aanbieden):
+- Gratis: Omzetcalculator (2 min) — https://leaditgrow.be/calculator
+- Gratis: Business Diagnostic (volledig groeifase-rapport) — https://leaditgrow.be/diagnostic
+- €97-297: Actiehandboek — op maat 30-dagenplan, top 3 fixes
+- €997-2500: BD Sprint — 4 weken done-with-you, automatische opvolgings-engine bouwen
 - €1500-3500/maand: Done-for-You Retainer — wij runnen het systeem volledig
 - €5000+: White-Label licentie voor agencies
 
-Voor wie: zaakvoerders van KMO's in Vlaanderen, typisch 2-20 medewerkers, die willen groeien zonder dat de groei puur via hen moet lopen.
+Aanvullende diensten via Jeroen's netwerk van top 5% specialisten:
+Lead it, Grow werkt samen met een gecureerd netwerk van top 5% professionals. Via dit netwerk kan Jeroen ook volgende diensten aanbieden of regelen:
+- Google Ads — niet zelf uitgevoerd, maar via directe samenwerking met gespecialiseerde Google Ads experts uit het netwerk
+- SEO, social media advertising, copywriting, webontwikkeling
+- Leiderschapscoaching en teamontwikkeling (via Uman-partnerschap — noem Uman NIET bij naam, gebruik "erkende leiderschapspartner")
+- Health coaching voor ondernemers (energie, focus, leefstijl)
+
+Algemene regel voor vragen over business of marketing diensten:
+Als iemand vraagt naar EENDER welke business- of marketinggerelateerde dienst (Google Ads, SEO, social media, website, email marketing, strategie, sales, etc.) — zeg altijd dat Jeroen hierbij kan helpen en het graag bespreekt in het kader van een complete groeistrategie. Nooit "nee" zeggen op een businessvraag. Altijd de vraag omzetten naar een reden om een gesprek in te plannen.
 
 Pijnpunten die we oplossen:
-- Te veel omzet afhankelijk van de zaakvoerder
-- Trage of inconsistente opvolging van leads (deals verloren door timing)
-- Geen systeem voor business development — alles gaat ad hoc
-- Groei via mensen aannemen werkt niet op schaal
+- Te veel omzet afhankelijk van de zaakvoerder persoonlijk
+- Trage opvolging van leads — deals verloren door timing
+- Geen systeem voor business development
+- Groei via mensen aannemen schaalt niet
 
-Kwalificatievragen die we stellen:
+Kwalificatievragen:
 - Hoeveel van jullie omzet hangt af van wat jij persoonlijk doet?
+- Wat is het voornaamste bottleneck: leads genereren, opvolgen, of converteren?
 - Hoe groot is het team en wat is de omzet (ruwe schatting)?
-- Wat is het voornaamste bottleneck: leads genereren, leads opvolgen, of leads converteren?
-- Welke tools/systemen gebruik je nu voor business development?
 
 Website pagina's:
-- Homepage: https://leaditgrow.be
-- Diensten & prijzen: https://leaditgrow.be/diensten
-- Over Jeroen: https://leaditgrow.be/over
-- Blog: https://leaditgrow.be/blog
-- Calculator: https://leaditgrow.be/calculator
-- Business Diagnostic: https://leaditgrow.be/diagnostic
-- Contact: https://leaditgrow.be/contact
+- https://leaditgrow.be — homepage
+- https://leaditgrow.be/diensten — diensten & prijzen
+- https://leaditgrow.be/over — over Jeroen
+- https://leaditgrow.be/calculator — gratis calculator
+- https://leaditgrow.be/diagnostic — gratis diagnostic
+- https://leaditgrow.be/contact — contact
 `
 
 function generateTimeSlots(): string[] {

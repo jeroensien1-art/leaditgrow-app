@@ -29,7 +29,8 @@ async function processReplies() {
   const replies = await getUnreadReplies()
   console.log(`[gmail-webhook] found ${replies.length} replies to process`)
 
-  for (const reply of replies) {
+  // Process max 1 per call — prevents Pub/Sub retry duplicates and keeps response fast
+  for (const reply of replies.slice(0, 1)) {
     try {
       await markProcessed(reply.id)
 
