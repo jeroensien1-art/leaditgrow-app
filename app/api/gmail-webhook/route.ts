@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { waitUntil } from '@vercel/functions'
 import { getUnreadReplies, markProcessed } from '@/lib/crm/gmail'
+
+export const maxDuration = 60
 import { classifyAndReply } from '@/lib/crm/reply'
 import { Resend } from 'resend'
 
@@ -14,9 +15,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  // waitUntil keeps the Vercel function alive after response is sent
-  waitUntil(processReplies().catch(err => console.error('[gmail-webhook] error:', err)))
-
+  await processReplies()
   return NextResponse.json({ ok: true })
 }
 
