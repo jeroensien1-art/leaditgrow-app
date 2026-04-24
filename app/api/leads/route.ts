@@ -84,7 +84,12 @@ export async function POST(req: NextRequest) {
     }
     await saveLead(stub)
 
-    // Claude qualification + email run in background
+    // Notify Jeroen immediately — this always fires regardless of Claude success
+    await notifyJeroen(name, email, 0, false, message).catch(err =>
+      console.error('[leads] notify error:', err)
+    )
+
+    // Claude qualification + personalised reply run in background
     waitUntil(processLead({ id, name, email, message }).catch(err =>
       console.error('[leads] background error:', err)
     ))
@@ -115,7 +120,4 @@ async function processLead({
 
   // 3. Send personalised reply to the lead
   await sendToLead(email, result.emailSubject, result.emailBody)
-
-  // 4. Notify Jeroen
-  await notifyJeroen(name, email, result.score, result.qualified, result.summary)
 }
