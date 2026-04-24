@@ -8,7 +8,44 @@ export interface ReplyResult {
   intent: Intent
   summary: string
   replySubject: string
-  replyBody: string
+  replyBody: string      // plain text (for Claude to write naturally)
+  replyBodyHtml: string  // HTML version with signature — built from replyBody
+}
+
+const LOGO_URL = 'https://leaditgrow.be/logo-email.svg'
+
+export function buildHtmlEmail(plainText: string): string {
+  // Convert plain text to HTML paragraphs
+  const paragraphs = plainText
+    .split(/\n{2,}/)
+    .map(p => p.trim())
+    .filter(Boolean)
+
+  // Split off the signature block (last 2 lines starting from "Jeroen Sienaert")
+  const sigIdx = paragraphs.findIndex(p => p.startsWith('Jeroen Sienaert'))
+  const bodyParts = sigIdx > -1 ? paragraphs.slice(0, sigIdx) : paragraphs
+
+  const bodyHtml = bodyParts
+    .map(p => `<p style="margin:0 0 14px 0;line-height:1.6">${p.replace(/\n/g, '<br>')}</p>`)
+    .join('\n')
+
+  return `<div style="font-family:Georgia,'Times New Roman',serif;font-size:15px;color:#3d3929;max-width:560px">
+${bodyHtml}
+<table style="margin-top:28px;padding-top:16px;border-top:2px solid #e8e0d4;border-collapse:collapse" cellpadding="0" cellspacing="0">
+  <tr>
+    <td style="padding-right:14px;vertical-align:middle">
+      <img src="${LOGO_URL}" width="28" height="34" alt="" style="display:block">
+    </td>
+    <td style="vertical-align:middle">
+      <div style="font-weight:600;color:#3d3929;font-size:14px;line-height:1.3">Jeroen Sienaert</div>
+      <div style="font-style:italic;font-size:13px;color:#3d3929;line-height:1.3">Lead it, <span style="color:#c96442;font-weight:600">Grow</span></div>
+      <div style="font-size:12px;color:#999;margin-top:2px">
+        <a href="https://leaditgrow.be" style="color:#999;text-decoration:none">leaditgrow.be</a>
+      </div>
+    </td>
+  </tr>
+</table>
+</div>`
 }
 
 const WEBSITE_KNOWLEDGE = `
@@ -139,5 +176,9 @@ Antwoord met geldig JSON, geen markdown:
 
   const text = response.content.find(b => b.type === 'text')?.text ?? ''
   const clean = text.replace(/```json|```/g, '').trim()
-  return JSON.parse(clean) as ReplyResult
+  const result = JSON.parse(clean) as Omit<ReplyResult, 'replyBodyHtml'>
+  return {
+    ...result,
+    replyBodyHtml: buildHtmlEmail(result.replyBody),
+  }
 }

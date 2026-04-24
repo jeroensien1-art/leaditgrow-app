@@ -46,6 +46,7 @@ async function processReplies() {
         from:    FROM,
         to:      reply.fromEmail,
         subject: result.replySubject,
+        html:    result.replyBodyHtml,
         text:    result.replyBody,
         headers: {
           'In-Reply-To': reply.originalMessageId,
