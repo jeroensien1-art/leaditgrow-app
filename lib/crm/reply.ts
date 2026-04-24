@@ -32,12 +32,7 @@ ${bodyHtml}
 <table style="margin-top:28px;padding-top:16px;border-top:2px solid #e8e0d4;border-collapse:collapse" cellpadding="0" cellspacing="0">
   <tr>
     <td style="padding-right:14px;vertical-align:middle">
-      <svg viewBox="-2 -2 104 123" width="28" height="34" xmlns="http://www.w3.org/2000/svg" style="display:block">
-        <defs><linearGradient id="siglg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#c96342"/><stop offset="100%" stop-color="#ff904d"/></linearGradient></defs>
-        <path d="M 0,62 L 0,119 L 100,119 Z" fill="none" stroke="url(#siglg)" stroke-width="7" stroke-linejoin="miter"/>
-        <path d="M 10.5,37 L 10.5,88 L 59,88 Z" fill="none" stroke="url(#siglg)" stroke-width="7" stroke-linejoin="miter"/>
-        <path d="M 0,0 L 0,57 L 41,57 Z" fill="none" stroke="url(#siglg)" stroke-width="7" stroke-linejoin="miter"/>
-      </svg>
+      <img src="https://leaditgrow.be/logo-email.png" width="28" height="34" alt="" style="display:block">
     </td>
     <td style="vertical-align:middle">
       <div style="font-weight:600;color:#3d3929;font-size:14px;line-height:1.3">Jeroen Sienaert</div>
