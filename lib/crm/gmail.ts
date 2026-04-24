@@ -74,10 +74,10 @@ export async function getUnreadReplies(): Promise<GmailReply[]> {
   const token = await getAccessToken()
   const auth = { Authorization: `Bearer ${token}` }
 
-  // Unread inbox messages NOT sent by us
+  // Inbox messages from last 7 days, NOT sent by us
   const listRes = await fetch(
     'https://gmail.googleapis.com/gmail/v1/users/me/messages' +
-    '?q=is:unread+in:inbox+-from:jeroen%40leaditgrow.be&maxResults=10',
+    '?q=in:inbox+-from:jeroen%40leaditgrow.be+newer_than:7d&maxResults=20',
     { headers: auth }
   )
   const listData = await listRes.json() as { messages?: Array<{ id: string; threadId: string }> }
@@ -115,6 +115,11 @@ export async function getUnreadReplies(): Promise<GmailReply[]> {
       header(m.payload?.headers ?? [], 'From').includes('jeroen@leaditgrow.be')
     )
     if (!sentByUs) continue
+
+    // Skip if we already replied: last message in thread is from us
+    const lastMsg = threadMsgs[threadMsgs.length - 1]
+    const lastFrom = header(lastMsg?.payload?.headers ?? [], 'From')
+    if (lastFrom.includes('jeroen@leaditgrow.be')) continue
 
     const from = header(hdrs, 'From')
     const emailMatch = from.match(/<(.+?)>/)

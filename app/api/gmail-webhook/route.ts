@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getUnreadReplies, markAsRead } from '@/lib/crm/gmail'
+import { getUnreadReplies } from '@/lib/crm/gmail'
 import { classifyAndReply } from '@/lib/crm/reply'
 import { Resend } from 'resend'
 
@@ -35,9 +35,6 @@ async function processReplies() {
       })
 
       console.log(`[gmail-webhook] ${reply.fromEmail} → ${result.intent}`)
-
-      // Mark as read first so a crash on send doesn't double-process
-      await markAsRead(reply.id)
 
       if (result.intent === 'GEEN') continue
 
