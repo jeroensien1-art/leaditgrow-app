@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getUnreadReplies } from '@/lib/crm/gmail'
+import { waitUntil } from '@vercel/functions'
+import { getUnreadReplies, markProcessed } from '@/lib/crm/gmail'
 import { classifyAndReply } from '@/lib/crm/reply'
 import { Resend } from 'resend'
 
@@ -8,37 +9,36 @@ const FROM   = 'Jeroen Sienaert <jeroen@leaditgrow.be>'
 const JEROEN = 'jeroen@leaditgrow.be'
 
 export async function POST(req: NextRequest) {
-  // Verify Pub/Sub secret in query string
   const secret = req.nextUrl.searchParams.get('secret')
   if (!process.env.GMAIL_WEBHOOK_SECRET || secret !== process.env.GMAIL_WEBHOOK_SECRET) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  // Acknowledge Pub/Sub immediately (avoid retries if processing is slow)
-  const processingPromise = processReplies()
-  // Don't await — return 200 right away so Pub/Sub doesn't retry
-  processingPromise.catch(err => console.error('[gmail-webhook] processing error:', err))
+  // waitUntil keeps the Vercel function alive after response is sent
+  waitUntil(processReplies().catch(err => console.error('[gmail-webhook] error:', err)))
 
   return NextResponse.json({ ok: true })
 }
 
 async function processReplies() {
   const replies = await getUnreadReplies()
-  console.log(`[gmail-webhook] found ${replies.length} unread replies`)
+  console.log(`[gmail-webhook] found ${replies.length} replies to process`)
 
   for (const reply of replies) {
     try {
+      // Mark processed first — prevents double-send if Claude/Resend fails midway
+      await markProcessed(reply.id)
+
       const result = await classifyAndReply({
         fromEmail:       reply.fromEmail,
         replyText:       reply.text,
         originalSubject: reply.originalSubject,
       })
 
-      console.log(`[gmail-webhook] ${reply.fromEmail} → ${result.intent}`)
+      console.log(`[gmail-webhook] ${reply.fromEmail} -> ${result.intent}`)
 
       if (result.intent === 'GEEN') continue
 
-      // Send auto-reply via Resend, threaded correctly
       await resend.emails.send({
         from:    FROM,
         to:      reply.fromEmail,
@@ -51,18 +51,18 @@ async function processReplies() {
         },
       })
 
-      // Notify Jeroen
       const intentLabel: Record<string, string> = {
-        JA_INTERESSE: '🟢 Interesse',
-        VRAAG:        '🔵 Vraag',
-        LATER:        '🟡 Later',
-        NEE:          '🔴 Nee',
-        OOT:          '⚫ Buiten doelgroep',
+        JA_INTERESSE: 'Interesse',
+        VRAAG:        'Vraag',
+        LATER:        'Later',
+        NEE:          'Nee',
+        OOT:          'Buiten doelgroep',
       }
+
       await resend.emails.send({
         from:    FROM,
         to:      JEROEN,
-        subject: `[Reply] ${intentLabel[result.intent] ?? result.intent} — ${reply.fromEmail}`,
+        subject: `[Reply] ${intentLabel[result.intent] ?? result.intent} - ${reply.fromEmail}`,
         html: `
 <div style="font-family:sans-serif;max-width:600px;color:#333">
   <h3 style="color:#c96442">Reply van ${reply.fromEmail}</h3>
@@ -77,7 +77,7 @@ async function processReplies() {
 </div>`,
       })
     } catch (err) {
-      console.error(`[gmail-webhook] error processing reply from ${reply.fromEmail}:`, err)
+      console.error(`[gmail-webhook] error processing ${reply.fromEmail}:`, err)
     }
   }
 }

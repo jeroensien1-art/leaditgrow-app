@@ -1,7 +1,10 @@
 /**
- * Gmail REST API helper — reads unread replies, marks as read.
+ * Gmail REST API helper — reads replies to our emails, marks with label after processing.
  * No extra npm package: uses plain fetch + existing OAuth2 refresh token.
  */
+
+const PROCESSED_LABEL = 'lg-replied'
+let cachedLabelId: string | null = null
 
 export interface GmailReply {
   id: string
@@ -70,14 +73,47 @@ function stripQuotedText(text: string): string {
   return cleaned.join('\n').trim()
 }
 
+async function getOrCreateLabelId(token: string): Promise<string> {
+  if (cachedLabelId) return cachedLabelId
+  const auth = { Authorization: `Bearer ${token}` }
+
+  const listRes = await fetch('https://gmail.googleapis.com/gmail/v1/users/me/labels', { headers: auth })
+  const listData = await listRes.json() as { labels: Array<{ id: string; name: string }> }
+  const existing = listData.labels?.find(l => l.name === PROCESSED_LABEL)
+  if (existing) { cachedLabelId = existing.id; return existing.id }
+
+  const createRes = await fetch('https://gmail.googleapis.com/gmail/v1/users/me/labels', {
+    method: 'POST',
+    headers: { ...auth, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: PROCESSED_LABEL, labelListVisibility: 'labelHide', messageListVisibility: 'hide' }),
+  })
+  const label = await createRes.json() as { id: string }
+  cachedLabelId = label.id
+  return label.id
+}
+
+export async function markProcessed(messageId: string): Promise<void> {
+  const token = await getAccessToken()
+  const labelId = await getOrCreateLabelId(token)
+  await fetch(`https://gmail.googleapis.com/gmail/v1/users/me/messages/${messageId}/modify`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ addLabelIds: [labelId] }),
+  })
+}
+
 export async function getUnreadReplies(): Promise<GmailReply[]> {
   const token = await getAccessToken()
   const auth = { Authorization: `Bearer ${token}` }
 
-  // Inbox messages from last 7 days, NOT sent by us
+  // Get label ID so we can exclude already-processed messages
+  const labelId = await getOrCreateLabelId(token)
+  const excludeLabel = encodeURIComponent(`-label:${PROCESSED_LABEL}`)
+
+  // Inbox messages from last 7 days, NOT sent by us, NOT already processed
   const listRes = await fetch(
     'https://gmail.googleapis.com/gmail/v1/users/me/messages' +
-    '?q=in:inbox+-from:jeroen%40leaditgrow.be+newer_than:7d&maxResults=20',
+    `?q=in:inbox+-from:jeroen%40leaditgrow.be+newer_than:7d+${excludeLabel}&maxResults=20`,
     { headers: auth }
   )
   const listData = await listRes.json() as { messages?: Array<{ id: string; threadId: string }> }
@@ -147,14 +183,3 @@ export async function getUnreadReplies(): Promise<GmailReply[]> {
   return replies
 }
 
-export async function markAsRead(messageId: string): Promise<void> {
-  const token = await getAccessToken()
-  await fetch(
-    `https://gmail.googleapis.com/gmail/v1/users/me/messages/${messageId}/modify`,
-    {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ removeLabelIds: ['UNREAD'] }),
-    }
-  )
-}
