@@ -15,8 +15,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  await processReplies()
-  return NextResponse.json({ ok: true })
+  try {
+    await processReplies()
+    return NextResponse.json({ ok: true })
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err)
+    console.error('[gmail-webhook] fatal:', msg)
+    return NextResponse.json({ error: msg }, { status: 500 })
+  }
 }
 
 async function processReplies() {
