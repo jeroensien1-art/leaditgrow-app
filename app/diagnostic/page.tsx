@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useLang } from '@/components/lang-context'
 
 type Step = 'intro' | 'context' | 'questions' | 'results' | 'capture' | 'thanks'
@@ -463,6 +463,7 @@ export default function DiagnosticPage() {
   const leverDetail      = nl ? leverDetailNl      : leverDetailEn
 
   const [step, setStep]           = useState<Step>('intro')
+  useEffect(() => { window.scrollTo({ top: 0, behavior: 'smooth' }) }, [step])
   const [ctxIndex, setCtxIndex]   = useState(0)
   const [ctxAnswers, setCtxAnswers] = useState<ContextAnswers>({ industry: '', monthlyLeads: '', avgDealValue: '', teamSize: '' })
   const [currentQ, setCurrentQ]   = useState(0)
@@ -518,6 +519,9 @@ export default function DiagnosticPage() {
         body: JSON.stringify({ name, email, website: noWebsite ? 'geen website' : website, context: ctxAnswers, answers, score: overallScore, topLevers: scored.map(s => s.key) }),
       })
     } catch { /* fire and forget */ }
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'Lead')
+    }
     setStep('thanks')
     setSubmitting(false)
   }

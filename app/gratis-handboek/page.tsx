@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import { ArrowRight, CheckCircle2, BookOpen, Zap, TrendingUp, FlaskConical } from 'lucide-react'
 import { LogoMark } from '@/components/ui/logo-mark'
 
@@ -24,6 +25,12 @@ const INCLUDES = [
 ]
 
 export default function GratisHandboekPage() {
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'ViewContent', { content_name: 'gratis-handboek' })
+    }
+  }, [])
+
   return (
     <div style={{ background: '#faf9f5', color: '#3d3929', fontFamily: 'var(--font-sans)', minHeight: '100vh' }}>
 

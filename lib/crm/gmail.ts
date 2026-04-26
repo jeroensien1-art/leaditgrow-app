@@ -139,50 +139,62 @@ export async function getUnreadReplies(): Promise<GmailReply[]> {
     const hdrs = msgData.payload?.headers ?? []
 
     const inReplyTo = header(hdrs, 'In-Reply-To')
-    if (!inReplyTo) continue  // not a reply
-
-    // Check the thread has at least one message from us
-    const threadRes = await fetch(
-      `https://gmail.googleapis.com/gmail/v1/users/me/threads/${msg.threadId}` +
-      '?format=metadata&metadataHeaders=From&metadataHeaders=Subject',
-      { headers: auth }
-    )
-    const threadData = await threadRes.json() as {
-      messages: Array<{ payload: { headers: Array<{ name: string; value: string }> } }>
-    }
-    const threadMsgs = threadData.messages ?? []
-
-    const sentByUs = threadMsgs.some(m =>
-      header(m.payload?.headers ?? [], 'From').includes('jeroen@leaditgrow.be')
-    )
-    if (!sentByUs) continue
-
-    // Skip if we already replied: last message in thread is from us
-    const lastMsg = threadMsgs[threadMsgs.length - 1]
-    const lastFrom = header(lastMsg?.payload?.headers ?? [], 'From')
-    if (lastFrom.includes('jeroen@leaditgrow.be')) continue
-
+    const messageId = header(hdrs, 'Message-ID')
     const from = header(hdrs, 'From')
     const emailMatch = from.match(/<(.+?)>/)
     const fromEmail = emailMatch ? emailMatch[1] : from.trim()
-
     const subject = header(hdrs, 'Subject')
     const rawText = extractPlainText(msgData.payload)
     const text = stripQuotedText(rawText)
 
-    // Original subject = first message in thread
-    const firstMsg = threadMsgs[0]
-    const originalSubject = header(firstMsg?.payload?.headers ?? [], 'Subject') || subject
+    if (inReplyTo) {
+      // Reply in a thread — only handle if the thread has a message from us
+      const threadRes = await fetch(
+        `https://gmail.googleapis.com/gmail/v1/users/me/threads/${msg.threadId}` +
+        '?format=metadata&metadataHeaders=From&metadataHeaders=Subject',
+        { headers: auth }
+      )
+      const threadData = await threadRes.json() as {
+        messages: Array<{ payload: { headers: Array<{ name: string; value: string }> } }>
+      }
+      const threadMsgs = threadData.messages ?? []
 
-    replies.push({
-      id: msg.id,
-      threadId: msg.threadId,
-      fromEmail,
-      subject,
-      text,
-      originalSubject,
-      originalMessageId: inReplyTo,
-    })
+      const sentByUs = threadMsgs.some(m =>
+        header(m.payload?.headers ?? [], 'From').includes('jeroen@leaditgrow.be')
+      )
+      if (!sentByUs) continue
+
+      // Skip if we already replied: last message in thread is from us
+      const lastMsg = threadMsgs[threadMsgs.length - 1]
+      const lastFrom = header(lastMsg?.payload?.headers ?? [], 'From')
+      if (lastFrom.includes('jeroen@leaditgrow.be')) continue
+
+      const firstMsg = threadMsgs[0]
+      const originalSubject = header(firstMsg?.payload?.headers ?? [], 'Subject') || subject
+
+      replies.push({
+        id: msg.id,
+        threadId: msg.threadId,
+        fromEmail,
+        subject,
+        text,
+        originalSubject,
+        originalMessageId: inReplyTo,
+      })
+    } else {
+      // Standalone email — treat as new inbound lead
+      if (!text.trim()) continue  // skip empty/automated messages with no body
+
+      replies.push({
+        id: msg.id,
+        threadId: msg.threadId,
+        fromEmail,
+        subject,
+        text,
+        originalSubject: subject,
+        originalMessageId: messageId,
+      })
+    }
   }
 
   return replies
