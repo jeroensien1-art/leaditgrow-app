@@ -10,7 +10,7 @@ type Lang = 'nl' | 'en'
 // Create a Payment Link in your Stripe dashboard (Products → Payment Links)
 // Set price to €97, product name "Het Businessgroei Actiehandboek"
 // Then paste the URL here:
-const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/REPLACE_WITH_YOUR_LINK'
+const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/bJe5kD1vV3gs4eB16KdIA00'
 // ────────────────────────────────────────────────────────────────────────────
 
 const LEVERS = [
