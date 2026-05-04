@@ -4,12 +4,23 @@ import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
 import { sendPurchaseSequence } from '@/lib/crm/sequences'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2026-04-22.dahlia' })
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_KEY!)
-const resend = new Resend(process.env.RESEND_API_KEY)
 const FROM = 'Jeroen | Lead it, Grow <jeroen@leaditgrow.be>'
 
+function getStripe() {
+  return new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2026-04-22.dahlia' })
+}
+function getSupabase() {
+  return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_KEY!)
+}
+function getResend() {
+  return new Resend(process.env.RESEND_API_KEY)
+}
+
 export async function POST(req: NextRequest) {
+  const stripe = getStripe()
+  const supabase = getSupabase()
+  const resend = getResend()
+
   const body = await req.text()
   const sig = req.headers.get('stripe-signature')
 
