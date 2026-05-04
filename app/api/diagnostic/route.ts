@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js'
 import { type DiagnosticSubmission } from '@/lib/crm/diagnostic'
 import { sendToLead } from '@/lib/crm/email'
 import { saveLead } from '@/lib/crm/store'
+import { sendDiagnosticNurtureSequence } from '@/lib/crm/sequences'
 import { Resend } from 'resend'
 
 const supabase = createClient(
@@ -557,6 +558,13 @@ export async function POST(req: NextRequest) {
     await sendToLead(body.email, subject, html)
 
     await supabase.from('diagnostics').update({ report_sent: true }).eq('id', id)
+
+    // Start nurture sequence (dag 3, 7, 14) via Resend scheduled emails
+    try {
+      await sendDiagnosticNurtureSequence(body.name, body.email, body.topLevers[0] ?? 'time', body.score)
+    } catch (err) {
+      console.error('[diagnostic] nurture sequence error:', err)
+    }
 
     await resend.emails.send({
       from: FROM,
