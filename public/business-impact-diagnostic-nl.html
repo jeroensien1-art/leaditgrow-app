@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bedrijfsimpact Diagnose</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #faf7f2;
+  --warm-white: #fff9f4;
+  --sand: #f0e9de;
+  --sand-mid: #e2d5c3;
+  --ink: #1c1a18;
+  --ink-mid: #4a4540;
+  --ink-muted: #9a9088;
+  --ink-faint: #c8bfb4;
+  --rust: #b8572a;
+  --rust-light: #fdf1eb;
+  --rust-border: rgba(184,87,42,0.2);
+  --green: #2d6a4f;
+  --green-light: #eaf4ee;
+  --border: rgba(28,26,24,0.08);
+  --border-mid: rgba(28,26,24,0.14);
+  --font-display: 'Lora', serif;
+  --font-body: 'Outfit', sans-serif;
+  --shadow-card: 0 1px 3px rgba(28,26,24,0.06);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body);
+  background: var(--sand);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+.wrap {
+  background: var(--warm-white);
+  border-radius: 20px;
+  max-width: 520px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 8px 48px rgba(28,26,24,0.12);
+}
+.top-stripe { height: 4px; background: linear-gradient(90deg,#b8572a,#d4894a,#b8572a); }
+.inner { padding: 2.2rem 2rem 2.6rem; }
+.step { display: none; }
+.step.active { display: block; animation: lift .38s ease; }
+@keyframes lift { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+.progress-wrap { margin-bottom: 2rem; }
+.progress-meta { display:flex; justify-content:space-between; margin-bottom:8px; }
+.prog-label { font-size:11px; font-weight:500; color:var(--ink-muted); letter-spacing:.06em; }
+.progress-track { height:3px; background:var(--sand); border-radius:2px; overflow:hidden; }
+.progress-fill { height:100%; background:var(--rust); border-radius:2px; transition:width .5s ease; }
+
+.eyebrow { font-size:10px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--rust); margin-bottom:10px; }
+.headline { font-family:var(--font-display); font-size:28px; font-weight:700; color:var(--ink); line-height:1.2; margin-bottom:10px; }
+.headline em { font-style:italic; color:var(--rust); }
+.subline { font-size:14px; color:var(--ink-muted); line-height:1.7; font-weight:300; margin-bottom:1.8rem; }
+
+.moments { display:flex; flex-direction:column; gap:6px; margin-bottom:1.8rem; }
+.moment {
+  display:flex; align-items:flex-start; gap:10px;
+  padding:11px 14px;
+  background:var(--cream);
+  border-radius:8px;
+  border-left:2px solid var(--sand-mid);
+}
+.moment-icon { flex-shrink:0; margin-top:3px; width:16px; height:16px; display:flex; align-items:center; justify-content:center; }
+.moment-text { font-size:13px; color:var(--ink-mid); line-height:1.55; font-weight:300; }
+.moment-text strong { font-weight:600; color:var(--ink); display:block; margin-bottom:2px; font-size:13px; }
+
+.btn-primary {
+  width:100%; padding:14px 24px;
+  background:var(--rust); color:white; border:none;
+  border-radius:10px; font-family:var(--font-body);
+  font-size:13px; font-weight:600; letter-spacing:.03em;
+  cursor:pointer; transition:all .15s;
+  box-shadow:0 2px 8px rgba(184,87,42,.25);
+}
+.btn-primary:hover { background:#a34a22; transform:translateY(-1px); box-shadow:0 4px 14px rgba(184,87,42,.3); }
+.btn-primary:disabled { opacity:.3; cursor:not-allowed; transform:none; box-shadow:none; }
+.btn-ghost {
+  padding:14px 18px; background:transparent; color:var(--ink-muted);
+  border:1.5px solid var(--border-mid); border-radius:10px;
+  font-family:var(--font-body); font-size:13px; cursor:pointer; transition:all .15s;
+}
+.btn-ghost:hover { border-color:var(--ink-muted); color:var(--ink-mid); }
+.btn-row { display:flex; gap:8px; }
+.btn-row .btn-primary { flex:1; width:auto; }
+
+.q-meta { font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:10px; }
+.q-label { font-family:var(--font-display); font-size:20px; font-weight:700; color:var(--ink); line-height:1.3; margin-bottom:6px; }
+.q-emotion { font-family:var(--font-display); font-size:14px; font-style:italic; color:var(--ink-muted); line-height:1.55; margin-bottom:1.4rem; }
+
+.options { display:flex; flex-direction:column; gap:7px; margin-bottom:1.6rem; }
+.opt {
+  background:var(--cream); border:1.5px solid transparent;
+  border-radius:10px; padding:13px 16px; cursor:pointer;
+  transition:all .15s; text-align:left; font-family:var(--font-body);
+  display:flex; gap:12px; align-items:flex-start;
+  box-shadow:var(--shadow-card);
+}
+.opt:hover { border-color:var(--sand-mid); background:var(--warm-white); transform:translateY(-1px); box-shadow:0 3px 10px rgba(28,26,24,.08); }
+.opt.selected { border-color:var(--rust); background:var(--rust-light); transform:translateY(-1px); box-shadow:0 3px 10px rgba(184,87,42,.12); }
+.opt-marker {
+  width:20px; height:20px; border-radius:50%;
+  border:1.5px solid var(--sand-mid); flex-shrink:0; margin-top:2px;
+  transition:all .15s; display:flex; align-items:center; justify-content:center;
+}
+.opt.selected .opt-marker { background:var(--rust); border-color:var(--rust); }
+.opt.selected .opt-marker::after { content:''; width:6px; height:6px; background:white; border-radius:50%; }
+.opt-main { font-size:13px; font-weight:500; color:var(--ink); line-height:1.35; margin-bottom:2px; }
+.opt-feel { font-size:12px; color:var(--ink-muted); font-weight:300; font-style:italic; line-height:1.4; }
+
+/* Results */
+.result-hero {
+  background:var(--ink); border-radius:12px; padding:1.6rem;
+  margin-bottom:1.4rem; position:relative; overflow:hidden;
+}
+.result-hero::before {
+  content:''; position:absolute; top:-40px; right:-40px;
+  width:160px; height:160px; border-radius:50%;
+  background:rgba(184,87,42,.12); pointer-events:none;
+}
+.rh-eyebrow { font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:10px; }
+.rh-score { font-family:var(--font-display); font-size:56px; font-weight:700; color:white; line-height:1; margin-bottom:6px; }
+.rh-score span { font-size:22px; color:rgba(255,255,255,.35); margin-left:4px; }
+.rh-verdict { font-family:var(--font-display); font-size:17px; font-style:italic; color:#e8a87c; margin-bottom:8px; line-height:1.3; }
+.rh-sub { font-size:13px; color:rgba(255,255,255,.5); font-weight:300; line-height:1.65; }
+
+.section-label { font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:12px; }
+.levers-section { margin-bottom:1.6rem; }
+.lever-row { display:flex; align-items:center; gap:10px; margin-bottom:11px; }
+.lever-rank { font-size:11px; font-weight:600; color:var(--ink-faint); width:16px; text-align:center; flex-shrink:0; }
+.lever-rank.top { color:var(--rust); }
+.lever-emoji { width:16px; height:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.lever-name { font-size:12px; font-weight:500; color:var(--ink-mid); width:120px; flex-shrink:0; }
+.lever-track { flex:1; height:5px; background:var(--sand); border-radius:3px; overflow:hidden; }
+.lever-fill { height:100%; border-radius:3px; transition:width 1s ease; }
+.lever-pct { font-size:11px; color:var(--ink-muted); width:32px; text-align:right; font-weight:500; }
+
+.priority-card {
+  background:var(--cream); border:1px solid var(--border);
+  border-radius:12px; padding:16px 18px; margin-bottom:8px;
+  box-shadow:var(--shadow-card);
+}
+.priority-card.top-pick {
+  background:var(--warm-white);
+  border-color:var(--rust-border);
+  border-left:3px solid var(--rust);
+}
+.pc-row { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:5px; }
+.pc-rank { font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); }
+.priority-card.top-pick .pc-rank { color:var(--rust); }
+.pc-badge { font-size:9px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; background:var(--rust-light); color:var(--rust); padding:3px 8px; border-radius:20px; border:1px solid var(--rust-border); }
+.pc-title { font-family:var(--font-display); font-size:16px; font-weight:700; color:var(--ink); margin-bottom:5px; line-height:1.3; }
+.pc-emotion { font-family:var(--font-display); font-size:13px; font-style:italic; color:var(--ink-muted); margin-bottom:8px; line-height:1.5; }
+.pc-desc { font-size:13px; color:var(--ink-mid); font-weight:300; line-height:1.6; margin-bottom:10px; }
+.pc-action { font-size:12px; font-weight:600; color:var(--rust); display:flex; align-items:center; gap:6px; }
+.pc-action::before { content:''; width:12px; height:1.5px; background:var(--rust); flex-shrink:0; }
+
+.cta-box { background:var(--sand); border-radius:12px; padding:1.4rem 1.6rem; border:1px solid var(--sand-mid); margin-top:1.4rem; }
+.cta-title { font-family:var(--font-display); font-size:18px; font-weight:700; color:var(--ink); margin-bottom:5px; }
+.cta-sub { font-size:13px; color:var(--ink-muted); font-weight:300; line-height:1.6; margin-bottom:14px; }
+.email-row { display:flex; gap:8px; }
+.email-input {
+  flex:1; padding:12px 14px; background:var(--warm-white);
+  border:1.5px solid var(--border-mid); border-radius:10px;
+  font-family:var(--font-body); font-size:13px; color:var(--ink);
+  outline:none; transition:border-color .15s;
+}
+.email-input:focus { border-color:var(--rust); }
+.email-input::placeholder { color:var(--ink-faint); }
+.email-input.error { border-color:#c0392b; }
+.btn-cta {
+  padding:12px 20px; background:var(--rust); color:white; border:none;
+  border-radius:10px; font-family:var(--font-body); font-size:13px;
+  font-weight:600; cursor:pointer; transition:all .15s;
+  white-space:nowrap; box-shadow:0 2px 8px rgba(184,87,42,.25);
+}
+.btn-cta:hover { background:#a34a22; transform:translateY(-1px); }
+
+.thanks-wrap { text-align:center; padding:1rem 0 .5rem; }
+.thanks-circle { width:60px; height:60px; border-radius:50%; background:var(--green-light); border:1px solid rgba(45,106,79,.2); display:flex; align-items:center; justify-content:center; margin:0 auto 1.2rem; font-size:24px; }
+.what-in { background:var(--cream); border-radius:10px; padding:1.2rem 1.4rem; margin-top:1.4rem; text-align:left; }
+.what-in-title { font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--rust); margin-bottom:10px; }
+.what-item { font-size:13px; color:var(--ink-mid); font-weight:300; line-height:1.9; display:flex; gap:8px; }
+.what-item::before { content:'-'; color:var(--ink-faint); flex-shrink:0; }
+
+/* Lever detail section */
+.lever-detail { animation: lift .38s ease; }
+.ld-divider { height:1px; background:var(--border); margin:1.4rem 0; }
+.ld-eyebrow { font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--rust); margin-bottom:10px; }
+.ld-headline { font-family:var(--font-display); font-size:18px; font-weight:700; color:var(--ink); line-height:1.3; margin-bottom:12px; }
+.ld-insight { font-size:13px; color:var(--ink-mid); font-weight:300; line-height:1.7; margin-bottom:10px; }
+.ld-step-box { background:var(--rust-light); border:1px solid var(--rust-border); border-left:3px solid var(--rust); border-radius:10px; padding:14px 16px; margin:1.2rem 0; }
+.ld-step-label { font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--rust); margin-bottom:6px; }
+.ld-step-text { font-size:13px; color:var(--ink); font-weight:400; line-height:1.65; }
+.ld-chapters-wrap { margin:1.2rem 0; }
+.ld-chapter { background:var(--cream); border:1px solid var(--border); border-radius:10px; padding:12px 14px; margin-bottom:8px; }
+.ld-chapter-num { font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:4px; }
+.ld-chapter-title { font-family:var(--font-display); font-size:14px; font-weight:700; color:var(--ink); margin-bottom:4px; }
+.ld-chapter-value { font-size:12px; color:var(--ink-mid); font-weight:300; line-height:1.55; }
+.ld-offer { background:var(--ink); border-radius:12px; padding:1.4rem 1.6rem; margin-top:1.4rem; }
+.ld-offer-label { font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:8px; }
+.ld-offer-title { font-family:var(--font-display); font-size:17px; font-weight:700; color:white; margin-bottom:6px; line-height:1.3; }
+.ld-offer-why { font-size:12px; color:rgba(255,255,255,.5); font-weight:300; line-height:1.65; margin-bottom:1.2rem; }
+.btn-ld-primary { display:block; width:100%; padding:13px 20px; background:var(--rust); color:white; border:none; border-radius:10px; font-family:var(--font-body); font-size:13px; font-weight:600; cursor:pointer; text-align:center; text-decoration:none; margin-bottom:8px; box-shadow:0 2px 8px rgba(184,87,42,.3); transition:all .15s; }
+.btn-ld-primary:hover { background:#a34a22; transform:translateY(-1px); }
+.btn-ld-secondary { display:block; width:100%; padding:12px 20px; background:transparent; color:rgba(255,255,255,.55); border:1.5px solid rgba(255,255,255,.15); border-radius:10px; font-family:var(--font-body); font-size:13px; cursor:pointer; text-align:center; text-decoration:none; transition:all .15s; }
+.btn-ld-secondary:hover { border-color:rgba(255,255,255,.3); color:rgba(255,255,255,.8); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top-stripe"></div>
+  <div class="inner">
+
+    <!-- INTRO -->
+    <div id="step-intro" class="step active">
+      <div class="eyebrow">Voor bedrijfseigenaars</div>
+      <div class="headline">Jij hebt dit bedrijf opgebouwd.<br>Werkt het ook <em>voor jou?</em></div>
+      <div class="subline">5 eerlijke vragen. Je krijgt een helder beeld van welke ene verandering - in leiderschap, systemen, sales of tijd - jou het meeste zou opleveren.</div>
+      <div class="moments">
+        <div class="moment">
+          <div class="moment-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="1,12 5,7 9,9 15,3" stroke="#b8572a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="10,3 15,3 15,8" stroke="#b8572a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="moment-text"><strong>De omzet stijgt, maar alles ook</strong>Meer klanten, meer problemen, meer van jouw tijd. Groei voelt als meer kosten dan opbrengsten.</div>
+        </div>
+        <div class="moment">
+          <div class="moment-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="2.5" stroke="#b8572a" stroke-width="1.5"/><path d="M3 14c0-2.76 2.24-5 5-5s5 2.24 5 5" stroke="#b8572a" stroke-width="1.5" stroke-linecap="round"/><path d="M10 2h4M12 4V0" stroke="#b8572a" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+          <div class="moment-text"><strong>Je hebt een team, maar doet nog alles zelf</strong>Het zijn goede mensen. Maar elke echte beslissing belandt nog altijd op jouw bureau.</div>
+        </div>
+        <div class="moment">
+          <div class="moment-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="4" width="14" height="9" rx="1.5" stroke="#b8572a" stroke-width="1.5"/><circle cx="8" cy="8.5" r="1.8" stroke="#b8572a" stroke-width="1.3"/><path d="M4 4V3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v1" stroke="#b8572a" stroke-width="1.3"/></svg></div>
+          <div class="moment-text"><strong>Er ligt meer omzet te wachten, onaangeroerd</strong>Leads die afkoelden. Klanten die niet terugkwamen. Aanvragen die niemand heeft opgevolgd.</div>
+        </div>
+        <div class="moment">
+          <div class="moment-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="10" cy="3" r="1.4" stroke="#b8572a" stroke-width="1.3"/><path d="M8.5 5.5L6 8l2 2-1.5 4" stroke="#b8572a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.5 5.5L11 7l2-1" stroke="#b8572a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.5 11l2-1" stroke="#b8572a" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="moment-text"><strong>Je bent gestopt met de dingen die je vroeger energie gaven</strong>De sportschool. De weekendjes weg. Het hobby dat niets met werk te maken had.</div>
+        </div>
+        <div class="moment">
+          <div class="moment-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 8A5.5 5.5 0 1 1 8 2.5" stroke="#b8572a" stroke-width="1.5" stroke-linecap="round"/><polyline points="8,1 11,2.5 8,4" stroke="#b8572a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="moment-text"><strong>Elk jaar zeg je dat dit jaar anders zal zijn</strong>Minder chaos. Meer strategie. Meer tijd. Het lukt nooit helemaal.</div>
+        </div>
+      </div>
+      <div style="font-family:var(--font-display);font-size:13px;font-style:italic;color:var(--ink-muted);margin-bottom:1.6rem;line-height:1.6;">Deze diagnose vindt welke hefboom je eerst moet inzetten, zodat je omzet kan groeien, beter kan leiden en een bedrijf kunt opbouwen dat jou je leven teruggeeft.</div>
+      <button class="btn-primary" onclick="startDiag()">Start mijn diagnose - 3 minuten</button>
+    </div>
+
+    <!-- QUESTIONS -->
+    <div id="step-q" class="step">
+      <div class="progress-wrap">
+        <div class="progress-meta">
+          <span class="prog-label" id="prog-step">Vraag 1 van 5</span>
+          <span class="prog-label" id="prog-theme"></span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:20%"></div></div>
+      </div>
+      <div class="q-meta" id="q-meta"></div>
+      <div class="q-label" id="q-label"></div>
+      <div class="q-emotion" id="q-emotion"></div>
+      <div class="options" id="q-opts"></div>
+      <div class="btn-row">
+        <button class="btn-ghost" id="btn-back" onclick="prevQ()">Terug</button>
+        <button class="btn-primary" id="btn-next" onclick="nextQ()" disabled>Verdergaan</button>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="step-result" class="step">
+      <div class="result-hero">
+        <div class="rh-eyebrow">Jouw bedrijfsimpact score</div>
+        <div class="rh-score" id="rh-score">0 <span>/ 100</span></div>
+        <div class="rh-verdict" id="rh-verdict"></div>
+        <div class="rh-sub" id="rh-sub"></div>
+      </div>
+      <div class="levers-section">
+        <div class="section-label">Waar jouw energie verloren gaat - gerangschikt</div>
+        <div id="lever-bars"></div>
+      </div>
+      <div class="section-label">Jouw topprioriteiten</div>
+      <div style="margin-bottom:8px;"></div>
+      <div id="priority-cards"></div>
+      <div id="lever-detail-section" style="display:none;"></div>
+      <div class="cta-box">
+        <div class="cta-title">Ontvang jouw volledig actieplan</div>
+        <div class="cta-sub">Een persoonlijke uitsplitsing voor jouw top 3 hefbomen, exacte volgende stappen, wat elk waard is en hoe een ander jaar eruit zou kunnen zien.</div>
+        <div class="email-row">
+          <input class="email-input" type="email" id="email-in" placeholder="Jouw e-mailadres">
+          <button class="btn-cta" onclick="claimPlan()">Stuur het</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- THANKS -->
+    <div id="step-thanks" class="step">
+      <div class="thanks-wrap">
+        <div class="thanks-circle">✓</div>
+        <div class="headline" style="font-size:22px;margin-bottom:8px;">Het is onderweg naar jouw inbox</div>
+        <div class="subline" style="margin-bottom:0;">Jouw persoonlijke strategieanalyse arriveert binnen enkele minuten.</div>
+        <div class="what-in">
+          <div class="what-in-title">Wat zit er in jouw analyse</div>
+          <div class="what-item">Jouw #1 hefboom met een helder 30-dagenactieplan</div>
+          <div class="what-item">Een eerlijke blik op wat het jou nu kost</div>
+          <div class="what-item">De exacte tools en stappen om het op te lossen</div>
+          <div class="what-item">Een aanbod om het samen door te nemen in een gratis gesprek van 20 minuten</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const questions = [
+  {
+    lever: 'time',
+    theme: 'Jouw tijd',
+    meta: 'Tijd en vrijheid',
+    label: 'Wanneer had je voor het laatst een volledige vrije dag, zonder berichten, zonder inchecken, zonder aan het bedrijf te denken?',
+    emotion: 'Niet een vakantie waarbij je "even snel checkte". Een echte dag.',
+    options: [
+      { main: 'Vorige week, ik heb echte grenzen.', feel: 'Tijd is beschermd, het bedrijf draait zonder mij', score: 0 },
+      { main: 'Een paar weken geleden, het lukt soms.', feel: 'Ik kan loskoppelen, maar niet consequent', score: 1 },
+      { main: 'Ik herinner het me eerlijk gezegd niet meer.', feel: 'Het bedrijf volgt me overal', score: 2 },
+      { main: 'Dat is voor mij nu niet echt mogelijk.', feel: 'Als ik stop, stopt alles', score: 3 },
+    ]
+  },
+  {
+    lever: 'leadership',
+    theme: 'Jouw rol',
+    meta: 'Leiderschap en team',
+    label: 'Als er iets misgaat in het bedrijf, wat gebeurt er dan doorgaans?',
+    emotion: 'Denk aan het laatste echte probleem, hoe werd het opgelost?',
+    options: [
+      { main: 'Mijn team lost het op. Ik hoor het achteraf.', feel: 'Systemen en mensen werken zonder mij', score: 0 },
+      { main: 'Iemand signaleert het en wacht op mijn telefoontje.', feel: 'Beslissingen lopen nog via mij', score: 1 },
+      { main: 'Ik ben het doorgaans die het als eerste opmerkt.', feel: 'Nog te diep in de operatie', score: 2 },
+      { main: 'Niets beweegt tenzij ik er rechtstreeks bij betrokken ben.', feel: 'Ik ben de bottleneck voor alles', score: 3 },
+    ]
+  },
+  {
+    lever: 'speed_to_lead',
+    theme: 'Jouw leads',
+    meta: 'Opvolgsnelheid',
+    label: 'Als er een nieuwe aanvraag binnenkomt, een formulier, een DM, een telefoontje, hoe snel reageert jouw bedrijf?',
+    emotion: 'Op een zaterdagnamiddag. Of op een dinsdagavond als jouw team naar huis is.',
+    options: [
+      { main: 'Binnen 5 minuten, automatisch.', feel: 'Een systeem handelt het eerste contact altijd af', score: 0 },
+      { main: 'Binnen het uur, doorgaans.', feel: 'Iemand pikt het op als ze het zien', score: 1 },
+      { main: 'Dezelfde dag, als er tijd is.', feel: 'Inconsistent, afhankelijk van wie er is', score: 2 },
+      { main: 'De volgende dag of later, het varieert.', feel: 'Leads koelen regelmatig af voor we ze bereiken', score: 3 },
+    ]
+  },
+  {
+    lever: 'marketing',
+    theme: 'Jouw zichtbaarheid',
+    meta: 'Online aanwezigheid',
+    label: 'Als je morgen alle actieve prospectie stopzet, geen referrals najagen, geen DMs, geen netwerking, wat zou er dan gebeuren?',
+    emotion: 'Eerlijk antwoord.',
+    options: [
+      { main: 'Pipeline blijft draaien. Inbound handelt het af.', feel: 'Sterke online aanwezigheid die op zichzelf werkt', score: 0 },
+      { main: 'Het zou vertragen, maar niet stoppen.', feel: 'Wat inbound, maar ik duw het nog mee', score: 1 },
+      { main: 'Het zou binnen een paar weken opdrogen.', feel: 'Bijna volledig afhankelijk van mijn directe inspanning', score: 2 },
+      { main: 'Het zou onmiddellijk stoppen.', feel: 'Ik ben de marketing. Er is geen systeem.', score: 3 },
+    ]
+  },
+  {
+    lever: 'sales',
+    theme: 'Jouw conversies',
+    meta: 'Verkoopconversie',
+    label: 'Als je in een echte gesprek komt met een potentiele klant die goed lijkt te passen, wat gebeurt er dan doorgaans?',
+    emotion: 'Denk aan jouw laatste 10 gesprekken.',
+    options: [
+      { main: 'De meeste kopen. Het proces werkt.', feel: '60%+ conversie, duidelijk en consistent', score: 0 },
+      { main: 'Ongeveer de helft. Hangt van de dag af.', feel: '40-60%, goed maar niet betrouwbaar', score: 1 },
+      { main: 'Misschien 1 op 4. Veel "ik denk er over na".', feel: '20-30%, de kloof tussen interesse en toewijding', score: 2 },
+      { main: 'Zelden. Goede gesprekken, weinig beslissingen.', feel: 'Onder 20%, er gaat iets mis', score: 3 },
+    ]
+  }
+];
+
+const leverConfig = {
+  time:          { label: 'Eigenaartijd',      icon: `<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.3"/><path d="M6 3.5V6l2 1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>`, color: '#b8572a' },
+  leadership:    { label: 'Leiderschap',      icon: `<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="6,1 7.8,4.2 11.5,4.8 9,7.2 9.5,11 6,9.2 2.5,11 3,7.2 0.5,4.8 4.2,4.2" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" fill="none"/></svg>`, color: '#8b4513' },
+  speed_to_lead: { label: 'Snelheid van opvolging',   icon: `<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M7 1L3 7h4l-2 4 6-7H7L9 1z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`, color: '#c0392b' },
+  marketing:     { label: 'Online aanwezigheid', icon: `<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M6 1v2M6 9v2M1 6h2M9 6h2M2.9 2.9l1.4 1.4M7.7 7.7l1.4 1.4M9.1 2.9L7.7 4.3M4.3 7.7L2.9 9.1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>`, color: '#2980b9' },
+  sales:         { label: 'Verkoopconversie',     icon: `<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 7l3 3 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`, color: '#16a085' },
+};
+
+const leverDetail = {
+  time: {
+    title: 'Koop jouw tijd terug',
+    emotion: '"Ik ben dit bedrijf niet gestart om meer te werken dan in loondienst."',
+    desc: 'Elke taak die alleen jij kan doen is een plafond op jouw groei en een kost voor jouw leven. Het doel is niet zomaar delegeren. Het is een bedrijf bouwen dat kan functioneren zonder jouw constante aanwezigheid, zodat je aanwezig kunt zijn voor wat er echt toe doet.',
+    action: 'Maak een lijst van alles wat je vorige week deed. Markeer wat alleen jij echt kunt doen. Al de rest wordt deze maand geautomatiseerd of gedelegeerd.'
+  },
+  leadership: {
+    title: 'Hou op de flessenhals te zijn',
+    emotion: '"Mijn team is geweldig, maar alles komt nog altijd terug naar mij."',
+    desc: 'Het bedrijf kan alleen groeien zo snel als jouw aandacht toelaat. Dat is geen mensen-probleem, het is een systeemprobleem. De oplossing is duidelijke beslissingsframeworks bouwen zodat jouw team kan handelen zonder op jou te wachten.',
+    action: 'Identificeer 3 terugkerende beslissingen die jouw team aan jou escaleert. Schrijf de criteria voor elk op. Geef ze deze week over.'
+  },
+  speed_to_lead: {
+    title: 'Laat nooit meer een lead afkoelen',
+    emotion: '"We hebben betaald voor die lead. Iemand antwoordde zes uur later."',
+    desc: 'HubSpot-onderzoek toont aan dat reageren binnen 5 minuten je 100x meer kans geeft om een lead te bereiken dan na 30 minuten. Trage reactie is jouw duurste verborgen kost: betaalde leads die afkoelen voor iemand met ze spreekt.',
+    action: 'Stel een geautomatiseerde eerste reactie in die binnen 60 seconden verstuurt, inclusief weekends en buiten kantooruren.'
+  },
+  marketing: {
+    title: 'Bouw iets dat werkt als jij het niet doet',
+    emotion: '"Als ik niet duw, droogt de pipeline op."',
+    desc: 'Doorverwijzingen zijn een startpunt, geen strategie. Een bedrijf dat afhankelijk is van jouw persoonlijke inspanning voor leads is kwetsbaar. De juiste online aanwezigheid werkt voor jou terwijl je bij je familie bent, op vakantie of slaapt.',
+    action: 'Identificeer jouw best converterende kanaal. Wijd er deze week 2 gerichte uren aan om het te verbeteren, systematiseer het daarna.'
+  },
+  sales: {
+    title: 'Sluit meer van de juiste gesprekken af',
+    emotion: '"Geweldig gesprek. Ze leken zo geinteresseerd. Dan niets."',
+    desc: 'De meeste conversie-problemen zijn geen overtuigingsprobleem, maar een kwalificatie- en framing-probleem. De juiste leads, met de juiste verwachtingen, aan de juiste prijs, sluiten zichzelf af. Dit oplossen heeft de snelste omzetimpact per geïnvesteerd uur.',
+    action: 'Bekijk jouw laatste 5 verloren deals. Vind het moment waarop het gesprek kantelde. Dat ene inzicht is jouw oplossing.'
+  }
+};
+
+let currentQ = 0;
+const answers = {};
+
+function startDiag() { go('step-q'); renderQ(0); }
+
+function renderQ(idx) {
+  const q = questions[idx];
+  document.getElementById('prog-step').textContent = 'Vraag ' + (idx+1) + ' van ' + questions.length;
+  document.getElementById('prog-theme').textContent = q.theme;
+  document.getElementById('q-meta').textContent = q.meta;
+  document.getElementById('q-label').textContent = q.label;
+  document.getElementById('q-emotion').textContent = q.emotion;
+  document.getElementById('prog-fill').style.width = ((idx+1)/questions.length*100) + '%';
+  document.getElementById('q-opts').innerHTML = q.options.map((o,i) => `
+    <button class="opt ${answers[q.lever]===i?'selected':''}" onclick="selectOpt(${i})">
+      <div class="opt-marker"></div>
+      <div>
+        <div class="opt-main">${o.main}</div>
+        <div class="opt-feel">${o.feel}</div>
+      </div>
+    </button>`).join('');
+  document.getElementById('btn-next').disabled = answers[q.lever] === undefined;
+  document.getElementById('btn-back').style.display = idx===0 ? 'none' : '';
+}
+
+function selectOpt(i) {
+  answers[questions[currentQ].lever] = i;
+  document.querySelectorAll('.opt').forEach((el,idx) => el.classList.toggle('selected', idx===i));
+  document.getElementById('btn-next').disabled = false;
+}
+
+function nextQ() {
+  if (currentQ < questions.length-1) { currentQ++; renderQ(currentQ); }
+  else showResults();
+}
+
+function prevQ() {
+  if (currentQ > 0) { currentQ--; renderQ(currentQ); }
+  else go('step-intro');
+}
+
+function showResults() {
+  go('step-result');
+  const scored = questions.map(q => ({
+    key: q.lever,
+    score: answers[q.lever] !== undefined ? q.options[answers[q.lever]].score : 0
+  })).sort((a,b) => b.score - a.score);
+
+  const total = scored.reduce((s,l) => s+l.score, 0);
+  const overallScore = Math.round((total / (questions.length*3)) * 100);
+
+  let n = 0;
+  const t = setInterval(() => {
+    n = Math.min(n+2, overallScore);
+    document.getElementById('rh-score').innerHTML = n + ' <span>/ 100</span>';
+    if (n >= overallScore) clearInterval(t);
+  }, 20);
+
+  const [verdict, sub] = overallScore < 25
+    ? ['Je hebt iets opgebouwd dat voor jou werkt.', 'De basis is solide. De winsten vanaf hier gaan over jouw tijd beschermen en ervoor zorgen dat dit zo blijft terwijl je groeit.']
+    : overallScore < 50
+    ? ['Goede basis, maar iets remt je af.', 'Echte sterktes hier, en een of twee plekken waar het bedrijf je meer kost dan het zou moeten. Het verbeteren van de topfactor heeft een buitenproportioneel effect op alles.']
+    : overallScore < 75
+    ? ['Het bedrijf runt jou meer dan jij het runt.', 'Meerdere dingen putten momenteel jouw tijd en energie uit. Je hoeft niet alles op te lossen. Los ze op in de juiste volgorde en de andere lossen zich vaak vanzelf op.']
+    : ['Je draagt te veel. Dit houdt geen stand.', 'Hoge scores over de hele lijn betekenen doorgaans één ding: het bedrijf werd gebouwd rondom jou, niet voor jou. Een gefocust kwartaal, de juiste dingen in volgorde oplossen, kan volledig veranderen hoe dit aanvoelt.'];
+
+  document.getElementById('rh-verdict').textContent = verdict;
+  document.getElementById('rh-sub').textContent = sub;
+
+  document.getElementById('lever-bars').innerHTML = scored.map((l,i) => {
+    const cfg = leverConfig[l.key];
+    const pct = Math.round((l.score/3)*100);
+    return `<div class="lever-row">
+      <div class="lever-rank ${i===0?'top':''}">${i+1}</div>
+      <div class="lever-emoji" style="color:${cfg.color}">${cfg.icon}</div>
+      <div class="lever-name">${cfg.label}</div>
+      <div class="lever-track"><div class="lever-fill" style="width:0%;background:${cfg.color}" data-target="${pct||4}"></div></div>
+      <div class="lever-pct">${pct}%</div>
+    </div>`;
+  }).join('');
+
+  setTimeout(() => {
+    document.querySelectorAll('.lever-fill').forEach(b => b.style.width = b.getAttribute('data-target')+'%');
+  }, 200);
+
+  document.getElementById('priority-cards').innerHTML = scored.slice(0,3).map((l,i) => {
+    const d = leverDetail[l.key];
+    return `<div class="priority-card ${i===0?'top-pick':''}">
+      <div class="pc-row">
+        <div class="pc-rank">Prioriteit ${i+1}</div>
+        ${i===0?'<div class="pc-badge">Grootste impact</div>':''}
+      </div>
+      <div class="pc-title">${d.title}</div>
+      <div class="pc-emotion">${d.emotion}</div>
+      <div class="pc-desc">${d.desc}</div>
+      <div class="pc-action">${d.action}</div>
+    </div>`;
+  }).join('');
+
+  renderLeverDetail(scored[0].key);
+}
+
+const leverFullDetail = {
+  time: {
+    eyebrow: 'Jouw #1 prioriteit · Eigenaartijd',
+    headline: 'Je bent de bottleneck voor je eigen groei',
+    insights: [
+      'Elke taak die via jou loopt is een plafond. Niet een tijdelijk probleem — een structurele rem op hoe snel je bedrijf kan groeien. Zolang jij de enige bent die bepaalde beslissingen neemt, kan het bedrijf niet sneller groeien dan jij het toelaat.',
+      'KMO-zaakvoerders besteden gemiddeld 41% van hun tijd aan taken die door anderen of systemen gedaan kunnen worden. Dat is bijna de helft van jouw week die naar operaties gaat in plaats van strategie — tijd die je niet terugkrijgt, maar wel kunt herwinnen.'
+    ],
+    step: {
+      label: 'Doe dit deze week',
+      text: 'Schrijf alle terugkerende taken op die jij deed vorige week. Markeer wat écht alleen jij kunt. Alles zonder markering is je eerste delegatieplan. Dat zijn de taken die je deze maand overdraagt of automatiseert.'
+    },
+    chapters: [
+      { num: 'Hoofdstuk 1', title: 'De Groeiladder', value: 'Waar sta jij nu in je groei, en welke aanpak hoort bij jouw fase. Dit is het startpunt om te begrijpen wat je als eerste loslaat.' },
+      { num: 'Hoofdstuk 2', title: 'Jouw maandelijkse omzetlek', value: 'Bereken precies wat een uur van jouw tijd waard is — en wat het delegeren van die uren je maandelijks extra oplevert.' },
+      { num: 'Hoofdstuk 9', title: '30-dagenplan · Scripts & sleutelcijfers', value: 'Een weekplanning met concrete takenoverdracht, scripts voor briefings en de KPI\'s die je opvolgt om te weten dat het systeem werkt.' }
+    ],
+    offer: {
+      label: 'Aanbevolen voor jouw situatie',
+      title: 'Het Businessgroei Actiehandboek · €97',
+      why: 'H1 t/m H9 zijn geschreven voor zaakvoerders die dit zelf willen uitvoeren in 30 dagen. Je hebt geen consultant nodig — je hebt een concreet stappenplan nodig. Voer de eerste stappen uit en het werkt niet, dan krijg je €97 terug.',
+      primaryText: 'Bestel het actiehandboek · €97',
+      primaryHref: 'https://leaditgrow.be/actiehandboek',
+      secondaryText: 'Of boek een gratis strategie gesprek van 20 min',
+      secondaryHref: 'https://leaditgrow.be/strategie'
+    }
+  },
+  leadership: {
+    eyebrow: 'Jouw #1 prioriteit · Leiderschap',
+    headline: 'Jouw team is niet het probleem. De beslissingsstructuur is het probleem.',
+    insights: [
+      'Zolang alles via jou loopt, kan het bedrijf alleen groeien zo snel als jij het toelaat. Dit is geen kwestie van betere mensen inhuren — het is een kwestie van duidelijkere kaders bouwen zodat je team kan handelen zonder op jou te wachten.',
+      'De meeste leiderschapsproblemen bij KMO\'s zitten niet in het gedrag van het team, maar in meetbare vaardigheden bij de zaakvoerder: hoe je feedback geeft, hoe je delegeert, hoe je prioriteert. Dit zijn aanpasbare vaardigheden, geen persoonlijkheidskenmerken.'
+    ],
+    step: {
+      label: 'Doe dit deze week',
+      text: 'Noteer de 3 beslissingen die vorige week via jou liepen en die iemand anders eigenlijk had kunnen nemen. Schrijf de criteria op die jij gebruikte om die beslissing te nemen. Dat zijn je eerste delegatiekaders — geef ze volgende week door.'
+    },
+    chapters: [
+      { num: 'Hoofdstuk 8', title: 'Impactvol leiderschap · de bottleneck ben jij', value: 'De meetbare soft skills die bepalen of je team jou nodig heeft voor elke beslissing. Inclusief een zelftest en de 3 leiderschapshefbomen die het snelst verschil maken.' }
+    ],
+    offer: {
+      label: 'Aanbevolen voor jouw situatie',
+      title: 'Gratis leiderschapsanalyse · 75 min · €350+ waarde',
+      why: 'Een persoonlijke analyse van 75 minuten die de exacte leiderschapshefbomen in jouw bedrijf blootlegt. KMO Portefeuille erkend — tot 40% terugbetaalbaar. Dit is de snelste manier om te achterhalen wat er precies speelt en wat de eerste stap is.',
+      primaryText: 'Boek de gratis leiderschapsanalyse',
+      primaryHref: 'https://leaditgrow.be/analyse',
+      secondaryText: 'Of bekijk H8 in het actiehandboek · €97',
+      secondaryHref: 'https://leaditgrow.be/actiehandboek'
+    }
+  },
+  speed_to_lead: {
+    eyebrow: 'Jouw #1 prioriteit · Snelheid van opvolging',
+    headline: 'Je betaalt voor leads die al afgekoeld zijn voor iemand ze bereikt',
+    insights: [
+      'Reageren binnen 5 minuten geeft je 100x meer kans om een lead te bereiken dan na 30 minuten. Na 2 uur daalt die kans met 90%. Dit is geen verkoopstrategie-probleem — het is een infrastructuurprobleem dat je 1 keer oplost.',
+      'Elke dag dat een aanvraag \'s avonds of in het weekend onbeantwoord blijft, is een dag waarop die lead actief op zoek gaat naar een alternatief. Je hebt al betaald voor die lead — via tijd, advertenties of mond-tot-mondreclame. Trage reactie maakt die investering waardeloos.'
+    ],
+    step: {
+      label: 'Meet dit nu',
+      text: 'Kijk hoelang het duurt voor een nieuwe aanvraag een eerste reactie krijgt — dit weekend, maandagochtend, buiten kantooruren. Dat getal is jouw baseline. Het doel: onder 5 minuten, automatisch, elke dag.'
+    },
+    chapters: [
+      { num: 'Hoofdstuk 3', title: 'Speed-to-lead · de 5-minutenregel', value: 'Exact hoe je een automatische eerste reactie instelt die binnen 60 seconden verstuurt, inclusief de scripts die converteren en de tools die je 1 keer configureert.' },
+      { num: 'Hoofdstuk 4', title: 'Pipeline-opvolging · 5-staps sequentie', value: 'Wat te doen na de eerste reactie: de 5 contactmomenten die ervoor zorgen dat leads niet meer wegglippen, met kant-en-klare e-mailscripts per stap.' }
+    ],
+    offer: {
+      label: 'Aanbevolen voor jouw situatie',
+      title: 'Het Businessgroei Actiehandboek · €97',
+      why: 'H3 en H4 bevatten de exacte scripts, tool-configuraties en stap-voor-stap instructies. Je kan dit systeem binnen 14 dagen geïnstalleerd hebben — zonder ontwikkelaar, zonder duur CRM. Met de 21-dagen geld-terug-garantie als je de stappen uitvoert.',
+      primaryText: 'Bestel het actiehandboek · €97',
+      primaryHref: 'https://leaditgrow.be/actiehandboek',
+      secondaryText: 'Of boek een gratis strategie gesprek van 20 min',
+      secondaryHref: 'https://leaditgrow.be/strategie'
+    }
+  },
+  marketing: {
+    eyebrow: 'Jouw #1 prioriteit · Online aanwezigheid',
+    headline: 'Als jij stopt, stopt de pipeline',
+    insights: [
+      'Een bedrijf dat afhankelijk is van jouw persoonlijk netwerk voor leads is kwetsbaar. Niet omdat doorverwijzingen slecht zijn — maar omdat ze niet schaalbaar en niet voorspelbaar zijn. De maanden die goed gaan zijn de maanden dat jij actief bent. Dat is geen groeistrategie, dat is een hamsterwiel.',
+      'De waarde van een online systeem zit niet in het bereik, maar in de voorspelbaarheid. Een funnel die 3 gekwalificeerde leads per week genereert terwijl jij op vakantie bent, is meer waard dan 10 warme contacten die afhangen van jouw energie die week.'
+    ],
+    step: {
+      label: 'Doe dit deze week',
+      text: 'Kijk naar je laatste 10 klanten. Hoeveel kwamen via een kanaal dat werkt zonder dat jij er actief iets voor deed? Dat getal is je online baseline. Alles onder 30% is een structureel risico voor je bedrijf.'
+    },
+    chapters: [
+      { num: 'Hoofdstuk 5', title: 'Online aanwezigheid · funnel & data', value: 'Welk online kanaal werkt voor jouw sector, hoe je een eenvoudige funnel bouwt die leads kwalificeert voor ze bij jou belanden, en welke 3 cijfers je wekelijks opvolgt.' },
+      { num: 'Hoofdstuk 7', title: 'Groeimotoren · doorverwijzingen & GTM', value: 'Hoe je van sporadische doorverwijzingen een systematisch kanaal maakt, inclusief de go-to-market aanpak per groeifase.' }
+    ],
+    offer: {
+      label: 'Aanbevolen voor jouw situatie',
+      title: 'Het Businessgroei Actiehandboek · €97',
+      why: 'H5 en H7 bouwen samen een systeem dat voor jou werkt ook als je er niet actief aan werkt. H9 bevat het 30-dagenplan om het te implementeren. Met de 21-dagen geld-terug-garantie als je de stappen uitvoert.',
+      primaryText: 'Bestel het actiehandboek · €97',
+      primaryHref: 'https://leaditgrow.be/actiehandboek',
+      secondaryText: 'Of boek een gratis strategie gesprek van 20 min',
+      secondaryHref: 'https://leaditgrow.be/strategie'
+    }
+  },
+  sales: {
+    eyebrow: 'Jouw #1 prioriteit · Verkoopconversie',
+    headline: 'Goede gesprekken die niet sluiten zijn een kwalificatieprobleem, geen overtuigingsprobleem',
+    insights: [
+      'De meeste conversie-problemen zitten niet in het sluiten — ze zitten in de 10 minuten daarvoor. De juiste lead, met de juiste verwachting, op de juiste prijs, sluit zichzelf af. Als goede gesprekken niet leiden tot beslissingen, is er iets mis vroeger in het gesprek dan je denkt.',
+      '"Ik denk er over na" betekent bijna altijd: ik weet nog niet zeker wat ik koop, of ik zie de waarde niet helder genoeg. Dat is niet een bezwaar om te overwinnen — het is een signaal dat de kwalificatie niet compleet was.'
+    ],
+    step: {
+      label: 'Doe dit deze week',
+      text: 'Bekijk je laatste 5 verloren deals. Schrijf op wanneer het gesprek kantelde — niet aan het einde, maar het moment waarop je voelde dat het moeizamer werd. Dat moment is jouw omzetlek.'
+    },
+    chapters: [
+      { num: 'Hoofdstuk 6', title: 'Sluitingspercentage · discovery-kader', value: 'Het volledige conversiegesprek kader: hoe je kwalificeert voor je een offerte maakt, welke vragen je stelt, en hoe je de beslissing naar voren haalt zonder druk te zetten.' },
+      { num: 'Hoofdstuk 4', title: 'Pipeline-opvolging · 5-staps sequentie', value: 'Wat te doen als iemand zegt "ik denk er over na": de exacte opvolgsequentie die deals heropent zonder opdringerig te zijn.' }
+    ],
+    offer: {
+      label: 'Aanbevolen voor jouw situatie',
+      title: 'Het Businessgroei Actiehandboek · €97',
+      why: 'H6 bevat het volledige conversiegesprek kader. H4 de opvolgsequentie voor deals die stilvallen. Dit is het hoofdstuk met de snelste ROI per geïnvesteerd uur — de meeste zaakvoerders zien resultaat binnen de eerste week. Met de 21-dagen geld-terug-garantie.',
+      primaryText: 'Bestel het actiehandboek · €97',
+      primaryHref: 'https://leaditgrow.be/actiehandboek',
+      secondaryText: 'Of boek een gratis strategie gesprek van 20 min',
+      secondaryHref: 'https://leaditgrow.be/strategie'
+    }
+  }
+};
+
+function renderLeverDetail(key) {
+  const d = leverFullDetail[key];
+  const sec = document.getElementById('lever-detail-section');
+  sec.innerHTML = `<div class="lever-detail">
+    <div class="ld-divider"></div>
+    <div class="ld-eyebrow">${d.eyebrow}</div>
+    <div class="ld-headline">${d.headline}</div>
+    ${d.insights.map(i => `<p class="ld-insight">${i}</p>`).join('')}
+    <div class="ld-step-box">
+      <div class="ld-step-label">${d.step.label}</div>
+      <div class="ld-step-text">${d.step.text}</div>
+    </div>
+    <div class="ld-chapters-wrap">
+      <div class="section-label" style="margin-bottom:10px;">Welke hoofdstukken dit oplossen</div>
+      ${d.chapters.map(c => `<div class="ld-chapter">
+        <div class="ld-chapter-num">${c.num}</div>
+        <div class="ld-chapter-title">${c.title}</div>
+        <div class="ld-chapter-value">${c.value}</div>
+      </div>`).join('')}
+    </div>
+    <div class="ld-offer">
+      <div class="ld-offer-label">${d.offer.label}</div>
+      <div class="ld-offer-title">${d.offer.title}</div>
+      <div class="ld-offer-why">${d.offer.why}</div>
+      <a href="${d.offer.primaryHref}" class="btn-ld-primary">${d.offer.primaryText}</a>
+      <a href="${d.offer.secondaryHref}" class="btn-ld-secondary">${d.offer.secondaryText}</a>
+    </div>
+  </div>`;
+  sec.style.display = 'block';
+}
+
+function go(id) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function claimPlan() {
+  const email = document.getElementById('email-in');
+  if (!email.value || !email.value.includes('@')) { email.classList.add('error'); return; }
+  email.classList.remove('error');
+  // TODO: fetch('https://your-webhook.com', { method:'POST', body: JSON.stringify({ email: email.value }) })
+  go('step-thanks');
+}
+</script>
+</body>
+</html>
