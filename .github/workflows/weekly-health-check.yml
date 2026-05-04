@@ -1,0 +1,59 @@
+name: Weekly Health Check
+
+on:
+  schedule:
+    - cron: '0 7 * * 1'  # Elke maandag 8u Belgische tijd (7u UTC)
+  workflow_dispatch:       # Ook manueel te starten via GitHub Actions tab
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check alle endpoints
+        id: checks
+        run: |
+          check_url() {
+            local label="$1"
+            local url="$2"
+            local expected="$3"
+            local method="${4:-GET}"
+            local body="${5:-}"
+
+            if [ "$method" = "POST" ]; then
+              actual=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$url" -H "Content-Type: application/json" -d "$body")
+            else
+              actual=$(curl -s -o /dev/null -w "%{http_code}" "$url")
+            fi
+
+            if [ "$actual" = "$expected" ]; then
+              echo "✅ $label — $actual"
+              echo "row_${label//[^a-z]/_}=✅ $label | $actual | OK" >> $GITHUB_OUTPUT
+            else
+              echo "❌ $label — verwacht $expected, kreeg $actual"
+              echo "row_${label//[^a-z]/_}=❌ $label | $actual | Verwacht $expected" >> $GITHUB_OUTPUT
+              echo "FAILURE=true" >> $GITHUB_OUTPUT
+            fi
+          }
+
+          check_url "Landing page" "https://www.leaditgrow.be/leiderschap-landingspagina.html" "200"
+          check_url "Diagnostic" "https://www.leaditgrow.be/business-impact-diagnostic-nl.html" "200"
+          check_url "Actiehandboek" "https://www.leaditgrow.be/actiehandboek" "200"
+          check_url "Stripe webhook" "https://www.leaditgrow.be/api/stripe/webhook" "400" "POST" "{}"
+          check_url "Diagnostic API" "https://www.leaditgrow.be/api/diagnostic" "405"
+
+      - name: Stuur rapport via Resend
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: |
+          DATE=$(date '+%d %B %Y' --locale=nl_NL 2>/dev/null || date '+%d %m %Y')
+          STATUS="${{ steps.checks.outputs.FAILURE == 'true' && '⚠️ Aandacht nodig' || '✅ Alles OK' }}"
+
+          curl -s -X POST "https://api.resend.com/emails" \
+            -H "Authorization: Bearer $RESEND_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"from\": \"Lead it, Grow System <jeroen@leaditgrow.be>\",
+              \"to\": [\"jeroen@leaditgrow.be\"],
+              \"subject\": \"Weekly health check — $DATE — $STATUS\",
+              \"html\": \"<div style='font-family:sans-serif;max-width:560px;margin:0 auto;padding:32px 16px'><h2 style='color:#3d3929'>Weekly health check</h2><p style='color:#83827d'>$DATE</p><table width='100%' style='border-collapse:collapse;margin:24px 0'><tr style='background:#f5f3ee'><th style='text-align:left;padding:10px 14px;font-size:12px;color:#83827d'>Endpoint</th><th style='padding:10px 14px;font-size:12px;color:#83827d'>Status</th><th style='padding:10px 14px;font-size:12px;color:#83827d'>Resultaat</th></tr><tr><td style='padding:10px 14px;font-size:13px;border-bottom:1px solid #f0ede6'>Landing page</td><td style='padding:10px 14px;text-align:center'>200</td><td style='padding:10px 14px;text-align:center'>${{ steps.checks.outputs.FAILURE == 'true' && '❌' || '✅' }}</td></tr><tr><td style='padding:10px 14px;font-size:13px;border-bottom:1px solid #f0ede6'>Diagnostic</td><td style='padding:10px 14px;text-align:center'>200</td><td style='padding:10px 14px;text-align:center'>${{ steps.checks.outputs.FAILURE == 'true' && '❌' || '✅' }}</td></tr><tr><td style='padding:10px 14px;font-size:13px;border-bottom:1px solid #f0ede6'>Actiehandboek</td><td style='padding:10px 14px;text-align:center'>200</td><td style='padding:10px 14px;text-align:center'>${{ steps.checks.outputs.FAILURE == 'true' && '❌' || '✅' }}</td></tr><tr><td style='padding:10px 14px;font-size:13px;border-bottom:1px solid #f0ede6'>Stripe webhook</td><td style='padding:10px 14px;text-align:center'>400</td><td style='padding:10px 14px;text-align:center'>${{ steps.checks.outputs.FAILURE == 'true' && '❌' || '✅' }}</td></tr></table><p style='font-size:12px;color:#b4b2a7'>Lead it, Grow · automatisch rapport</p></div>\"
+            }"
