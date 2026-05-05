@@ -1,0 +1,25 @@
+name: Gmail Poll — Reply Processing
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # Every 30 minutes
+  workflow_dispatch:          # Manueel te starten voor tests
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Process inbound replies
+        run: |
+          response=$(curl -s -w "\n%{http_code}" -X POST \
+            "https://www.leaditgrow.be/api/gmail-webhook?secret=${{ secrets.GMAIL_WEBHOOK_SECRET }}")
+          body=$(echo "$response" | head -n -1)
+          code=$(echo "$response" | tail -n 1)
+          echo "HTTP $code"
+          echo "$body"
+          if [ "$code" != "200" ]; then
+            echo "Fout bij verwerken replies: HTTP $code"
+            exit 1
+          fi
+          processed=$(echo "$body" | grep -o '"processed":[0-9]*' | grep -o '[0-9]*' || echo "0")
+          echo "Verwerkt: $processed replies"
