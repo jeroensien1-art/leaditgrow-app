@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import { useRouter } from 'next/navigation'
 import { ArrowRight, Calendar, Reply } from 'lucide-react'
 import { useLang } from '@/components/lang-context'
 import { Turnstile } from '@marsidev/react-turnstile'
@@ -41,6 +42,7 @@ function FieldInput({ ...props }: React.InputHTMLAttributes<HTMLInputElement>) {
 export function Contact() {
   const { t, lang } = useLang()
   const nl = lang === 'nl'
+  const router = useRouter()
 
   // — Contact form —
   const [sent, setSent] = useState(false)
@@ -85,7 +87,7 @@ export function Contact() {
         body: JSON.stringify({ name, email, website: noWebsite ? 'geen website' : website, message, turnstileToken }),
       })
       if (!res.ok) throw new Error('Failed')
-      setSent(true)
+      router.push('/bedankt/contact')
     } catch {
       setError(t('Er ging iets mis. Probeer het opnieuw.', 'Something went wrong. Please try again.'))
       turnstileRef.current?.reset()
@@ -115,8 +117,8 @@ export function Contact() {
         }),
       })
     } catch { /* fire and forget */ }
-    setBookSent(true)
     setBookSending(false)
+    router.push('/bedankt/gesprek')
   }
 
   const cardBase = {

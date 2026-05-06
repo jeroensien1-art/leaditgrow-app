@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { useLang } from '@/components/lang-context'
 
 type Step = 'intro' | 'context' | 'questions' | 'results' | 'capture' | 'thanks'
@@ -456,6 +457,7 @@ const css = `
 export default function DiagnosticPage() {
   const { lang } = useLang()
   const nl = lang === 'nl'
+  const router = useRouter()
 
   const contextQuestions = nl ? contextQuestionsNl : contextQuestionsEn
   const questions        = nl ? questionsNl        : questionsEn
@@ -522,8 +524,8 @@ export default function DiagnosticPage() {
     if (typeof window !== 'undefined' && (window as any).fbq) {
       (window as any).fbq('track', 'Lead')
     }
-    setStep('thanks')
     setSubmitting(false)
+    router.push('/bedankt/analyse')
   }
 
   const ctxSelected = ctxAnswers[contextQuestions[ctxIndex].id as keyof ContextAnswers]

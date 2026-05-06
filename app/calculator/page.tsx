@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import { useRouter } from 'next/navigation'
 import { ArrowRight, TrendingDown } from 'lucide-react'
 import { Nav } from '@/components/nav'
 import { useLang } from '@/components/lang-context'
@@ -118,6 +119,7 @@ type Step = 'q1' | 'q2' | 'results' | 'thanks'
 export default function CalculatorPage() {
   const { lang } = useLang()
   const nl = lang === 'nl'
+  const router = useRouter()
 
   const [step, setStep] = useState<Step>('q1')
   const [leads, setLeads] = useState('')
@@ -171,8 +173,8 @@ export default function CalculatorPage() {
         }),
       })
     } catch { /* fire and forget */ }
-    setStep('thanks')
     setSubmitting(false)
+    router.push('/bedankt/calculator')
   }
 
   const progressPct = step === 'q1' ? 25 : step === 'q2' ? 60 : step === 'results' ? 90 : 100
