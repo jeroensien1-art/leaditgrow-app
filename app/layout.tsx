@@ -78,6 +78,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           src="https://consentease.io/api/consent/4byewd8k045a/script.js?v=1776284702523"
           strategy="afterInteractive"
         />
+        {/* Google Analytics 4 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-GT2FLZG377"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-config" strategy="afterInteractive">{`
+          gtag('config', 'G-GT2FLZG377');
+        `}</Script>
         {/* Meta Pixel — loads before other scripts */}
         <Script id="meta-pixel" strategy="beforeInteractive">{`
           !function(f,b,e,v,n,t,s)
