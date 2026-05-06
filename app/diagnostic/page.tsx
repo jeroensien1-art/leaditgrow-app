@@ -524,8 +524,14 @@ export default function DiagnosticPage() {
     if (typeof window !== 'undefined' && (window as any).fbq) {
       (window as any).fbq('track', 'Lead')
     }
+    const leverSlugs: Record<string, string> = {
+      time: 'tijd', leadership: 'team', speed: 'opvolging',
+      pipeline: 'pipeline', presence: 'aanwezigheid', close: 'verkoop', retention: 'retentie',
+    }
+    const topLever = scored[0]?.key ?? 'tijd'
+    const slug = leverSlugs[topLever] ?? 'tijd'
     setSubmitting(false)
-    router.push('/bedankt/analyse')
+    router.push(`/resultaat/${slug}`)
   }
 
   const ctxSelected = ctxAnswers[contextQuestions[ctxIndex].id as keyof ContextAnswers]
