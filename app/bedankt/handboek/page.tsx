@@ -1,11 +1,18 @@
 'use client'
 
+import { useEffect } from 'react'
 import { useLang } from '@/components/lang-context'
 import { Nav } from '@/components/nav'
 import Link from 'next/link'
 
 export default function BedanktHandboek() {
   const { t } = useLang()
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'Lead', { content_name: 'handboek' })
+    }
+  }, [])
   return (
     <>
       <Nav />

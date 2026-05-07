@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import { useLang } from '@/components/lang-context'
 import { useParams } from 'next/navigation'
 import { LogoFull } from '@/components/ui/logo-mark'
@@ -350,6 +351,12 @@ export default function ResultaatPage() {
   const slug = params.lever as string
 
   const data = (isNl ? nl : en)[slug]
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'Lead', { content_name: slug })
+    }
+  }, [slug])
 
   if (!data || !VALID_SLUGS.includes(slug)) {
     return (

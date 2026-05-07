@@ -521,9 +521,6 @@ export default function DiagnosticPage() {
         body: JSON.stringify({ name, email, website: noWebsite ? 'geen website' : website, context: ctxAnswers, answers, score: overallScore, topLevers: scored.map(s => s.key) }),
       })
     } catch { /* fire and forget */ }
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'Lead')
-    }
     const leverSlugs: Record<string, string> = {
       time: 'tijd', leadership: 'team', speed: 'opvolging',
       pipeline: 'pipeline', presence: 'aanwezigheid', close: 'verkoop', retention: 'retentie',
