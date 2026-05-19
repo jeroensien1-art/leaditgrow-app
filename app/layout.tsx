@@ -100,6 +100,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           s.parentNode.insertBefore(t,s)}(window, document,'script',
           'https://connect.facebook.net/en_US/fbevents.js');
           fbq('init', '2729309197433764');
+          fbq('init', '1666463137891471');
           fbq('track', 'PageView');
         `}</Script>
       </head>
