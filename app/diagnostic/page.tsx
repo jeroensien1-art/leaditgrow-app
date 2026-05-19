@@ -472,6 +472,7 @@ export default function DiagnosticPage() {
   const [answers, setAnswers]     = useState<Record<string, number>>({})
   const [name, setName]           = useState('')
   const [email, setEmail]         = useState('')
+  const [phone, setPhone]         = useState('')
   const [website, setWebsite]     = useState('')
   const [noWebsite, setNoWebsite] = useState(false)
   const [submitting, setSubmitting] = useState(false)
@@ -503,7 +504,7 @@ export default function DiagnosticPage() {
   const startResults = () => {
     setStep('results')
     let n = 0
-    const target = overallScore
+    const target = 100 - overallScore
     const timer = setInterval(() => {
       n = Math.min(n + 2, target)
       setAnimScore(n)
@@ -518,17 +519,20 @@ export default function DiagnosticPage() {
       await fetch('/api/diagnostic', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, website: noWebsite ? 'geen website' : website, context: ctxAnswers, answers, score: overallScore, topLevers: scored.map(s => s.key) }),
+        body: JSON.stringify({ name, email, phone, website: noWebsite ? 'geen website' : website, context: ctxAnswers, answers, score: overallScore, topLevers: scored.map(s => s.key) }),
       })
     } catch { /* fire and forget */ }
     const leverSlugs: Record<string, string> = {
-      time: 'tijd', leadership: 'team', speed: 'opvolging',
-      pipeline: 'pipeline', presence: 'aanwezigheid', close: 'verkoop', retention: 'retentie',
+      time: 'tijd', leadership: 'team', speed_to_lead: 'opvolging',
+      pipeline: 'pipeline', marketing: 'aanwezigheid', sales: 'verkoop', retention: 'retentie',
     }
     const topLever = scored[0]?.key ?? 'tijd'
     const slug = leverSlugs[topLever] ?? 'tijd'
+    if (typeof window !== 'undefined' && typeof (window as unknown as Record<string, unknown>).fbq === 'function') {
+      ;(window as unknown as Record<string, (...a: unknown[]) => void>).fbq('track', 'Lead')
+    }
     setSubmitting(false)
-    router.push(`/resultaat/${slug}`)
+    setTimeout(() => router.push(`/resultaat/${slug}`), 300)
   }
 
   const ctxSelected = ctxAnswers[contextQuestions[ctxIndex].id as keyof ContextAnswers]
@@ -549,12 +553,12 @@ export default function DiagnosticPage() {
     back:           nl ? 'Terug'             : 'Back',
     continue:       nl ? 'Verder'            : 'Continue',
     seeResults:     nl ? 'Bekijk mijn resultaten' : 'See my results',
-    scoreLabel:     nl ? 'Jouw bedrijfsimpact score' : 'Your business impact score',
+    scoreLabel:     nl ? 'Jouw sterkte score' : 'Your strength score',
     energyLost:     nl ? 'Waar jouw energie verloren gaat, gerangschikt' : 'Where your energy is being lost, ranked',
     topPriorities:  nl ? 'Jouw top prioriteiten' : 'Your top priorities',
     priority:       nl ? 'Prioriteit'        : 'Priority',
     biggestImpact:  nl ? 'Grootste impact'   : 'Biggest impact',
-    ctaTitle:       nl ? 'Ontvang jouw persoonlijk 30-dagenplan' : 'Get your personalised 30-day action plan',
+    ctaTitle:       nl ? 'Ontvang jouw persoonlijk actierapport' : 'Get your personalised action report',
     ctaSub:         nl ? 'Een volledig overzicht van jouw top 3 hiaten, exacte volgende stappen, wat elk je kost, en een persoonlijk plan om het op te lossen.' : 'A full breakdown of your top 3 gaps, exact next steps, what each is costing you, and a personalised plan to fix it.',
     getFreeReport:  nl ? 'Ontvang mijn gratis rapport' : 'Get my free report',
     almostThere:    nl ? 'Bijna klaar'       : 'Almost there',
@@ -570,8 +574,8 @@ export default function DiagnosticPage() {
     thanksSubline:  nl ? 'Jouw persoonlijk strategieoverzicht is binnen minuten bij je. Check ook je spammap.' : 'Your personalised strategy breakdown will be with you within minutes. Check your spam folder too.',
     whatInTitle:    nl ? 'Wat zit er in jouw rapport' : 'What is in your report',
     whatItems:      nl
-      ? ['Jouw #1 hefboom met een eerlijke diagnose van wat het je kost', 'Jouw top 3 oplossingen, specifiek voor jouw type en grootte bedrijf', 'Een 30-dagenplan met een actie per dag', 'Branchespecifieke scripts en templates die je direct kunt gebruiken']
-      : ['Your #1 lever with an honest diagnosis of what it is costing you', 'Your top 3 fixes, specific to your business type and size', 'A 30-day implementation plan with one action per day', 'Industry-specific scripts and templates you can use immediately'],
+      ? ['Jouw #1 hefboom met een eerlijke diagnose van wat het je kost', 'Jouw top 3 oplossingen, specifiek voor jouw type en grootte bedrijf', 'Concrete acties om de komende 14 dagen mee te starten', 'Branchespecifieke scripts en templates die je direct kunt gebruiken']
+      : ['Your #1 lever with an honest diagnosis of what it is costing you', 'Your top 3 fixes, specific to your business type and size', 'Concrete actions to start on in the next 14 days', 'Industry-specific scripts and templates you can use immediately'],
   }
 
   return (
@@ -725,6 +729,8 @@ export default function DiagnosticPage() {
                 <input className="text-input" type="text" placeholder={T.firstName} value={name} onChange={e => setName(e.target.value)} />
                 <label className="field-label">{T.emailAddress}</label>
                 <input className="text-input" type="email" placeholder="you@email.com" value={email} onChange={e => setEmail(e.target.value)} />
+                <label className="field-label">{nl ? 'Telefoonnummer' : 'Phone number'} <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0, fontSize: 11 }}>({nl ? 'optioneel' : 'optional'})</span></label>
+                <input className="text-input" type="tel" placeholder={nl ? '+32 ...' : '+32 ...'} value={phone} onChange={e => setPhone(e.target.value)} />
                 <label className="field-label">{nl ? 'Website' : 'Website'} <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0, fontSize: 11 }}>({nl ? 'optioneel' : 'optional'})</span></label>
                 <input
                   className="text-input"
@@ -797,12 +803,12 @@ export default function DiagnosticPage() {
             {(nl ? [
               ['Is de diagnose echt gratis?', 'Ja. De diagnose en het persoonlijk rapport zijn volledig gratis. Er is geen verkoopsgesprek aan gekoppeld.'],
               ['Hoe lang duurt de diagnose?', 'De meeste zaakvoerders ronden de diagnose af in 4 tot 6 minuten. Er zijn 4 contextvragen en 7 scoringsvragen.'],
-              ['Wat ontvang ik na de diagnose?', 'Je ontvangt een persoonlijk rapport met jouw bedrijfsimpactscore, jouw top 3 groeihefbomen op prioriteit, en een concreet 30-dagenactieplan per gap. Afgeleverd per e-mail binnen enkele minuten.'],
+              ['Wat ontvang ik na de diagnose?', 'Je ontvangt een persoonlijk rapport met jouw sterkte score, jouw top 3 groeihefbomen op prioriteit, en concrete actiestappen per gap om de komende 14 dagen mee aan de slag te gaan. Afgeleverd per e-mail binnen enkele minuten.'],
               ['Wat zijn de 7 groeihefbomen?', 'Tijd van de zaakvoerder, leiderschap en team, snelheid van opvolging, pipeline en nurture, online aanwezigheid en marketing, sluitingspercentage en klantbehoud en doorverwijzingen.'],
             ] : [
               ['Is the diagnostic really free?', 'Yes. The diagnostic and the personalised report are completely free. There is no sales call attached.'],
               ['How long does the diagnostic take?', 'Most business owners complete it in 4 to 6 minutes. There are 4 context questions and 7 scored questions.'],
-              ['What do I receive after the diagnostic?', 'You receive a personalised report with your business impact score, your top 3 growth levers by priority, and a concrete 30-day action plan per gap. Delivered by email within minutes.'],
+              ['What do I receive after the diagnostic?', 'You receive a personalised report with your strength score, your top 3 growth levers by priority, and concrete action steps per gap to act on in the next 14 days. Delivered by email within minutes.'],
               ['What are the 7 growth levers?', 'Owner time freedom, leadership and team, speed-to-lead, pipeline and follow-up, online presence and marketing, sales close rate, and client retention and referrals.'],
             ]).map(([q, a]) => (
               <div key={q as string}>
