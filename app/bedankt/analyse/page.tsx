@@ -24,8 +24,8 @@ export default function BedanktAnalyse() {
           </h1>
           <p style={{ color: '#555', fontSize: '1.05rem', lineHeight: 1.7, marginBottom: '2rem' }}>
             {t(
-              'Check je inbox (en spammap) voor jouw persoonlijk 30-dagenplan. Gemiddeld binnen 5 minuten.',
-              'Check your inbox (and spam folder) for your personalised 30-day action plan. Usually within 5 minutes.'
+              'Check je inbox (en spammap) voor jouw persoonlijk actierapport met concrete stappen voor de komende 14 dagen. Gemiddeld binnen 5 minuten.',
+              'Check your inbox (and spam folder) for your personalised action report with concrete steps for the next 14 days. Usually within 5 minutes.'
             )}
           </p>
           <Link href="/" style={{ display: 'inline-block', background: '#c95d3b', color: '#fff', padding: '0.75rem 1.75rem', borderRadius: 8, fontWeight: 600, textDecoration: 'none' }}>

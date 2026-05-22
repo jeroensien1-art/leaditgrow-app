@@ -128,6 +128,7 @@ export default function CalculatorPage() {
   const [followup, setFollowup] = useState('')
   const [captureName, setCaptureName] = useState('')
   const [captureEmail, setCaptureEmail] = useState('')
+  const [capturePhone, setCapturePhone] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
   const result = useMemo(() => calcLeak(leads, deal, speed, followup), [leads, deal, speed, followup])
@@ -161,6 +162,7 @@ export default function CalculatorPage() {
         body: JSON.stringify({
           name: captureName,
           email: captureEmail,
+          phone: capturePhone,
           lang: nl ? 'nl' : 'en',
           leads,
           deal,
@@ -346,6 +348,14 @@ export default function CalculatorPage() {
                       placeholder="you@email.com"
                       value={captureEmail}
                       onChange={e => setCaptureEmail(e.target.value)}
+                    />
+                    <label className="field-label">{nl ? 'Telefoonnummer' : 'Phone number'} <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>({nl ? 'optioneel' : 'optional'})</span></label>
+                    <input
+                      className="text-input"
+                      type="tel"
+                      placeholder="+32 ..."
+                      value={capturePhone}
+                      onChange={e => setCapturePhone(e.target.value)}
                     />
                     <button
                       className="btn-primary"

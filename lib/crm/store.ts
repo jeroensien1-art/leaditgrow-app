@@ -22,7 +22,7 @@ function toRow(lead: Lead) {
   }
 }
 
-function fromRow(row: Record<string, unknown>): Lead {
+function fromRow(row: Record<string, unknown>, diag?: { answers: Record<string, number>; top_levers: string[]; score: number; industry: string; team_size: string; avg_deal_value: string; monthly_leads: string }): Lead {
   return {
     id: row.id as string,
     name: row.name as string,
@@ -36,6 +36,10 @@ function fromRow(row: Record<string, unknown>): Lead {
     submittedAt: new Date(row.created_at as string).getTime(),
     repliedAt: row.replied_at ? new Date(row.replied_at as string).getTime() : undefined,
     followedUpAt: row.followed_up_at ? new Date(row.followed_up_at as string).getTime() : undefined,
+    diagnosticAnswers: diag?.answers,
+    diagnosticTopLevers: diag?.top_levers,
+    diagnosticGapScore: diag?.score,
+    diagnosticContext: diag ? { industry: diag.industry, teamSize: diag.team_size, avgDealValue: diag.avg_deal_value, monthlyLeads: diag.monthly_leads } : undefined,
   }
 }
 
@@ -73,7 +77,22 @@ export async function getAllLeads(): Promise<Lead[]> {
     .select('*')
     .order('created_at', { ascending: false })
   if (error) throw new Error(`getAllLeads: ${error.message}`)
-  return (data ?? []).map(fromRow)
+
+  const rows = data ?? []
+  const diagnosticIds = rows.filter(r => r.source === 'diagnostic').map(r => r.id as string)
+
+  let diagMap: Record<string, { answers: Record<string, number>; top_levers: string[]; score: number; industry: string; team_size: string; avg_deal_value: string; monthly_leads: string }> = {}
+  if (diagnosticIds.length > 0) {
+    const { data: diags } = await supabase
+      .from('diagnostics')
+      .select('id, answers, top_levers, score, industry, team_size, avg_deal_value, monthly_leads')
+      .in('id', diagnosticIds)
+    for (const d of diags ?? []) {
+      diagMap[d.id] = { answers: d.answers, top_levers: d.top_levers, score: d.score, industry: d.industry, team_size: d.team_size, avg_deal_value: d.avg_deal_value, monthly_leads: d.monthly_leads }
+    }
+  }
+
+  return rows.map(r => fromRow(r, diagMap[r.id as string]))
 }
 
 export async function getDueFollowUps(): Promise<Lead[]> {
@@ -85,7 +104,7 @@ export async function getDueFollowUps(): Promise<Lead[]> {
     .is('followed_up_at', null)
     .lt('created_at', twoHoursAgo)
   if (error) throw new Error(`getDueFollowUps: ${error.message}`)
-  return (data ?? []).map(fromRow)
+  return (data ?? []).map(r => fromRow(r))
 }
 
 export async function markFollowedUp(id: string): Promise<void> {

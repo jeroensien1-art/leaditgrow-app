@@ -82,6 +82,7 @@ export async function sendWelcomeEmail(name: string, to: string): Promise<void> 
   await resend.emails.send({
     from: FROM,
     to,
+    bcc: NOTIFY,
     subject: `${firstName}, hier is jouw gratis actiehandboek`,
     html,
   })
@@ -110,7 +111,7 @@ export async function sendToLead(
   subject: string,
   html: string
 ): Promise<void> {
-  await resend.emails.send({ from: FROM, to, subject, html })
+  await resend.emails.send({ from: FROM, to, bcc: NOTIFY, subject, html })
 }
 
 export async function notifyJeroen(

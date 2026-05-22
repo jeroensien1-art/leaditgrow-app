@@ -15,6 +15,10 @@ export interface Lead {
   score: number
   status: 'new' | 'replied' | 'followed_up' | 'booked' | 'closed'
   source?: 'widget' | 'calculator' | 'diagnostic'
+  diagnosticAnswers?: Record<string, number>
+  diagnosticTopLevers?: string[]
+  diagnosticGapScore?: number
+  diagnosticContext?: { industry: string; teamSize: string; avgDealValue: string; monthlyLeads: string }
 }
 
 export interface QualificationResult {

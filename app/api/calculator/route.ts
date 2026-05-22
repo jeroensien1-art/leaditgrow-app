@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { randomUUID } from 'crypto'
 import { saveLead } from '@/lib/crm/store'
 import { sendToLead } from '@/lib/crm/email'
+import { resolveName } from '@/lib/crm/sequences'
 import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
@@ -11,6 +12,7 @@ const NOTIFY = 'jeroen@leaditgrow.be'
 export interface CalculatorSubmission {
   name: string
   email: string
+  phone?: string
   lang: 'nl' | 'en'
   leads: string
   deal: string
@@ -31,14 +33,15 @@ function fmt(n: number, lang: 'nl' | 'en') {
 function buildEmail(s: CalculatorSubmission): { subject: string; html: string } {
   const nl = s.lang === 'nl'
   const hasLeak = s.monthly > 0
+  const firstName = resolveName(s.name, s.email)
 
   const subject = hasLeak
     ? (nl
-        ? `${s.name}, jij laat ${fmt(s.monthly, 'nl')}/maand liggen`
-        : `${s.name}, you're losing ${fmt(s.monthly, 'en')}/month`)
+        ? `${firstName}, jij laat ${fmt(s.monthly, 'nl')}/maand liggen`
+        : `${firstName}, you're losing ${fmt(s.monthly, 'en')}/month`)
     : (nl
-        ? `${s.name}, jouw systemen werken goed  - hier is wat nog beter kan`
-        : `${s.name}, your systems are solid  - here's what to sharpen next`)
+        ? `${firstName}, jouw systemen werken goed  - hier is wat nog beter kan`
+        : `${firstName}, your systems are solid  - here's what to sharpen next`)
 
   const leakSection = hasLeak ? `
     <div style="background:#3d3929;border-radius:14px;padding:28px 32px;margin-bottom:24px;text-align:center">
@@ -97,7 +100,7 @@ function buildEmail(s: CalculatorSubmission): { subject: string; html: string } 
     <div style="background:#fff;border-radius:16px;border:1px solid rgba(61,57,41,.1);padding:32px;box-shadow:0 4px 24px rgba(0,0,0,.06)">
 
       <p style="font-size:16px;color:#3d3929;line-height:1.6;margin:0 0 24px">
-        ${nl ? `Hi ${s.name},` : `Hi ${s.name},`}
+        Hi ${firstName},
       </p>
 
       <p style="font-size:14px;color:#535146;line-height:1.7;margin:0 0 24px">
@@ -187,6 +190,7 @@ export async function POST(req: NextRequest) {
         <h2 style="font-family:sans-serif;color:#3d3929">Calculator submission</h2>
         <p style="font-family:sans-serif;color:#535146"><strong>Name:</strong> ${body.name}</p>
         <p style="font-family:sans-serif;color:#535146"><strong>Email:</strong> ${body.email}</p>
+        ${body.phone ? `<p style="font-family:sans-serif;color:#535146"><strong>Phone:</strong> ${body.phone}</p>` : ''}
         <p style="font-family:sans-serif;color:#535146"><strong>Monthly leak:</strong> ${fmt(body.monthly, body.lang)}</p>
         <p style="font-family:sans-serif;color:#535146"><strong>Annual leak:</strong> ${fmt(body.annual, body.lang)}</p>
         <p style="font-family:sans-serif;color:#535146"><strong>Speed:</strong> ${body.speed}</p>

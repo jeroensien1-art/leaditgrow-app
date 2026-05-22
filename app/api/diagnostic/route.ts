@@ -4,7 +4,7 @@ import { createClient } from '@supabase/supabase-js'
 import { type DiagnosticSubmission } from '@/lib/crm/diagnostic'
 import { sendToLead } from '@/lib/crm/email'
 import { saveLead } from '@/lib/crm/store'
-import { sendDiagnosticNurtureSequence } from '@/lib/crm/sequences'
+import { sendDiagnosticNurtureSequence, resolveName } from '@/lib/crm/sequences'
 import { Resend } from 'resend'
 
 const supabase = createClient(
@@ -297,7 +297,18 @@ const LEVER_EN: Record<string, LeverContent> = {
   },
 }
 
-function estimateRevenueLeak(submission: DiagnosticSubmission): number {
+interface LeakBreakdown {
+  leads: number
+  deal: number
+  stlLoss: number
+  pipLoss: number
+  salLoss: number
+  totalLoss: number
+  monthly: number
+  annual: number
+}
+
+function computeLeakBreakdown(submission: DiagnosticSubmission): LeakBreakdown {
   const leadsMap: Record<string, number> = {
     'Fewer than 5': 3, 'Minder dan 5': 3,
     '5 to 20': 12, '5 tot 20': 12,
@@ -315,13 +326,31 @@ function estimateRevenueLeak(submission: DiagnosticSubmission): number {
   const stl = submission.answers['speed_to_lead'] ?? 0
   const pip = submission.answers['pipeline'] ?? 0
   const sal = submission.answers['sales'] ?? 0
-  const loss = Math.min(
-    (stl === 3 ? 0.5 : stl === 2 ? 0.3 : stl === 1 ? 0.1 : 0) +
-    (pip === 3 ? 0.4 : pip === 2 ? 0.25 : pip === 1 ? 0.1 : 0) +
-    (sal === 3 ? 0.35 : sal === 2 ? 0.2 : sal === 1 ? 0.08 : 0),
-    0.85
-  )
-  return Math.round(leads * deal * loss / 500) * 500
+  const stlLoss = stl === 3 ? 0.5 : stl === 2 ? 0.3 : stl === 1 ? 0.1 : 0
+  const pipLoss = pip === 3 ? 0.4 : pip === 2 ? 0.25 : pip === 1 ? 0.1 : 0
+  const salLoss = sal === 3 ? 0.35 : sal === 2 ? 0.2 : sal === 1 ? 0.08 : 0
+  const totalLoss = Math.min(stlLoss + pipLoss + salLoss, 0.85)
+  const monthly = Math.round(leads * deal * totalLoss / 500) * 500
+  return { leads, deal, stlLoss, pipLoss, salLoss, totalLoss, monthly, annual: monthly * 12 }
+}
+
+function getUpcomingSlots(): Array<{ label: string; encoded: string }> {
+  const times = ['10:00', '14:00', '10:00']
+  const dayNames = ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za']
+  const monthNames = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec']
+  const slots: Array<{ label: string; encoded: string }> = []
+  const d = new Date()
+  d.setHours(0, 0, 0, 0)
+  d.setDate(d.getDate() + 2)
+  while (slots.length < 3) {
+    const dow = d.getDay()
+    if (dow !== 0 && dow !== 6) {
+      const label = `${dayNames[dow]} ${d.getDate()} ${monthNames[d.getMonth()]} · ${times[slots.length]}`
+      slots.push({ label, encoded: encodeURIComponent(label) })
+    }
+    d.setDate(d.getDate() + 1)
+  }
+  return slots
 }
 
 function stepBlock(step: { action: string; result: string }, index: number, nl: boolean): string {
@@ -344,7 +373,7 @@ function stepBlock(step: { action: string; result: string }, index: number, nl: 
   </div>`
 }
 
-function buildReport(submission: DiagnosticSubmission): { subject: string; html: string } {
+function buildReport(submission: DiagnosticSubmission, leadId: string): { subject: string; html: string } {
   const nl = true  // targeting Belgian market
   const LEVER = nl ? LEVER_NL : LEVER_EN
   const fmt = (n: number) => n === 0 ? (nl ? 'Minimaal' : 'Minimal') : `€${n.toLocaleString('nl-BE')}`
@@ -352,15 +381,24 @@ function buildReport(submission: DiagnosticSubmission): { subject: string; html:
   const top3 = submission.topLevers.slice(0, 3)
   const top1 = top3[0]
   const top1Data = LEVER[top1]
-  const monthly = estimateRevenueLeak(submission)
-  const annual = monthly * 12
+  const leak = computeLeakBreakdown(submission)
+  const { monthly, annual } = leak
+  const slots = getUpcomingSlots()
+  const BASE_URL = 'https://leaditgrow.be'
 
-  const scoreDisplay = submission.score  // GAP score (0-100), higher = more problems — matches website display
-  const healthColor = scoreDisplay <= 30 ? '#3dba6e' : scoreDisplay <= 60 ? '#e8a838' : '#e05b3a'
+  const scoreDisplay = 100 - submission.score  // sterkte score (0-100): higher = stronger business
+  const healthColor = scoreDisplay >= 70 ? '#3dba6e' : scoreDisplay >= 40 ? '#e8a838' : '#e05b3a'
 
+  const firstName = resolveName(submission.name, submission.email)
   const subject = nl
-    ? `${submission.name}, jouw diagnose-rapport: ${top1Data?.label ?? top1}`
-    : `${submission.name}, your diagnostic report: ${top1Data?.label ?? top1}`
+    ? `${firstName}, jouw diagnose-rapport: ${top1Data?.label ?? top1}`
+    : `${firstName}, your diagnostic report: ${top1Data?.label ?? top1}`
+
+  const breakdownParts: string[] = []
+  if (leak.stlLoss > 0) breakdownParts.push(`speed-to-lead +${Math.round(leak.stlLoss * 100)}%`)
+  if (leak.pipLoss > 0) breakdownParts.push(`pipeline +${Math.round(leak.pipLoss * 100)}%`)
+  if (leak.salLoss > 0) breakdownParts.push(`sales +${Math.round(leak.salLoss * 100)}%`)
+  const breakdownLine = `${leak.leads} leads/maand × ${fmt(leak.deal)} dealwaarde × ${Math.round(leak.totalLoss * 100)}% verliesratio (${breakdownParts.join(', ')})`
 
   const leakBlock = monthly > 0 ? `
     <table width="100%" cellpadding="0" cellspacing="0" style="background:#fdf4f0;border:1.5px solid rgba(201,100,66,.25);border-radius:12px;margin-bottom:24px">
@@ -374,7 +412,8 @@ function buildReport(submission: DiagnosticSubmission): { subject: string; html:
               </td>
               <td style="vertical-align:middle">
                 <div style="font-size:12px;font-weight:700;color:#3d3929;margin-bottom:3px">${nl ? 'Geschat maandelijks omzetverlies' : 'Estimated monthly revenue leak'}</div>
-                <div style="font-size:12px;color:#83827d;line-height:1.5">${nl ? `${fmt(annual)} per jaar, op basis van jouw leads, dealwaarde en opvolggedrag.` : `${fmt(annual)} per year, based on your leads, deal value and follow-up behaviour.`}</div>
+                <div style="font-size:12px;color:#83827d;line-height:1.5;margin-bottom:6px">${fmt(annual)} ${nl ? 'per jaar' : 'per year'}</div>
+                <div style="font-size:11px;color:#b0aea8;line-height:1.6;font-style:italic">${breakdownLine}</div>
               </td>
             </tr>
           </table>
@@ -448,7 +487,7 @@ function buildReport(submission: DiagnosticSubmission): { subject: string; html:
 
   <div style="background:#fff;border-radius:16px;border:1px solid rgba(61,57,41,.1);padding:32px;box-shadow:0 4px 24px rgba(0,0,0,.06)">
 
-    <p style="font-size:16px;color:#3d3929;margin:0 0 8px">Hi ${submission.name},</p>
+    <p style="font-size:16px;color:#3d3929;margin:0 0 8px">Hi ${firstName},</p>
     <p style="font-size:14px;color:#535146;line-height:1.7;margin:0 0 24px">
       ${nl ? 'Hier is jouw persoonlijk rapport op basis van de Business Impact Diagnose. Per hefboom krijg je de exacte stappen en het verwachte resultaat.' : 'Here is your personal report based on the Business Impact Diagnostic. For each lever you get the exact steps and expected result.'}
     </p>
@@ -463,9 +502,9 @@ function buildReport(submission: DiagnosticSubmission): { subject: string; html:
                 <div style="font-size:10px;color:#83827d;font-weight:600">/100</div>
               </td>
               <td style="vertical-align:middle">
-                <div style="font-size:12px;font-weight:700;color:#3d3929;margin-bottom:2px">${nl ? 'Bedrijfsimpact score' : 'Business impact score'}</div>
+                <div style="font-size:12px;font-weight:700;color:#3d3929;margin-bottom:2px">${nl ? 'Sterkte score' : 'Strength score'}</div>
                 <div style="font-size:12px;color:#535146;line-height:1.5">
-                  ${scoreDisplay <= 30 ? (nl ? 'Sterke basis. Focus op optimalisatie.' : 'Strong foundation. Focus on optimisation.') : scoreDisplay <= 60 ? (nl ? 'Goede basis, duidelijke groeikansen.' : 'Good base, clear growth opportunities.') : (nl ? 'Significante groeikansen. Laaghangend fruit aanwezig.' : 'Significant growth opportunities. Low-hanging fruit available.')}
+                  ${scoreDisplay >= 70 ? (nl ? 'Sterke basis. Focus op optimalisatie.' : 'Strong foundation. Focus on optimisation.') : scoreDisplay >= 40 ? (nl ? 'Goede basis, duidelijke groeikansen.' : 'Good base, clear growth opportunities.') : (nl ? 'Significante groeikansen. Laaghangend fruit aanwezig.' : 'Significant growth opportunities. Low-hanging fruit available.')}
                 </div>
               </td>
             </tr>
@@ -482,14 +521,14 @@ function buildReport(submission: DiagnosticSubmission): { subject: string; html:
 
     <div style="background:#3d3929;border-radius:12px;padding:22px 24px;margin-top:8px">
       <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:8px">${nl ? 'Wil je dit concreet aanpakken?' : 'Ready to act on this?'}</div>
-      <p style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.65;margin:0 0 12px">
+      <p style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.65;margin:0 0 16px">
         ${nl
           ? `Op basis van jouw diagnose begin ik in een gratis gesprek van 15 minuten bij jouw #1 hefboom: <strong style="color:#fff">${top1Data?.label ?? top1}</strong>. Geen verkooppraatje. Gewoon kijken wat er voor jou specifiek werkt.`
           : `Based on your diagnostic I start a free 15-minute call with your #1 lever: <strong style="color:#fff">${top1Data?.label ?? top1}</strong>. No sales pitch. Just looking at what specifically works for you.`}
       </p>
-      <p style="font-size:13px;color:rgba(255,255,255,.75);margin:0">
-        ${nl ? 'Stuur een reply met een paar tijdstippen die jou passen en we plannen iets in.' : 'Reply with a few times that work for you and we\'ll schedule something.'}
-      </p>
+      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:10px">${nl ? 'Kies een tijdstip dat voor jou past:' : 'Choose a time that works for you:'}</div>
+      ${slots.map(s => `<a href="${BASE_URL}/api/book?id=${leadId}&slot=${s.encoded}" style="display:block;background:#c96442;color:#fff;text-decoration:none;border-radius:8px;padding:12px 16px;text-align:center;font-size:13px;font-weight:600;margin-bottom:8px">${s.label}</a>`).join('')}
+      <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:10px;text-align:center">${nl ? 'Jeroen neemt daarna contact op om het gesprek te bevestigen.' : 'Jeroen will follow up to confirm the call.'}</div>
     </div>
 
   </div>
@@ -542,7 +581,7 @@ export async function POST(req: NextRequest) {
         id,
         name: body.name,
         email: body.email,
-        message: `Business Impact Diagnostic - gap score: ${body.score}/100. Top gaps: ${body.topLevers.slice(0, 3).join(', ')}. Industry: ${body.context.industry}. Leads/mo: ${body.context.monthlyLeads}. Avg deal: ${body.context.avgDealValue}.`,
+        message: `Business Impact Diagnostic - gap score: ${body.score}/100. Top gaps: ${body.topLevers.slice(0, 3).join(', ')}. Industry: ${body.context.industry}. Leads/mo: ${body.context.monthlyLeads}. Avg deal: ${body.context.avgDealValue}.${body.phone ? ` Tel: ${body.phone}.` : ''}`,
         lang: 'nl',
         submittedAt: Date.now(),
         qualified: body.score >= 30,
@@ -554,7 +593,7 @@ export async function POST(req: NextRequest) {
       console.error('[diagnostic] leads mirror failed:', err)
     }
 
-    const { subject, html } = buildReport(body)
+    const { subject, html } = buildReport(body, id)
     await sendToLead(body.email, subject, html)
 
     await supabase.from('diagnostics').update({ report_sent: true }).eq('id', id)
@@ -566,21 +605,47 @@ export async function POST(req: NextRequest) {
       console.error('[diagnostic] nurture sequence error:', err)
     }
 
+    const ANSWER_TEXT: Record<string, Record<number, string>> = {
+      time:         { 0: 'Vorige week, ik heb goede grenzen.', 1: 'Een paar weken geleden, het lukt soms.', 2: 'Ik kan me eerlijk gezegd niet herinneren wanneer.', 3: 'Dat is momenteel niet echt mogelijk voor mij.' },
+      leadership:   { 0: 'Mijn team lost het op. Ik hoor het achteraf.', 1: 'Iemand geeft het door en wacht op mijn reactie.', 2: 'Meestal ben ik degene die het als eerste opmerkt.', 3: 'Niets beweegt tenzij ik er direct bij betrokken ben.' },
+      speed_to_lead:{ 0: 'Binnen 5 minuten, automatisch.', 1: 'Binnen het uur, meestal.', 2: 'Dezelfde dag, als er tijd voor is.', 3: 'De volgende dag of later, het varieert.' },
+      pipeline:     { 0: 'Ze komen in een geautomatiseerde opvolgingssequentie.', 1: 'Ik of mijn team volgt manueel een paar keer op.', 2: 'We volgen eenmaal op en laten het dan aan hen.', 3: 'Eerlijk gezegd verdwijnen de meesten gewoon.' },
+      marketing:    { 0: 'Pipeline blijft draaien. Inbound regelt het.', 1: 'Het zou vertragen, maar niet stoppen.', 2: 'Het zou opdrogen binnen een paar weken.', 3: 'Het zou meteen stoppen.' },
+      sales:        { 0: 'De meesten kopen. Het proces werkt.', 1: 'Ongeveer de helft sluit. Hangt af van de dag.', 2: 'Misschien 1 op 4. Veel "ik denk er over na".', 3: 'Zelden. Geweldige gesprekken, weinig beslissingen.' },
+      retention:    { 0: 'De meesten komen terug en sturen regelmatig doorverwijzingen.', 1: 'Sommigen komen terug, sommigen verwijzen door. Niet systematisch.', 2: 'We ronden het project af en dat is het grotendeels.', 3: 'We horen zelden van klanten na de levering.' },
+    }
+    const LEVER_LABEL: Record<string, string> = {
+      marketing: 'Online aanwezigheid', time: 'Vrijheid & tijd', leadership: 'Leiderschap',
+      speed_to_lead: 'Speed-to-lead', pipeline: 'Pipeline', retention: 'Klantbehoud', sales: 'Sales',
+    }
+    const answerRows = body.topLevers.map(lever => {
+      const score = body.answers[lever] ?? 0
+      const dotColor = score === 3 ? '#e05b3a' : score === 2 ? '#e8a838' : score === 1 ? '#7ec87e' : '#b0aea8'
+      const dots = [1,2,3].map(i => `<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${i <= score ? dotColor : '#e5e3dc'};margin-right:2px"></span>`).join('')
+      const text = ANSWER_TEXT[lever]?.[score] ?? '—'
+      return `<tr>
+        <td style="font-family:sans-serif;font-size:12px;color:#83827d;padding:6px 12px 6px 0;white-space:nowrap;vertical-align:top">${LEVER_LABEL[lever] ?? lever}</td>
+        <td style="font-family:sans-serif;padding:6px 12px 6px 0;vertical-align:top">${dots}</td>
+        <td style="font-family:sans-serif;font-size:13px;color:#3d3929;padding:6px 0;font-style:italic">"${text}"</td>
+      </tr>`
+    }).join('')
+
     await resend.emails.send({
       from: FROM,
       to: NOTIFY,
       subject: `New diagnostic: ${body.name} - score ${body.score}/100 - top gap: ${body.topLevers[0] ?? '?'}`,
       html: `
-        <h2 style="font-family:sans-serif;color:#3d3929">New diagnostic submission</h2>
-        <p style="font-family:sans-serif;color:#535146"><strong>Name:</strong> ${body.name}</p>
-        <p style="font-family:sans-serif;color:#535146"><strong>Email:</strong> ${body.email}</p>
-        <p style="font-family:sans-serif;color:#535146"><strong>Gap score:</strong> ${body.score}/100</p>
-        <p style="font-family:sans-serif;color:#535146"><strong>Industry:</strong> ${body.context.industry}</p>
-        <p style="font-family:sans-serif;color:#535146"><strong>Monthly leads:</strong> ${body.context.monthlyLeads}</p>
-        <p style="font-family:sans-serif;color:#535146"><strong>Avg deal value:</strong> ${body.context.avgDealValue}</p>
-        <p style="font-family:sans-serif;color:#535146"><strong>Team size:</strong> ${body.context.teamSize}</p>
-        <p style="font-family:sans-serif;color:#535146"><strong>Top 3 gaps:</strong> ${body.topLevers.slice(0, 3).join(', ')}</p>
-        <p style="font-family:sans-serif;color:#535146;margin-top:16px">Report sent to ${body.email}</p>
+        <div style="font-family:sans-serif;max-width:560px">
+          <h2 style="color:#3d3929;margin-bottom:4px">New diagnostic — ${body.name}</h2>
+          <p style="color:#83827d;font-size:13px;margin:0 0 20px">${body.email}${body.phone ? ` · ${body.phone}` : ''} · ${body.context.industry} · ${body.context.teamSize} medewerkers · ${body.context.monthlyLeads} leads/maand · ${body.context.avgDealValue}</p>
+          <div style="background:#f3f1eb;border-radius:8px;padding:10px 16px;display:inline-block;margin-bottom:20px">
+            <span style="font-size:28px;font-weight:800;color:${(100-body.score) >= 70 ? '#3dba6e' : (100-body.score) >= 40 ? '#e8a838' : '#e05b3a'}">${100 - body.score}</span><span style="font-size:14px;color:#83827d">/100 sterkte</span>
+          </div>
+          <table style="width:100%;border-collapse:collapse;margin-bottom:20px">
+            ${answerRows}
+          </table>
+          <p style="color:#83827d;font-size:12px;border-top:1px solid #e5e3dc;padding-top:12px;margin:0">Rapport verstuurd naar ${body.email}</p>
+        </div>
       `,
     })
 

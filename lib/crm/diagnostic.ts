@@ -12,6 +12,7 @@ const TEMPLATE_PATH = join(
 export interface DiagnosticSubmission {
   name: string
   email: string
+  phone?: string
   context: {
     industry: string
     monthlyLeads: string

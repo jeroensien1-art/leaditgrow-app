@@ -284,9 +284,18 @@ export default function Dashboard() {
                       </td>
                       {/* Score */}
                       <td style={{ padding: '12px 16px' }}>
-                        <span style={{ fontSize: 15, fontWeight: 800, color: scoreColor(lead.score) }}>{lead.score}</span>
-                        <span style={{ fontSize: 11, color: '#83827d' }}>/10</span>
-                        {lead.qualified && <span style={{ marginLeft: 6, fontSize: 10, background: 'rgba(61,186,110,0.12)', color: '#3dba6e', borderRadius: 4, padding: '1px 5px', fontWeight: 700 }}>✓ qualified</span>}
+                        {lead.source === 'diagnostic' && lead.diagnosticGapScore !== undefined ? (
+                          <>
+                            <span style={{ fontSize: 15, fontWeight: 800, color: (100 - lead.diagnosticGapScore) >= 70 ? '#3dba6e' : (100 - lead.diagnosticGapScore) >= 40 ? '#e8a838' : '#e05b3a' }}>{100 - lead.diagnosticGapScore}</span>
+                            <span style={{ fontSize: 11, color: '#83827d' }}>/100</span>
+                          </>
+                        ) : (
+                          <>
+                            <span style={{ fontSize: 15, fontWeight: 800, color: scoreColor(lead.score) }}>{lead.score}</span>
+                            <span style={{ fontSize: 11, color: '#83827d' }}>/10</span>
+                            {lead.qualified && <span style={{ marginLeft: 6, fontSize: 10, background: 'rgba(61,186,110,0.12)', color: '#3dba6e', borderRadius: 4, padding: '1px 5px', fontWeight: 700 }}>✓ qualified</span>}
+                          </>
+                        )}
                       </td>
                       {/* Lang */}
                       <td style={{ padding: '12px 16px', color: '#83827d', fontSize: 12, textTransform: 'uppercase', fontWeight: 600 }}>{lead.lang}</td>
@@ -307,41 +316,170 @@ export default function Dashboard() {
                     {expandedId === lead.id && (
                       <tr key={`${lead.id}-exp`} style={{ background: '#faf9f5', borderBottom: '1px solid rgba(61,57,41,0.06)' }}>
                         <td colSpan={7} style={{ padding: '16px 24px' }}>
-                          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
-                            {/* Message */}
-                            <div>
-                              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#83827d', marginBottom: 6 }}>Message</div>
-                              <p style={{ fontSize: 13, lineHeight: 1.6, color: '#535146', margin: 0 }}>{lead.message}</p>
+                          {lead.source === 'diagnostic' && lead.diagnosticContext && (
+                            <div style={{ display: 'flex', gap: 20, marginBottom: 16, flexWrap: 'wrap' }}>
+                              {[
+                                { label: 'Sector', value: lead.diagnosticContext.industry },
+                                { label: 'Team', value: lead.diagnosticContext.teamSize },
+                                { label: 'Leads/maand', value: lead.diagnosticContext.monthlyLeads },
+                                { label: 'Deal value', value: lead.diagnosticContext.avgDealValue },
+                              ].map(({ label, value }) => (
+                                <div key={label} style={{ background: '#fff', border: '1px solid rgba(61,57,41,0.1)', borderRadius: 8, padding: '6px 12px' }}>
+                                  <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#83827d', marginBottom: 2 }}>{label}</div>
+                                  <div style={{ fontSize: 13, fontWeight: 600, color: '#3d3929' }}>{value}</div>
+                                </div>
+                              ))}
                             </div>
-                            {/* Meta */}
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#83827d', marginBottom: 2 }}>Details</div>
-                              <div style={{ fontSize: 12, color: '#535146' }}>
-                                <strong>Submitted:</strong> {new Date(lead.submittedAt).toLocaleString('en-GB')}
-                              </div>
-                              {lead.repliedAt && (
-                                <div style={{ fontSize: 12, color: '#535146' }}>
-                                  <strong>Replied:</strong> {new Date(lead.repliedAt).toLocaleString('en-GB')}
-                                </div>
+                          )}
+                          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+                            {/* Left: message or diagnostic answers */}
+                            <div>
+                              {lead.source === 'diagnostic' && lead.diagnosticAnswers ? (
+                                <>
+                                  <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#83827d', marginBottom: 10 }}>Diagnostic antwoorden</div>
+                                  {(() => {
+                                    const LEVER_LABELS: Record<string, string> = {
+                                      marketing: 'Online aanwezigheid & inbound',
+                                      time: 'Vrijheid & tijd',
+                                      leadership: 'Leiderschap & team',
+                                      speed_to_lead: 'Speed-to-lead',
+                                      pipeline: 'Pipeline opvolging',
+                                      retention: 'Klantbehoud',
+                                      sales: 'Sales conversie',
+                                    }
+                                    const ANSWER_TEXT: Record<string, Record<number, string>> = {
+                                      time: { 0: 'Vorige week, ik heb goede grenzen.', 1: 'Een paar weken geleden, het lukt soms.', 2: 'Ik kan me eerlijk gezegd niet herinneren wanneer.', 3: 'Dat is momenteel niet echt mogelijk voor mij.' },
+                                      leadership: { 0: 'Mijn team lost het op. Ik hoor het achteraf.', 1: 'Iemand geeft het door en wacht op mijn reactie.', 2: 'Meestal ben ik degene die het als eerste opmerkt.', 3: 'Niets beweegt tenzij ik er direct bij betrokken ben.' },
+                                      speed_to_lead: { 0: 'Binnen 5 minuten, automatisch.', 1: 'Binnen het uur, meestal.', 2: 'Dezelfde dag, als er tijd voor is.', 3: 'De volgende dag of later, het varieert.' },
+                                      pipeline: { 0: 'Ze komen in een geautomatiseerde opvolgingssequentie.', 1: 'Ik of mijn team volgt manueel een paar keer op.', 2: 'We volgen eenmaal op en laten het dan aan hen.', 3: 'Eerlijk gezegd verdwijnen de meesten gewoon.' },
+                                      marketing: { 0: 'Pipeline blijft draaien. Inbound regelt het.', 1: 'Het zou vertragen, maar niet stoppen.', 2: 'Het zou opdrogen binnen een paar weken.', 3: 'Het zou meteen stoppen.' },
+                                      sales: { 0: 'De meesten kopen. Het proces werkt.', 1: 'Ongeveer de helft sluit. Hangt af van de dag.', 2: 'Misschien 1 op 4. Veel "ik denk er over na".', 3: 'Zelden. Geweldige gesprekken, weinig beslissingen.' },
+                                      retention: { 0: 'De meesten komen terug en sturen regelmatig doorverwijzingen.', 1: 'Sommigen komen terug, sommigen verwijzen door. Niet systematisch.', 2: 'We ronden het project af en dat is het grotendeels.', 3: 'We horen zelden van klanten na de levering.' },
+                                    }
+                                    const order = lead.diagnosticTopLevers ?? Object.keys(LEVER_LABELS)
+                                    return order.map(key => {
+                                      const val = lead.diagnosticAnswers![key] ?? 0
+                                      const dotColor = val === 3 ? '#e05b3a' : val === 2 ? '#e8a838' : val === 1 ? '#7ec87e' : '#e5e3dc'
+                                      const answerText = ANSWER_TEXT[key]?.[val] ?? '—'
+                                      return (
+                                        <div key={key} style={{ marginBottom: 10 }}>
+                                          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2 }}>
+                                            <div style={{ display: 'flex', gap: 3 }}>
+                                              {[1, 2, 3].map(i => (
+                                                <div key={i} style={{ width: 8, height: 8, borderRadius: 2, background: i <= val ? dotColor : 'rgba(61,57,41,0.08)' }} />
+                                              ))}
+                                            </div>
+                                            <span style={{ fontSize: 11, fontWeight: 700, color: '#83827d', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{LEVER_LABELS[key] ?? key}</span>
+                                          </div>
+                                          <div style={{ fontSize: 12, color: '#3d3929', fontStyle: 'italic', paddingLeft: 30 }}>&ldquo;{answerText}&rdquo;</div>
+                                        </div>
+                                      )
+                                    })
+                                  })()}
+                                </>
+                              ) : (
+                                <>
+                                  <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#83827d', marginBottom: 6 }}>Message</div>
+                                  <p style={{ fontSize: 13, lineHeight: 1.6, color: '#535146', margin: 0 }}>{lead.message}</p>
+                                </>
                               )}
-                              {lead.followedUpAt && (
-                                <div style={{ fontSize: 12, color: '#535146' }}>
-                                  <strong>Follow-up sent:</strong> {new Date(lead.followedUpAt).toLocaleString('en-GB')}
-                                </div>
-                              )}
-                              <div style={{ fontSize: 12, color: '#535146' }}>
-                                <strong>Score:</strong>{' '}
-                                <span style={{ color: scoreColor(lead.score), fontWeight: 700 }}>{lead.score}/10</span>
-                                {' — '}{lead.qualified ? '✅ Qualified' : '⚠️ Not yet qualified'}
+                            </div>
+                            {/* Right: outreach timeline */}
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+                              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#83827d', marginBottom: 12 }}>Outreach timeline</div>
+                              {(() => {
+                                const sub = lead.submittedAt
+                                const now = Date.now()
+                                const fmtDate = (ms: number) => new Date(ms).toLocaleDateString('nl-BE', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
+                                const fmtDay  = (ms: number) => new Date(ms).toLocaleDateString('nl-BE', { day: 'numeric', month: 'short' })
+                                const nurture3  = sub + 3  * 86400000
+                                const nurture7  = sub + 7  * 86400000
+                                const nurture14 = sub + 14 * 86400000
+
+                                type StepStatus = 'done' | 'upcoming' | 'pending' | 'replied' | 'missed'
+                                const steps: { label: string; detail: string; status: StepStatus }[] = [
+                                  {
+                                    label: 'Rapport verstuurd',
+                                    detail: fmtDate(sub),
+                                    status: 'done',
+                                  },
+                                  {
+                                    label: 'Nurture dag 3',
+                                    detail: fmtDay(nurture3),
+                                    status: now > nurture3 ? 'done' : 'upcoming',
+                                  },
+                                  {
+                                    label: 'Nurture dag 7',
+                                    detail: fmtDay(nurture7),
+                                    status: now > nurture7 ? 'done' : 'upcoming',
+                                  },
+                                  {
+                                    label: 'Nurture dag 14',
+                                    detail: fmtDay(nurture14),
+                                    status: now > nurture14 ? 'done' : 'upcoming',
+                                  },
+                                  {
+                                    label: 'Antwoord ontvangen',
+                                    detail: lead.repliedAt ? fmtDate(lead.repliedAt) : 'Nog geen antwoord',
+                                    status: lead.repliedAt ? 'replied' : 'pending',
+                                  },
+                                  {
+                                    label: 'Manuele opvolging',
+                                    detail: lead.followedUpAt ? fmtDate(lead.followedUpAt) : lead.repliedAt ? 'Verstuur persoonlijk antwoord' : '—',
+                                    status: lead.followedUpAt ? 'done' : lead.repliedAt ? 'pending' : 'missed',
+                                  },
+                                ]
+
+                                const dotStyle: Record<StepStatus, { bg: string; label: string }> = {
+                                  done:     { bg: '#3dba6e', label: '✓' },
+                                  upcoming: { bg: '#e8a838', label: '·' },
+                                  pending:  { bg: '#e05b3a', label: '!' },
+                                  replied:  { bg: '#3dba6e', label: '✓' },
+                                  missed:   { bg: '#b0aea8', label: '—' },
+                                }
+
+                                return (
+                                  <div style={{ position: 'relative', paddingLeft: 24 }}>
+                                    <div style={{ position: 'absolute', left: 7, top: 8, bottom: 8, width: 1, background: 'rgba(61,57,41,0.1)' }} />
+                                    {steps.map((s, i) => {
+                                      const d = dotStyle[s.status]
+                                      return (
+                                        <div key={i} style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 10, position: 'relative' }}>
+                                          <div style={{ position: 'absolute', left: -24, top: 2, width: 15, height: 15, borderRadius: '50%', background: d.bg, color: '#fff', fontSize: 9, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{d.label}</div>
+                                          <div>
+                                            <div style={{ fontSize: 12, fontWeight: 600, color: '#3d3929', lineHeight: 1.3 }}>{s.label}</div>
+                                            <div style={{ fontSize: 11, color: s.status === 'pending' && !lead.repliedAt ? '#e05b3a' : '#83827d', marginTop: 1 }}>{s.detail}</div>
+                                          </div>
+                                        </div>
+                                      )
+                                    })}
+                                  </div>
+                                )
+                              })()}
+
+                              {/* Actions */}
+                              <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 8, paddingTop: 12, borderTop: '1px solid rgba(61,57,41,0.08)' }}>
+                                <a
+                                  href={`https://mail.google.com/mail/u/0/#search/${encodeURIComponent(lead.email)}`}
+                                  target="_blank" rel="noopener noreferrer"
+                                  style={{ fontSize: 12, color: '#3b82f6', fontWeight: 600 }}
+                                >
+                                  Bekijk thread in Gmail →
+                                </a>
+                                <a
+                                  href={`mailto:${lead.email}?subject=Re: jouw diagnose`}
+                                  style={{ fontSize: 12, color: '#c96442', fontWeight: 600 }}
+                                >
+                                  Stuur persoonlijk antwoord →
+                                </a>
+                                <a
+                                  href="https://calendly.com/sovereign-now333/free-intro-call-clone"
+                                  target="_blank" rel="noopener noreferrer"
+                                  style={{ fontSize: 12, color: '#83827d', fontWeight: 600 }}
+                                >
+                                  Boek gesprek →
+                                </a>
                               </div>
-                              <a
-                                href={`https://calendly.com/sovereign-now333/free-intro-call-clone`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={{ fontSize: 12, color: '#c96442', fontWeight: 600, marginTop: 4 }}
-                              >
-                                Book call for this lead →
-                              </a>
                             </div>
                           </div>
                         </td>

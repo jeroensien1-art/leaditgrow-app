@@ -2,7 +2,21 @@ import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 const FROM = 'Jeroen | Lead it, Grow <jeroen@leaditgrow.be>'
+const NOTIFY = 'jeroen@leaditgrow.be'
 const SITE = 'https://leaditgrow.be'
+
+// Derives a usable first name from whatever the form submitted.
+// Falls back through: proper name → local part of email → "beste zaakvoerder"
+export function resolveName(name: string, email: string): string {
+  const n = (name ?? '').trim()
+  const source = (!n || n.includes('@')) ? email : n
+  if (source.includes('@')) {
+    const local = source.split('@')[0].replace(/[0-9._+\-]/g, ' ').trim().split(/\s+/)[0] ?? ''
+    if (!local) return 'beste zaakvoerder'
+    return local.charAt(0).toUpperCase() + local.slice(1).toLowerCase()
+  }
+  return source.split(' ')[0]
+}
 
 function daysFromNow(days: number): string {
   const d = new Date()
@@ -15,12 +29,13 @@ function daysFromNow(days: number): string {
 // Triggered by Stripe checkout.session.completed
 
 export async function sendPurchaseSequence(name: string, email: string) {
-  const first = name.split(' ')[0]
+  const first = resolveName(name, email)
 
   // Day 0 — bevestiging + download
   await resend.emails.send({
     from: FROM,
     to: email,
+    bcc: NOTIFY,
     subject: `${first}, je actiehandboek staat klaar`,
     html: purchaseDay0(first),
   })
@@ -29,6 +44,7 @@ export async function sendPurchaseSequence(name: string, email: string) {
   await resend.emails.send({
     from: FROM,
     to: email,
+    bcc: NOTIFY,
     subject: `Heb je de diagnose al gedaan, ${first}?`,
     html: purchaseDay3(first),
     scheduledAt: daysFromNow(3),
@@ -38,6 +54,7 @@ export async function sendPurchaseSequence(name: string, email: string) {
   await resend.emails.send({
     from: FROM,
     to: email,
+    bcc: NOTIFY,
     subject: `Week 1 achter de rug — hoe loopt het?`,
     html: purchaseDay7(first),
     scheduledAt: daysFromNow(7),
@@ -47,6 +64,7 @@ export async function sendPurchaseSequence(name: string, email: string) {
   await resend.emails.send({
     from: FROM,
     to: email,
+    bcc: NOTIFY,
     subject: `14 dagen in — wat merk je al?`,
     html: purchaseDay14(first),
     scheduledAt: daysFromNow(14),
@@ -64,7 +82,7 @@ function purchaseDay0(first: string): string {
       <li><strong>Hoofdstuk 3 — Speed-to-lead:</strong> als je maar één ding deze week implementeert, laat dit het zijn. Resultaat voelbaar binnen 48u.</li>
       <li><strong>Het 30-dagenplan achteraan:</strong> kopieer week 1 direct naar je agenda. Niet lezen, plannen.</li>
     </ul>
-    <p>Vragen terwijl je door het handboek gaat? Reply gewoon op deze mail.</p>
+    <p>Aarzel niet me een bericht te sturen als je vragen hebt!</p>
     <sign>Jeroen</sign>
   `)
 }
@@ -76,7 +94,7 @@ function purchaseDay3(first: string): string {
     <p>De diagnose (pagina 1) is het meest onderschatte onderdeel van het handboek. De meeste ondernemers slaan hem over en beginnen meteen met hoofdstuk 1. Dat is een vergissing.</p>
     <p>Waarom? Omdat de diagnose je vertelt <em>welk hoofdstuk jij als eerste moet uitvoeren</em>. Zonder die volgorde werk je misschien aan het verkeerde ding.</p>
     <p>Het kost 5 minuten. Doe het nu als je het nog niet gedaan hebt.</p>
-    <p>Als je vastzit of als een hoofdstuk vragen oproept: reply op deze mail. Ik lees alles.</p>
+    <p>Aarzel niet me een bericht te sturen als je vastzit of als een hoofdstuk vragen oproept!</p>
     <sign>Jeroen</sign>
   `)
 }
@@ -87,8 +105,8 @@ function purchaseDay7(first: string): string {
     <p>Week 1 zit erop. Hoe gaat het met het handboek?</p>
     <p>Ik wil je een concrete tip meegeven voor deze week, ongeacht waar je staat:</p>
     <blockquote>Meet deze week hoelang het duurt voor een nieuwe aanvraag een eerste reactie krijgt — ook 's avonds, in het weekend en op maandag voor 9u. Dat getal is je baseline. Alles boven 30 minuten is geld dat je laat liggen.</blockquote>
-    <p>Dit is de maatstaf uit hoofdstuk 3. Als je dat getal nog niet hebt, start daar. Als je het al hebt: goed bezig — het systeem uit H3 doet de rest.</p>
-    <p>Laat me weten wat je vindt als je eenmaal een getal hebt. Veel ondernemers zijn verrast.</p>
+    <p>Dit is de maatstaf uit Hfst. 3. Als je dat getal nog niet hebt, start daar. Als je het al hebt: goed bezig, het systeem uit Hfst. 3 doet de rest.</p>
+    <p>Laat me weten wat je vindt als je eenmaal een getal hebt. Veel ondernemers zijn verrast. Aarzel niet me een bericht te sturen!</p>
     <sign>Jeroen</sign>
   `)
 }
@@ -102,7 +120,7 @@ function purchaseDay14(first: string): string {
     <p><strong>Je bent er nog niet aan toegekomen.</strong> Dat is oké — maar dan is dit de nudge. Kies één hoofdstuk, één actie, en doe die morgen. Geen planning, gewoon die ene stap.</p>
     <p>Als je vastloopt of als je het liever samen doet: ik doe een beperkt aantal strategie gesprekken per maand. Geen verkooppraatje — gewoon jouw situatie doorlopen en kijken wat als eerste zin heeft.</p>
     <cta-btn href="mailto:jeroen@leaditgrow.be?subject=Strategiegesprek">Stuur me een mail →</cta-btn>
-    <p>Reply ook gewoon op deze mail als je vragen hebt.</p>
+    <p>Aarzel niet me een bericht te sturen!</p>
     <sign>Jeroen</sign>
   `)
 }
@@ -112,24 +130,24 @@ function purchaseDay14(first: string): string {
 
 const LEVER_CHAPTER: Record<string, { chapter: string; hook: string }> = {
   time: {
-    chapter: 'H1 (De Groeiladder) en H2 (jouw omzetlek)',
-    hook: 'Je spendeert meer dan 40% van je week aan taken die een ander kan doen. Dat is geen gevoel — dat is een berekening die H2 je laat maken.',
+    chapter: 'Hfst. 1 (De Groeiladder) en Hfst. 2 (jouw omzetlek)',
+    hook: 'Je spendeert meer dan 40% van je week aan taken die een ander kan doen. Dat is geen gevoel, dat is een berekening die Hfst. 2 je laat maken.',
   },
   leadership: {
-    chapter: 'H8 (Impactvol leiderschap)',
-    hook: 'Jouw team is niet het probleem. De beslissingsstructuur is het probleem. H8 geeft je een kader om dat in één gesprek met je team te veranderen.',
+    chapter: 'Hfst. 8 (Impactvol leiderschap)',
+    hook: 'Jouw team is niet het probleem. De beslissingsstructuur is het probleem. Hfst. 8 geeft je een kader om dat in één gesprek met je team te veranderen.',
   },
   speed_to_lead: {
-    chapter: 'H3 (Speed-to-lead) en H4 (pipeline-opvolging)',
-    hook: 'Je reageert te laat op leads. HubSpot-data: na 30 minuten daalt je kans met 100x. H3 lost dit op in één middag.',
+    chapter: 'Hfst. 3 (Speed-to-lead) en Hfst. 4 (pipeline-opvolging)',
+    hook: 'Je reageert te laat op leads. HubSpot-data: na 30 minuten daalt je kans met 100x. Hfst. 3 lost dit op in één middag.',
   },
   marketing: {
-    chapter: 'H5 (Online aanwezigheid) en H7 (groeimotoren)',
-    hook: 'Jouw pipeline stopt als jij stopt. H5 en H7 bouwen een systeem dat leads genereert ook als jij niet actief bent.',
+    chapter: 'Hfst. 5 (Online aanwezigheid) en Hfst. 7 (groeimotoren)',
+    hook: 'Jouw pipeline stopt als jij stopt. Hfst. 5 en Hfst. 7 bouwen een systeem dat leads genereert ook als jij niet actief bent.',
   },
   sales: {
-    chapter: 'H6 (Sluitingspercentage)',
-    hook: 'Goede gesprekken die niet sluiten zijn een kwalificatieprobleem, geen overtuigingsprobleem. H6 geeft je het kader om dat te corrigeren.',
+    chapter: 'Hfst. 6 (Sluitingspercentage)',
+    hook: 'Goede gesprekken die niet sluiten zijn een kwalificatieprobleem, geen overtuigingsprobleem. Hfst. 6 geeft je het kader om dat te corrigeren.',
   },
 }
 
@@ -139,7 +157,7 @@ export async function sendDiagnosticNurtureSequence(
   topLever: string,
   score: number
 ) {
-  const first = name.split(' ')[0]
+  const first = resolveName(name, email)
   const leverInfo = LEVER_CHAPTER[topLever] ?? LEVER_CHAPTER['time']
   const isLeadership = topLever === 'leadership'
 
@@ -147,6 +165,7 @@ export async function sendDiagnosticNurtureSequence(
   await resend.emails.send({
     from: FROM,
     to: email,
+    bcc: NOTIFY,
     subject: `${first}, één ding over jouw diagnoseresultaat`,
     html: diagnosticDay3(first, leverInfo, isLeadership),
     scheduledAt: daysFromNow(3),
@@ -156,6 +175,7 @@ export async function sendDiagnosticNurtureSequence(
   await resend.emails.send({
     from: FROM,
     to: email,
+    bcc: NOTIFY,
     subject: `Het hoofdstuk dat jouw #1 probleem oplost`,
     html: diagnosticDay7(first, leverInfo, score, isLeadership),
     scheduledAt: daysFromNow(7),
@@ -165,6 +185,7 @@ export async function sendDiagnosticNurtureSequence(
   await resend.emails.send({
     from: FROM,
     to: email,
+    bcc: NOTIFY,
     subject: `${first}, nog één keer`,
     html: diagnosticDay14(first, isLeadership),
     scheduledAt: daysFromNow(14),
@@ -181,12 +202,13 @@ function diagnosticDay3(
     <p>Ik wilde even terugkomen op jouw diagnoseresultaat van drie dagen geleden.</p>
     <p>${lever.hook}</p>
     <p>Dit is precies wat ${lever.chapter} in het actiehandboek aanpakt — met concrete stappen die je zelf uitvoert, geen theorie.</p>
+    <p>Je hebt het waarschijnlijk heel druk, en dat is juist waarom ik graag even wil bespreken wat in jouw situatie de beste opties zijn en kijken of ik kan helpen. Zonder verdere verplichtingen. Mensen die het te druk hebben zijn net degenen die achteraf vaak het meeste hadden aan onze aanpak.</p>
     ${isLeadership
       ? `<p>Voor leiderschap geldt wel dat de gratis leiderschapsanalyse (75 min) je sneller verderbrengt dan het handboek alleen. Die analyse gaat specifiek in op <em>jouw</em> situatie, niet op een algemeen kader.</p>
          <cta-btn href="${SITE}/analyse">Boek de gratis leiderschapsanalyse →</cta-btn>`
       : `<cta-btn href="${SITE}/actiehandboek">Bekijk het actiehandboek · €97 →</cta-btn>`
     }
-    <p>Vragen over de diagnose? Reply gewoon.</p>
+    <p>Aarzel niet me een bericht te sturen!</p>
     <sign>Jeroen</sign>
   `)
 }
@@ -241,7 +263,7 @@ export async function sendAppointmentSequence(
   email: string,
   appointmentDate: string  // ISO string of the appointment
 ) {
-  const first = name.split(' ')[0]
+  const first = resolveName(name, email)
   const apptMs = new Date(appointmentDate).getTime()
   const now = Date.now()
   const daysBefore = Math.max(0, Math.floor((apptMs - now) / (1000 * 60 * 60 * 24)))
@@ -250,6 +272,7 @@ export async function sendAppointmentSequence(
   await resend.emails.send({
     from: FROM,
     to: email,
+    bcc: NOTIFY,
     subject: `Goed, ${first} — je afspraak staat in de agenda`,
     html: appointmentConfirm(first, appointmentDate),
   })
@@ -261,6 +284,7 @@ export async function sendAppointmentSequence(
     await resend.emails.send({
       from: FROM,
       to: email,
+      bcc: NOTIFY,
       subject: `Morgen onze afspraak — dit helpt om er het meeste uit te halen`,
       html: appointmentPrep(first),
       scheduledAt: prepDate.toISOString(),

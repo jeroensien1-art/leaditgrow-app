@@ -50,6 +50,7 @@ export function Contact() {
   const [error, setError] = useState('')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [website, setWebsite] = useState('')
   const [noWebsite, setNoWebsite] = useState(false)
   const [message, setMessage] = useState('')
@@ -62,6 +63,7 @@ export function Contact() {
   const [bookSending, setBookSending] = useState(false)
   const [bookName, setBookName] = useState('')
   const [bookEmail, setBookEmail] = useState('')
+  const [bookPhone, setBookPhone] = useState('')
   const [bookWebsite, setBookWebsite] = useState('')
   const [bookNoWebsite, setBookNoWebsite] = useState(false)
   const [bookChallenge, setBookChallenge] = useState('')
@@ -84,7 +86,7 @@ export function Contact() {
       const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, website: noWebsite ? 'geen website' : website, message, turnstileToken }),
+        body: JSON.stringify({ name, email, website: noWebsite ? 'geen website' : website, message: `${message}${phone ? `\n\nTel: ${phone}` : ''}`, turnstileToken }),
       })
       if (!res.ok) throw new Error('Failed')
       router.push('/bedankt/contact')
@@ -101,8 +103,8 @@ export function Contact() {
     if (!bookChallenge || !bookTimeline || !bookName || !bookEmail) return
     setBookSending(true)
     const msg = nl
-      ? `Gesprekverzoek\n\nGrootste uitdaging: ${bookChallenge}\nSnelheid: ${bookTimeline}`
-      : `Call request\n\nBiggest challenge: ${bookChallenge}\nTimeline: ${bookTimeline}`
+      ? `Gesprekverzoek\n\nGrootste uitdaging: ${bookChallenge}\nSnelheid: ${bookTimeline}${bookPhone ? `\nTel: ${bookPhone}` : ''}`
+      : `Call request\n\nBiggest challenge: ${bookChallenge}\nTimeline: ${bookTimeline}${bookPhone ? `\nPhone: ${bookPhone}` : ''}`
     try {
       await fetch('/api/leads', {
         method: 'POST',
@@ -177,6 +179,10 @@ export function Contact() {
                 <div>
                   <Label>Email</Label>
                   <FieldInput type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="jou@email.com" />
+                </div>
+                <div>
+                  <Label>{t('Telefoonnummer', 'Phone number')} <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>({t('optioneel', 'optional')})</span></Label>
+                  <FieldInput type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="+32 ..." />
                 </div>
                 <div>
                   <Label>{t('Website', 'Website')} <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>({t('optioneel', 'optional')})</span></Label>
@@ -277,6 +283,10 @@ export function Contact() {
                   <div>
                     <Label>Email</Label>
                     <FieldInput type="email" required value={bookEmail} onChange={e => setBookEmail(e.target.value)} placeholder="jou@email.com" />
+                  </div>
+                  <div>
+                    <Label>{t('Telefoonnummer', 'Phone number')} <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>({t('optioneel', 'optional')})</span></Label>
+                    <FieldInput type="tel" value={bookPhone} onChange={e => setBookPhone(e.target.value)} placeholder="+32 ..." />
                   </div>
                   <div>
                     <Label>{t('Website', 'Website')} <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>({t('optioneel', 'optional')})</span></Label>

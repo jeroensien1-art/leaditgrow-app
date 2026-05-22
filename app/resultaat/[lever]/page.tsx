@@ -394,7 +394,7 @@ export default function ResultaatPage() {
             {data.subline}
           </p>
           <p style={{ fontSize: '0.85rem', color: 'rgba(250,249,245,0.35)', letterSpacing: '0.02em' }}>
-            {isNl ? 'Jouw persoonlijk 30-dagenplan is onderweg naar je inbox.' : 'Your personalised 30-day action plan is on its way to your inbox.'}
+            {isNl ? 'Jouw persoonlijk rapport met concrete inzichten en actiestappen is onderweg naar je inbox. Klaar om de komende 14 dagen mee aan de slag te gaan.' : 'Your personal report with concrete insights and action steps is on its way to your inbox. Ready to act on in the next 14 days.'}
           </p>
         </div>
       </section>
