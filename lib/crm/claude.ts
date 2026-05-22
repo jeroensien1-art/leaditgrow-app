@@ -18,7 +18,7 @@ export interface Lead {
   diagnosticAnswers?: Record<string, number>
   diagnosticTopLevers?: string[]
   diagnosticGapScore?: number
-  diagnosticContext?: { industry: string; teamSize: string; avgDealValue: string; monthlyLeads: string }
+  diagnosticContext?: { industry: string; teamSize: string; avgDealValue: string; monthlyLeads: string; phone?: string; website?: string }
 }
 
 export interface QualificationResult {

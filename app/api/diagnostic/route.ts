@@ -563,6 +563,8 @@ export async function POST(req: NextRequest) {
       id,
       name: body.name,
       email: body.email,
+      phone: body.phone ?? null,
+      website: body.website ?? null,
       score: body.score,
       industry: body.context.industry,
       monthly_leads: body.context.monthlyLeads,
@@ -581,7 +583,7 @@ export async function POST(req: NextRequest) {
         id,
         name: body.name,
         email: body.email,
-        message: `Business Impact Diagnostic - gap score: ${body.score}/100. Top gaps: ${body.topLevers.slice(0, 3).join(', ')}. Industry: ${body.context.industry}. Leads/mo: ${body.context.monthlyLeads}. Avg deal: ${body.context.avgDealValue}.${body.phone ? ` Tel: ${body.phone}.` : ''}`,
+        message: `Business Impact Diagnostic - gap score: ${body.score}/100. Top gaps: ${body.topLevers.slice(0, 3).join(', ')}. Industry: ${body.context.industry}. Leads/mo: ${body.context.monthlyLeads}. Avg deal: ${body.context.avgDealValue}.${body.phone ? ` Tel: ${body.phone}.` : ''}${body.website ? ` Website: ${body.website}.` : ''}`,
         lang: 'nl',
         submittedAt: Date.now(),
         qualified: body.score >= 30,
@@ -637,7 +639,7 @@ export async function POST(req: NextRequest) {
       html: `
         <div style="font-family:sans-serif;max-width:560px">
           <h2 style="color:#3d3929;margin-bottom:4px">New diagnostic — ${body.name}</h2>
-          <p style="color:#83827d;font-size:13px;margin:0 0 20px">${body.email}${body.phone ? ` · ${body.phone}` : ''} · ${body.context.industry} · ${body.context.teamSize} medewerkers · ${body.context.monthlyLeads} leads/maand · ${body.context.avgDealValue}</p>
+          <p style="color:#83827d;font-size:13px;margin:0 0 20px">${body.email}${body.phone ? ` · ${body.phone}` : ''}${body.website ? ` · <a href="${body.website.startsWith('http') ? body.website : 'https://' + body.website}" style="color:#c96442">${body.website}</a>` : ''} · ${body.context.industry} · ${body.context.teamSize} medewerkers · ${body.context.monthlyLeads} leads/maand · ${body.context.avgDealValue}</p>
           <div style="background:#f3f1eb;border-radius:8px;padding:10px 16px;display:inline-block;margin-bottom:20px">
             <span style="font-size:28px;font-weight:800;color:${(100-body.score) >= 70 ? '#3dba6e' : (100-body.score) >= 40 ? '#e8a838' : '#e05b3a'}">${100 - body.score}</span><span style="font-size:14px;color:#83827d">/100 sterkte</span>
           </div>

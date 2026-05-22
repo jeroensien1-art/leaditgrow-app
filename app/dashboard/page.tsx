@@ -323,12 +323,19 @@ export default function Dashboard() {
                                 { label: 'Team', value: lead.diagnosticContext.teamSize },
                                 { label: 'Leads/maand', value: lead.diagnosticContext.monthlyLeads },
                                 { label: 'Deal value', value: lead.diagnosticContext.avgDealValue },
+                                ...(lead.diagnosticContext.phone ? [{ label: 'Telefoon', value: lead.diagnosticContext.phone }] : []),
                               ].map(({ label, value }) => (
                                 <div key={label} style={{ background: '#fff', border: '1px solid rgba(61,57,41,0.1)', borderRadius: 8, padding: '6px 12px' }}>
                                   <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#83827d', marginBottom: 2 }}>{label}</div>
                                   <div style={{ fontSize: 13, fontWeight: 600, color: '#3d3929' }}>{value}</div>
                                 </div>
                               ))}
+                              {lead.diagnosticContext.website && (
+                                <div style={{ background: '#fff', border: '1px solid rgba(61,57,41,0.1)', borderRadius: 8, padding: '6px 12px' }}>
+                                  <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#83827d', marginBottom: 2 }}>Website</div>
+                                  <a href={lead.diagnosticContext.website.startsWith('http') ? lead.diagnosticContext.website : `https://${lead.diagnosticContext.website}`} target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, fontWeight: 600, color: '#c96442', textDecoration: 'none' }}>{lead.diagnosticContext.website}</a>
+                                </div>
+                              )}
                             </div>
                           )}
                           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>

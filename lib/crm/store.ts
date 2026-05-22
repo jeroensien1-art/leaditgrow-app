@@ -22,7 +22,7 @@ function toRow(lead: Lead) {
   }
 }
 
-function fromRow(row: Record<string, unknown>, diag?: { answers: Record<string, number>; top_levers: string[]; score: number; industry: string; team_size: string; avg_deal_value: string; monthly_leads: string }): Lead {
+function fromRow(row: Record<string, unknown>, diag?: { answers: Record<string, number>; top_levers: string[]; score: number; industry: string; team_size: string; avg_deal_value: string; monthly_leads: string; phone?: string; website?: string }): Lead {
   return {
     id: row.id as string,
     name: row.name as string,
@@ -39,7 +39,7 @@ function fromRow(row: Record<string, unknown>, diag?: { answers: Record<string, 
     diagnosticAnswers: diag?.answers,
     diagnosticTopLevers: diag?.top_levers,
     diagnosticGapScore: diag?.score,
-    diagnosticContext: diag ? { industry: diag.industry, teamSize: diag.team_size, avgDealValue: diag.avg_deal_value, monthlyLeads: diag.monthly_leads } : undefined,
+    diagnosticContext: diag ? { industry: diag.industry, teamSize: diag.team_size, avgDealValue: diag.avg_deal_value, monthlyLeads: diag.monthly_leads, phone: diag.phone, website: diag.website } : undefined,
   }
 }
 
@@ -85,10 +85,10 @@ export async function getAllLeads(): Promise<Lead[]> {
   if (diagnosticIds.length > 0) {
     const { data: diags } = await supabase
       .from('diagnostics')
-      .select('id, answers, top_levers, score, industry, team_size, avg_deal_value, monthly_leads')
+      .select('id, answers, top_levers, score, industry, team_size, avg_deal_value, monthly_leads, phone, website')
       .in('id', diagnosticIds)
     for (const d of diags ?? []) {
-      diagMap[d.id] = { answers: d.answers, top_levers: d.top_levers, score: d.score, industry: d.industry, team_size: d.team_size, avg_deal_value: d.avg_deal_value, monthly_leads: d.monthly_leads }
+      diagMap[d.id] = { answers: d.answers, top_levers: d.top_levers, score: d.score, industry: d.industry, team_size: d.team_size, avg_deal_value: d.avg_deal_value, monthly_leads: d.monthly_leads, phone: d.phone, website: d.website }
     }
   }
 

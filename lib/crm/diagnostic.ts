@@ -13,6 +13,7 @@ export interface DiagnosticSubmission {
   name: string
   email: string
   phone?: string
+  website?: string
   context: {
     industry: string
     monthlyLeads: string
