@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(__dirname),
   },
+  async redirects() {
+    return [
+      {
+        source: '/gratis-handboek',
+        destination: '/actiehandboek',
+        permanent: true,
+      },
+    ]
+  },
 };
 
 export default nextConfig;
