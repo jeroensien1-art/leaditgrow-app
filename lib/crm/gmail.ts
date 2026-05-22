@@ -115,10 +115,10 @@ export async function getUnreadReplies(): Promise<GmailReply[]> {
   const labelId = await getOrCreateLabelId(token)
   const excludeLabel = encodeURIComponent(`-label:${PROCESSED_LABEL}`)
 
-  // Inbox messages from last 7 days, NOT sent by us, NOT already processed
+  // Inbox + spam from last 7 days, NOT sent by us, NOT already processed
   const listRes = await fetch(
     'https://gmail.googleapis.com/gmail/v1/users/me/messages' +
-    `?q=in:inbox+-from:jeroen%40leaditgrow.be+newer_than:7d+${excludeLabel}&maxResults=20`,
+    `?q={in:inbox+in:spam}+-from:jeroen%40leaditgrow.be+newer_than:7d+${excludeLabel}&maxResults=20`,
     { headers: auth }
   )
   const listData = await listRes.json() as { messages?: Array<{ id: string; threadId: string }> }
