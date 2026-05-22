@@ -24,7 +24,7 @@ export async function sendWelcomeEmail(name: string, to: string): Promise<void> 
         <tr><td style="background:#3d3929;padding:32px 40px;">
           <p style="margin:0;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(250,249,245,0.4);font-family:monospace;">Lead it, Grow</p>
           <h1 style="margin:12px 0 0;font-size:26px;font-weight:400;color:#faf9f5;line-height:1.2;font-family:Georgia,serif;">
-            Hier is jouw<br><em style="color:#c96442;">gratis actiehandboek</em>
+            Hier is jouw<br><em style="color:#c96442;">Businessgroei Actiehandboek</em>
           </h1>
         </td></tr>
 
@@ -83,7 +83,7 @@ export async function sendWelcomeEmail(name: string, to: string): Promise<void> 
     from: FROM,
     to,
     bcc: NOTIFY,
-    subject: `${firstName}, hier is jouw gratis actiehandboek`,
+    subject: `${firstName}, hier is jouw actiehandboek`,
     html,
   })
 }
@@ -101,7 +101,7 @@ export async function notifyJeroenNewOptin(name: string, email: string): Promise
   await resend.emails.send({
     from: FROM,
     to: NOTIFY,
-    subject: `Nieuwe opt-in (gratis handboek): ${name}`,
+    subject: `Nieuwe opt-in (actiehandboek): ${name}`,
     html,
   })
 }
