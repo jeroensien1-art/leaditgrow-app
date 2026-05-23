@@ -81,7 +81,7 @@ export async function getAllLeads(): Promise<Lead[]> {
   const rows = data ?? []
   const diagnosticIds = rows.filter(r => r.source === 'diagnostic').map(r => r.id as string)
 
-  let diagMap: Record<string, { answers: Record<string, number>; top_levers: string[]; score: number; industry: string; team_size: string; avg_deal_value: string; monthly_leads: string }> = {}
+  let diagMap: Record<string, { answers: Record<string, number>; top_levers: string[]; score: number; industry: string; team_size: string; avg_deal_value: string; monthly_leads: string; phone?: string; website?: string }> = {}
   if (diagnosticIds.length > 0) {
     const { data: diags } = await supabase
       .from('diagnostics')
