@@ -530,9 +530,11 @@ export default function DiagnosticPage() {
     const slug = leverSlugs[topLever] ?? 'tijd'
     if (typeof window !== 'undefined' && typeof (window as unknown as Record<string, unknown>).fbq === 'function') {
       ;(window as unknown as Record<string, (...a: unknown[]) => void>).fbq('track', 'Lead')
+      ;(window as unknown as Record<string, (...a: unknown[]) => void>).fbq('trackCustom', 'Diagnose voltooid')
     }
     setSubmitting(false)
-    setTimeout(() => router.push(`/resultaat/${slug}`), 300)
+    const utmParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).toString() : ''
+    setTimeout(() => router.push(`/resultaat/${slug}${utmParams ? `?${utmParams}` : ''}`), 300)
   }
 
   const ctxSelected = ctxAnswers[contextQuestions[ctxIndex].id as keyof ContextAnswers]
