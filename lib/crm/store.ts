@@ -1,10 +1,13 @@
 import { createClient } from '@supabase/supabase-js'
+import { Resend } from 'resend'
 import type { Lead } from './claude'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_KEY!
 )
+
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 function toRow(lead: Lead) {
   return {
@@ -109,4 +112,29 @@ export async function getDueFollowUps(): Promise<Lead[]> {
 
 export async function markFollowedUp(id: string): Promise<void> {
   await updateLead(id, { status: 'followed_up', followedUpAt: Date.now() })
+}
+
+export async function saveResendIds(leadId: string, ids: string[]): Promise<void> {
+  const { error } = await supabase
+    .from('leads')
+    .update({ resend_ids: ids })
+    .eq('id', leadId)
+  if (error) console.error(`[saveResendIds] ${error.message}`)
+}
+
+export async function getResendIds(leadId: string): Promise<string[]> {
+  const { data } = await supabase
+    .from('leads')
+    .select('resend_ids')
+    .eq('id', leadId)
+    .single()
+  return (data?.resend_ids as string[]) ?? []
+}
+
+export async function cancelNurtureSequence(leadId: string): Promise<void> {
+  const ids = await getResendIds(leadId)
+  if (ids.length === 0) return
+  await Promise.allSettled(ids.map(id => resend.emails.cancel(id)))
+  await supabase.from('leads').update({ resend_ids: [] }).eq('id', leadId)
+  console.log(`[cancelNurture] cancelled ${ids.length} scheduled emails for lead ${leadId}`)
 }

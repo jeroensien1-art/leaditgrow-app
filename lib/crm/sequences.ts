@@ -156,13 +156,14 @@ export async function sendDiagnosticNurtureSequence(
   email: string,
   topLever: string,
   score: number
-) {
+): Promise<string[]> {
   const first = resolveName(name, email)
   const leverInfo = LEVER_CHAPTER[topLever] ?? LEVER_CHAPTER['time']
   const isLeadership = topLever === 'leadership'
+  const ids: string[] = []
 
   // Day 3 — lever-specifieke opvolging + zachte push
-  await resend.emails.send({
+  const r3 = await resend.emails.send({
     from: FROM,
     to: email,
     bcc: NOTIFY,
@@ -170,9 +171,10 @@ export async function sendDiagnosticNurtureSequence(
     html: diagnosticDay3(first, leverInfo, isLeadership),
     scheduledAt: daysFromNow(3),
   })
+  if (r3.data?.id) ids.push(r3.data.id)
 
   // Day 7 — specifiek hoofdstuk + social proof
-  await resend.emails.send({
+  const r7 = await resend.emails.send({
     from: FROM,
     to: email,
     bcc: NOTIFY,
@@ -180,9 +182,10 @@ export async function sendDiagnosticNurtureSequence(
     html: diagnosticDay7(first, leverInfo, score, isLeadership),
     scheduledAt: daysFromNow(7),
   })
+  if (r7.data?.id) ids.push(r7.data.id)
 
   // Day 14 — laatste kans + alternatief aanbod
-  await resend.emails.send({
+  const r14 = await resend.emails.send({
     from: FROM,
     to: email,
     bcc: NOTIFY,
@@ -190,6 +193,9 @@ export async function sendDiagnosticNurtureSequence(
     html: diagnosticDay14(first, isLeadership),
     scheduledAt: daysFromNow(14),
   })
+  if (r14.data?.id) ids.push(r14.data.id)
+
+  return ids
 }
 
 function diagnosticDay3(

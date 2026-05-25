@@ -1,6 +1,13 @@
 import { Resend } from 'resend'
 import { getUnreadReplies, markProcessed } from './gmail'
 import { classifyAndReply } from './reply'
+import { cancelNurtureSequence } from './store'
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_KEY!
+)
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 const FROM   = 'Jeroen Sienaert <jeroen@leaditgrow.be>'
@@ -33,6 +40,33 @@ export async function processReplies(): Promise<{ processed: number }> {
       console.log(`[auto-reply] ${reply.fromEmail} -> ${result.intent}`)
 
       if (result.intent === 'GEEN') continue
+
+      // Bij positieve of negatieve intent: lead status updaten + nurture stoppen
+      if (result.intent === 'JA_INTERESSE') {
+        const { data: lead } = await supabase
+          .from('leads')
+          .select('id')
+          .eq('email', reply.fromEmail)
+          .order('created_at', { ascending: false })
+          .limit(1)
+          .single()
+        if (lead?.id) {
+          await supabase.from('leads').update({ status: 'replied', replied_at: new Date().toISOString() }).eq('id', lead.id)
+          await cancelNurtureSequence(lead.id).catch(() => {})
+        }
+      } else if (result.intent === 'NEE' || result.intent === 'OOT') {
+        const { data: lead } = await supabase
+          .from('leads')
+          .select('id')
+          .eq('email', reply.fromEmail)
+          .order('created_at', { ascending: false })
+          .limit(1)
+          .single()
+        if (lead?.id) {
+          await supabase.from('leads').update({ status: 'closed' }).eq('id', lead.id)
+          await cancelNurtureSequence(lead.id).catch(() => {})
+        }
+      }
 
       await resend.emails.send({
         from:    FROM,

@@ -3,7 +3,7 @@ import { randomUUID } from 'crypto'
 import { createClient } from '@supabase/supabase-js'
 import { type DiagnosticSubmission } from '@/lib/crm/diagnostic'
 import { sendToLead } from '@/lib/crm/email'
-import { saveLead } from '@/lib/crm/store'
+import { saveLead, saveResendIds } from '@/lib/crm/store'
 import { sendDiagnosticNurtureSequence, resolveName } from '@/lib/crm/sequences'
 import { Resend } from 'resend'
 
@@ -602,7 +602,8 @@ export async function POST(req: NextRequest) {
 
     // Start nurture sequence (dag 3, 7, 14) via Resend scheduled emails
     try {
-      await sendDiagnosticNurtureSequence(body.name, body.email, body.topLevers[0] ?? 'time', body.score)
+      const nurtureIds = await sendDiagnosticNurtureSequence(body.name, body.email, body.topLevers[0] ?? 'time', body.score)
+      if (nurtureIds.length > 0) await saveResendIds(id, nurtureIds)
     } catch (err) {
       console.error('[diagnostic] nurture sequence error:', err)
     }

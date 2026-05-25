@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
+import { cancelNurtureSequence } from '@/lib/crm/store'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -33,6 +34,9 @@ export async function GET(req: NextRequest) {
       .from('leads')
       .update({ status: 'booked', replied_at: new Date().toISOString() })
       .eq('id', id)
+
+    // Stop alle ingeplande nurture emails
+    await cancelNurtureSequence(id).catch(err => console.error('[book] cancel nurture error:', err))
 
     await resend.emails.send({
       from: FROM,

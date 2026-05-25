@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getAllLeads, updateLead } from '@/lib/crm/store'
+import { getAllLeads, updateLead, cancelNurtureSequence } from '@/lib/crm/store'
 import type { Lead } from '@/lib/crm/claude'
 
 export async function GET() {
@@ -17,6 +17,9 @@ export async function PATCH(req: Request) {
     const { id, status } = await req.json()
     if (!id || !status) return NextResponse.json({ error: 'Missing id or status' }, { status: 400 })
     await updateLead(id, { status: status as Lead['status'] })
+    if (status === 'booked') {
+      await cancelNurtureSequence(id).catch(err => console.error('[dashboard] cancel nurture error:', err))
+    }
     return NextResponse.json({ ok: true })
   } catch (err) {
     console.error('[dashboard patch] error:', err)
