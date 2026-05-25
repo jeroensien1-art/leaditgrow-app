@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { randomUUID } from 'crypto'
-import { saveLead } from '@/lib/crm/store'
+import { saveLead, saveResendIds } from '@/lib/crm/store'
 import { sendToLead } from '@/lib/crm/email'
-import { resolveName } from '@/lib/crm/sequences'
+import { resolveName, sendCalculatorNurtureSequence } from '@/lib/crm/sequences'
 import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
@@ -180,6 +180,17 @@ export async function POST(req: NextRequest) {
     // Send revenue report email to lead
     const { subject, html } = buildEmail(body)
     await sendToLead(body.email, subject, html)
+
+    // Start nurture sequence (dag 3, 7, 14)
+    try {
+      const topLeak = body.speedLeak >= body.followupLeak
+        ? (body.speedLeak > 0 ? 'speed' : 'none')
+        : (body.followupLeak > 0 ? 'followup' : 'none')
+      const nurtureIds = await sendCalculatorNurtureSequence(body.name, body.email, body.monthly, topLeak)
+      if (nurtureIds.length > 0) await saveResendIds(id, nurtureIds)
+    } catch (err) {
+      console.error('[calculator] nurture sequence error:', err)
+    }
 
     // Notify Jeroen
     await resend.emails.send({

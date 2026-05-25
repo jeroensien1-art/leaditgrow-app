@@ -261,6 +261,103 @@ function diagnosticDay14(first: string, isLeadership: boolean): string {
   `)
 }
 
+// ─── CALCULATOR NURTURE SEQUENCE ─────────────────────────────────────────────
+// Triggered after revenue calculator submit
+
+export async function sendCalculatorNurtureSequence(
+  name: string,
+  email: string,
+  monthlyLeak: number,
+  topLeak: 'speed' | 'followup' | 'none'
+): Promise<string[]> {
+  const first = resolveName(name, email)
+  const ids: string[] = []
+
+  // Map calculator data to diagnostic lever for reuse
+  const lever = topLeak === 'speed' ? 'speed_to_lead' : topLeak === 'followup' ? 'pipeline' : 'time'
+  const leverInfo = LEVER_CHAPTER[lever] ?? LEVER_CHAPTER['time']
+  const hasLeak = monthlyLeak > 0
+
+  // Day 3 — terugkomen op calculator resultaat
+  const r3 = await resend.emails.send({
+    from: FROM,
+    to: email,
+    bcc: NOTIFY,
+    subject: `${first}, één ding over jouw calculator resultaat`,
+    html: calculatorDay3(first, leverInfo, hasLeak, monthlyLeak),
+    scheduledAt: daysFromNow(3),
+  })
+  if (r3.data?.id) ids.push(r3.data.id)
+
+  // Day 7 — social proof + specifieke fix
+  const r7 = await resend.emails.send({
+    from: FROM,
+    to: email,
+    bcc: NOTIFY,
+    subject: `Het systeem dat jouw #1 lek dicht`,
+    html: calculatorDay7(first, leverInfo, hasLeak),
+    scheduledAt: daysFromNow(7),
+  })
+  if (r7.data?.id) ids.push(r7.data.id)
+
+  // Day 14 — laatste kans
+  const r14 = await resend.emails.send({
+    from: FROM,
+    to: email,
+    bcc: NOTIFY,
+    subject: `${first}, nog één keer`,
+    html: calculatorDay14(first),
+    scheduledAt: daysFromNow(14),
+  })
+  if (r14.data?.id) ids.push(r14.data.id)
+
+  return ids
+}
+
+function calculatorDay3(
+  first: string,
+  lever: { chapter: string; hook: string },
+  hasLeak: boolean,
+  monthlyLeak: number
+): string {
+  const leakStr = monthlyLeak > 0 ? `€${monthlyLeak.toLocaleString('nl-BE')}` : 'een significant bedrag'
+  return emailWrap(`
+    <p>Hoi ${first},</p>
+    <p>Drie dagen geleden berekende je ${hasLeak ? `dat je ${leakStr}/maand laat liggen` : 'jouw omzetpotentieel'} via de calculator.</p>
+    <p>${lever.hook}</p>
+    <p>Dat is exact wat de Business Impact Diagnose verder uitdiept — in 10 minuten krijg je een volledig persoonlijk rapport met jouw top 3 fixes.</p>
+    <cta-btn href="${SITE}/diagnostic">Start gratis diagnose →</cta-btn>
+    <p>Of stuur me een reply als je liever even belt. Ik lees alles zelf.</p>
+    <sign>Jeroen</sign>
+  `)
+}
+
+function calculatorDay7(
+  first: string,
+  lever: { chapter: string; hook: string },
+  hasLeak: boolean
+): string {
+  return emailWrap(`
+    <p>Hoi ${first},</p>
+    <p>Een zaakvoerder die vorige maand hetzelfde traject doorliep zei na een week: <em>"Ik had dit drie jaar geleden moeten doen. Niet omdat het moeilijk is, maar omdat het simpel is als je het eens op papier ziet."</em></p>
+    <p>${hasLeak ? 'Het verschil tussen weten dat je omzet laat liggen en er effectief iets aan doen? Een concreet systeem, geen generiek advies.' : 'Het verschil tussen potentieel en resultaat? Een concreet systeem, geen generiek advies.'}</p>
+    <p>De diagnose geeft je dat systeem in 10 minuten, gratis.</p>
+    <cta-btn href="${SITE}/diagnostic">Diagnose starten →</cta-btn>
+    <sign>Jeroen</sign>
+  `)
+}
+
+function calculatorDay14(first: string): string {
+  return emailWrap(`
+    <p>Hoi ${first},</p>
+    <p>Dit is de laatste mail in deze reeks — ik wil je inbox niet blijven vullen als de timing niet klopt.</p>
+    <p>Maar als het bedrag dat je via de calculator berekende nog steeds ergens in je achterhoofd zit: de diagnose is de snelste manier om van inzicht naar actie te gaan.</p>
+    <cta-btn href="${SITE}/diagnostic">Gratis diagnose →</cta-btn>
+    <p>Als de timing nu gewoon niet klopt: stuur me dan een reply. Ik help je graag als het moment er wel is.</p>
+    <sign>Jeroen</sign>
+  `)
+}
+
 // ─── APPOINTMENT WARM-UP SEQUENCE ────────────────────────────────────────────
 // Triggered after appointment booking (Calendly webhook or manual)
 
