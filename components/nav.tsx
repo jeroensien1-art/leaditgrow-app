@@ -18,6 +18,7 @@ export function Nav() {
 
   const links = [
     { href: '/diensten',   label: t('Diensten', 'Services') },
+    { href: '/missie.html', label: t('Missie', 'Mission') },
     { href: '/#about',     label: t('Over', 'About') },
     { href: '/blog',       label: t('Blog', 'Blog') },
     { href: '/#contact',   label: t('Contact', 'Contact') },
