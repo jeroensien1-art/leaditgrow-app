@@ -467,6 +467,28 @@ export default function ResultaatPage() {
         </div>
       </section>
 
+      {/* ── Netwerk stats ── */}
+      <section style={{ background: '#262624', padding: 'clamp(2.5rem,6vw,4rem) 1.5rem' }}>
+        <div style={{ maxWidth: 680, margin: '0 auto' }}>
+          <div style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(250,249,245,0.35)', marginBottom: '2rem', textAlign: 'center' }}>
+            {isNl ? 'Netwerk van specialisten · bewezen resultaten' : 'Network of specialists · proven results'}
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0 }}>
+            {[
+              { num: '€1,58M', label: isNl ? 'Gegenereerd voor klanten' : 'Generated for clients', desc: isNl ? 'Via campagnes beheerd door ons netwerk' : 'Via campaigns managed by our network' },
+              { num: '3,93x', label: isNl ? 'Gemiddeld rendement' : 'Average return', desc: isNl ? 'Op elke geïnvesteerde euro' : 'On every euro invested' },
+              { num: isNl ? '3 landen' : '3 countries', label: isNl ? 'Actieve markten' : 'Active markets', desc: isNl ? 'België, Nederland en verder' : 'Belgium, Netherlands and beyond' },
+            ].map((stat, i) => (
+              <div key={i} style={{ padding: 'clamp(1.25rem,3vw,2rem) clamp(1rem,2.5vw,1.75rem)', borderRight: i < 2 ? '1px solid rgba(255,255,255,0.07)' : 'none', textAlign: 'center' }}>
+                <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.8rem,4vw,2.5rem)', fontWeight: 700, color: '#c96442', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 8 }}>{stat.num}</div>
+                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#faf9f5', marginBottom: 4 }}>{stat.label}</div>
+                <div style={{ fontSize: '0.75rem', color: 'rgba(195,192,182,0.5)', lineHeight: 1.5 }}>{stat.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA ── */}
       <section style={{ padding: 'clamp(4rem,10vw,6rem) 1.5rem', background: '#faf9f5', textAlign: 'center' }}>
         <div style={{ maxWidth: 560, margin: '0 auto' }}>
