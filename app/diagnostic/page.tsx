@@ -137,6 +137,26 @@ const questionsEn: Question[] = [
   },
 ]
 
+const ctaHookNl: Record<string, string> = {
+  time:          'je tijd terug',
+  leadership:    'jouw team zelfstandig, zonder jou als bottleneck',
+  speed_to_lead: 'leads op terwijl ze nog warm zijn',
+  pipeline:      'warme leads om naar betalende klanten',
+  marketing:     'inbound leads zonder constante push',
+  sales:         'je sluitingspercentage naar een volgend niveau',
+  retention:     'meer omzet uit klanten die je al hebt',
+}
+
+const ctaHookEn: Record<string, string> = {
+  time:          'your time back',
+  leadership:    'your team running without you as the bottleneck',
+  speed_to_lead: 'leads before they go cold',
+  pipeline:      'warm leads into paying clients',
+  marketing:     'inbound leads without constant pushing',
+  sales:         'your close rate to the next level',
+  retention:     'more revenue from clients you already have',
+}
+
 const leverConfigEn: Record<string, { label: string; color: string }> = {
   time:          { label: 'Owner time',         color: '#c96442' },
   leadership:    { label: 'Leadership',          color: '#8b4513' },
@@ -387,7 +407,8 @@ const css = `
   .moment { display:flex; align-items:flex-start; gap:10px; padding:11px 14px; background:var(--cream); border-radius:8px; border-left:2px solid var(--sand-mid); }
   .moment-text { font-size:13px; color:var(--ink-mid); line-height:1.55; }
   .moment-text strong { font-weight:600; color:var(--ink); display:block; margin-bottom:2px; }
-  .btn-primary { width:100%; padding:14px 24px; background:var(--rust); color:white; border:none; border-radius:10px; font-size:13px; font-weight:600; cursor:pointer; transition:all .15s; box-shadow:0 2px 8px rgba(201,100,66,.25); }
+  .btn-primary { width:100%; padding:16px 24px; background:var(--rust); color:white; border:none; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer; transition:all .15s; box-shadow:0 2px 8px rgba(201,100,66,.25); letter-spacing:.01em; }
+  .cta-lever-label { font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--rust); margin-bottom:6px; }
   .btn-primary:hover { background:#b8572a; transform:translateY(-1px); }
   .btn-primary:disabled { opacity:.4; cursor:not-allowed; transform:none; }
   .btn-ghost { padding:14px 18px; background:transparent; color:var(--ink-muted); border:1.5px solid var(--border-mid); border-radius:10px; font-size:13px; cursor:pointer; transition:all .15s; }
@@ -438,7 +459,7 @@ const css = `
   .pc-action { font-size:12px; font-weight:600; color:var(--rust); display:flex; align-items:center; gap:6px; }
   .cta-box { background:var(--sand); border-radius:12px; padding:1.4rem 1.6rem; border:1px solid var(--sand-mid); margin-top:1.4rem; }
   .cta-title { font-family:var(--font-display); font-size:18px; font-weight:700; color:var(--ink); margin-bottom:5px; }
-  .cta-sub { font-size:13px; color:var(--ink-muted); line-height:1.6; margin-bottom:14px; }
+  .cta-sub { font-family:var(--font-display); font-size:17px; font-weight:700; color:var(--ink); line-height:1.4; margin-bottom:14px; }
   .field-label { font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:6px; display:block; }
   .text-input { width:100%; padding:12px 14px; background:var(--warm-white); border:1.5px solid var(--border-mid); border-radius:10px; font-size:13px; color:var(--ink); outline:none; transition:border-color .15s; margin-bottom:10px; }
   .text-input:focus { border-color:var(--rust); }
@@ -560,8 +581,12 @@ export default function DiagnosticPage() {
     topPriorities:  nl ? 'Jouw top prioriteiten' : 'Your top priorities',
     priority:       nl ? 'Prioriteit'        : 'Priority',
     biggestImpact:  nl ? 'Grootste impact'   : 'Biggest impact',
+    pcTeaser:       nl ? 'Ontvang de exacte stappen die je in 14 dagen kan toepassen via het gratis rapport onderaan.' : 'Get the exact steps you can apply in 14 days via the free report below.',
     ctaTitle:       nl ? 'Ontvang jouw persoonlijk actierapport' : 'Get your personalised action report',
-    ctaSub:         nl ? 'Een volledig overzicht van jouw top 3 hiaten, exacte volgende stappen, wat elk je kost, en een persoonlijk plan om het op te lossen.' : 'A full breakdown of your top 3 gaps, exact next steps, what each is costing you, and a personalised plan to fix it.',
+    ctaLeverLabel:  nl ? `Jouw #1 knelpunt: ${leverDetail[scored[0]?.key ?? 'time'].title}` : `Your #1 bottleneck: ${leverDetail[scored[0]?.key ?? 'time'].title}`,
+    ctaSub:         nl
+      ? `Win binnen 14 dagen ${ctaHookNl[scored[0]?.key ?? 'time']} met de exacte stappen die je vindt in het gratis rapport met actieplan. Ontvang het nu in je inbox!`
+      : `Win back ${ctaHookEn[scored[0]?.key ?? 'time']} within 14 days with the exact steps in the free action plan report. Get it in your inbox now!`,
     getFreeReport:  nl ? 'Ontvang mijn gratis rapport' : 'Get my free report',
     almostThere:    nl ? 'Bijna klaar'       : 'Almost there',
     whereToSend:    nl ? 'Waar sturen we het naartoe?' : 'Where should we send it?',
@@ -710,12 +735,12 @@ export default function DiagnosticPage() {
                       <div className="pc-title">{d.title}</div>
                       <div className="pc-emotion">{d.emotion}</div>
                       <div className="pc-desc">{d.desc}</div>
-                      <div className="pc-action">{d.action}</div>
+                      <div className="pc-action">{T.pcTeaser}</div>
                     </div>
                   )
                 })}
                 <div className="cta-box">
-                  <div className="cta-title">{T.ctaTitle}</div>
+                  <div className="cta-lever-label">{T.ctaLeverLabel}</div>
                   <div className="cta-sub">{T.ctaSub}</div>
                   <button className="btn-primary" onClick={() => setStep('capture')}>{T.getFreeReport}</button>
                 </div>
