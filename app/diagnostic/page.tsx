@@ -138,23 +138,23 @@ const questionsEn: Question[] = [
 ]
 
 const ctaHookNl: Record<string, string> = {
-  time:          'je tijd terug',
-  leadership:    'jouw team zelfstandig, zonder jou als bottleneck',
-  speed_to_lead: 'leads op terwijl ze nog warm zijn',
-  pipeline:      'warme leads om naar betalende klanten',
-  marketing:     'inbound leads zonder constante push',
-  sales:         'je sluitingspercentage naar een volgend niveau',
-  retention:     'meer omzet uit klanten die je al hebt',
+  time:          'Win binnen 14 dagen je tijd terug',
+  leadership:    'Laat je team zelfstandig werken in 14 dagen',
+  speed_to_lead: 'Laat nooit meer een lead afkoelen',
+  pipeline:      'Zet meer warme leads om naar betalende klanten',
+  marketing:     'Trek inbound leads aan zonder constante push',
+  sales:         'Verhoog je sluitingspercentage in 14 dagen',
+  retention:     'Haal meer omzet uit klanten die je al hebt',
 }
 
 const ctaHookEn: Record<string, string> = {
-  time:          'your time back',
-  leadership:    'your team running without you as the bottleneck',
-  speed_to_lead: 'leads before they go cold',
-  pipeline:      'warm leads into paying clients',
-  marketing:     'inbound leads without constant pushing',
-  sales:         'your close rate to the next level',
-  retention:     'more revenue from clients you already have',
+  time:          'Win your time back within 14 days',
+  leadership:    'Get your team working independently in 14 days',
+  speed_to_lead: 'Never let a lead go cold again',
+  pipeline:      'Turn more warm leads into paying clients',
+  marketing:     'Attract inbound leads without constant pushing',
+  sales:         'Raise your close rate in 14 days',
+  retention:     'Get more revenue from clients you already have',
 }
 
 const leverConfigEn: Record<string, { label: string; color: string }> = {
@@ -585,8 +585,8 @@ export default function DiagnosticPage() {
     ctaTitle:       nl ? 'Ontvang jouw persoonlijk actierapport' : 'Get your personalised action report',
     ctaLeverLabel:  nl ? `Jouw #1 knelpunt: ${leverDetail[scored[0]?.key ?? 'time'].title}` : `Your #1 bottleneck: ${leverDetail[scored[0]?.key ?? 'time'].title}`,
     ctaSub:         nl
-      ? `Win binnen 14 dagen ${ctaHookNl[scored[0]?.key ?? 'time']} met de exacte stappen die je vindt in het gratis rapport met actieplan. Ontvang het nu in je inbox!`
-      : `Win back ${ctaHookEn[scored[0]?.key ?? 'time']} within 14 days with the exact steps in the free action plan report. Get it in your inbox now!`,
+      ? `${ctaHookNl[scored[0]?.key ?? 'time']} met de exacte stappen die je vindt in het gratis rapport met actieplan. Ontvang het nu in je inbox!`
+      : `${ctaHookEn[scored[0]?.key ?? 'time']} with the exact steps in the free action plan report. Get it in your inbox now!`,
     getFreeReport:  nl ? 'Ontvang mijn gratis rapport' : 'Get my free report',
     almostThere:    nl ? 'Bijna klaar'       : 'Almost there',
     whereToSend:    nl ? 'Waar sturen we het naartoe?' : 'Where should we send it?',
