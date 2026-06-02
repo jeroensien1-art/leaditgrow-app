@@ -4,6 +4,31 @@
 
 ---
 
+## De 3 Kernthema's
+
+Alles wat Lead it, Grow maakt — elke ad, post, email, pitch — draait rond één van deze drie. Kies altijd een hoofdthema voor elk stuk content. De rest van dit document is de uitwerking en achtergrond.
+
+### 1. De oprichtersbottleneck
+> Jij bent het plafond van je eigen bedrijf.
+
+Alles loopt via jou. Elke beslissing, elk probleem, elke uitzondering. Dat is geen toewijding — dat is een structuurprobleem. En het houdt je gevangen op het moment dat je het meest wil groeien.
+
+### 2. De ondernemer verdient beter
+> Ruggengraat van de samenleving. Beloond met vrijheid.
+
+Ondernemers dragen alles — risico, verantwoordelijkheid, lasten — en krijgen er te weinig voor terug. Dat initiatief, die kracht, dat lef om iets uit de grond te stampen verdient een beloning. Geen burn-out als eindstation. Maar vrijheid, vakanties, avontuur, goed eten, reizen, een rijk leven.
+
+### 3. Het systeem dat werkt
+> Speed-to-lead, automatisering, groeimotor.
+
+Harder werken is niet het antwoord. Het systeem ontbreekt. Met de juiste opvolging, automatisering en digitale groeimotor reageert jouw bedrijf sneller, volgt leads automatisch op en groeit — ook als jij dat niet doet.
+
+---
+
+> **Gebruik deze drie als filter.** Past een stuk content niet in één van de drie? Herschrijf of sla over.
+
+---
+
 ## Manifesto — De ondernemer verdient meer dan hij krijgt
 
 Ondernemers zijn de ruggengraat van onze welvaart. Ze creëren jobs, betalen belastingen, nemen risico's die niemand anders durft. Ze stappen uit de comfortzone, bouwen iets uit niets, dragen een team op hun schouders.
