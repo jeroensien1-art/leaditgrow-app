@@ -26,6 +26,11 @@ export function middleware(request: NextRequest) {
   if (host.includes('leaditgrow.com')) language = 'en'
   else if (host.includes('leaditgrow.be')) language = 'nl'
 
+  const existingLang = request.cookies.get('lang')?.value
+  if (existingLang === language) {
+    return NextResponse.next()
+  }
+
   const response = NextResponse.next()
   response.cookies.set('lang', language, { maxAge: 60 * 60 * 24 * 365, path: '/' })
   return response

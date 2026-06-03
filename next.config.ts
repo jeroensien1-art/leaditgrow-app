@@ -5,6 +5,19 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(__dirname),
   },
+  async headers() {
+    return [
+      {
+        source: '/diagnostic',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=3600, stale-while-revalidate=86400',
+          },
+        ],
+      },
+    ]
+  },
   async redirects() {
     return [
       {
