@@ -858,8 +858,8 @@ export default function DiagnosticPage() {
                   {nl ? 'Selecteer alles wat van toepassing is.' : 'Select all that apply.'}
                 </div>
                 {(nl
-                  ? ['Niet effectief delegeren', 'Inefficiente aanwervingen', 'Spanningen in het team', "'s Avonds nog piekeren over de zaak"]
-                  : ['Ineffective delegation', 'Inefficient hiring', 'Tensions in the team', 'Still worrying about work in the evenings']
+                  ? ['Niet effectief delegeren', 'Inefficiente aanwervingen', 'Spanningen in het team', "'s Avonds nog piekeren over de zaak", 'Altijd tijd en energie te kort']
+                  : ['Ineffective delegation', 'Inefficient hiring', 'Tensions in the team', 'Still worrying about work in the evenings', 'Always short on time and energy']
                 ).map(item => {
                   const checked = ldChecks.includes(item)
                   return (
