@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { randomUUID } from 'crypto'
 import { Resend } from 'resend'
+import { saveLead } from '@/lib/crm/store'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 const FROM = 'Jeroen | Lead it, Grow <jeroen@leaditgrow.be>'
@@ -19,7 +21,25 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing name or email' }, { status: 400 })
     }
 
+    const id = randomUUID()
     const firstName = body.name.split(' ')[0] ?? body.name
+
+    try {
+      await saveLead({
+        id,
+        name: body.name,
+        email: body.email,
+        message: `Ondernemen zonder burnout consultatie. Pijnpunten: ${body.checks.length > 0 ? body.checks.join(', ') : 'geen selectie'}. GSM: ${body.gsm || 'niet opgegeven'}. Werknemers: ${body.werknemers || 'niet opgegeven'}.`,
+        lang: 'nl',
+        submittedAt: Date.now(),
+        qualified: true,
+        score: 8,
+        status: 'new',
+        source: 'leadership',
+      })
+    } catch (err) {
+      console.error('[leadership] saveLead error:', err)
+    }
 
     await resend.emails.send({
       from: FROM,

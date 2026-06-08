@@ -97,22 +97,26 @@ export default function OndernemerZonderBurnoutPage() {
               <div>
                 <div className="eyebrow">Ondernemen zonder burnout</div>
                 <div className="headline">
-                  De ene na de andere ondernemer valt uit.<br />
-                  <em>Dat is niet raar.</em>
+                  Herken je 1 of meer<br />van <em>deze?</em>
                 </div>
-                <div className="subline">
-                  Jouw kwaliteiten zijn er. Ze staan alleen op de verkeerde plek. Bewezen methodes die in samenwerking met KMO's al 35+ jaar worden toegepast van kleine KMO tot marktleider.
+                <div className="subline" style={{ marginBottom: '1rem' }}>
+                  Vink aan wat van toepassing is.
                 </div>
-                <div className="pain-list">
-                  {CHECKS.map(item => (
-                    <div key={item} className="pain-item">
-                      <div className="pain-dot" />
-                      <div className="pain-text">{item}</div>
-                    </div>
-                  ))}
-                </div>
-                <div className="italic-note">
-                  Als je 1 of meer van deze herkent, is er een concrete aanpak die werkt. Ontdek gratis hoe je jouw kwaliteiten duurzaam inzet en meer gedaan krijgt met minder stress.
+                {CHECKS.map(item => {
+                  const checked = checks.includes(item)
+                  return (
+                    <button
+                      key={item}
+                      className={`check-item ${checked ? 'checked' : ''}`}
+                      onClick={() => toggleCheck(item)}
+                    >
+                      <div className="check-box">{checked && <div className="check-mark" />}</div>
+                      <div style={{ fontSize: 14, color: 'var(--ink)', fontWeight: checked ? 600 : 400, textAlign: 'left' }}>{item}</div>
+                    </button>
+                  )
+                })}
+                <div className="italic-note" style={{ marginTop: '1.2rem' }}>
+                  Er is een betere manier. Wacht niet tot het te laat is.
                 </div>
                 <div className="badge">
                   <span>Volledig gratis</span>
@@ -131,25 +135,12 @@ export default function OndernemerZonderBurnoutPage() {
               <div>
                 <div className="eyebrow">Gratis consultatie</div>
                 <div className="headline" style={{ fontSize: 20, marginBottom: 8, lineHeight: 1.3 }}>
-                  Wat weegt het zwaarst op jou als ondernemer?
+                  Jouw gegevens, zodat ik je kan contacteren.
                 </div>
                 <div className="subline" style={{ marginBottom: '1.2rem' }}>
-                  Selecteer alles wat van toepassing is.
+                  Bewezen methodes die in samenwerking met KMO's al 35+ jaar worden toegepast. Ik bel je op binnen 48 uur.
                 </div>
-                {CHECKS.map(item => {
-                  const checked = checks.includes(item)
-                  return (
-                    <button
-                      key={item}
-                      className={`check-item ${checked ? 'checked' : ''}`}
-                      onClick={() => toggleCheck(item)}
-                    >
-                      <div className="check-box">{checked && <div className="check-mark" />}</div>
-                      <div style={{ fontSize: 14, color: 'var(--ink)', fontWeight: checked ? 600 : 400, textAlign: 'left' }}>{item}</div>
-                    </button>
-                  )
-                })}
-                <div className="section-divider" />
+                <div className="section-divider" style={{ marginBottom: '1.2rem' }} />
                 <label className="field-label">Jouw naam</label>
                 <input className="text-input" type="text" placeholder="Voornaam" value={name} onChange={e => setName(e.target.value)} />
                 <label className="field-label">E-mailadres</label>
