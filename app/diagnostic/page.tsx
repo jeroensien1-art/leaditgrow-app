@@ -414,6 +414,13 @@ const css = `
   .btn-ghost { padding:14px 18px; background:transparent; color:var(--ink-muted); border:1.5px solid var(--border-mid); border-radius:10px; font-size:13px; cursor:pointer; transition:all .15s; }
   .btn-ghost:hover { border-color:var(--ink-muted); color:var(--ink-mid); }
   .btn-row { display:flex; gap:8px; }
+  .choice-cards { display:flex; flex-direction:column; gap:10px; }
+  .choice-card { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:18px 20px; background:var(--cream); border:1.5px solid var(--border-mid); border-radius:12px; cursor:pointer; transition:all .18s; text-align:left; width:100%; box-shadow:var(--shadow-card); }
+  .choice-card:hover { border-color:var(--rust); background:var(--rust-light); transform:translateY(-1px); }
+  .choice-card-body { flex:1; }
+  .choice-card-title { font-size:13px; font-weight:700; color:var(--ink); margin-bottom:6px; }
+  .choice-card-text { font-size:13px; color:var(--ink-mid); line-height:1.6; }
+  .choice-arrow { font-size:20px; color:var(--rust); flex-shrink:0; line-height:1; }
   .btn-row .btn-primary { flex:1; width:auto; }
   .progress-wrap { margin-bottom:2rem; }
   .progress-meta { display:flex; justify-content:space-between; margin-bottom:8px; }
@@ -616,17 +623,36 @@ export default function DiagnosticPage() {
             {step === 'intro' && (
               <div>
                 <div className="eyebrow">{T.eyebrow}</div>
-                <div className="headline">{T.headline}</div>
-                <div className="subline">{T.subline}</div>
-                <div className="moments">
-                  {T.moments.map(([title, body]) => (
-                    <div key={title as string} className="moment">
-                      <div className="moment-text"><strong>{title}</strong>{body}</div>
-                    </div>
-                  ))}
+                <div className="headline" style={{ fontSize: 22, marginBottom: 8 }}>
+                  {nl ? 'Wat houdt jou als ondernemer het meest bezig?' : 'What challenges you most as a business owner?'}
                 </div>
-                <div className="italic-note">{T.italicNote}</div>
-                <button className="btn-primary" onClick={() => setStep('context')}>{T.startBtn}</button>
+                <div className="subline" style={{ marginBottom: '1.6rem' }}>
+                  {nl ? 'Kies het thema dat nu het meest voor jou speelt.' : 'Choose the theme that matters most to you right now.'}
+                </div>
+                <div className="choice-cards">
+                  <button className="choice-card" onClick={() => setStep('context')}>
+                    <div className="choice-card-body">
+                      <div className="choice-card-title">{nl ? 'Vrijheid & burn out voorkomen' : 'Freedom & burnout prevention'}</div>
+                      <div className="choice-card-text">
+                        {nl
+                          ? 'Ontdek volledig gratis hoe jij als ondernemer met minder stress meer gedaan krijgt — en door beter delegeren, communicatie, teamdynamiek en aanwervingen jouw vrijheid terugwint en burn out vermijdt.'
+                          : 'Discover for free how you can get more done with less stress — and by delegating better, improving communication, team dynamics and hiring, reclaim your freedom and avoid burnout.'}
+                      </div>
+                    </div>
+                    <div className="choice-arrow">&#8594;</div>
+                  </button>
+                  <button className="choice-card" onClick={() => setStep('context')}>
+                    <div className="choice-card-body">
+                      <div className="choice-card-title">{nl ? 'Vrijheid & voorspelbare bedrijfsgroei' : 'Freedom & predictable business growth'}</div>
+                      <div className="choice-card-text">
+                        {nl
+                          ? 'Doe de gratis test in 3 minuten en ontdek welk systeem je in de komende 14 dagen kan opzetten om jouw vrijheid, rol als zaakvoerder en voorspelbare bedrijfsgroei te verzekeren.'
+                          : 'Take the free 3-minute test and discover which system you can set up in the next 14 days to secure your freedom, your CEO role and predictable business growth.'}
+                      </div>
+                    </div>
+                    <div className="choice-arrow">&#8594;</div>
+                  </button>
+                </div>
               </div>
             )}
 
