@@ -4,7 +4,7 @@ import { useState, useMemo, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useLang } from '@/components/lang-context'
 
-type Step = 'intro' | 'context' | 'questions' | 'results' | 'capture' | 'thanks'
+type Step = 'intro' | 'context' | 'questions' | 'results' | 'capture' | 'thanks' | 'leadership_intake' | 'leadership_thanks'
 
 interface ContextAnswers {
   industry: string
@@ -421,6 +421,11 @@ const css = `
   .choice-card-title { font-size:13px; font-weight:700; color:var(--ink); margin-bottom:6px; }
   .choice-card-text { font-size:13px; color:var(--ink-mid); line-height:1.6; }
   .choice-arrow { font-size:20px; color:var(--rust); flex-shrink:0; line-height:1; }
+  .check-item { display:flex; align-items:center; gap:12px; padding:13px 14px; background:var(--cream); border:1.5px solid var(--border-mid); border-radius:10px; cursor:pointer; transition:all .15s; margin-bottom:8px; text-align:left; width:100%; }
+  .check-item.checked { border-color:var(--rust); background:var(--rust-light); }
+  .check-box { width:20px; height:20px; border-radius:6px; border:1.5px solid var(--sand-mid); flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all .15s; background:white; }
+  .check-item.checked .check-box { background:var(--rust); border-color:var(--rust); }
+  .check-mark { width:9px; height:6px; border-left:2.5px solid white; border-bottom:2.5px solid white; transform:rotate(-45deg) translate(0,-1px); display:block; }
   .btn-row .btn-primary { flex:1; width:auto; }
   .progress-wrap { margin-bottom:2rem; }
   .progress-meta { display:flex; justify-content:space-between; margin-bottom:8px; }
@@ -505,6 +510,12 @@ export default function DiagnosticPage() {
   const [noWebsite, setNoWebsite] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [animScore, setAnimScore] = useState(0)
+  const [ldChecks, setLdChecks]       = useState<string[]>([])
+  const [ldName, setLdName]           = useState('')
+  const [ldEmail, setLdEmail]         = useState('')
+  const [ldGsm, setLdGsm]             = useState('')
+  const [ldWerknemers, setLdWerknemers] = useState('')
+  const [ldSubmitting, setLdSubmitting] = useState(false)
 
   const scored = useMemo(() =>
     questions.map(q => ({ key: q.lever, score: answers[q.lever] ?? 0 })).sort((a, b) => b.score - a.score),
@@ -527,6 +538,20 @@ export default function DiagnosticPage() {
     if (score < 50) return ['Good momentum, but something is pulling against you.', 'Real strengths here, and one or two places where the business is costing you more than it should. Fix the top lever and the others often follow.']
     if (score < 75) return ['The business is running you more than you are running it.', 'Multiple areas are draining your time and revenue. You do not need to fix everything. Fix them in the right order and the others sort themselves out.']
     return ['You are carrying too much. This is not sustainable.', 'High scores across the board usually mean one thing: the business was built around you, not for you. One focused quarter, fixing the right things in sequence, changes everything.']
+  }
+
+  const handleLeadershipSubmit = async () => {
+    if (!ldEmail.includes('@') || !ldName.trim()) return
+    setLdSubmitting(true)
+    try {
+      await fetch('/api/leadership', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: ldName, email: ldEmail, gsm: ldGsm, werknemers: ldWerknemers, checks: ldChecks }),
+      })
+    } catch { /* fire and forget */ }
+    setLdSubmitting(false)
+    setStep('leadership_thanks')
   }
 
   const startResults = () => {
@@ -623,31 +648,30 @@ export default function DiagnosticPage() {
             {step === 'intro' && (
               <div>
                 <div className="eyebrow">{T.eyebrow}</div>
-                <div className="headline" style={{ fontSize: 22, marginBottom: 8 }}>
-                  {nl ? 'Wat houdt jou als ondernemer het meest bezig?' : 'What challenges you most as a business owner?'}
+                <div className="headline" style={{ fontSize: 19, marginBottom: 0, lineHeight: 1.35 }}>
+                  {nl
+                    ? 'Wat als er een manier was om met meer vrijheid je bedrijf sneller te laten groeien, met systemen die je elke dag energie en tijd uitsparen? Probeer het nu volledig gratis en vrijblijvend'
+                    : 'What if there was a way to grow your business faster with more freedom, using systems that save you energy and time every day? Try it now, completely free and with no commitment'}
                 </div>
-                <div className="subline" style={{ marginBottom: '1.6rem' }}>
-                  {nl ? 'Kies het thema dat nu het meest voor jou speelt.' : 'Choose the theme that matters most to you right now.'}
-                </div>
-                <div className="choice-cards">
+                <div className="choice-cards" style={{ marginTop: '1.6rem' }}>
                   <button className="choice-card" onClick={() => setStep('context')}>
                     <div className="choice-card-body">
-                      <div className="choice-card-title">{nl ? 'Vrijheid & burn out voorkomen' : 'Freedom & burnout prevention'}</div>
-                      <div className="choice-card-text">
-                        {nl
-                          ? 'Ontdek volledig gratis hoe jij als ondernemer met minder stress meer gedaan krijgt — en door beter delegeren, communicatie, teamdynamiek en aanwervingen jouw vrijheid terugwint en burn out vermijdt.'
-                          : 'Discover for free how you can get more done with less stress — and by delegating better, improving communication, team dynamics and hiring, reclaim your freedom and avoid burnout.'}
-                      </div>
-                    </div>
-                    <div className="choice-arrow">&#8594;</div>
-                  </button>
-                  <button className="choice-card" onClick={() => setStep('context')}>
-                    <div className="choice-card-body">
-                      <div className="choice-card-title">{nl ? 'Vrijheid & voorspelbare bedrijfsgroei' : 'Freedom & predictable business growth'}</div>
+                      <div className="choice-card-title">{nl ? 'Vrijheid en voorspelbare bedrijfsgroei' : 'Freedom and predictable business growth'}</div>
                       <div className="choice-card-text">
                         {nl
                           ? 'Doe de gratis test in 3 minuten en ontdek welk systeem je in de komende 14 dagen kan opzetten om jouw vrijheid, rol als zaakvoerder en voorspelbare bedrijfsgroei te verzekeren.'
                           : 'Take the free 3-minute test and discover which system you can set up in the next 14 days to secure your freedom, your CEO role and predictable business growth.'}
+                      </div>
+                    </div>
+                    <div className="choice-arrow">&#8594;</div>
+                  </button>
+                  <button className="choice-card" onClick={() => setStep('leadership_intake')}>
+                    <div className="choice-card-body">
+                      <div className="choice-card-title">{nl ? 'Vrijheid en burn out voorkomen' : 'Freedom and burnout prevention'}</div>
+                      <div className="choice-card-text">
+                        {nl
+                          ? "Bewezen methodes die in samenwerking met KMO's al 35+ jaar worden toegepast van kleine KMO tot marktleider."
+                          : "Proven methods developed in collaboration with SMEs over 35+ years, from small business to market leader."}
                       </div>
                     </div>
                     <div className="choice-arrow">&#8594;</div>
@@ -820,6 +844,73 @@ export default function DiagnosticPage() {
                 <div className="what-in">
                   <div className="what-in-title">{T.whatInTitle}</div>
                   {T.whatItems.map(item => <div key={item as string} className="what-item">{item}</div>)}
+                </div>
+              </div>
+            )}
+
+            {step === 'leadership_intake' && (
+              <div>
+                <div className="eyebrow">{nl ? 'Gratis consultatie' : 'Free consultation'}</div>
+                <div className="headline" style={{ fontSize: 20, marginBottom: 8, lineHeight: 1.3 }}>
+                  {nl ? 'Wat weegt het zwaarst op jou als ondernemer?' : 'What weighs on you most as a business owner?'}
+                </div>
+                <div className="subline" style={{ marginBottom: '1.2rem' }}>
+                  {nl ? 'Selecteer alles wat van toepassing is.' : 'Select all that apply.'}
+                </div>
+                {(nl
+                  ? ['Niet effectief delegeren', 'Inefficiente aanwervingen', 'Spanningen in het team', "'s Avonds nog piekeren over de zaak"]
+                  : ['Ineffective delegation', 'Inefficient hiring', 'Tensions in the team', 'Still worrying about work in the evenings']
+                ).map(item => {
+                  const checked = ldChecks.includes(item)
+                  return (
+                    <button
+                      key={item}
+                      className={`check-item ${checked ? 'checked' : ''}`}
+                      onClick={() => setLdChecks(prev => checked ? prev.filter(x => x !== item) : [...prev, item])}
+                    >
+                      <div className="check-box">{checked && <div className="check-mark" />}</div>
+                      <div style={{ fontSize: 14, color: 'var(--ink)', fontWeight: checked ? 600 : 400, textAlign: 'left' }}>{item}</div>
+                    </button>
+                  )
+                })}
+                <div style={{ height: 10 }} />
+                <label className="field-label">{nl ? 'Jouw naam' : 'Your name'}</label>
+                <input className="text-input" type="text" placeholder={nl ? 'Voornaam' : 'First name'} value={ldName} onChange={e => setLdName(e.target.value)} />
+                <label className="field-label">{nl ? 'E-mailadres' : 'Email address'}</label>
+                <input className="text-input" type="email" placeholder="you@email.com" value={ldEmail} onChange={e => setLdEmail(e.target.value)} />
+                <label className="field-label">{nl ? 'GSM-nummer' : 'Mobile number'}</label>
+                <input className="text-input" type="tel" placeholder="+32 ..." value={ldGsm} onChange={e => setLdGsm(e.target.value)} />
+                <label className="field-label">{nl ? 'Aantal werknemers' : 'Number of employees'}</label>
+                <input className="text-input" type="text" placeholder={nl ? 'bv. 12' : 'e.g. 12'} value={ldWerknemers} onChange={e => setLdWerknemers(e.target.value)} />
+                <button
+                  className="btn-primary"
+                  disabled={ldSubmitting || !ldEmail.includes('@') || !ldName.trim()}
+                  onClick={handleLeadershipSubmit}
+                >
+                  {ldSubmitting ? (nl ? 'Versturen...' : 'Sending...') : (nl ? 'Bevestig mijn gratis consultatie' : 'Confirm my free consultation')}
+                </button>
+                <div style={{ marginTop: 10 }}>
+                  <button className="btn-ghost" style={{ width: '100%' }} onClick={() => setStep('intro')}>{nl ? 'Terug' : 'Back'}</button>
+                </div>
+              </div>
+            )}
+
+            {step === 'leadership_thanks' && (
+              <div className="thanks-wrap">
+                <div className="thanks-circle">&#10003;</div>
+                <div className="headline" style={{ fontSize: 20, marginBottom: 10 }}>
+                  {nl ? 'Ik neem contact met je op binnen 48 uur.' : 'I will be in touch within 48 hours.'}
+                </div>
+                <div className="subline" style={{ marginBottom: 0 }}>
+                  {nl
+                    ? 'Ik contacteer je om een volledig gratis diepgaande consultatie rond leiderschap en beter uitspelen van jouw persoonlijke sterktes (90 min) in te plannen. Een uiterst boeiend gesprek met practische inzichten die je als leider naar een hoger niveau helpen.'
+                    : 'I will contact you to plan a completely free in-depth consultation on leadership and better leveraging your personal strengths (90 min). A highly engaging conversation with practical insights that take you as a leader to the next level.'}
+                </div>
+                <div className="what-in">
+                  <div className="what-in-title">{nl ? 'Wat te verwachten' : 'What to expect'}</div>
+                  <div className="what-item">{nl ? 'Een bevestigingsmail is onderweg naar jouw inbox.' : 'A confirmation email is on its way to your inbox.'}</div>
+                  <div className="what-item">{nl ? 'Wij bellen je op binnen de 48 uur.' : 'We will call you within 48 hours.'}</div>
+                  <div className="what-item">{nl ? '90 minuten volledig gratis. Geen verplichtingen.' : '90 minutes completely free. No obligations.'}</div>
                 </div>
               </div>
             )}
