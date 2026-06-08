@@ -100,6 +100,9 @@ export default function OndernemerZonderBurnoutPage() {
                   Herken je 1 of meer<br />van <em>deze?</em>
                 </div>
                 <div className="subline" style={{ marginBottom: '1rem' }}>
+                  Je bent al ver gekomen met je sterktes, nu is het tijd deze nog sterker en duurzaam in te leren zetten.
+                </div>
+                <div style={{ fontSize: 12, color: 'var(--ink-muted)', marginBottom: '0.8rem' }}>
                   Vink aan wat van toepassing is.
                 </div>
                 {CHECKS.map(item => {
