@@ -100,6 +100,11 @@ const css = `
   .cta-box { background:var(--cream); border-radius:12px; padding:1.4rem; border:1px solid var(--border); }
   .cta-title { font-family:var(--font-display); font-size:16px; font-weight:700; color:var(--ink); margin-bottom:6px; }
   .cta-sub { font-size:12px; color:var(--ink-muted); line-height:1.6; margin-bottom:1rem; }
+  .source-pill { display:inline-block; font-size:10px; color:var(--ink-muted); background:rgba(61,57,41,.07); border-radius:4px; padding:2px 7px; margin-top:4px; }
+  .ai-box { background:#fff; border-radius:14px; padding:1.6rem; border:1.5px solid var(--rust-border); margin-bottom:1rem; }
+  .ai-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(201,100,66,.1); border:1px solid var(--rust-border); border-radius:20px; padding:4px 12px; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--rust); margin-bottom:12px; }
+  .diag-link { display:flex; align-items:center; justify-content:center; gap:6px; width:100%; padding:12px; background:transparent; border:1.5px solid var(--border-mid); border-radius:10px; font-size:13px; color:var(--ink-muted); cursor:pointer; text-decoration:none; margin-top:8px; transition:opacity .15s; }
+  .diag-link:hover { opacity:.7; }
   .field-label { font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:6px; display:block; }
   .text-input { width:100%; padding:11px 13px; background:#fff; border:1.5px solid var(--border-mid); border-radius:9px; font-size:13px; color:var(--ink); outline:none; transition:border-color .15s; margin-bottom:8px; box-sizing:border-box; }
   .text-input:focus { border-color:var(--rust); }
@@ -294,43 +299,52 @@ export default function CalculatorPage() {
 
                   {result.monthly > 0 && (
                     <div className="breakdown">
-                      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#b0aea8', marginBottom: 2 }}>
-                        {nl ? 'Waaruit bestaat dit?' : 'Where does this come from?'}
+                      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: '#b0aea8', marginBottom: 6 }}>
+                        {nl ? 'Hoe is dit berekend?' : 'How is this calculated?'}
                       </div>
-                      <div className="bk-row">
-                        <span className="bk-label">{nl ? 'Trage eerste reactie' : 'Slow first response'}</span>
-                        <span className="bk-value">{fmt(result.speedLeak)}</span>
-                      </div>
-                      <div className="bk-row">
-                        <span className="bk-label">{nl ? 'Onvoldoende opvolging' : 'Insufficient follow-up'}</span>
-                        <span className="bk-value">{fmt(result.followupLeak)}</span>
-                      </div>
+                      {result.speedLeak > 0 && (
+                        <div className="bk-row" style={{ flexDirection: 'column' as const, alignItems: 'flex-start', gap: 4 }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                            <span className="bk-label">{nl ? 'Trage eerste reactie' : 'Slow first response'}</span>
+                            <span className="bk-value">{fmt(result.speedLeak)}</span>
+                          </div>
+                          <span className="source-pill">
+                            {nl
+                              ? '78% van deals gaat naar de eerste die reageert · InsideSales research'
+                              : '78% of deals go to the first responder · InsideSales research'}
+                          </span>
+                        </div>
+                      )}
+                      {result.followupLeak > 0 && (
+                        <div className="bk-row" style={{ flexDirection: 'column' as const, alignItems: 'flex-start', gap: 4 }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                            <span className="bk-label">{nl ? 'Onvoldoende opvolging' : 'Insufficient follow-up'}</span>
+                            <span className="bk-value">{fmt(result.followupLeak)}</span>
+                          </div>
+                          <span className="source-pill">
+                            {nl
+                              ? '80% van verkopen vereist 5+ contactmomenten · HubSpot Sales Report'
+                              : '80% of sales require 5+ touchpoints · HubSpot Sales Report'}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   )}
 
-                  <div className="cta-box">
-                    <div className="cta-title">
-                      {nl ? 'Wil je weten hoe je dit terugwint?' : 'Want to know how to recover this?'}
+                  {/* ── AI werknemer — primaire CTA ── */}
+                  <div className="ai-box">
+                    <div className="ai-badge">
+                      {nl ? '14 dagen gratis uitproberen' : '14-day free trial'}
                     </div>
-                    <div className="cta-sub">
+                    <div className="cta-title" style={{ fontSize: 17, marginBottom: 8 }}>
                       {nl
-                        ? 'De Business Impact Diagnose kijkt ook naar leiderschap, sales, retentie en marketing. Je ontvangt een volledig persoonlijk rapport met je top 3 fixes.'
-                        : 'The Business Impact Diagnostic also looks at leadership, sales, retention and marketing. You get a full personalised report with your top 3 fixes.'}
+                        ? 'Laat hier je gegevens achter'
+                        : 'Leave your details below'}
                     </div>
-
-                    <a
-                      href="/diagnostic"
-                      className="btn-green"
-                      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, textDecoration: 'none' }}
-                    >
-                      {nl ? 'Start gratis diagnose' : 'Start free diagnostic'}
-                      <ArrowRight size={16} />
-                    </a>
-
-                    <div className="divider">
-                      <div className="divider-line" />
-                      <span className="divider-text">{nl ? 'of ontvang dit rapport per email' : 'or get this report by email'}</span>
-                      <div className="divider-line" />
+                    <div className="cta-sub" style={{ marginBottom: '1.2rem' }}>
+                      {nl
+                        ? 'Probeer 14 dagen lang een AI werknemer die jouw bedrijf kent, reageert op jouw manier en gekoppeld is aan je CRM, agenda en offertes. Je klanten zoeken niet meer verder naar een oplossing, want ze zijn bij jou ingeboekt.'
+                        : 'Try 14 days of an AI employee that knows your business, responds in your voice and connects to your CRM, calendar and quotes. Your clients stop looking elsewhere — they are booked with you.'}
                     </div>
 
                     <label className="field-label">{nl ? 'Naam' : 'Name'}</label>
@@ -349,7 +363,10 @@ export default function CalculatorPage() {
                       value={captureEmail}
                       onChange={e => setCaptureEmail(e.target.value)}
                     />
-                    <label className="field-label">{nl ? 'Telefoonnummer' : 'Phone number'} <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>({nl ? 'optioneel' : 'optional'})</span></label>
+                    <label className="field-label">
+                      {nl ? 'Telefoonnummer' : 'Phone number'}
+                      <span style={{ fontWeight: 400, textTransform: 'none' as const, letterSpacing: 0 }}> ({nl ? 'optioneel' : 'optional'})</span>
+                    </label>
                     <input
                       className="text-input"
                       type="tel"
@@ -363,9 +380,30 @@ export default function CalculatorPage() {
                       disabled={submitting || !captureEmail.includes('@') || !captureName.trim()}
                       onClick={handleCapture}
                     >
-                      {submitting ? (nl ? 'Versturen...' : 'Sending...') : (nl ? 'Stuur mij het rapport' : 'Send me the report')}
+                      {submitting
+                        ? (nl ? 'Versturen...' : 'Sending...')
+                        : (nl ? 'Ja, ik wil dit uitproberen' : 'Yes, I want to try this')}
                       <ArrowRight size={16} />
                     </button>
+                  </div>
+
+                  {/* ── Diagnose — secundaire CTA ── */}
+                  <div className="cta-box" style={{ marginTop: 0 }}>
+                    <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase' as const, color: '#b0aea8', marginBottom: 8 }}>
+                      {nl ? 'Wil je eerst meer inzicht?' : 'Want more insight first?'}
+                    </div>
+                    <div className="cta-title" style={{ fontSize: 14 }}>
+                      {nl ? 'Gratis Business Impact Diagnose' : 'Free Business Impact Diagnostic'}
+                    </div>
+                    <div className="cta-sub" style={{ marginBottom: '0.8rem' }}>
+                      {nl
+                        ? 'Kijkt ook naar leiderschap, sales, retentie en marketing. Volledig persoonlijk rapport met je top 3 fixes. 10 minuten.'
+                        : 'Also covers leadership, sales, retention and marketing. Full personalised report with your top 3 fixes. 10 minutes.'}
+                    </div>
+                    <a href="/diagnostic" className="diag-link">
+                      {nl ? 'Start gratis diagnose' : 'Start free diagnostic'}
+                      <ArrowRight size={14} />
+                    </a>
                   </div>
                 </div>
               )}
