@@ -649,9 +649,11 @@ export default function DiagnosticPage() {
               <div>
                 <div className="eyebrow">{T.eyebrow}</div>
                 <div className="headline" style={{ fontSize: 19, marginBottom: 0, lineHeight: 1.35 }}>
-                  {nl
-                    ? 'Wat als er een manier was om met meer vrijheid je bedrijf sneller te laten groeien, met systemen die je elke dag energie en tijd uitsparen? Probeer het nu volledig gratis en vrijblijvend'
-                    : 'What if there was a way to grow your business faster with more freedom, using systems that save you energy and time every day? Try it now, completely free and with no commitment'}
+                  {nl ? (
+                    <>Wat als er een manier was om met <strong style={{ color: 'var(--rust)', fontWeight: 700 }}>meer vrijheid je bedrijf schaalbaar te laten groeien</strong>, met systemen die je elke dag <strong style={{ color: 'var(--rust)', fontWeight: 700 }}>energie en tijd uitsparen</strong>? Probeer het nu volledig gratis en vrijblijvend</>
+                  ) : (
+                    <>What if there was a way to <strong style={{ color: 'var(--rust)', fontWeight: 700 }}>grow your business with more freedom</strong>, using systems that <strong style={{ color: 'var(--rust)', fontWeight: 700 }}>save you energy and time</strong> every day? Try it now, completely free and with no commitment</>
+                  )}
                 </div>
                 <div className="choice-cards" style={{ marginTop: '1.6rem' }}>
                   <button className="choice-card" onClick={() => setStep('context')}>
@@ -662,8 +664,12 @@ export default function DiagnosticPage() {
                           ? 'Doe de gratis test in 3 minuten en ontdek welk systeem je in de komende 14 dagen kan opzetten om jouw vrijheid, rol als zaakvoerder en voorspelbare bedrijfsgroei te verzekeren.'
                           : 'Take the free 3-minute test and discover which system you can set up in the next 14 days to secure your freedom, your CEO role and predictable business growth.'}
                       </div>
+                      <div style={{ marginTop: '0.9rem' }}>
+                        <span style={{ display: 'inline-block', background: 'var(--rust)', color: '#fff', borderRadius: 8, padding: '8px 16px', fontSize: 13, fontWeight: 700 }}>
+                          {nl ? 'Doe de gratis diagnose →' : 'Start free diagnostic →'}
+                        </span>
+                      </div>
                     </div>
-                    <div className="choice-arrow">&#8594;</div>
                   </button>
                   <button className="choice-card" onClick={() => setStep('leadership_intake')}>
                     <div className="choice-card-body">
@@ -673,8 +679,12 @@ export default function DiagnosticPage() {
                           ? "Bewezen methodes die in samenwerking met KMO's al 35+ jaar worden toegepast van kleine KMO tot marktleider."
                           : "Proven methods developed in collaboration with SMEs over 35+ years, from small business to market leader."}
                       </div>
+                      <div style={{ marginTop: '0.9rem' }}>
+                        <span style={{ display: 'inline-block', background: 'var(--rust)', color: '#fff', borderRadius: 8, padding: '8px 16px', fontSize: 13, fontWeight: 700 }}>
+                          {nl ? 'Plan een volledig gratis consultatie van 90 minuten →' : 'Book a free 90-minute consultation →'}
+                        </span>
+                      </div>
                     </div>
-                    <div className="choice-arrow">&#8594;</div>
                   </button>
                 </div>
               </div>
