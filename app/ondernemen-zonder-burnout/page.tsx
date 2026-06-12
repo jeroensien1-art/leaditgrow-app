@@ -154,7 +154,7 @@ export default function OndernemerZonderBurnoutPage() {
                 <input className="text-input" type="text" placeholder="bv. 12" value={werknemers} onChange={e => setWerknemers(e.target.value)} />
                 <button
                   className="btn-primary"
-                  disabled={submitting || !email.includes('@') || !name.trim()}
+                  disabled={submitting || !email.includes('@') || !name.trim() || !gsm.trim()}
                   onClick={handleSubmit}
                 >
                   {submitting ? 'Versturen...' : 'Bevestig mijn gratis consultatie'}

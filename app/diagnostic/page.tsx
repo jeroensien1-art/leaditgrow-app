@@ -894,7 +894,7 @@ export default function DiagnosticPage() {
                 <input className="text-input" type="text" placeholder={nl ? 'bv. 12' : 'e.g. 12'} value={ldWerknemers} onChange={e => setLdWerknemers(e.target.value)} />
                 <button
                   className="btn-primary"
-                  disabled={ldSubmitting || !ldEmail.includes('@') || !ldName.trim()}
+                  disabled={ldSubmitting || !ldEmail.includes('@') || !ldName.trim() || !ldGsm.trim()}
                   onClick={handleLeadershipSubmit}
                 >
                   {ldSubmitting ? (nl ? 'Versturen...' : 'Sending...') : (nl ? 'Bevestig mijn gratis consultatie' : 'Confirm my free consultation')}
