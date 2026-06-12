@@ -650,9 +650,9 @@ export default function DiagnosticPage() {
                 <div className="eyebrow">{T.eyebrow}</div>
                 <div className="headline" style={{ fontSize: 19, marginBottom: 0, lineHeight: 1.35 }}>
                   {nl ? (
-                    <>Wat als er een manier was om met <strong style={{ color: 'var(--rust)', fontWeight: 700 }}>meer vrijheid je bedrijf schaalbaar te laten groeien</strong>, met systemen die je elke dag <strong style={{ color: 'var(--rust)', fontWeight: 700 }}>energie en tijd uitsparen</strong>? Probeer het nu volledig gratis en vrijblijvend</>
+                    <>Wat als er een systeem was om je bedrijf te laten doorgroeien zonder dat je je <strong style={{ color: 'var(--rust)', fontWeight: 700 }}>vrijheid en gezondheid</strong> moet opofferen? Terwijl jij focust op dat waar jij in uitblinkt.</>
                   ) : (
-                    <>What if there was a way to <strong style={{ color: 'var(--rust)', fontWeight: 700 }}>grow your business with more freedom</strong>, using systems that <strong style={{ color: 'var(--rust)', fontWeight: 700 }}>save you energy and time</strong> every day? Try it now, completely free and with no commitment</>
+                    <>What if there was a system to grow your business without sacrificing your <strong style={{ color: 'var(--rust)', fontWeight: 700 }}>freedom and health</strong>? While you focus on what you do best.</>
                   )}
                 </div>
                 <div className="choice-cards" style={{ marginTop: '1.6rem' }}>
@@ -666,22 +666,7 @@ export default function DiagnosticPage() {
                       </div>
                       <div style={{ marginTop: '0.9rem' }}>
                         <span style={{ display: 'inline-block', background: 'var(--rust)', color: '#fff', borderRadius: 8, padding: '8px 16px', fontSize: 13, fontWeight: 700 }}>
-                          {nl ? 'Doe de gratis diagnose →' : 'Start free diagnostic →'}
-                        </span>
-                      </div>
-                    </div>
-                  </button>
-                  <button className="choice-card" onClick={() => setStep('leadership_intake')}>
-                    <div className="choice-card-body">
-                      <div className="choice-card-title">{nl ? 'Vrijheid en rust terugwinnen en burnout voorkomen' : 'Reclaim freedom and peace of mind and prevent burnout'}</div>
-                      <div className="choice-card-text">
-                        {nl
-                          ? "Bewezen methodes die in samenwerking met KMO's al 35+ jaar worden toegepast van kleine KMO tot marktleider."
-                          : "Proven methods developed in collaboration with SMEs over 35+ years, from small business to market leader."}
-                      </div>
-                      <div style={{ marginTop: '0.9rem' }}>
-                        <span style={{ display: 'inline-block', background: 'var(--rust)', color: '#fff', borderRadius: 8, padding: '8px 16px', fontSize: 13, fontWeight: 700 }}>
-                          {nl ? 'Plan een volledig gratis consultatie van 90 minuten →' : 'Book a free 90-minute consultation →'}
+                          {nl ? 'Jouw rapport en 14 dagen actieplan - gratis' : 'Your report and 14-day action plan - free'}
                         </span>
                       </div>
                     </div>
