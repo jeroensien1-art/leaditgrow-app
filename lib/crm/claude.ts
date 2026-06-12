@@ -14,7 +14,7 @@ export interface Lead {
   qualified: boolean
   score: number
   status: 'new' | 'replied' | 'followed_up' | 'booked' | 'closed'
-  source?: 'widget' | 'calculator' | 'diagnostic'
+  source?: 'widget' | 'calculator' | 'diagnostic' | 'leadership'
   diagnosticAnswers?: Record<string, number>
   diagnosticTopLevers?: string[]
   diagnosticGapScore?: number
