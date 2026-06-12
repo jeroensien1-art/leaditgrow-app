@@ -204,9 +204,15 @@ export default function CalculatorPage() {
             <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 26, fontWeight: 700, color: '#3d3929', lineHeight: 1.25, margin: '0 0 8px' }}>
               {nl ? 'Hoeveel omzet mis jij elke maand?' : 'How much revenue are you losing each month?'}
             </h1>
-            <p style={{ fontSize: 14, color: '#83827d', margin: 0 }}>
+            <p style={{ fontSize: 14, color: '#83827d', margin: '0 0 14px' }}>
               {nl ? '4 vragen. 2 minuten. Direct jouw getal.' : '4 questions. 2 minutes. Your number, instantly.'}
             </p>
+            <div style={{ background: 'rgba(201,100,66,.07)', border: '1px solid rgba(201,100,66,.2)', borderRadius: 10, padding: '12px 16px', fontSize: 13, color: '#535146', lineHeight: 1.6, textAlign: 'left' }}>
+              {nl
+                ? <><strong style={{ color: '#c96442' }}>Je kan 14 dagen gratis uitproberen</strong> hoe automatische reacties op mails, WhatsApp en telefoons eruitzien voor jouw bedrijf. Maar eerst berekenen we wat jouw huidige reactiesnelheid je vandaag kost.</>
+                : <><strong style={{ color: '#c96442' }}>You can try 14 days free</strong> of automated responses to emails, WhatsApp and phone calls for your business. But first, let&apos;s calculate what your current response speed costs you today.</>
+              }
+            </div>
           </div>
 
           <div className="calc-card">
@@ -387,24 +393,6 @@ export default function CalculatorPage() {
                     </button>
                   </div>
 
-                  {/* ── Diagnose — secundaire CTA ── */}
-                  <div className="cta-box" style={{ marginTop: 0 }}>
-                    <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase' as const, color: '#b0aea8', marginBottom: 8 }}>
-                      {nl ? 'Wil je eerst meer inzicht?' : 'Want more insight first?'}
-                    </div>
-                    <div className="cta-title" style={{ fontSize: 14 }}>
-                      {nl ? 'Gratis Business Impact Diagnose' : 'Free Business Impact Diagnostic'}
-                    </div>
-                    <div className="cta-sub" style={{ marginBottom: '0.8rem' }}>
-                      {nl
-                        ? 'Kijkt ook naar leiderschap, sales, retentie en marketing. Volledig persoonlijk rapport met je top 3 fixes. 10 minuten.'
-                        : 'Also covers leadership, sales, retention and marketing. Full personalised report with your top 3 fixes. 10 minutes.'}
-                    </div>
-                    <a href="/diagnostic" className="diag-link">
-                      {nl ? 'Start gratis diagnose' : 'Start free diagnostic'}
-                      <ArrowRight size={14} />
-                    </a>
-                  </div>
                 </div>
               )}
 
