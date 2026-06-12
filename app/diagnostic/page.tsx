@@ -673,7 +673,7 @@ export default function DiagnosticPage() {
                   </button>
                   <button className="choice-card" onClick={() => setStep('leadership_intake')}>
                     <div className="choice-card-body">
-                      <div className="choice-card-title">{nl ? 'Vrijheid en burn out voorkomen' : 'Freedom and burnout prevention'}</div>
+                      <div className="choice-card-title">{nl ? 'Vrijheid en rust terugwinnen en burnout voorkomen' : 'Reclaim freedom and peace of mind and prevent burnout'}</div>
                       <div className="choice-card-text">
                         {nl
                           ? "Bewezen methodes die in samenwerking met KMO's al 35+ jaar worden toegepast van kleine KMO tot marktleider."
