@@ -81,6 +81,10 @@ export default function OndernemerZonderBurnoutPage() {
         body: JSON.stringify({ name, email, gsm, werknemers, checks }),
       })
     } catch { /* fire and forget */ }
+    if (typeof window !== 'undefined' && typeof (window as unknown as Record<string, unknown>).fbq === 'function') {
+      ;(window as unknown as Record<string, (...a: unknown[]) => void>).fbq('track', 'Lead')
+      ;(window as unknown as Record<string, (...a: unknown[]) => void>).fbq('trackCustom', 'Consultatie aangevraagd')
+    }
     setSubmitting(false)
     setStep('thanks')
   }
