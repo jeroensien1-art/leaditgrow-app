@@ -86,7 +86,7 @@ export interface AnalyticsData {
 
 // ─── GA4 Helpers ──────────────────────────────────────────────────────────────
 
-function toNum(v: string | undefined) { return parseFloat(v ?? '0') || 0 }
+function toNum(v: string | null | undefined) { return parseFloat(v ?? '0') || 0 }
 
 async function runReport(
   client: BetaAnalyticsDataClient,
