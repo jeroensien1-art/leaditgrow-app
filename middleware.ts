@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // ── Dashboard protection ──────────────────────────────────────────────────
-  if (pathname.startsWith('/dashboard') || pathname.startsWith('/api/dashboard')) {
+  if (pathname.startsWith('/dashboard') || pathname.startsWith('/api/dashboard') || pathname.startsWith('/api/analytics')) {
     const token = request.cookies.get('dashboard_token')?.value
     if (token !== DASHBOARD_PASSWORD) {
       // For API routes return 401

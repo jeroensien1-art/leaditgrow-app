@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect, useState, useMemo } from 'react'
-import { Search, RefreshCw, ChevronDown, ChevronUp, Mail, Users, TrendingUp, Clock } from 'lucide-react'
+import { Search, RefreshCw, ChevronDown, ChevronUp, Mail, Users, TrendingUp, Clock, BarChart2 } from 'lucide-react'
+import Link from 'next/link'
 import type { Lead } from '@/lib/crm/claude'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -149,6 +150,9 @@ export default function Dashboard() {
           <h1 style={{ fontSize: 20, fontWeight: 700, color: '#3d3929' }}>Lead Dashboard</h1>
         </div>
         <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+          <Link href="/dashboard/analytics" style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 600, color: '#83827d', background: 'rgba(61,57,41,0.06)', border: '1px solid rgba(61,57,41,0.12)', borderRadius: 8, padding: '7px 14px', textDecoration: 'none' }}>
+            <BarChart2 size={13} /> Analytics
+          </Link>
           {stats.needsFollowUp > 0 && (
             <div style={{ background: 'rgba(201,100,66,0.12)', border: '1px solid rgba(201,100,66,0.3)', borderRadius: 8, padding: '6px 12px', fontSize: 12, color: '#c96442', fontWeight: 600 }}>
               ⚠ {stats.needsFollowUp} follow-up{stats.needsFollowUp > 1 ? 's' : ''} due
