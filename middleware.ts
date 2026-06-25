@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { updateOutreachSession } from './lib/outreach/supabase-middleware'
 
 const DASHBOARD_PASSWORD = process.env.DASHBOARD_PASSWORD ?? 'changeme'
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // ── Dashboard protection ──────────────────────────────────────────────────
@@ -18,6 +19,12 @@ export function middleware(request: NextRequest) {
       url.pathname = '/login'
       return NextResponse.redirect(url)
     }
+  }
+
+  // ── Outreach protection (NEW) ─────────────────────────────────────────────
+  if (pathname.startsWith('/outreach') || pathname.startsWith('/api/outreach')) {
+    const outreachResult = await updateOutreachSession(request)
+    if (outreachResult) return outreachResult
   }
 
   // ── Language detection ────────────────────────────────────────────────────
