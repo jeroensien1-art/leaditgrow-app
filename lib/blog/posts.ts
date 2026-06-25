@@ -1757,6 +1757,283 @@ export const posts: BlogPost[] = [
 </div>
 `,
   },
+
+  {
+    slug: 'ai-automatiseren-vlaamse-kmo-zonder-developer',
+    title: 'AI voor je KMO: 5 taken die je deze maand automatiseert zonder één regel code',
+    metaTitle: 'AI voor je KMO: 5 taken automatiseren zonder developer | Lead it, Grow',
+    metaDescription: 'Praktische AI voor Vlaamse zaakvoerders. Vijf taken die je deze maand automatiseert zonder developer, van leadopvolging tot offertes, met realistische tijdswinst.',
+    publishDate: '2026-06-25',
+    readingTime: 8,
+    category: 'AI & Tools',
+    region: 'België · Vlaanderen',
+    excerpt: 'AI klinkt voor veel zaakvoerders als iets voor techbedrijven met een eigen IT-afdeling. In de praktijk los je er deze maand al vijf concrete taken mee op, zonder developer en zonder groot budget.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: 'AI voor je KMO: 5 taken die je deze maand automatiseert zonder één regel code',
+          description: 'Praktische AI voor Vlaamse zaakvoerders. Vijf taken die je deze maand automatiseert zonder developer, van leadopvolging tot offertes.',
+          datePublished: '2026-06-25',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'Heb ik technische kennis nodig om AI in mijn KMO te gebruiken?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Voor de meeste taken niet. Tools zoals geautomatiseerde leadopvolging, AI-assistenten voor e-mail en offertegeneratoren werken met instellingen die je zelf invult. Voor het koppelen van systemen helpt een partner die het één keer correct opzet, daarna draait het zelfstandig.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Wat kost het om AI-automatisering op te zetten in een klein bedrijf?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Een eerste automatisch leadopvolgingssysteem start rond 600 euro eenmalig plus een kleine maandelijkse vergoeding. Veel zaakvoerders verdienen dat binnen twee maanden terug door snellere opvolging en minder verloren leads.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Vervangt AI mijn medewerkers?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Nee. AI neemt het repetitieve werk over zodat jij en je team tijd overhouden voor het werk dat een mens beter doet: relaties, kwaliteit en beslissingen. De bedoeling is meer ademruimte, geen kleiner team.' },
+            },
+          ],
+        },
+      ],
+    },
+    content: `
+<p class="blog-intro">AI klinkt voor veel zaakvoerders als iets voor techbedrijven met een eigen IT-afdeling. In de praktijk los je er deze maand al vijf concrete taken mee op, zonder developer en zonder groot budget. Het gaat niet over een toekomstvisie. Het gaat over werk dat vandaag op jouw bureau ligt en morgen vanzelf kan lopen.</p>
+
+<p><strong>Praktische AI voor een KMO betekent: repetitieve taken laten uitvoeren door een systeem, zodat jij tijd overhoudt voor het werk dat echt jouw aandacht vraagt.</strong> Je hoeft geen code te schrijven. Je hoeft alleen te beslissen welke taak als eerste mag verdwijnen.</p>
+
+<h2>1. De eerste reactie op een nieuwe lead</h2>
+<p>De grootste winst zit in snelheid. Een lead die jouw website invult om 21u op een woensdag, krijgt bij de meeste Vlaamse servicebedrijven pas de volgende ochtend antwoord. Tegen dan heeft die persoon vaak al twee concurrenten gecontacteerd.</p>
+<p>Een AI-gestuurd opvolgsysteem stuurt binnen de minuut een persoonlijk klinkend antwoord, vanuit jouw domein, met een concreet voorstel voor een belmoment. Geen standaard ontvangstbevestiging, maar een reactie die de context van de aanvraag begrijpt. Onderzoek van InsideSales toont dat je conversiekans met 80 procent daalt als je niet binnen vijf minuten reageert. Dit is de taak die het snelst zichzelf terugverdient.</p>
+
+<h2>2. Offertes en standaardantwoorden voorbereiden</h2>
+<p>Hoeveel keer per week typ je ongeveer dezelfde uitleg? Over je werkwijze, je tarieven, je planning. Een AI-assistent die jouw eerdere offertes en e-mails kent, schrijft een eerste versie die jij in twee minuten nakijkt en verstuurt.</p>
+<p>Belangrijk: je blijft de kwaliteitscontrole. Het systeem levert het zware werk, jij zet de finale toets. Een aannemer in de regio Antwerpen die dit invoerde, bracht zijn gemiddelde tijd per offerte terug van 40 naar 10 minuten. Bij 15 offertes per week is dat ruim zeven uur die vrijkomt.</p>
+
+<h2>3. Afspraken inplannen zonder heen-en-weer</h2>
+<p>De mailwissel om één gesprek te plannen kost gemiddeld vier tot zes berichten. Een planningstool met een AI-laag stelt zelf geschikte momenten voor, houdt rekening met je agenda en bevestigt automatisch. Jij ziet enkel nog de bevestigde afspraak in je kalender verschijnen.</p>
+
+<h2>4. Opvolging van offertes die blijven hangen</h2>
+<p>De meeste omzet die je misloopt, zit in offertes waar nooit een herinnering op volgde. Niet omdat je het niet wil, maar omdat het ondersneeuwt. Een geautomatiseerde sequentie stuurt na drie, zeven en veertien dagen een vriendelijke opvolging, in jouw toon geschreven.</p>
+<p>Reken even mee. Stel dat je per maand tien offertes laat liggen zonder opvolging, je gemiddelde deal 3.000 euro waard is, en je met goede opvolging één op vijf alsnog binnenhaalt. Dat zijn twee deals per maand. 6.000 euro die anders verdween, zonder dat je één extra lead nodig had.</p>
+
+<h2>5. Je administratie samenvatten en sorteren</h2>
+<p>Inkomende berichten, bonnetjes, notities van gesprekken. AI sorteert, vat samen en haalt de actiepunten eruit. Je begint je dag met een helder overzicht in plaats van een volle inbox waar je doorheen moet graven.</p>
+
+<h2>Waar je best begint</h2>
+<p>Begin met één taak. De verleiding is groot om alles tegelijk te willen automatiseren, maar dat leidt tot een half werkend systeem dat niemand vertrouwt. Kies de taak die je het meeste tijd of het meeste geld kost. Voor de meeste servicebedrijven is dat de leadopvolging.</p>
+<p>Zet die ene taak goed op, laat hem een maand draaien, meet het verschil. Pas als die staat, ga je naar de volgende. Zo bouw je een systeem dat werkt in plaats van een verzameling tools die je toch weer zelf moet bijsturen.</p>
+
+<h2>Hoe weet je welke taak het meeste oplevert?</h2>
+<p>We hebben een gratis diagnostisch instrument gemaakt dat in vier minuten in kaart brengt welke van de zeven groeihefbomen in jouw bedrijf vastloopt. Geen verkoopsgesprek. Gewoon een eerlijk rapport over waar je vandaag staat en welke automatisering het meeste effect heeft voor jouw situatie.</p>
+
+<h2>Veelgestelde vragen</h2>
+
+<div class="faq-item">
+  <h3>Heb ik technische kennis nodig om AI in mijn KMO te gebruiken?</h3>
+  <p>Voor de meeste taken niet. Tools zoals geautomatiseerde leadopvolging, AI-assistenten voor e-mail en offertegeneratoren werken met instellingen die je zelf invult. Voor het koppelen van systemen helpt een partner die het één keer correct opzet, daarna draait het zelfstandig.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Wat kost het om AI-automatisering op te zetten in een klein bedrijf?</h3>
+  <p>Een eerste automatisch leadopvolgingssysteem start rond 600 euro eenmalig plus een kleine maandelijkse vergoeding. Veel zaakvoerders verdienen dat binnen twee maanden terug door snellere opvolging en minder verloren leads.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Vervangt AI mijn medewerkers?</h3>
+  <p>Nee. AI neemt het repetitieve werk over zodat jij en je team tijd overhouden voor het werk dat een mens beter doet: relaties, kwaliteit en beslissingen. De bedoeling is meer ademruimte, geen kleiner team.</p>
+</div>
+`,
+  },
+
+  {
+    slug: 'uitgeput-terwijl-bedrijf-goed-draait-zaakvoerder',
+    title: "Waarom je uitgeput bent terwijl je bedrijf 'goed' draait",
+    metaTitle: "Uitgeput terwijl je bedrijf goed draait? De verborgen oorzaak | Lead it, Grow",
+    metaDescription: 'Veel Vlaamse zaakvoerders zijn moe terwijl de cijfers kloppen. De oorzaak is zelden te weinig rust. Ontdek de verborgen mentale last en hoe je ze structureel verlaagt.',
+    publishDate: '2026-06-25',
+    readingTime: 8,
+    category: 'Leiderschap & Balans',
+    region: 'België · Vlaanderen',
+    excerpt: 'Je omzet groeit, je klanten zijn tevreden, en toch voel je je leeg aan het einde van de dag. Dat is geen teken van zwakte. Het is een teken dat je bedrijf op jouw mentale energie draait in plaats van op een systeem.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: "Waarom je uitgeput bent terwijl je bedrijf 'goed' draait",
+          description: 'De verborgen mentale last van de zaakvoerder en hoe je ze structureel verlaagt zonder minder te ondernemen.',
+          datePublished: '2026-06-25',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'Waarom ben ik moe terwijl mijn bedrijf goed draait?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Vaak komt de vermoeidheid niet van het aantal uren, maar van de hoeveelheid beslissingen en open lussen die in je hoofd zitten. Als alles via jou loopt, draagt je brein constant de hele organisatie mee, ook tijdens je vrije tijd. Dat is mentale last, en die verlaag je met systemen, niet met meer rust alleen.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Is vermoeidheid bij ondernemers een teken van burn-out?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Niet altijd, maar het is een vroeg signaal dat aandacht verdient. Aanhoudende uitputting terwijl de resultaten goed zijn, wijst meestal op een structureel probleem in hoe het werk verdeeld is. Tijdig ingrijpen voorkomt dat het uitgroeit tot een echte burn-out.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Hoe verlaag ik de mentale last als zaakvoerder?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Begin met de open lussen in kaart te brengen: alles wat enkel in jouw hoofd zit. Leg de drie processen vast die stilvallen als jij wegvalt, automatiseer de leadopvolging, en maak helder welke beslissingen je veilig kan delegeren. Elke open lus die je sluit, geeft mentale ruimte terug.' },
+            },
+          ],
+        },
+      ],
+    },
+    content: `
+<p class="blog-intro">Je omzet groeit, je klanten zijn tevreden, en toch voel je je leeg aan het einde van de dag. Dat is geen teken van zwakte. Het is een teken dat je bedrijf op jouw mentale energie draait in plaats van op een systeem.</p>
+
+<p>Veel zaakvoerders denken dat ze moe zijn omdat ze te hard werken. Soms klopt dat. Maar even vaak ligt de oorzaak ergens anders: niet in het aantal uren, maar in de hoeveelheid dingen die je tegelijk in je hoofd moet houden.</p>
+
+<h2>Het verschil tussen druk en uitgeput</h2>
+<p>Druk zijn is fysiek. Je hebt veel te doen, je doet het, je bent moe en je slaapt goed. Uitgeput zijn is iets anders. Je ligt om half drie wakker omdat je je afvraagt of die offerte al opgevolgd is. Je bent op zondag aanwezig bij je gezin, maar je hoofd loopt de planning van maandag al na.</p>
+<p>Dat zijn open lussen. Elke taak die enkel in jouw geheugen leeft, die nergens in een systeem staat, blijft een stukje aandacht opeisen. Twintig open lussen voelen niet als twintig taken. Ze voelen als een constante achtergrondruis die nooit stilvalt.</p>
+
+<h2>Waarom een groeiend bedrijf het erger maakt</h2>
+<p>Hier zit de wrange paradox. Hoe beter het gaat, hoe meer leads, klanten en beslissingen er door jou heen lopen. Succes vergroot de mentale last in plaats van ze te verlichten, zolang het bedrijf op jou als centraal punt gebouwd is.</p>
+<p>Een zaakvoerder uit de regio Gent vertelde me dat hij zich schuldig voelde over zijn vermoeidheid. "Het gaat nochtans goed, ik zou tevreden moeten zijn." Dat schuldgevoel is wijdverspreid en het is onterecht. Je bent niet ondankbaar. Je draagt gewoon een organisatie die te zwaar geworden is om alleen in je hoofd te houden.</p>
+
+<h2>Drie plekken waar de last zich opstapelt</h2>
+
+<h3>Beslissingen die op jou wachten</h3>
+<p>Als elke kleine keuze langs jou moet, neem je per dag honderden microbeslissingen. Onderzoek naar beslissingsmoeheid toont dat de kwaliteit van je keuzes daalt naarmate de dag vordert. Tegen de avond beslis je slechter en voelt alles zwaarder, niet omdat het probleem groter is, maar omdat je voorraad mentale energie op is.</p>
+
+<h3>Leads en opvolging die je zelf bewaakt</h3>
+<p>Zolang jij de enige bent die weet welke lead nog een antwoord verdient, ben jij het opvolgsysteem. Dat is een fulltime taak die bovenop al de rest komt. Een geautomatiseerd systeem dat elke lead binnen de minuut beantwoordt en de opvolging bewaakt, haalt die volledige laag uit je hoofd.</p>
+
+<h3>Processen die enkel jij kent</h3>
+<p>Als de manier waarop iets gebeurt nergens vastligt, kan niemand het overnemen. Elke vraag komt bij jou terecht. Drie processen vastleggen, de drie die het eerst stilvallen als jij op vakantie bent, geeft meer rust dan een week verlof.</p>
+
+<h2>Rust komt van structuur, niet enkel van pauze</h2>
+<p>Een weekend weg helpt voor even. Maar als je terugkomt in hetzelfde systeem, is de last er binnen twee dagen weer. Echte ademruimte ontstaat wanneer het werk dat nu in je hoofd zit, ergens anders veilig georganiseerd is.</p>
+<p>Dat begint met zicht krijgen op waar de last vandaan komt. Welke beslissingen kan je delegeren? Welke opvolging kan een systeem overnemen? Welke processen liggen nog nergens vast? Elke lus die je sluit, geeft een stukje hoofd terug.</p>
+
+<h2>Breng in kaart waar jouw energie weglekt</h2>
+<p>Onze gratis diagnose brengt in vier minuten in beeld welke van de zeven groeihefbomen in jouw bedrijf vastloopt en op jouw schouders rust. Het resultaat is een eerlijk rapport, geen verkoopsgesprek. Voor zaakvoerders die dieper willen kijken naar hun rol als leider, bieden we via ons partnernetwerk een uitgebreide leiderschapsanalyse aan.</p>
+
+<h2>Veelgestelde vragen</h2>
+
+<div class="faq-item">
+  <h3>Waarom ben ik moe terwijl mijn bedrijf goed draait?</h3>
+  <p>Vaak komt de vermoeidheid niet van het aantal uren, maar van de hoeveelheid beslissingen en open lussen die in je hoofd zitten. Als alles via jou loopt, draagt je brein constant de hele organisatie mee, ook tijdens je vrije tijd. Dat is mentale last, en die verlaag je met systemen, niet met meer rust alleen.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Is vermoeidheid bij ondernemers een teken van burn-out?</h3>
+  <p>Niet altijd, maar het is een vroeg signaal dat aandacht verdient. Aanhoudende uitputting terwijl de resultaten goed zijn, wijst meestal op een structureel probleem in hoe het werk verdeeld is. Tijdig ingrijpen voorkomt dat het uitgroeit tot een echte burn-out.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Hoe verlaag ik de mentale last als zaakvoerder?</h3>
+  <p>Begin met de open lussen in kaart te brengen: alles wat enkel in jouw hoofd zit. Leg de drie processen vast die stilvallen als jij wegvalt, automatiseer de leadopvolging, en maak helder welke beslissingen je veilig kan delegeren. Elke open lus die je sluit, geeft mentale ruimte terug.</p>
+</div>
+`,
+  },
+
+  {
+    slug: 'van-ik-ben-het-bedrijf-naar-ik-leid-het-bedrijf',
+    title: "Van 'ik bén het bedrijf' naar 'ik leid het bedrijf'",
+    metaTitle: "Van 'ik bén het bedrijf' naar 'ik leid het bedrijf' | Lead it, Grow",
+    metaDescription: 'De grootste rem op groei bij Vlaamse zaakvoerders is een identiteit die vastzit aan onmisbaar zijn. Zo maak je de shift van uitvoerder naar leider zonder jezelf te verliezen.',
+    publishDate: '2026-06-25',
+    readingTime: 7,
+    category: 'Van oprichter naar leider',
+    region: 'België · Vlaanderen',
+    excerpt: 'Voor veel zaakvoerders is het bedrijf niet iets wat ze hebben, maar iets wat ze zijn. Die verwevenheid bouwt het bedrijf op in de begindagen. Later wordt ze de grootste rem op groei.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: "Van 'ik bén het bedrijf' naar 'ik leid het bedrijf'",
+          description: 'De identiteitsshift van uitvoerder naar leider, en waarom ze bepaalt of je bedrijf kan groeien zonder jou als bottleneck.',
+          datePublished: '2026-06-25',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'Waarom voelt delegeren alsof ik mezelf overbodig maak?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Omdat je eigenwaarde jarenlang verbonden was aan onmisbaar zijn. Als jij de enige bent die het kan, voel je je nodig. Delegeren raakt dat gevoel. De shift is om je waarde te verleggen van het werk zelf naar het bouwen van een bedrijf dat ook zonder jou werkt.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Verlies ik de ziel van mijn bedrijf als ik loslaat?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Niet als je de juiste dingen vastlegt. De ziel van je bedrijf zit in je standaarden en je waarden, niet in het feit dat jij elke taak zelf uitvoert. Door die standaarden helder te maken, kan je team ze dragen en blijft de kwaliteit overeind terwijl jij ruimte krijgt.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Hoe begin ik met de overstap van uitvoerder naar leider?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Begin klein en omkeerbaar. Kies één proces dat je volledig uit handen geeft, leg vast hoe het hoort te gebeuren, en laat het los voor een maand. Het ongemak dat je voelt is normaal en tijdelijk. Elke succesvolle overdracht maakt de volgende makkelijker.' },
+            },
+          ],
+        },
+      ],
+    },
+    content: `
+<p class="blog-intro">Voor veel zaakvoerders is het bedrijf niet iets wat ze hebben, maar iets wat ze zijn. Die verwevenheid bouwt het bedrijf op in de begindagen. Later wordt ze de grootste rem op groei.</p>
+
+<p>Als jouw naam, jouw gezicht en jouw inzet het bedrijf dragen, voelt elke stap terug aan als verlies. Loslaten voelt dan niet als groei, maar als overbodig worden. Dat gevoel is echt, en het is de kern van waarom zoveel sterke ondernemers vastlopen op hetzelfde plafond.</p>
+
+<h2>Hoe de identiteit van uitvoerder ontstaat</h2>
+<p>In groeifase één en twee is alles persoonlijk. Jij haalt de klanten binnen. Jij levert de kwaliteit. Jij lost de problemen op. Het bedrijf draait op jouw energie en dat werkt, omdat er nog geen andere manier is.</p>
+<p>Maar elke keer dat jij iets oplost, bevestig je een verhaal: "zonder mij valt het stil." Dat verhaal wordt na een paar jaar een diepe overtuiging. Je eigenwaarde raakt verweven met onmisbaar zijn. En een overtuiging die je waarde beschermt, geef je niet zomaar op.</p>
+
+<h2>Waarom dat verhaal je begint tegen te werken</h2>
+<p>Op het moment dat je wil opschalen, botst die identiteit op een harde grens: er is maar één jij. Je kan je uren niet verdubbelen. Je kan je aandacht niet splitsen. Het bedrijf kan niet groter worden dan wat één persoon kan dragen, zolang die ene persoon overal centraal staat.</p>
+<p>De zaakvoerders die deze grens doorbreken, doen niet plots meer. Ze veranderen wie ze zijn in het bedrijf. Ze stappen van "ik doe het werk" naar "ik zorg dat het werk goed gebeurt." Van uitvoerder naar architect. Dat is geen vaardigheid die je leert op een cursus. Het is een verschuiving in identiteit.</p>
+
+<h2>Wat de shift concreet betekent</h2>
+
+<h3>Je waarde verschuift van doen naar bouwen</h3>
+<p>Een uitvoerder meet zijn waarde aan wat hij vandaag zelf afwerkte. Een leider meet ze aan wat het bedrijf kan zonder hem. Dat is een ongemakkelijke ruil in het begin, want het zichtbare bewijs van je nut verdwijnt. Het onzichtbare bewijs, een bedrijf dat doordraait, komt er traag voor in de plaats.</p>
+
+<h3>Je legt vast wat in je hoofd zat</h3>
+<p>De ziel van je bedrijf zit in je standaarden, niet in jouw handen. Door helder te maken hoe iets hoort te gebeuren, geef je je team de kans om die standaard te dragen. De kwaliteit blijft, jij krijgt ruimte. Dat is het tegenovergestelde van controleverlies.</p>
+
+<h3>Je laat los in kleine, omkeerbare stappen</h3>
+<p>Niemand maakt deze overstap in één keer. Je kiest één proces, je legt vast hoe het moet, je geeft het uit handen voor een maand. Het ongemak dat je voelt is geen waarschuwing dat het fout gaat. Het is gewoon de oude identiteit die protesteert. Elke geslaagde overdracht maakt de volgende lichter.</p>
+
+<h2>Je hoeft niet minder ondernemer te worden</h2>
+<p>Dit gaat niet over afstand nemen van je bedrijf of er minder om geven. Het gaat over de plek die je inneemt. Een dirigent speelt geen enkel instrument tijdens het concert, en toch staat of valt de uitvoering met hem. Die rol is niet kleiner. Ze is anders, en ze laat het geheel groter worden dan de som van wat jij alleen kan spelen.</p>
+
+<h2>Waar sta jij vandaag?</h2>
+<p>Onze gratis diagnose brengt in vier minuten in kaart hoe sterk jouw bedrijf nog op jou als centraal punt leunt, en welke groeihefbomen daardoor vastlopen. Geen verkoopsgesprek, gewoon een heldere spiegel. Voor wie de stap naar leider dieper wil zetten, bestaat er via ons partnernetwerk een uitgebreide leiderschapsanalyse die je patronen blootlegt.</p>
+
+<h2>Veelgestelde vragen</h2>
+
+<div class="faq-item">
+  <h3>Waarom voelt delegeren alsof ik mezelf overbodig maak?</h3>
+  <p>Omdat je eigenwaarde jarenlang verbonden was aan onmisbaar zijn. Als jij de enige bent die het kan, voel je je nodig. Delegeren raakt dat gevoel. De shift is om je waarde te verleggen van het werk zelf naar het bouwen van een bedrijf dat ook zonder jou werkt.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Verlies ik de ziel van mijn bedrijf als ik loslaat?</h3>
+  <p>Niet als je de juiste dingen vastlegt. De ziel van je bedrijf zit in je standaarden en je waarden, niet in het feit dat jij elke taak zelf uitvoert. Door die standaarden helder te maken, kan je team ze dragen en blijft de kwaliteit overeind terwijl jij ruimte krijgt.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Hoe begin ik met de overstap van uitvoerder naar leider?</h3>
+  <p>Begin klein en omkeerbaar. Kies één proces dat je volledig uit handen geeft, leg vast hoe het hoort te gebeuren, en laat het los voor een maand. Het ongemak dat je voelt is normaal en tijdelijk. Elke succesvolle overdracht maakt de volgende makkelijker.</p>
+</div>
+`,
+  },
 ]
 
 export function getPost(slug: string): BlogPost | undefined {

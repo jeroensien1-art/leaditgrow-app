@@ -1233,4 +1233,245 @@ export const postsEn: BlogPost[] = [
 </div>
 `,
   },
+
+  {
+    slug: 'ai-automatiseren-vlaamse-kmo-zonder-developer',
+    title: 'AI for Your Small Business: 5 Tasks You Can Automate This Month Without a Single Line of Code',
+    metaTitle: 'AI for Small Business: 5 Tasks to Automate Without a Developer | Lead it, Grow',
+    metaDescription: 'Practical AI for business owners. Five tasks you can automate this month without a developer, from lead follow-up to quotes, with realistic time savings.',
+    publishDate: '2026-06-25',
+    readingTime: 8,
+    category: 'AI & Tools',
+    region: 'Europe',
+    excerpt: 'For many owners, AI sounds like something for tech companies with their own IT department. In practice, you can solve five concrete tasks with it this month, without a developer and without a large budget.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: 'AI for Your Small Business: 5 Tasks You Can Automate This Month Without a Single Line of Code',
+          description: 'Practical AI for business owners. Five tasks you can automate this month without a developer, from lead follow-up to quotes.',
+          datePublished: '2026-06-25',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.com' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.com' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            { '@type': 'Question', name: 'Do I need technical knowledge to use AI in my business?', acceptedAnswer: { '@type': 'Answer', text: 'For most tasks, no. Tools like automated lead follow-up, AI email assistants and quote generators work with settings you fill in yourself. For connecting systems, a partner who sets it up correctly once is helpful, after which it runs on its own.' } },
+            { '@type': 'Question', name: 'What does it cost to set up AI automation in a small business?', acceptedAnswer: { '@type': 'Answer', text: 'A first automated lead follow-up system starts around 600 euros one-time plus a small monthly fee. Many owners earn this back within two months through faster follow-up and fewer lost leads.' } },
+            { '@type': 'Question', name: 'Will AI replace my employees?', acceptedAnswer: { '@type': 'Answer', text: 'No. AI takes over the repetitive work so you and your team have time left for the work a human does better: relationships, quality and decisions. The goal is more breathing room, not a smaller team.' } },
+          ],
+        },
+      ],
+    },
+    content: `
+<p class="blog-intro">For many owners, AI sounds like something for tech companies with their own IT department. In practice, you can solve five concrete tasks with it this month, without a developer and without a large budget. This is not about a future vision. It is about work that sits on your desk today and could run by itself tomorrow.</p>
+
+<p><strong>Practical AI for a small business means letting a system handle repetitive tasks, so you have time left for the work that truly needs your attention.</strong> You don't have to write code. You only have to decide which task gets to disappear first.</p>
+
+<h2>1. The first reply to a new lead</h2>
+<p>The biggest win is in speed. A lead who fills in your website at 9pm on a Wednesday usually gets a reply the next morning at most service businesses. By then, that person has often already contacted two competitors.</p>
+<p>An AI-driven follow-up system sends a personal-sounding reply within the minute, from your domain, with a concrete suggestion for a call. Not a standard acknowledgement, but a response that understands the context of the request. Research from InsideSales shows your conversion chance drops by 80 percent if you don't respond within five minutes. This is the task that pays for itself fastest.</p>
+
+<h2>2. Preparing quotes and standard replies</h2>
+<p>How often per week do you type roughly the same explanation? About your approach, your rates, your planning. An AI assistant that knows your previous quotes and emails writes a first draft that you review and send in two minutes.</p>
+<p>Important: you stay in charge of quality. The system does the heavy lifting, you add the final touch. One contractor who introduced this brought his average time per quote down from 40 to 10 minutes. At 15 quotes per week, that frees up more than seven hours.</p>
+
+<h2>3. Scheduling appointments without the back-and-forth</h2>
+<p>The email exchange to plan a single call costs four to six messages on average. A scheduling tool with an AI layer suggests suitable times itself, accounts for your calendar and confirms automatically. You only see the confirmed appointment appear in your calendar.</p>
+
+<h2>4. Following up on quotes that stall</h2>
+<p>Most of the revenue you miss sits in quotes that never got a reminder. Not because you don't want to, but because it gets buried. An automated sequence sends a friendly follow-up after three, seven and fourteen days, written in your tone.</p>
+<p>Do the math. Say you let ten quotes slip each month without follow-up, your average deal is worth 3,000 euros, and with good follow-up you still win one in five. That's two deals per month. 6,000 euros that would otherwise have vanished, without needing a single extra lead.</p>
+
+<h2>5. Summarising and sorting your admin</h2>
+<p>Incoming messages, receipts, notes from calls. AI sorts, summarises and pulls out the action points. You start your day with a clear overview instead of a full inbox you have to dig through.</p>
+
+<h2>Where to start</h2>
+<p>Start with one task. The temptation is to automate everything at once, but that leads to a half-working system nobody trusts. Choose the task that costs you the most time or the most money. For most service businesses, that's lead follow-up.</p>
+<p>Set up that one task properly, let it run for a month, measure the difference. Only once it stands do you move to the next. That way you build a system that works instead of a collection of tools you end up correcting yourself anyway.</p>
+
+<h2>How do you know which task pays off most?</h2>
+<p>We built a free diagnostic that maps in four minutes which of the seven growth levers in your business is stuck. No sales call. Just an honest report on where you stand today and which automation has the most impact for your situation.</p>
+
+<h2>Frequently asked questions</h2>
+
+<div class="faq-item">
+  <h3>Do I need technical knowledge to use AI in my business?</h3>
+  <p>For most tasks, no. Tools like automated lead follow-up, AI email assistants and quote generators work with settings you fill in yourself. For connecting systems, a partner who sets it up correctly once is helpful, after which it runs on its own.</p>
+</div>
+
+<div class="faq-item">
+  <h3>What does it cost to set up AI automation in a small business?</h3>
+  <p>A first automated lead follow-up system starts around 600 euros one-time plus a small monthly fee. Many owners earn this back within two months through faster follow-up and fewer lost leads.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Will AI replace my employees?</h3>
+  <p>No. AI takes over the repetitive work so you and your team have time left for the work a human does better: relationships, quality and decisions. The goal is more breathing room, not a smaller team.</p>
+</div>
+`,
+  },
+
+  {
+    slug: 'uitgeput-terwijl-bedrijf-goed-draait-zaakvoerder',
+    title: "Why You're Exhausted While Your Business Is 'Doing Well'",
+    metaTitle: "Exhausted While Your Business Is Doing Well? The Hidden Cause | Lead it, Grow",
+    metaDescription: 'Many owners are tired while the numbers look good. The cause is rarely too little rest. Discover the hidden mental load and how to lower it for good.',
+    publishDate: '2026-06-25',
+    readingTime: 8,
+    category: 'Leadership & Balance',
+    region: 'Europe',
+    excerpt: 'Your revenue is growing, your clients are happy, and yet you feel empty at the end of the day. That is not a sign of weakness. It is a sign that your business runs on your mental energy instead of on a system.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: "Why You're Exhausted While Your Business Is 'Doing Well'",
+          description: 'The hidden mental load of the business owner and how to lower it structurally without doing less.',
+          datePublished: '2026-06-25',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.com' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.com' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            { '@type': 'Question', name: 'Why am I tired while my business is doing well?', acceptedAnswer: { '@type': 'Answer', text: 'Often the fatigue comes not from the number of hours, but from the volume of decisions and open loops in your head. When everything runs through you, your brain constantly carries the whole organisation, even during your free time. That is mental load, and you lower it with systems, not with rest alone.' } },
+            { '@type': 'Question', name: 'Is owner fatigue a sign of burnout?', acceptedAnswer: { '@type': 'Answer', text: 'Not always, but it is an early signal that deserves attention. Ongoing exhaustion while results are good usually points to a structural problem in how the work is divided. Acting in time prevents it from growing into a real burnout.' } },
+            { '@type': 'Question', name: 'How do I lower the mental load as an owner?', acceptedAnswer: { '@type': 'Answer', text: 'Start by mapping the open loops: everything that exists only in your head. Document the three processes that stall when you step away, automate lead follow-up, and clarify which decisions you can safely delegate. Every loop you close gives mental space back.' } },
+          ],
+        },
+      ],
+    },
+    content: `
+<p class="blog-intro">Your revenue is growing, your clients are happy, and yet you feel empty at the end of the day. That is not a sign of weakness. It is a sign that your business runs on your mental energy instead of on a system.</p>
+
+<p>Many owners think they are tired because they work too hard. Sometimes that's true. But just as often the cause lies elsewhere: not in the number of hours, but in the volume of things you have to hold in your head at once.</p>
+
+<h2>The difference between busy and exhausted</h2>
+<p>Being busy is physical. You have a lot to do, you do it, you're tired and you sleep well. Being exhausted is something else. You lie awake at half past two wondering whether that quote has been followed up. You're present with your family on Sunday, but your head is already running through Monday's planning.</p>
+<p>Those are open loops. Every task that lives only in your memory, that sits in no system anywhere, keeps claiming a piece of your attention. Twenty open loops don't feel like twenty tasks. They feel like a constant background noise that never stops.</p>
+
+<h2>Why a growing business makes it worse</h2>
+<p>Here is the bitter paradox. The better things go, the more leads, clients and decisions run through you. Success enlarges the mental load instead of easing it, as long as the business is built around you as the central point.</p>
+<p>One owner told me he felt guilty about his fatigue. "Things are going well, I should be satisfied." That guilt is widespread and it is unfair. You are not ungrateful. You are simply carrying an organisation that has grown too heavy to keep in your head alone.</p>
+
+<h2>Three places where the load piles up</h2>
+
+<h3>Decisions waiting on you</h3>
+<p>If every small choice has to pass through you, you make hundreds of micro-decisions a day. Research on decision fatigue shows the quality of your choices drops as the day goes on. By evening you decide worse and everything feels heavier, not because the problem is bigger, but because your supply of mental energy is spent.</p>
+
+<h3>Leads and follow-up you guard yourself</h3>
+<p>As long as you are the only one who knows which lead still deserves a reply, you are the follow-up system. That is a full-time task on top of everything else. An automated system that answers every lead within the minute and guards the follow-up lifts that entire layer out of your head.</p>
+
+<h3>Processes only you know</h3>
+<p>If the way something gets done is written down nowhere, nobody can take it over. Every question lands with you. Documenting three processes, the three that stall first when you go on holiday, gives more rest than a week off.</p>
+
+<h2>Rest comes from structure, not only from pause</h2>
+<p>A weekend away helps for a while. But if you return to the same system, the load is back within two days. Real breathing room appears when the work that now sits in your head is safely organised somewhere else.</p>
+<p>That starts with seeing where the load comes from. Which decisions can you delegate? Which follow-up can a system take over? Which processes are still written down nowhere? Every loop you close gives a piece of your head back.</p>
+
+<h2>Map where your energy leaks away</h2>
+<p>Our free diagnostic shows in four minutes which of the seven growth levers in your business is stuck and resting on your shoulders. The result is an honest report, not a sales call. For owners who want to look deeper at their role as a leader, we offer an in-depth leadership analysis through our partner network.</p>
+
+<h2>Frequently asked questions</h2>
+
+<div class="faq-item">
+  <h3>Why am I tired while my business is doing well?</h3>
+  <p>Often the fatigue comes not from the number of hours, but from the volume of decisions and open loops in your head. When everything runs through you, your brain constantly carries the whole organisation, even during your free time. That is mental load, and you lower it with systems, not with rest alone.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Is owner fatigue a sign of burnout?</h3>
+  <p>Not always, but it is an early signal that deserves attention. Ongoing exhaustion while results are good usually points to a structural problem in how the work is divided. Acting in time prevents it from growing into a real burnout.</p>
+</div>
+
+<div class="faq-item">
+  <h3>How do I lower the mental load as an owner?</h3>
+  <p>Start by mapping the open loops: everything that exists only in your head. Document the three processes that stall when you step away, automate lead follow-up, and clarify which decisions you can safely delegate. Every loop you close gives mental space back.</p>
+</div>
+`,
+  },
+
+  {
+    slug: 'van-ik-ben-het-bedrijf-naar-ik-leid-het-bedrijf',
+    title: "From 'I Am the Business' to 'I Lead the Business'",
+    metaTitle: "From 'I Am the Business' to 'I Lead the Business' | Lead it, Grow",
+    metaDescription: 'The biggest brake on growth for owners is an identity tied to being indispensable. Here is how to make the shift from doer to leader without losing yourself.',
+    publishDate: '2026-06-25',
+    readingTime: 7,
+    category: 'From Founder to Leader',
+    region: 'Europe',
+    excerpt: 'For many owners, the business is not something they have, but something they are. That entanglement builds the business in the early days. Later it becomes the biggest brake on growth.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: "From 'I Am the Business' to 'I Lead the Business'",
+          description: 'The identity shift from doer to leader, and why it determines whether your business can grow without you as the bottleneck.',
+          datePublished: '2026-06-25',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.com' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.com' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            { '@type': 'Question', name: 'Why does delegating feel like making myself redundant?', acceptedAnswer: { '@type': 'Answer', text: 'Because your self-worth was tied to being indispensable for years. When you are the only one who can do it, you feel needed. Delegating touches that feeling. The shift is to move your value from the work itself to building a business that works without you too.' } },
+            { '@type': 'Question', name: 'Will I lose the soul of my business if I let go?', acceptedAnswer: { '@type': 'Answer', text: 'Not if you document the right things. The soul of your business lives in your standards and your values, not in the fact that you perform every task yourself. By making those standards clear, your team can carry them and the quality holds while you gain room.' } },
+            { '@type': 'Question', name: 'How do I start the shift from doer to leader?', acceptedAnswer: { '@type': 'Answer', text: 'Start small and reversible. Pick one process you hand over completely, document how it should be done, and let it go for a month. The discomfort you feel is normal and temporary. Every successful handover makes the next one easier.' } },
+          ],
+        },
+      ],
+    },
+    content: `
+<p class="blog-intro">For many owners, the business is not something they have, but something they are. That entanglement builds the business in the early days. Later it becomes the biggest brake on growth.</p>
+
+<p>When your name, your face and your effort carry the business, every step back feels like loss. Letting go then feels not like growth, but like becoming redundant. That feeling is real, and it is the core of why so many strong owners get stuck at the same ceiling.</p>
+
+<h2>How the doer identity forms</h2>
+<p>In growth phases one and two, everything is personal. You bring in the clients. You deliver the quality. You solve the problems. The business runs on your energy and that works, because there is no other way yet.</p>
+<p>But every time you solve something, you confirm a story: "without me it stalls." After a few years that story becomes a deep belief. Your self-worth gets entangled with being indispensable. And a belief that protects your worth is not one you give up easily.</p>
+
+<h2>Why that story starts working against you</h2>
+<p>The moment you want to scale, that identity hits a hard limit: there is only one of you. You can't double your hours. You can't split your attention. The business can't grow bigger than what one person can carry, as long as that one person stands at the centre of everything.</p>
+<p>The owners who break through this limit don't suddenly do more. They change who they are within the business. They move from "I do the work" to "I make sure the work gets done well." From doer to architect. That is not a skill you learn on a course. It is a shift in identity.</p>
+
+<h2>What the shift means in practice</h2>
+
+<h3>Your value moves from doing to building</h3>
+<p>A doer measures their worth by what they personally finished today. A leader measures it by what the business can do without them. That's an uncomfortable trade at first, because the visible proof of your usefulness disappears. The invisible proof, a business that keeps running, slowly takes its place.</p>
+
+<h3>You document what sat in your head</h3>
+<p>The soul of your business lives in your standards, not in your hands. By making clear how something should be done, you give your team the chance to carry that standard. The quality stays, you gain room. That is the opposite of losing control.</p>
+
+<h3>You let go in small, reversible steps</h3>
+<p>Nobody makes this shift in one go. You pick one process, you document how it should work, you hand it over for a month. The discomfort you feel is not a warning that things are going wrong. It is just the old identity protesting. Every successful handover makes the next one lighter.</p>
+
+<h2>You don't have to become less of an entrepreneur</h2>
+<p>This is not about stepping away from your business or caring less. It is about the place you take. A conductor plays no instrument during the concert, and yet the performance stands or falls with them. That role is not smaller. It is different, and it lets the whole become bigger than the sum of what you could play alone.</p>
+
+<h2>Where do you stand today?</h2>
+<p>Our free diagnostic maps in four minutes how strongly your business still leans on you as the central point, and which growth levers stall because of it. No sales call, just a clear mirror. For those who want to take the step to leader deeper, an in-depth leadership analysis is available through our partner network that exposes your patterns.</p>
+
+<h2>Frequently asked questions</h2>
+
+<div class="faq-item">
+  <h3>Why does delegating feel like making myself redundant?</h3>
+  <p>Because your self-worth was tied to being indispensable for years. When you are the only one who can do it, you feel needed. Delegating touches that feeling. The shift is to move your value from the work itself to building a business that works without you too.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Will I lose the soul of my business if I let go?</h3>
+  <p>Not if you document the right things. The soul of your business lives in your standards and your values, not in the fact that you perform every task yourself. By making those standards clear, your team can carry them and the quality holds while you gain room.</p>
+</div>
+
+<div class="faq-item">
+  <h3>How do I start the shift from doer to leader?</h3>
+  <p>Start small and reversible. Pick one process you hand over completely, document how it should be done, and let it go for a month. The discomfort you feel is normal and temporary. Every successful handover makes the next one easier.</p>
+</div>
+`,
+  },
 ]
