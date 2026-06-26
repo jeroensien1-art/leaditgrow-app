@@ -18,6 +18,10 @@
 **Goal**: A client can sign up, connect their Google account via OAuth, and land on their personal dashboard — with their refresh token stored encrypted so every subsequent login is frictionless
 **Depends on**: Nothing (first phase)
 **Requirements**: AUTH-01, AUTH-02, AUTH-03
+**Plans:** 2 plans
+Plans:
+- [x] 01-01-PLAN.md — Infrastructure: install @supabase/ssr, migration + RLS tables (outreach_clients, outreach_tokens), middleware /outreach protection, crypto + Google OAuth helpers [COMPLETE — checkpoint approved 2026-06-26]
+- [ ] 01-02-PLAN.md — UI + flows: magic-link login, Google OAuth wizard with encrypted token storage, Sheet ID setup, session landing
 **Success Criteria** (what must be TRUE):
   1. Client can sign up and log in via Supabase Auth (email/password or magic link)
   2. Client clicks "Koppel Google account" → goes through OAuth2 consent → app stores encrypted refresh token in Supabase per user
@@ -70,7 +74,7 @@
 
 | Phase | Plans Complete | Status |
 |-------|----------------|--------|
-| 1. Multi-tenant Auth | 0/? | Not started |
+| 1. Multi-tenant Auth | 1/2 | In Progress (01-02 next) |
 | 2. Sheet Reader + Research Engine | 0/? | Not started |
 | 3. Offer Selection + Email Generation | 0/? | Not started |
 | 4. Gmail Draft + Sheet Writeback | 0/? | Not started |
