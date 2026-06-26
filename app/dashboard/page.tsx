@@ -143,11 +143,10 @@ export default function Dashboard() {
 
       {/* Header */}
       <div style={{ borderBottom: '1px solid rgba(61,57,41,0.1)', padding: '18px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#fff' }}>
-        <div>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#c96442', marginBottom: 3 }}>
-            Lead it, Grow
-          </div>
-          <h1 style={{ fontSize: 20, fontWeight: 700, color: '#3d3929' }}>Lead Dashboard</h1>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-email.svg" alt="Lead it, Grow" style={{ height: 36 }} />
+          <h1 style={{ fontSize: 20, fontWeight: 700, color: '#3d3929', margin: 0 }}>Lead Dashboard</h1>
         </div>
         <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
           <Link href="/dashboard/analytics" style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 600, color: '#83827d', background: 'rgba(61,57,41,0.06)', border: '1px solid rgba(61,57,41,0.12)', borderRadius: 8, padding: '7px 14px', textDecoration: 'none' }}>
