@@ -1,30 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { updateOutreachSession } from './lib/outreach/supabase-middleware'
 
 const DASHBOARD_PASSWORD = process.env.DASHBOARD_PASSWORD ?? 'changeme'
 
-export async function middleware(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // ── Dashboard protection ──────────────────────────────────────────────────
   if (pathname.startsWith('/dashboard') || pathname.startsWith('/api/dashboard') || pathname.startsWith('/api/analytics')) {
     const token = request.cookies.get('dashboard_token')?.value
     if (token !== DASHBOARD_PASSWORD) {
-      // For API routes return 401
       if (pathname.startsWith('/api/')) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
       }
-      // For page routes redirect to login
       const url = request.nextUrl.clone()
       url.pathname = '/login'
       return NextResponse.redirect(url)
     }
-  }
-
-  // ── Outreach protection (NEW) ─────────────────────────────────────────────
-  if (pathname.startsWith('/outreach') || pathname.startsWith('/api/outreach')) {
-    const outreachResult = await updateOutreachSession(request)
-    if (outreachResult) return outreachResult
   }
 
   // ── Language detection ────────────────────────────────────────────────────
@@ -45,7 +36,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Match all requests except Next.js internals and static files
     '/((?!_next/static|_next/image|favicon.ico).*)',
   ],
 }
