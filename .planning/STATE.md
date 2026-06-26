@@ -8,20 +8,20 @@ progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 2
-  completed_plans: 1
-  percent: 0
+  completed_plans: 2
+  percent: 40
 ---
 
 # State — Lead it, Grow App
 
-**Last updated:** 2026-06-25
+**Last updated:** 2026-06-26
 
 ## Current milestone: 3 — Outreach Dashboard
 
-**Status:** Executing Phase 01 (Plan 01 COMPLETE — checkpoint approved 2026-06-26)
+**Status:** Executing Phase 01 (Plan 02 COMPLETE — awaiting human checkpoint Task 4 approval)
 
-**Current plan:** Phase 01 / Plan 02 (next to execute)
-**Next action:** Execute plan 01-02 (UI + flows: magic-link login, Google OAuth wizard, Sheet ID setup, session landing).
+**Current plan:** Phase 01 / Plan 02 (auto-tasks complete, checkpoint pending)
+**Next action:** Human verifies the end-to-end auth flow (8 steps in Task 4 checkpoint). After approval, execute plan 01-03.
 
 ## Decisions
 
@@ -29,6 +29,8 @@ progress:
 - AES-256-GCM key read lazily inside functions (not module-level) to avoid build-time errors
 - middleware.ts kept (not renamed to proxy.ts) — Next.js 16 deprecated name but functionality unchanged
 - Public outreach paths use startsWith(p + '/') for correct trailing path segment handling
+- GoogleSetupInner.tsx extracted as separate client component — useSearchParams() requires Suspense boundary in Next.js App Router
+- Magic-link route always returns ok regardless of email existence (email enumeration mitigation)
 
 ## Active constraints (carry forward to every phase)
 
