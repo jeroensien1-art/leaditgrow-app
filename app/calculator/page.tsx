@@ -344,13 +344,16 @@ export default function CalculatorPage() {
                     </div>
                     <div className="cta-title" style={{ fontSize: 17, marginBottom: 8 }}>
                       {nl
-                        ? 'Laat hier je gegevens achter'
-                        : 'Leave your details below'}
+                        ? 'Ontvang jouw rapport + 14 dagen gratis'
+                        : 'Get your report + 14-day free trial'}
                     </div>
-                    <div className="cta-sub" style={{ marginBottom: '1.2rem' }}>
+                    <div className="cta-sub" style={{ marginBottom: '.6rem' }}>
                       {nl
                         ? 'Probeer 14 dagen lang een AI werknemer die jouw bedrijf kent, reageert op jouw manier en gekoppeld is aan je CRM, agenda en offertes. Je klanten zoeken niet meer verder naar een oplossing, want ze zijn bij jou ingeboekt.'
                         : 'Try 14 days of an AI employee that knows your business, responds in your voice and connects to your CRM, calendar and quotes. Your clients stop looking elsewhere — they are booked with you.'}
+                    </div>
+                    <div style={{ fontSize: 12, color: 'var(--green)', marginBottom: '1rem', fontWeight: 500 }}>
+                      {nl ? '✓ Ondernemers sparen gemiddeld tot 20 uur per week aan handwerk uit door e-mails en CRM te automatiseren.' : '✓ Entrepreneurs save up to 20 hours per week of manual work by automating emails and CRM.'}
                     </div>
 
                     <label className="field-label">{nl ? 'Naam' : 'Name'}</label>
@@ -369,17 +372,6 @@ export default function CalculatorPage() {
                       value={captureEmail}
                       onChange={e => setCaptureEmail(e.target.value)}
                     />
-                    <label className="field-label">
-                      {nl ? 'Telefoonnummer' : 'Phone number'}
-                      <span style={{ fontWeight: 400, textTransform: 'none' as const, letterSpacing: 0 }}> ({nl ? 'optioneel' : 'optional'})</span>
-                    </label>
-                    <input
-                      className="text-input"
-                      type="tel"
-                      placeholder="+32 ..."
-                      value={capturePhone}
-                      onChange={e => setCapturePhone(e.target.value)}
-                    />
                     <button
                       className="btn-primary"
                       style={{ marginTop: 4 }}
@@ -388,7 +380,7 @@ export default function CalculatorPage() {
                     >
                       {submitting
                         ? (nl ? 'Versturen...' : 'Sending...')
-                        : (nl ? 'Ja, ik wil dit uitproberen' : 'Yes, I want to try this')}
+                        : (nl ? 'Stuur mijn rapport en start gratis' : 'Send my report and start free')}
                       <ArrowRight size={16} />
                     </button>
                   </div>

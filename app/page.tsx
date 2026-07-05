@@ -1,6 +1,10 @@
 import { Nav } from '@/components/nav'
+import { BgLogo } from '@/components/ui/bg-logo'
+import { ScrollSpotlight } from '@/components/ui/scroll-spotlight'
 import { Hero } from '@/components/sections/hero'
+import { MarqueeBar } from '@/components/sections/marquee'
 import { Services } from '@/components/sections/services'
+import { StatsBar } from '@/components/sections/stats-bar'
 import { Tools } from '@/components/sections/tools'
 import { About } from '@/components/sections/about'
 import { Contact } from '@/components/sections/contact'
@@ -10,20 +14,42 @@ import { ChatWidget } from '@/components/chat-widget'
 export default function Home() {
   return (
     <>
+      <BgLogo />
+      <ScrollSpotlight />
       <Nav />
       <main>
         <Hero />
+        <MarqueeBar />
         <Services />
+        <StatsBar />
         <Tools />
         <About />
         <Contact />
         <BlogScroller />
       </main>
       <footer
-        className="py-8 text-center text-xs"
-        style={{ background: '#051209', color: 'rgba(250,249,245,0.3)' }}
+        style={{
+          background: '#0e0d0b',
+          borderTop: '3px solid #0e0d0b',
+          padding: '28px 40px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '12px',
+          position: 'relative',
+          zIndex: 1,
+        }}
       >
-        © {new Date().getFullYear()} Lead it, Grow · leaditgrow.com · leaditgrow.be
+        <span style={{ fontFamily: 'var(--font-mono-brutalist, monospace)', fontSize: '11px', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: 'rgba(242,240,235,.25)' }}>
+          Lead it, Grow
+        </span>
+        <span style={{ fontFamily: 'var(--font-mono-brutalist, monospace)', fontSize: '10px', color: 'rgba(242,240,235,.18)', letterSpacing: '.06em' }}>
+          © {new Date().getFullYear()} · leaditgrow.be · leaditgrow.com
+        </span>
+        <a href="/diagnostic" style={{ fontFamily: 'var(--font-mono-brutalist, monospace)', fontSize: '10px', fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: '#1a5e35', textDecoration: 'none' }}>
+          Start gratis →
+        </a>
       </footer>
       <ChatWidget />
     </>

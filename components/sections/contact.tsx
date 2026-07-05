@@ -10,7 +10,7 @@ import type { TurnstileInstance } from '@marsidev/react-turnstile'
 const inputStyle = {
   background: '#f3f1eb',
   border: '1px solid rgba(61,57,41,0.1)',
-  color: '#3d3929',
+  color: '#0e0d0b',
 }
 const selectStyle = {
   ...inputStyle,
@@ -127,22 +127,22 @@ export function Contact() {
     background: '#faf9f5',
     border: '1px solid rgba(61,57,41,0.1)',
     boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
-    color: '#3d3929',
+    color: '#0e0d0b',
   }
 
   return (
     <section
       id="contact"
       className="relative py-28 px-6"
-      style={{ background: 'linear-gradient(to bottom, #faf9f5 0%, #f0ede4 100%)' }}
+      style={{ background: '#f2f0eb', borderTop: '3px solid #0e0d0b', position: 'relative', zIndex: 1 }}
     >
       <div className="max-w-4xl mx-auto">
         {/* Heading */}
         <div className="text-center mb-16">
-          <div className="text-[11px] font-bold uppercase tracking-widest mb-5" style={{ color: '#c96442' }}>
+          <div className="text-[11px] font-bold uppercase tracking-widest mb-5" style={{ color: '#1a5e35' }}>
             {t('Laten we beginnen', "Let's get started")}
           </div>
-          <h2 className="text-3xl sm:text-4xl font-semibold leading-tight" style={{ color: '#3d3929' }}>
+          <h2 className="text-3xl sm:text-4xl font-semibold leading-tight" style={{ color: '#0e0d0b' }}>
             {t('Klaar voor meer ', 'Ready for more ')}
             <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontWeight: 400 }}>
               {t('impact?', 'impact?')}
@@ -160,9 +160,9 @@ export function Contact() {
             {sent ? (
               <div className="flex flex-col items-center justify-center h-full gap-4 py-8 text-center">
                 <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'rgba(201,100,66,0.1)' }}>
-                  <Reply className="w-5 h-5" style={{ color: '#c96442' }} />
+                  <Reply className="w-5 h-5" style={{ color: '#1a5e35' }} />
                 </div>
-                <p className="font-semibold" style={{ color: '#3d3929' }}>{t('Bericht ontvangen!', 'Message received!')}</p>
+                <p className="font-semibold" style={{ color: '#0e0d0b' }}>{t('Bericht ontvangen!', 'Message received!')}</p>
                 <p className="text-sm leading-relaxed" style={{ color: '#83827d' }}>
                   {t(
                     'Check je inbox (en ook je spammap). Je krijgt de info die je zoekt binnen enkele minuten.',
@@ -200,15 +200,14 @@ export function Contact() {
                       checked={noWebsite}
                       onChange={e => setNoWebsite(e.target.checked)}
                       className="rounded"
-                      style={{ accentColor: '#c96442' }}
+                      style={{ accentColor: '#1a5e35' }}
                     />
                     <span className="text-xs" style={{ color: '#83827d' }}>{t('Ik heb nog geen website', "I don't have a website yet")}</span>
                   </label>
                 </div>
                 <div>
-                  <Label>{t('Bericht', 'Message')}</Label>
+                  <Label>{t('Bericht', 'Message')} <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>({t('optioneel', 'optional')})</span></Label>
                   <textarea
-                    required
                     rows={4}
                     value={message}
                     onChange={e => setMessage(e.target.value)}
@@ -230,9 +229,9 @@ export function Contact() {
                   type="submit"
                   disabled={sending || !turnstileToken}
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90 disabled:opacity-60"
-                  style={{ background: '#c96442' }}
+                  style={{ background: '#1a5e35' }}
                 >
-                  {sending ? t('Versturen...', 'Sending...') : t('Verstuur bericht', 'Send message')}
+                  {sending ? t('Versturen...', 'Sending...') : t('Verstuur', 'Send')}
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </form>
@@ -266,13 +265,13 @@ export function Contact() {
                   <div className="text-sm font-semibold mb-0.5">{t('Plan een gesprek', 'Book a call')}</div>
                   <div className="text-sm" style={{ color: '#83827d' }}>{t('15 min · Kennismakingsgesprek', '15 min · Intro call')}</div>
                 </div>
-                <ArrowRight className="w-4 h-4 ml-auto flex-shrink-0" style={{ color: '#c96442' }} />
+                <ArrowRight className="w-4 h-4 ml-auto flex-shrink-0" style={{ color: '#1a5e35' }} />
               </button>
             )}
 
             {bookOpen && !bookSent && (
               <div className="p-6 rounded-2xl" style={cardBase}>
-                <div className="text-[10px] font-bold uppercase tracking-widest mb-4" style={{ color: '#c96442' }}>
+                <div className="text-[10px] font-bold uppercase tracking-widest mb-4" style={{ color: '#1a5e35' }}>
                   {t('Snel even kennis maken', 'Quick intro')}
                 </div>
                 <form onSubmit={handleBookSubmit} className="flex flex-col gap-3">
@@ -299,7 +298,7 @@ export function Contact() {
                       style={{ ...inputStyle, opacity: bookNoWebsite ? 0.4 : 1 }}
                     />
                     <label className="flex items-center gap-2 mt-2 cursor-pointer select-none">
-                      <input type="checkbox" checked={bookNoWebsite} onChange={e => setBookNoWebsite(e.target.checked)} style={{ accentColor: '#c96442' }} />
+                      <input type="checkbox" checked={bookNoWebsite} onChange={e => setBookNoWebsite(e.target.checked)} style={{ accentColor: '#1a5e35' }} />
                       <span className="text-xs" style={{ color: '#83827d' }}>{t('Ik heb nog geen website', "I don't have a website yet")}</span>
                     </label>
                   </div>
@@ -341,7 +340,7 @@ export function Contact() {
                     type="submit"
                     disabled={bookSending || !bookChallenge || !bookTimeline || !bookTurnstileToken}
                     className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90 disabled:opacity-60"
-                    style={{ background: '#c96442' }}
+                    style={{ background: '#1a5e35' }}
                   >
                     {bookSending ? t('Versturen...', 'Sending...') : t('Plan gesprek', 'Book call')}
                     <Calendar className="w-4 h-4" />
@@ -358,7 +357,7 @@ export function Contact() {
                 <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'rgba(21,128,61,0.1)' }}>
                   <Calendar className="w-5 h-5" style={{ color: '#15803d' }} />
                 </div>
-                <p className="font-semibold text-sm" style={{ color: '#3d3929' }}>{t('Gesprek aangevraagd!', 'Call requested!')}</p>
+                <p className="font-semibold text-sm" style={{ color: '#0e0d0b' }}>{t('Gesprek aangevraagd!', 'Call requested!')}</p>
                 <p className="text-xs leading-relaxed" style={{ color: '#83827d' }}>
                   {t(
                     'Check je inbox. Jeroen stelt tijdstippen voor in zijn persoonlijk bericht.',

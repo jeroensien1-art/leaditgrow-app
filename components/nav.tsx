@@ -1,123 +1,169 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
 import { useLang } from '@/components/lang-context'
-import { LogoFull } from '@/components/ui/logo-svg'
+
+const B = 'var(--font-brutalist, system-ui)'
+const M = 'var(--font-mono-brutalist, monospace)'
+const INK = '#0e0d0b'
+const BG  = '#f2f0eb'
+const GRN = '#1a5e35'
 
 export function Nav() {
-  const { lang, setLang, t } = useLang()
-  const [open, setOpen] = useState(false)
+  const { lang, t } = useLang()
+  const [menuOpen, setMenuOpen] = useState(false)
 
-  // Close mobile menu on scroll
   useEffect(() => {
-    const close = () => setOpen(false)
+    const close = () => setMenuOpen(false)
     window.addEventListener('scroll', close, { passive: true })
     return () => window.removeEventListener('scroll', close)
   }, [])
 
   const links = [
-    { href: '/diensten',   label: t('Diensten', 'Services') },
-    { href: '/missie.html', label: t('Missie', 'Mission') },
-    { href: '/#about',     label: t('Over', 'About') },
-    { href: '/blog',       label: t('Blog', 'Blog') },
-    { href: '/#contact',   label: t('Contact', 'Contact') },
-    { href: '/diagnostic', label: t('Gratis diagnose', 'Free diagnostic'), accent: true },
+    { href: '/diensten',    label: t('Diensten', 'Services') },
+    { href: '/#about',      label: t('Over', 'About') },
+    { href: '/blog',        label: t('Blog', 'Blog') },
+    { href: '/#contact',    label: t('Contact', 'Contact') },
   ]
 
-  const pillStyle: React.CSSProperties = {
-    background: 'rgba(250,249,245,0.88)',
-    backdropFilter: 'blur(12px)',
-    boxShadow: '0 4px 24px rgba(0,0,0,0.12), 0 0 0 1px rgba(61,57,41,0.08)',
-    color: '#3d3929',
-    whiteSpace: 'nowrap',
-  }
-
   return (
-    <nav
-      className="fixed top-5 left-1/2 z-50"
-      style={{ transform: 'translateX(-50%)', maxWidth: 'calc(100vw - 2rem)', width: 'max-content' }}
-    >
-      {/* ── Pill bar ── */}
-      <div className="flex items-center gap-4 px-5 py-2.5 rounded-full text-sm font-medium" style={pillStyle}>
+    <>
+      <style>{`
+        .b-nav {
+          position: sticky;
+          top: 0;
+          z-index: 100;
+          background: ${INK};
+          display: grid;
+          grid-template-columns: 1fr auto;
+          align-items: center;
+          border-bottom: 3px solid ${INK};
+        }
+        .b-nav-brand {
+          padding: 16px 28px;
+          font-size: 13px;
+          font-weight: 700;
+          letter-spacing: .12em;
+          text-transform: uppercase;
+          color: ${BG};
+          text-decoration: none;
+          border-right: 2px solid rgba(255,255,255,.1);
+          font-family: ${B};
+        }
+        .b-nav-items {
+          display: flex;
+          list-style: none;
+          align-items: stretch;
+        }
+        .b-nav-items li a {
+          display: flex;
+          align-items: center;
+          padding: 16px 20px;
+          font-size: 11px;
+          font-weight: 600;
+          letter-spacing: .12em;
+          text-transform: uppercase;
+          color: rgba(242,240,235,.45);
+          text-decoration: none;
+          border-right: 1px solid rgba(255,255,255,.08);
+          transition: color .15s, background .15s;
+          font-family: ${B};
+        }
+        .b-nav-items li a:hover { color: ${BG}; background: rgba(255,255,255,.05); }
+        .b-nav-cta {
+          background: ${GRN} !important;
+          color: #fff !important;
+          font-weight: 700 !important;
+          border-right: none !important;
+          padding: 16px 24px !important;
+        }
+        .b-nav-cta:hover { background: #0f3d21 !important; }
+        .b-nav-lang {
+          padding: 16px 18px;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: .12em;
+          text-transform: uppercase;
+          color: rgba(242,240,235,.4);
+          text-decoration: none;
+          border-left: 1px solid rgba(255,255,255,.08);
+          transition: color .15s;
+          font-family: ${M};
+        }
+        .b-nav-lang:hover { color: ${BG}; }
+        .b-nav-hamburger {
+          padding: 16px 18px;
+          background: none;
+          border: none;
+          color: rgba(242,240,235,.6);
+          cursor: pointer;
+          font-size: 18px;
+          line-height: 1;
+          display: none;
+        }
+        .b-mobile-menu {
+          background: ${INK};
+          border-bottom: 3px solid ${INK};
+          display: flex;
+          flex-direction: column;
+        }
+        .b-mobile-menu a {
+          padding: 14px 28px;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: .1em;
+          text-transform: uppercase;
+          color: rgba(242,240,235,.55);
+          text-decoration: none;
+          border-bottom: 1px solid rgba(255,255,255,.06);
+          transition: color .15s;
+          font-family: ${B};
+        }
+        .b-mobile-menu a:hover { color: ${BG}; }
+        .b-mobile-menu a.cta { color: #4ade80; font-weight: 700; }
+        @media (max-width: 768px) {
+          .b-nav-items { display: none; }
+          .b-nav-hamburger { display: block; }
+        }
+      `}</style>
 
-        {/* Logo — smaller height so it sits neatly inside the pill */}
-        <a href="/#home" className="flex-shrink-0">
-          <LogoFull height={30} textColor="#3d3929" />
-        </a>
-
-        {/* ── Desktop links (hidden on mobile) ── */}
-        <div className="hidden md:flex items-center gap-4">
-          <div className="w-px h-4" style={{ background: 'rgba(61,57,41,0.2)' }} />
-          {links.map(link => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="hover:text-[#c96442] transition-colors"
-              style={link.accent ? { color: '#c96442', fontWeight: 600 } : {}}
-            >
-              {link.label}
-            </a>
+      <nav className="b-nav">
+        <a href="/#home" className="b-nav-brand">Lead it, Grow</a>
+        <ul className="b-nav-items">
+          {links.map(l => (
+            <li key={l.href}><a href={l.href}>{l.label}</a></li>
           ))}
-          <div className="w-px h-4" style={{ background: 'rgba(61,57,41,0.2)' }} />
-        </div>
-
-        {/* Lang toggle — redirects between .be (NL) and .com (EN) */}
-        <a
-          href={lang === 'nl' ? 'https://leaditgrow.com' : 'https://leaditgrow.be'}
-          className="flex items-center rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all"
-          style={{
-            background: 'rgba(201,100,66,0.1)',
-            color: '#c96442',
-            border: '1px solid rgba(201,100,66,0.25)',
-            textDecoration: 'none',
-          }}
-        >
-          {lang === 'nl' ? 'EN' : 'NL'}
-        </a>
-
-        {/* ── Hamburger (mobile only) ── */}
+          <li>
+            <a href="/diagnostic" className="b-nav-cta">
+              {t('Start diagnose', 'Start diagnostic')}
+            </a>
+          </li>
+          <a
+            href={lang === 'nl' ? 'https://leaditgrow.com' : 'https://leaditgrow.be'}
+            className="b-nav-lang"
+          >
+            {lang === 'nl' ? 'EN' : 'NL'}
+          </a>
+        </ul>
         <button
-          onClick={() => setOpen(v => !v)}
-          className="flex md:hidden items-center justify-center w-8 h-8 rounded-full transition-colors"
-          style={{ background: open ? 'rgba(201,100,66,0.1)' : 'transparent', color: '#3d3929' }}
+          className="b-nav-hamburger"
+          onClick={() => setMenuOpen(v => !v)}
           aria-label="Menu"
         >
-          {open ? <X size={16} /> : <Menu size={16} />}
+          {menuOpen ? '✕' : '☰'}
         </button>
-      </div>
+      </nav>
 
-      {/* ── Mobile dropdown ── */}
-      {open && (
-        <div
-          className="md:hidden mt-2 rounded-2xl overflow-hidden"
-          style={{
-            background: 'rgba(250,249,245,0.97)',
-            backdropFilter: 'blur(12px)',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.14), 0 0 0 1px rgba(61,57,41,0.08)',
-            minWidth: '200px',
-            position: 'absolute',
-            right: 0,
-            top: '100%',
-          }}
-        >
-          {links.map((link, i) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="flex items-center px-5 py-3.5 text-sm font-medium transition-colors hover:bg-[rgba(201,100,66,0.06)]"
-              style={{
-                color: link.accent ? '#c96442' : '#3d3929',
-                fontWeight: link.accent ? 600 : 500,
-                borderTop: i > 0 ? '1px solid rgba(61,57,41,0.07)' : 'none',
-              }}
-            >
-              {link.label}
-            </a>
+      {menuOpen && (
+        <div className="b-mobile-menu">
+          {links.map(l => (
+            <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)}>{l.label}</a>
           ))}
+          <a href="/diagnostic" className="cta" onClick={() => setMenuOpen(false)}>
+            {t('Start gratis diagnose', 'Start free diagnostic')}
+          </a>
         </div>
       )}
-    </nav>
+    </>
   )
 }

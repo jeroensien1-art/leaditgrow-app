@@ -1,179 +1,362 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useLang } from '@/components/lang-context'
 
-const levels = [
+const B    = 'var(--font-brutalist, system-ui)'
+const M    = 'var(--font-mono-brutalist, monospace)'
+const INK  = '#0e0d0b'
+const BG   = '#f2f0eb'
+const GRN  = '#1a5e35'
+const LIME = '#4ade80'
+const MUT  = '#787068'
+
+const LEVELS = [
   {
-    id: 1, name: 'Foundation', color: '#bbf7d0',
-    keywords: ['Aanbod in twee zinnen definiëren', 'ICP bepalen', 'Speed-to-lead'],
-    oneliner: 'Je hebt al klanten. De vraag is niet of je aanbod werkt, maar voor wie het het beste werkt en via welk kanaal je er meer van vindt.',
+    id: '01', name: 'Foundation',
+    keywords: ['Aanbod definiëren', 'ICP bepalen', 'Speed-to-lead'],
+    desc: 'Je hebt al klanten. De vraag is niet of je aanbod werkt, maar voor wie het het beste werkt en via welk kanaal je er meer van vindt.',
+    actions: ['Aanbod scherpen', 'ICP vastleggen', 'Kanaal kiezen'],
   },
   {
-    id: 2, name: 'Capture', color: '#86efac',
+    id: '02', name: 'Capture',
     keywords: ['CRM activeren', 'Leadmagneet bouwen', 'Nurture sequentie'],
-    oneliner: '60 tot 80% van de leads lekt weg omdat niemand ze consequent opvolgt. Een CRM en nurture sequentie verdubbelen je omzet zonder één extra lead.',
+    desc: '60 tot 80% van de leads lekt weg omdat niemand ze consequent opvolgt. Een CRM en nurture sequentie verdubbelen je omzet zonder één extra lead.',
+    actions: ['CRM inrichten', 'Leadmagneet live', 'Sequentie schrijven'],
   },
   {
-    id: 3, name: 'Convert', color: '#6ee7b7',
-    keywords: ['Salesscript documenteren', 'Website CRO', 'Offer ladder uitschrijven'],
-    oneliner: 'Conversie van 25 naar 35% bouwt meer omzet dan een verdubbeling van je adbudget. Eerst de pipeline fixen, dan de kraan openzetten.',
+    id: '03', name: 'Convert',
+    keywords: ['Salesscript documenteren', 'Website CRO', 'Offer ladder'],
+    desc: 'Conversie van 25 naar 35% bouwt meer omzet dan een verdubbeling van je adbudget. Eerst de pipeline fixen, dan de kraan openzetten.',
+    actions: ['Script documenteren', 'Pagina optimaliseren', 'Offer uitschrijven'],
   },
   {
-    id: 4, name: 'Acquire', color: '#34d399',
-    keywords: ['Best kanaal opschalen', 'Retargeting activeren', 'Tweede kanaal testen'],
-    oneliner: 'Schaal alleen wat al bewezen converteert. Een nieuw kanaal in deze fase is een experiment van maximaal 10% van het budget.',
+    id: '04', name: 'Acquire',
+    keywords: ['Best kanaal opschalen', 'Retargeting', 'Tweede kanaal'],
+    desc: 'Schaal alleen wat al bewezen converteert. Een nieuw kanaal in deze fase is een experiment van maximaal 10% van het budget.',
+    actions: ['Kanaal opschalen', 'Retargeting live', 'Test & leer'],
   },
   {
-    id: 5, name: 'Compound', color: '#4ade80',
-    keywords: ['SEO als systeem', 'Videoprogramma opstarten', 'Thought leadership'],
-    oneliner: 'SEO en video starten hier pas gestructureerd. Tot dit niveau ontbreekt het budget om 12 tot 18 maanden geduldig te zijn voor het rendement komt.',
+    id: '05', name: 'Compound',
+    keywords: ['SEO als systeem', 'Videoprogramma', 'Thought leadership'],
+    desc: 'SEO en video starten hier pas gestructureerd. Tot dit niveau ontbreekt het budget om 12 tot 18 maanden geduldig te zijn voor het rendement komt.',
+    actions: ['SEO structuur', 'Videoprogramma', 'Content systeem'],
   },
   {
-    id: 6, name: 'Multiply', color: '#c96442',
-    keywords: ['AI agents inzetten', 'Partnerprogramma bouwen', 'Categorie definiëren'],
-    oneliner: 'Brand, AI en partnerships zijn compounding assets. Jouw rol verschuift van uitvoering naar richting geven.',
+    id: '06', name: 'Multiply',
+    keywords: ['AI agents', 'Partnerprogramma', 'Categorie definiëren'],
+    desc: 'Brand, AI en partnerships zijn compounding assets. Jouw rol verschuift van uitvoering naar richting geven.',
+    actions: ['AI inzetten', 'Partners vinden', 'Categorie claimen'],
   },
 ]
 
 const INTERVAL = 2800
 
 export function Services() {
-  const [openId, setOpenId] = useState(levels[0].id)
-  const currentIdxRef = useRef(0)
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
-  const hoveredRef = useRef(false)
+  const { t } = useLang()
+  const [openIdx, setOpenIdx] = useState(0)
+  const hovered = useRef(false)
+  const timer = useRef<ReturnType<typeof setInterval> | null>(null)
+  const currentIdx = useRef(0)
 
-  const startTimer = () => {
-    if (timerRef.current) return
-    timerRef.current = setInterval(() => {
-      if (hoveredRef.current) return
-      currentIdxRef.current = (currentIdxRef.current + 1) % levels.length
-      setOpenId(levels[currentIdxRef.current].id)
+  function openRow(idx: number) {
+    setOpenIdx(idx)
+    currentIdx.current = idx
+  }
+
+  function startCycle() {
+    if (timer.current) return
+    timer.current = setInterval(() => {
+      if (!hovered.current) {
+        const next = (currentIdx.current + 1) % LEVELS.length
+        openRow(next)
+      }
     }, INTERVAL)
   }
 
-  const stopTimer = () => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current)
-      timerRef.current = null
-    }
+  function stopCycle() {
+    if (timer.current) { clearInterval(timer.current); timer.current = null }
   }
 
   useEffect(() => {
-    startTimer()
-    return () => stopTimer()
+    startCycle()
+    return () => stopCycle()
   }, [])
 
   return (
-    <section
-      id="services"
-      className="relative py-24 px-6"
-      style={{ background: 'linear-gradient(to bottom, #0a1e10 0%, #051209 100%)' }}
-    >
-      <div className="max-width-860 mx-auto" style={{ maxWidth: 860 }}>
+    <>
+      <style>{`
+        .b-ladder-section {
+          border-bottom: 3px solid ${INK};
+          background: ${BG};
+          position: relative;
+          z-index: 1;
+        }
+        .b-ladder-header-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          border-bottom: 2px solid ${INK};
+        }
+        .b-ladder-header-left {
+          padding: 56px;
+          border-right: 2px solid ${INK};
+          border-top: 4px solid transparent;
+          transition: background 0.4s, border-top-color 0.4s;
+        }
+        .b-ladder-header-right {
+          padding: 56px;
+          display: flex;
+          align-items: flex-end;
+        }
+        .b-section-num {
+          font-family: ${M};
+          font-size: 11px;
+          color: ${MUT};
+          letter-spacing: .1em;
+          margin-bottom: 18px;
+        }
+        .b-section-h2 {
+          font-size: clamp(28px, 4vw, 52px);
+          font-weight: 700;
+          letter-spacing: -.04em;
+          line-height: 1;
+          text-transform: uppercase;
+          font-family: ${B};
+          color: ${INK};
+        }
+        .b-section-h2 .accent { color: ${GRN}; transition: color 0.4s; }
+        .b-ladder-desc-text {
+          font-size: 14px;
+          color: ${MUT};
+          line-height: 1.75;
+          max-width: 380px;
+          font-family: ${B};
+        }
 
-        <div className="text-[10px] font-bold uppercase tracking-widest mb-4 flex items-center gap-2" style={{ color: '#c96442' }}>
-          <span style={{ display: 'inline-block', width: 24, height: 2, background: '#c96442' }} />
-          De groeiladder
+        /* ROWS */
+        .b-ladder-row {
+          display: grid;
+          grid-template-columns: 72px 220px 1fr;
+          border-bottom: 2px solid ${INK};
+          border-left: 4px solid transparent;
+          transition: background .15s, border-left-color .15s;
+          cursor: default;
+        }
+        .b-ladder-row:not(.open):hover {
+          background: ${INK};
+          border-left-color: ${LIME};
+        }
+        .b-ladder-row:not(.open):hover .b-lr-num  { color: rgba(242,240,235,.5); }
+        .b-ladder-row:not(.open):hover .b-lr-name { color: #fff; }
+        .b-ladder-row:not(.open):hover .b-lr-kw   { border-color: rgba(255,255,255,.15); color: rgba(255,255,255,.35); }
+        .b-ladder-row.open {
+          background: rgba(26,94,53,0.05);
+          border-left-color: ${GRN};
+        }
+        .b-lr-num {
+          padding: 26px 20px;
+          font-family: ${M};
+          font-size: 11px;
+          font-weight: 700;
+          color: ${MUT};
+          letter-spacing: .06em;
+          border-right: 2px solid ${INK};
+          display: flex;
+          align-items: center;
+          transition: color .15s;
+        }
+        .b-ladder-row.open .b-lr-num { color: ${GRN}; }
+        .b-lr-name {
+          padding: 26px 28px;
+          font-size: 14px;
+          font-weight: 700;
+          color: ${INK};
+          letter-spacing: -.01em;
+          text-transform: uppercase;
+          border-right: 2px solid ${INK};
+          display: flex;
+          align-items: flex-start;
+          padding-top: 26px;
+          font-family: ${B};
+          transition: color .15s;
+        }
+        .b-lr-content {
+          padding: 18px 28px;
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+        }
+        .b-lr-keywords { display: flex; gap: 8px; flex-wrap: wrap; padding: 8px 0; }
+        .b-lr-kw {
+          font-size: 11px;
+          font-weight: 500;
+          color: ${MUT};
+          border: 1px solid rgba(0,0,0,.15);
+          padding: 4px 11px;
+          letter-spacing: .04em;
+          transition: border-color .15s, color .15s, background .15s;
+          font-family: ${B};
+        }
+        .b-ladder-row.open .b-lr-kw {
+          border-color: ${GRN};
+          color: ${GRN};
+          font-weight: 700;
+        }
+        .b-lr-expand {
+          display: none;
+          padding-top: 12px;
+          margin-top: 8px;
+          border-top: 1px solid rgba(0,0,0,.07);
+        }
+        .b-ladder-row.open .b-lr-expand { display: block; }
+        .b-lr-expand-desc {
+          font-size: 13px;
+          color: ${INK};
+          line-height: 1.8;
+          font-style: italic;
+          opacity: .6;
+          margin-bottom: 14px;
+          max-width: 560px;
+          font-family: ${B};
+        }
+        .b-lr-actions { display: flex; gap: 2px; }
+        .b-lr-action {
+          flex: 1;
+          padding: 9px 12px;
+          background: rgba(26,94,53,0.05);
+          border-top: 2px solid ${GRN};
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: .1em;
+          text-transform: uppercase;
+          color: ${GRN};
+          font-family: ${M};
+          transition: background 0.4s, color 0.4s, border-color 0.4s;
+        }
+
+        /* CTA strip */
+        .b-ladder-cta {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 24px;
+          padding: 28px 40px;
+          border-top: 3px solid ${GRN};
+          flex-wrap: wrap;
+        }
+        .b-ladder-cta-label {
+          font-size: 10px; font-weight: 700; letter-spacing: .16em;
+          text-transform: uppercase; color: ${GRN}; margin-bottom: 6px;
+          font-family: ${M};
+        }
+        .b-ladder-cta-title {
+          font-size: 18px; font-weight: 800; color: ${INK};
+          letter-spacing: -.02em; font-family: ${B};
+        }
+        .b-ladder-cta-btn {
+          display: inline-flex; align-items: center; gap: 8px;
+          background: ${GRN}; color: #fff; padding: 12px 22px;
+          font-size: 12px; font-weight: 700; letter-spacing: .06em;
+          text-transform: uppercase; text-decoration: none; flex-shrink: 0;
+          font-family: ${B};
+          transition: background .15s;
+        }
+        .b-ladder-cta-btn:hover { background: #0f3d21; }
+
+        /* SPOTLIGHT */
+        .b-ladder-section.in-view .b-ladder-header-left {
+          background: ${LIME};
+          border-top-color: ${LIME};
+        }
+        .b-ladder-section.in-view .b-ladder-header-left .b-section-num { color: ${INK}; opacity: .5; }
+        .b-ladder-section.in-view .b-ladder-header-left .b-section-h2 { color: ${INK}; }
+        .b-ladder-section.in-view .b-section-h2 .accent { color: ${INK}; }
+        .b-ladder-section.in-view .b-ladder-row.open {
+          background: ${LIME};
+          border-left-color: ${INK};
+        }
+        .b-ladder-section.in-view .b-ladder-row.open .b-lr-num  { color: rgba(14,13,11,.45); }
+        .b-ladder-section.in-view .b-ladder-row.open .b-lr-name { color: ${INK}; }
+        .b-ladder-section.in-view .b-ladder-row.open .b-lr-kw   { color: ${INK}; border-color: rgba(14,13,11,.3); font-weight: 700; }
+        .b-ladder-section.in-view .b-ladder-row.open .b-lr-expand-desc { color: ${INK}; opacity: .6; }
+        .b-ladder-section.in-view .b-ladder-row.open .b-lr-action {
+          color: ${INK}; border-top-color: rgba(14,13,11,.35); background: rgba(14,13,11,.06);
+        }
+
+        @media (max-width: 900px) {
+          .b-ladder-header-row { grid-template-columns: 1fr; }
+          .b-ladder-header-right { display: none; }
+          .b-ladder-header-left { padding: 40px 24px; }
+          .b-ladder-row { grid-template-columns: 56px 1fr; }
+          .b-lr-name { display: none; }
+          .b-ladder-cta { padding: 24px; }
+        }
+      `}</style>
+
+      <section className="b-ladder-section" id="services" data-spot>
+        <div className="b-ladder-header-row">
+          <div className="b-ladder-header-left">
+            <div className="b-section-num">// 01 {t('Groeiladder', 'Growth Ladder')}</div>
+            <h2 className="b-section-h2">
+              {t('Het juiste', 'The right')}<br />
+              {t('systeem op het', 'system at the')}<br />
+              <span className="accent">{t('juiste moment.', 'right moment.')}</span>
+            </h2>
+          </div>
+          <div className="b-ladder-header-right">
+            <p className="b-ladder-desc-text">
+              {t(
+                'Per niveau de acties met de hoogste ROI. De volgorde is geen voorkeur — het is fysica.',
+                'Per level the actions with the highest ROI. The order is not a preference — it is physics.'
+              )}
+            </p>
+          </div>
         </div>
 
-        <h2 className="font-black leading-none mb-2" style={{ fontSize: 'clamp(28px, 4vw, 44px)', letterSpacing: '-.03em', color: '#faf9f5' }}>
-          Het juiste systeem<br />
-          <span style={{ color: 'rgba(250,249,245,0.32)' }}>op het juiste moment,</span><br />
-          dat betaalt zichzelf terug.
-        </h2>
-
-        <p className="mb-12 leading-relaxed" style={{ fontSize: 15, color: 'rgba(250,249,245,0.42)', maxWidth: 500 }}>
-          Per niveau de acties met de hoogste ROI. De volgorde is geen voorkeur, het is fysica.
-        </p>
-
-        {/* Ladder */}
-        <div style={{ borderTop: '1px solid rgba(250,249,245,0.06)' }}>
-          {levels.map((l, idx) => {
-            const isOpen = openId === l.id
-            return (
-              <div
-                key={l.id}
-                style={{ borderBottom: '1px solid rgba(250,249,245,0.06)' }}
-                onMouseEnter={() => {
-                  hoveredRef.current = true
-                  currentIdxRef.current = idx
-                  setOpenId(l.id)
-                }}
-                onMouseLeave={() => {
-                  hoveredRef.current = false
-                  startTimer()
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'stretch' }}>
-                  {/* Left */}
-                  <div style={{ width: 200, flexShrink: 0, padding: '20px 0', display: 'flex', alignItems: 'center', gap: 14 }}>
-                    <span style={{ fontSize: 11, fontWeight: 800, color: isOpen ? l.color : 'rgba(250,249,245,0.18)', letterSpacing: '.04em', width: 24, flexShrink: 0, transition: 'color .15s' }}>
-                      0{l.id}
-                    </span>
-                    <span style={{ fontSize: 13, fontWeight: 700, color: isOpen ? '#faf9f5' : 'rgba(250,249,245,0.55)', letterSpacing: '-.01em', transition: 'color .15s' }}>
-                      {l.name}
-                    </span>
-                  </div>
-
-                  {/* Divider */}
-                  <div style={{ width: 1, background: 'rgba(250,249,245,0.06)', flexShrink: 0, margin: '0 28px' }} />
-
-                  {/* Right */}
-                  <div style={{ flex: 1, padding: '20px 0', cursor: 'default' }}>
-                    {/* Collapsed: keywords inline */}
-                    {!isOpen && (
-                      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
-                        {l.keywords.map((k, i) => (
-                          <span key={k}>
-                            <span style={{ fontSize: 12, color: 'rgba(250,249,245,0.32)', fontWeight: 500 }}>{k}</span>
-                            {i < l.keywords.length - 1 && <span style={{ fontSize: 11, color: 'rgba(250,249,245,0.12)', marginLeft: 8 }}>·</span>}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Expanded */}
-                    {isOpen && (
-                      <div>
-                        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 14 }}>
-                          {l.keywords.map(k => (
-                            <span key={k} style={{ fontSize: 11, fontWeight: 700, color: l.color, border: `1px solid ${l.color}`, padding: '4px 10px', letterSpacing: '.03em', opacity: .85 }}>
-                              {k}
-                            </span>
-                          ))}
-                        </div>
-                        <p style={{ fontSize: 13.5, color: 'rgba(250,249,245,0.45)', lineHeight: 1.7, marginBottom: 18, fontStyle: 'italic' }}>
-                          {l.oneliner}
-                        </p>
-                        <div style={{ display: 'flex', gap: 1 }}>
-                          {['Brand positioneren', 'Leads onder de loep', 'Baseren op data'].map(f => (
-                            <div key={f} style={{ flex: 1, padding: '11px 14px', background: 'rgba(250,249,245,0.03)', borderTop: `2px solid ${l.color}`, fontSize: 11, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', color: l.color, opacity: .7 }}>
-                              {f}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+        <div>
+          {LEVELS.map((l, i) => (
+            <div
+              key={l.id}
+              className={`b-ladder-row${openIdx === i ? ' open' : ''}`}
+              onMouseEnter={() => { hovered.current = true; openRow(i) }}
+              onMouseLeave={() => { hovered.current = false; startCycle() }}
+            >
+              <div className="b-lr-num">{l.id}</div>
+              <div className="b-lr-name">{l.name}</div>
+              <div className="b-lr-content">
+                <div className="b-lr-keywords">
+                  {l.keywords.map(k => (
+                    <span key={k} className="b-lr-kw">{k}</span>
+                  ))}
+                </div>
+                <div className="b-lr-expand">
+                  <p className="b-lr-expand-desc">{l.desc}</p>
+                  <div className="b-lr-actions">
+                    {l.actions.map(a => (
+                      <div key={a} className="b-lr-action">{a}</div>
+                    ))}
                   </div>
                 </div>
               </div>
-            )
-          })}
+            </div>
+          ))}
         </div>
 
-        {/* CTA */}
-        <div style={{ marginTop: 48, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, padding: '24px 28px', border: '1px solid rgba(201,100,66,0.2)', borderTop: '3px solid #c96442', flexWrap: 'wrap' }}>
+        <div className="b-ladder-cta">
           <div>
-            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: '#c96442', marginBottom: 6 }}>Gratis rapport</div>
-            <div style={{ fontSize: 20, fontWeight: 900, color: '#faf9f5', letterSpacing: '-.02em' }}>Krijg jouw gratis bedrijfsrapport en 14 dagen plan om je bedrijf te laten groeien.</div>
+            <div className="b-ladder-cta-label">{t('Gratis rapport', 'Free report')}</div>
+            <div className="b-ladder-cta-title">
+              {t(
+                'Krijg jouw gratis bedrijfsrapport en 14-dagenplan.',
+                'Get your free business report and 14-day plan.'
+              )}
+            </div>
           </div>
-          <a href="/diagnostic" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#c96442', color: '#fff', padding: '12px 22px', borderRadius: 3, fontSize: 13, fontWeight: 700, textDecoration: 'none', letterSpacing: '.02em', whiteSpace: 'nowrap' }}>
-            Start gratis &rarr;
+          <a href="/diagnostic" className="b-ladder-cta-btn">
+            {t('Start gratis', 'Start free')} →
           </a>
         </div>
-
-      </div>
-    </section>
+      </section>
+    </>
   )
 }

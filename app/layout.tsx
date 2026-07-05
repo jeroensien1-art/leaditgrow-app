@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Instrument_Sans, Instrument_Serif } from 'next/font/google'
+import { Instrument_Sans, Instrument_Serif, Space_Grotesk, Space_Mono } from 'next/font/google'
 import { headers } from 'next/headers'
 import Script from 'next/script'
 import './globals.css'
@@ -17,6 +17,19 @@ const instrumentSerif = Instrument_Serif({
   weight: ['400'],
   style: ['normal', 'italic'],
   variable: '--font-serif',
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-brutalist',
+})
+
+const spaceMono = Space_Mono({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-mono-brutalist',
 })
 
 // Get language from cookie (set by middleware)
@@ -104,7 +117,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           fbq('track', 'PageView');
         `}</Script>
       </head>
-      <body className={`${instrumentSans.variable} ${instrumentSerif.variable} font-sans antialiased`}>
+      <body className={`${instrumentSans.variable} ${instrumentSerif.variable} ${spaceGrotesk.variable} ${spaceMono.variable} font-sans antialiased`}>
         <LangProvider>{children}</LangProvider>
       </body>
     </html>

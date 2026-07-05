@@ -4,7 +4,7 @@ import { useState, useMemo, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useLang } from '@/components/lang-context'
 
-type Step = 'intro' | 'context' | 'questions' | 'results' | 'capture' | 'thanks'
+type Step = 'intro' | 'context' | 'profile' | 'questions' | 'results' | 'capture' | 'thanks'
 
 interface ContextAnswers {
   industry: string
@@ -44,12 +44,6 @@ const contextQuestionsEn = [
     options: ['Fewer than 5', '5 to 20', '20 to 50', 'More than 50'],
   },
   {
-    id: 'avgDealValue',
-    label: 'What is your typical deal or project value?',
-    emotion: 'Average across your clients.',
-    options: ['Under €1,000', '€1,000 to €5,000', '€5,000 to €20,000', 'Over €20,000'],
-  },
-  {
     id: 'teamSize',
     label: 'How many people work in your business (including you)?',
     emotion: 'Full-time equivalents.',
@@ -81,17 +75,6 @@ const questionsEn: Question[] = [
     ],
   },
   {
-    lever: 'speed_to_lead', theme: 'Your leads', meta: 'Speed-to-lead',
-    label: 'When a new enquiry comes in, a form, a DM, a call, how quickly does your business respond?',
-    emotion: 'On a Saturday afternoon. Or a Tuesday evening when your team has gone home.',
-    options: [
-      { main: 'Within 5 minutes, automatically.', feel: 'A system handles first contact every time', score: 0 },
-      { main: 'Within the hour, usually.', feel: 'Someone picks it up when they see it', score: 1 },
-      { main: 'Same day, when there is time.', feel: 'Inconsistent, depends who is around', score: 2 },
-      { main: 'Next day or later, it varies.', feel: 'Leads regularly go cold before we reach them', score: 3 },
-    ],
-  },
-  {
     lever: 'pipeline', theme: 'Your pipeline', meta: 'Follow-up and nurture',
     label: 'What happens to a lead who shows interest but does not buy immediately?',
     emotion: "Think about the last 10 people who said \"I'll think about it.\"",
@@ -100,6 +83,17 @@ const questionsEn: Question[] = [
       { main: 'I or my team follows up manually a few times.', feel: 'Inconsistent but we try', score: 1 },
       { main: 'We follow up once, then leave it to them.', feel: 'Most warm leads go cold', score: 2 },
       { main: 'Honestly, most of them just disappear.', feel: 'We have no real follow-up process', score: 3 },
+    ],
+  },
+  {
+    lever: 'gtm', theme: 'Your growth', meta: 'Go-to-market',
+    label: 'How is your business growing right now?',
+    emotion: 'Not how you wish it would. How it actually works today.',
+    options: [
+      { main: 'Through a system: content, SEO or paid advertising.', feel: 'Inbound growth working even when I am not active', score: 0 },
+      { main: 'Through referrals and network, but I actively pursue them.', feel: 'Growth flows but requires my constant energy', score: 1 },
+      { main: 'Through referrals, passively, I do not chase them.', feel: 'Passive growth, fragile and unpredictable', score: 2 },
+      { main: 'Honestly I am not sure. It fluctuates.', feel: 'No clear growth engine in place', score: 3 },
     ],
   },
   {
@@ -124,47 +118,33 @@ const questionsEn: Question[] = [
       { main: 'Rarely. Great conversations, few decisions.', feel: 'Under 20%, something is breaking down', score: 3 },
     ],
   },
-  {
-    lever: 'retention', theme: 'Your clients', meta: 'Client retention and referrals',
-    label: 'What happens after a client finishes working with you?',
-    emotion: 'Think about how many past clients have come back or referred someone.',
-    options: [
-      { main: 'Most come back and send referrals regularly.', feel: 'Clients become long-term advocates', score: 0 },
-      { main: 'Some come back, some refer. Not systematic.', feel: 'Good relationships, no deliberate process', score: 1 },
-      { main: 'We finish the project and that is mostly it.', feel: 'No follow-up, referrals happen by chance', score: 2 },
-      { main: 'We rarely hear from clients after delivery.', feel: 'No retention or referral system at all', score: 3 },
-    ],
-  },
 ]
 
 const ctaHookNl: Record<string, string> = {
-  time:          'Win binnen 14 dagen je tijd terug',
-  leadership:    'Laat je team zelfstandig werken in 14 dagen',
-  speed_to_lead: 'Laat nooit meer een lead afkoelen',
-  pipeline:      'Zet meer warme leads om naar betalende klanten',
-  marketing:     'Trek inbound leads aan zonder constante push',
-  sales:         'Verhoog je sluitingspercentage in 14 dagen',
-  retention:     'Haal meer omzet uit klanten die je al hebt',
+  time:       'Win binnen 14 dagen je tijd terug',
+  leadership: 'Laat je team zelfstandig werken in 14 dagen',
+  pipeline:   'Zet meer warme leads om naar betalende klanten',
+  gtm:        'Bouw een groeistrategie die ook werkt als jij slaapt',
+  marketing:  'Trek inbound leads aan zonder constante push',
+  sales:      'Verhoog je sluitingspercentage in 14 dagen',
 }
 
 const ctaHookEn: Record<string, string> = {
-  time:          'Win your time back within 14 days',
-  leadership:    'Get your team working independently in 14 days',
-  speed_to_lead: 'Never let a lead go cold again',
-  pipeline:      'Turn more warm leads into paying clients',
-  marketing:     'Attract inbound leads without constant pushing',
-  sales:         'Raise your close rate in 14 days',
-  retention:     'Get more revenue from clients you already have',
+  time:       'Win your time back within 14 days',
+  leadership: 'Get your team working independently in 14 days',
+  pipeline:   'Turn more warm leads into paying clients',
+  gtm:        'Build a growth engine that works while you sleep',
+  marketing:  'Attract inbound leads without constant pushing',
+  sales:      'Raise your close rate in 14 days',
 }
 
 const leverConfigEn: Record<string, { label: string; color: string }> = {
-  time:          { label: 'Owner time',         color: '#c96442' },
-  leadership:    { label: 'Leadership',          color: '#8b4513' },
-  speed_to_lead: { label: 'Speed-to-lead',       color: '#c0392b' },
-  pipeline:      { label: 'Pipeline & nurture',  color: '#7d3c98' },
-  marketing:     { label: 'Online presence',     color: '#2980b9' },
-  sales:         { label: 'Sales close rate',    color: '#16a085' },
-  retention:     { label: 'Client retention',    color: '#27ae60' },
+  time:       { label: 'Owner time',        color: '#c96442' },
+  leadership: { label: 'Leadership',         color: '#8b4513' },
+  pipeline:   { label: 'Pipeline & nurture', color: '#7d3c98' },
+  gtm:        { label: 'Growth strategy',    color: '#c0392b' },
+  marketing:  { label: 'Online presence',    color: '#2980b9' },
+  sales:      { label: 'Sales close rate',   color: '#16a085' },
 }
 
 const leverDetailEn: Record<string, { title: string; emotion: string; desc: string; action: string }> = {
@@ -179,12 +159,6 @@ const leverDetailEn: Record<string, { title: string; emotion: string; desc: stri
     emotion: '"My team is great, but everything still comes back to me."',
     desc: 'The business can only grow as fast as your attention allows. Build clear decision frameworks so your team can act without waiting for you.',
     action: 'Identify 3 recurring decisions your team escalates to you. Write the criteria for each. Hand them over this week.',
-  },
-  speed_to_lead: {
-    title: 'Never let a lead go cold again',
-    emotion: '"We paid to get that lead. Someone replied six hours later."',
-    desc: 'Research shows responding in under 5 minutes makes you 100x more likely to connect with a lead vs 30 minutes. Slow response is your most expensive hidden cost.',
-    action: 'Set up an automated first-response that fires in under 60 seconds, including weekends and after hours.',
   },
   pipeline: {
     title: 'Build a follow-up system that never forgets',
@@ -204,11 +178,11 @@ const leverDetailEn: Record<string, { title: string; emotion: string; desc: stri
     desc: 'Most close rate problems are not a persuasion issue. They are a qualification and framing issue. The right leads, with the right expectations, close themselves.',
     action: 'Review your last 5 lost deals. Find the moment the conversation shifted. That single insight is your fix.',
   },
-  retention: {
-    title: 'Turn every client into a growth engine',
-    emotion: '"I keep finding new clients instead of growing the ones I have."',
-    desc: 'Acquiring a new client costs 5 to 7x more than retaining one. Your existing clients are your cheapest source of new revenue, and most businesses ignore them after delivery.',
-    action: 'List every client from the last 12 months. Email the top 5 with a simple check-in this week.',
+  gtm: {
+    title: 'Build a growth engine that runs without you',
+    emotion: '"We are growing, but I do not really know why or how to accelerate it."',
+    desc: 'Referrals are a starting point, not a strategy. A business dependent on accidental growth is fragile. One well-chosen channel, built systematically, is enough to change everything.',
+    action: 'Pick one growth channel this week. Set a measurable target (e.g. 5 leads per month via LinkedIn). Evaluate after 30 days.',
   },
 }
 
@@ -232,12 +206,6 @@ const contextQuestionsNl = [
     label: 'Hoeveel nieuwe aanvragen of leads ontvang je per maand?',
     emotion: 'Een ruwe schatting is prima.',
     options: ['Minder dan 5', '5 tot 20', '20 tot 50', 'Meer dan 50'],
-  },
-  {
-    id: 'avgDealValue',
-    label: 'Wat is de gemiddelde waarde van een opdracht of project?',
-    emotion: 'Gemiddeld over je klanten.',
-    options: ['Onder €1.000', '€1.000 tot €5.000', '€5.000 tot €20.000', 'Boven €20.000'],
   },
   {
     id: 'teamSize',
@@ -271,17 +239,6 @@ const questionsNl: Question[] = [
     ],
   },
   {
-    lever: 'speed_to_lead', theme: 'Jouw leads', meta: 'Snelheid van opvolging',
-    label: 'Als er een nieuwe aanvraag binnenkomt, een formulier, een DM, een telefoontje, hoe snel reageert jouw bedrijf?',
-    emotion: 'Op een zaterdagmiddag. Of een dinsdagavond als je team naar huis is.',
-    options: [
-      { main: 'Binnen 5 minuten, automatisch.', feel: 'Een systeem handelt het eerste contact altijd af', score: 0 },
-      { main: 'Binnen het uur, meestal.', feel: 'Iemand pakt het op wanneer ze het zien', score: 1 },
-      { main: 'Dezelfde dag, als er tijd voor is.', feel: 'Inconsistent, afhankelijk van wie er is', score: 2 },
-      { main: 'De volgende dag of later, het varieert.', feel: 'Leads gaan regelmatig koud voor we ze bereiken', score: 3 },
-    ],
-  },
-  {
     lever: 'pipeline', theme: 'Jouw pipeline', meta: 'Opvolging en nurture',
     label: 'Wat gebeurt er met een lead die interesse toont maar niet meteen koopt?',
     emotion: "Denk aan de laatste 10 mensen die zeiden 'ik denk er over na'.",
@@ -290,6 +247,17 @@ const questionsNl: Question[] = [
       { main: 'Ik of mijn team volgt manueel een paar keer op.', feel: 'Inconsistent maar we proberen het', score: 1 },
       { main: 'We volgen eenmaal op en laten het dan aan hen.', feel: 'De meeste warme leads gaan koud', score: 2 },
       { main: 'Eerlijk gezegd verdwijnen de meesten gewoon.', feel: 'We hebben geen echt opvolgingsproces', score: 3 },
+    ],
+  },
+  {
+    lever: 'gtm', theme: 'Jouw groei', meta: 'Go-to-market',
+    label: 'Hoe groeit jouw bedrijf momenteel het snelst?',
+    emotion: 'Niet hoe je zou willen dat het groeit. Hoe het nu echt werkt.',
+    options: [
+      { main: 'Via een systeem: content, SEO of betaalde advertenties.', feel: 'Inbound groei die werkt ook als ik niet actief ben', score: 0 },
+      { main: 'Via doorverwijzingen en netwerk, maar ik jaag er actief op.', feel: 'Groei loopt maar vraagt mijn constante energie', score: 1 },
+      { main: 'Via doorverwijzingen, passief, ik jaag er niet op.', feel: 'Passieve groei, kwetsbaar en onvoorspelbaar', score: 2 },
+      { main: 'Eigenlijk weet ik het niet precies. Het fluctueert.', feel: 'Geen duidelijke groeistrategie aanwezig', score: 3 },
     ],
   },
   {
@@ -314,27 +282,15 @@ const questionsNl: Question[] = [
       { main: 'Zelden. Geweldige gesprekken, weinig beslissingen.', feel: 'Onder 20%, iets gaat mis', score: 3 },
     ],
   },
-  {
-    lever: 'retention', theme: 'Jouw klanten', meta: 'Klantbehoud en doorverwijzingen',
-    label: 'Wat gebeurt er nadat een klant klaar is met werken met jou?',
-    emotion: 'Denk na hoeveel klanten zijn teruggekomen of iemand hebben doorverwezen.',
-    options: [
-      { main: 'De meesten komen terug en sturen regelmatig doorverwijzingen.', feel: 'Klanten worden langetermijn ambassadeurs', score: 0 },
-      { main: 'Sommigen komen terug, sommigen verwijzen door. Niet systematisch.', feel: 'Goede relaties, geen bewust proces', score: 1 },
-      { main: 'We ronden het project af en dat is het grotendeels.', feel: 'Geen opvolging, doorverwijzingen gebeuren toevallig', score: 2 },
-      { main: 'We horen zelden van klanten na de levering.', feel: 'Geen klantbehoud of doorverwijzingssysteem', score: 3 },
-    ],
-  },
 ]
 
 const leverConfigNl: Record<string, { label: string; color: string }> = {
-  time:          { label: 'Tijd eigenaar',          color: '#c96442' },
-  leadership:    { label: 'Leiderschap',             color: '#8b4513' },
-  speed_to_lead: { label: 'Snelheid opvolging',      color: '#c0392b' },
-  pipeline:      { label: 'Pipeline & nurture',      color: '#7d3c98' },
-  marketing:     { label: 'Online aanwezigheid',     color: '#2980b9' },
-  sales:         { label: 'Sluitingspercentage',     color: '#16a085' },
-  retention:     { label: 'Klantbehoud',             color: '#27ae60' },
+  time:       { label: 'Tijd eigenaar',      color: '#c96442' },
+  leadership: { label: 'Leiderschap',         color: '#8b4513' },
+  pipeline:   { label: 'Pipeline & nurture',  color: '#7d3c98' },
+  gtm:        { label: 'Groeistrategie',      color: '#c0392b' },
+  marketing:  { label: 'Online aanwezigheid', color: '#2980b9' },
+  sales:      { label: 'Sluitingspercentage', color: '#16a085' },
 }
 
 const leverDetailNl: Record<string, { title: string; emotion: string; desc: string; action: string }> = {
@@ -349,12 +305,6 @@ const leverDetailNl: Record<string, { title: string; emotion: string; desc: stri
     emotion: '"Mijn team is geweldig, maar alles komt toch nog bij mij terecht."',
     desc: 'Het bedrijf kan alleen zo snel groeien als jouw aandacht toelaat. Bouw duidelijke beslissingskaders zodat jouw team kan handelen zonder op jou te wachten.',
     action: 'Identificeer 3 terugkerende beslissingen die je team aan jou escaleert. Schrijf de criteria op voor elk. Geef ze door deze week.',
-  },
-  speed_to_lead: {
-    title: 'Laat nooit meer een lead afkoelen',
-    emotion: '"We betaalden voor die lead. Iemand antwoordde zes uur later."',
-    desc: 'Onderzoek toont aan dat reageren binnen 5 minuten je 100x meer kans geeft om contact te maken met een lead dan na 30 minuten. Trage opvolging is jouw duurste verborgen kost.',
-    action: 'Zet een geautomatiseerde eerste reactie op die binnen 60 seconden verstuurd wordt, inclusief weekends en na kantooruren.',
   },
   pipeline: {
     title: 'Bouw een opvolgingssysteem dat nooit vergeet',
@@ -374,11 +324,11 @@ const leverDetailNl: Record<string, { title: string; emotion: string; desc: stri
     desc: 'De meeste problemen met sluitingspercentages zijn geen overtuigingsprobleem. Het is een kwalificatie- en framing-probleem. De juiste leads, met de juiste verwachtingen, verkopen zichzelf.',
     action: 'Bekijk je laatste 5 verloren deals. Vind het moment waarop het gesprek kantelde. Dat ene inzicht is jouw oplossing.',
   },
-  retention: {
-    title: 'Maak van elke klant een groeimotor',
-    emotion: '"Ik blijf nieuwe klanten zoeken in plaats van de bestaande te laten groeien."',
-    desc: 'Een nieuwe klant werven kost 5 tot 7 keer meer dan een bestaande houden. Je huidige klanten zijn je goedkoopste bron van nieuwe omzet, en de meeste bedrijven negeren hen na de levering.',
-    action: 'Maak een lijst van alle klanten van de afgelopen 12 maanden. Stuur de top 5 deze week een kort check-in berichtje.',
+  gtm: {
+    title: 'Bouw een groeistrategie die ook werkt als jij slaapt',
+    emotion: '"We groeien, maar ik weet eigenlijk niet precies waarom of hoe ik het kan versnellen."',
+    desc: 'Doorverwijzingen zijn een startpunt, geen strategie. Een bedrijf dat afhankelijk is van toevallige groei is kwetsbaar. Eén goed gekozen kanaal, systematisch uitgebouwd, is genoeg om alles te veranderen.',
+    action: 'Kies deze week één groeikanaal. Stel een meetbare doelstelling in (bijv. 5 leads per maand via LinkedIn). Evalueer na 30 dagen.',
   },
 }
 
@@ -483,6 +433,8 @@ const css = `
   .what-item { font-size:13px; color:var(--ink-mid); line-height:1.9; display:flex; gap:8px; }
   .what-item::before { content:'·'; color:var(--ink-faint); flex-shrink:0; }
   .italic-note { font-family:var(--font-display); font-size:13px; font-style:italic; color:var(--ink-muted); margin-bottom:1.6rem; line-height:1.6; }
+  .pc-locked { font-size:12px; color:var(--ink-faint); font-style:italic; margin-top:6px; display:flex; align-items:center; gap:6px; }
+  @keyframes dot-pulse { 0%,100%{opacity:.25} 50%{opacity:1} }
 `
 
 // ── COMPONENT ─────────────────────────────────────────────────────────
@@ -499,6 +451,11 @@ export default function DiagnosticPage() {
 
   const [step, setStep]           = useState<Step>('intro')
   useEffect(() => { window.scrollTo({ top: 0, behavior: 'smooth' }) }, [step])
+  useEffect(() => {
+    if (step !== 'profile') return
+    const t = setTimeout(() => { setStep('questions'); setCurrentQ(0) }, 1800)
+    return () => clearTimeout(t)
+  }, [step])
   const [ctxIndex, setCtxIndex]   = useState(0)
   const [ctxAnswers, setCtxAnswers] = useState<ContextAnswers>({ industry: '', monthlyLeads: '', avgDealValue: '', teamSize: '' })
   const [currentQ, setCurrentQ]   = useState(0)
@@ -555,8 +512,8 @@ export default function DiagnosticPage() {
       })
     } catch { /* fire and forget */ }
     const leverSlugs: Record<string, string> = {
-      time: 'tijd', leadership: 'team', speed_to_lead: 'opvolging',
-      pipeline: 'pipeline', marketing: 'aanwezigheid', sales: 'verkoop', retention: 'retentie',
+      time: 'tijd', leadership: 'team',
+      pipeline: 'pipeline', gtm: 'strategie', marketing: 'aanwezigheid', sales: 'verkoop',
     }
     const topLever = scored[0]?.key ?? 'tijd'
     const slug = leverSlugs[topLever] ?? 'tijd'
@@ -575,7 +532,7 @@ export default function DiagnosticPage() {
   const T = {
     eyebrow:        nl ? 'Voor ondernemers'                        : 'For business owners',
     headline:       nl ? <>Je bouwde dit bedrijf.<br />Werkt het ook <em>voor jou?</em></> : <>You built this business.<br />Is it <em>working for you?</em></>,
-    subline:        nl ? '7 eerlijke vragen. Je krijgt een helder beeld van welke ene verandering, in leiderschap, systemen, verkoop of tijd, het meeste oplevert.' : '7 honest questions. You get a clear picture of which one change, in leadership, systems, sales or time, would give you the most back.',
+    subline:        nl ? '6 gerichte vragen. Je krijgt een helder beeld van welke ene verandering, in leiderschap, groeistrategie, verkoop of tijd, het meeste oplevert.' : '6 targeted questions. You get a clear picture of which one change, in leadership, growth strategy, sales or time, would give you the most back.',
     moments:        nl
       ? [['Omzet stijgt, maar alles stijgt mee', 'Meer klanten, meer problemen, meer van jouw tijd. Groei voelt alsof het meer kost dan het opbrengt.'], ['Je hebt een team, maar doet nog alles zelf', 'Het zijn goede mensen. Maar elke echte beslissing belandt nog steeds op jouw bureau.'], ['Er komen leads binnen, maar niet allemaal converteren', 'Sommigen gaan koud voor iemand opvolgde. Anderen werden nooit een tweede keer benaderd.'], ['Er is meer omzet die onbenut blijft', 'Vroegere klanten die niet zijn teruggekomen. Doorverwijzingen die nooit zijn gevraagd.']]
       : [['Revenue is up, but so is everything else', 'More clients, more problems, more of your time. Growth feels like it costs more than it gives back.'], ['You have a team, but you are still doing everything', 'They are good people. But every real decision still lands on your desk.'], ['Leads are coming in, but not all of them convert', 'Some go cold before anyone followed up. Others were never chased a second time.'], ['There is more revenue sitting there, untouched', 'Past clients who never came back. Referrals that were never asked for.']],
@@ -601,7 +558,7 @@ export default function DiagnosticPage() {
     getFreeReport:  nl ? 'Ontvang mijn gratis rapport' : 'Get my free report',
     almostThere:    nl ? 'Bijna klaar'       : 'Almost there',
     whereToSend:    nl ? 'Waar sturen we het naartoe?' : 'Where should we send it?',
-    sendSubline:    nl ? 'Jouw persoonlijk rapport is binnen minuten in jouw inbox. Check ook je spammap.' : 'Your personalised report will be in your inbox within minutes. Check spam if you do not see it.',
+    sendSubline:    nl ? 'Jouw persoonlijk rapport is binnen minuten in jouw inbox.' : 'Your personalised report will be in your inbox within minutes.',
     yourName:       nl ? 'Jouw naam'         : 'Your name',
     firstName:      nl ? 'Voornaam'          : 'First name',
     emailAddress:   nl ? 'E-mailadres'       : 'Email address',
@@ -609,7 +566,7 @@ export default function DiagnosticPage() {
     sendReport:     nl ? 'Stuur mijn rapport': 'Send my report',
     backToResults:  nl ? 'Terug naar resultaten' : 'Back to results',
     inboxHeading:   nl ? 'Het is onderweg naar jouw inbox' : 'It is heading to your inbox',
-    thanksSubline:  nl ? 'Jouw persoonlijk strategieoverzicht is binnen minuten bij je. Check ook je spammap.' : 'Your personalised strategy breakdown will be with you within minutes. Check your spam folder too.',
+    thanksSubline:  nl ? 'Jouw persoonlijk strategieoverzicht is binnen minuten bij je. Check ook je spammap als je het niet ziet.' : 'Your personalised strategy breakdown will be with you within minutes. Check your spam folder if you do not see it.',
     whatInTitle:    nl ? 'Wat zit er in jouw rapport' : 'What is in your report',
     whatItems:      nl
       ? ['Jouw #1 hefboom met een eerlijke diagnose van wat het je kost', 'Jouw top 3 oplossingen, specifiek voor jouw type en grootte bedrijf', 'Concrete acties om de komende 14 dagen mee te starten', 'Branchespecifieke scripts en templates die je direct kunt gebruiken']
@@ -627,30 +584,20 @@ export default function DiagnosticPage() {
             {step === 'intro' && (
               <div>
                 <div className="eyebrow">{T.eyebrow}</div>
-                <div className="headline" style={{ fontSize: 19, marginBottom: 0, lineHeight: 1.35 }}>
-                  {nl ? (
-                    <>Wat als er een systeem was om je bedrijf te laten doorgroeien zonder dat je je <strong style={{ color: 'var(--rust)', fontWeight: 700 }}>vrijheid en gezondheid</strong> moet opofferen? Terwijl jij focust op dat waar jij in uitblinkt.</>
-                  ) : (
-                    <>What if there was a system to grow your business without sacrificing your <strong style={{ color: 'var(--rust)', fontWeight: 700 }}>freedom and health</strong>? While you focus on what you do best.</>
-                  )}
-                </div>
-                <div className="choice-cards" style={{ marginTop: '1.6rem' }}>
-                  <button className="choice-card" onClick={() => setStep('context')}>
-                    <div className="choice-card-body">
-                      <div className="choice-card-title">{nl ? 'Vrijheid en voorspelbare bedrijfsgroei' : 'Freedom and predictable business growth'}</div>
-                      <div className="choice-card-text">
-                        {nl
-                          ? 'Doe de gratis test in 3 minuten en ontdek welk systeem je in de komende 14 dagen kan opzetten om jouw vrijheid, rol als zaakvoerder en voorspelbare bedrijfsgroei te verzekeren.'
-                          : 'Take the free 3-minute test and discover which system you can set up in the next 14 days to secure your freedom, your CEO role and predictable business growth.'}
-                      </div>
-                      <div style={{ marginTop: '0.9rem' }}>
-                        <span style={{ display: 'inline-block', background: 'var(--rust)', color: '#fff', borderRadius: 8, padding: '8px 16px', fontSize: 13, fontWeight: 700 }}>
-                          {nl ? 'Jouw rapport en 14 dagen actieplan - gratis' : 'Your report and 14-day action plan - free'}
-                        </span>
-                      </div>
+                <div className="headline">{T.headline}</div>
+                <div className="subline">{T.subline}</div>
+                <div className="moments">
+                  {T.moments.map((m) => (
+                    <div key={m[0]} className="moment">
+                      <div className="moment-text"><strong>{m[0]}</strong>{m[1]}</div>
                     </div>
-                  </button>
+                  ))}
                 </div>
+                <p className="italic-note">{T.italicNote}</p>
+                <button className="btn-primary" onClick={() => setStep('context')}>{T.startBtn}</button>
+                <p style={{ marginTop: '10px', fontSize: '12px', color: 'var(--ink-faint)', textAlign: 'center' }}>
+                  {nl ? 'Gratis · Geen verkoopsgesprek · 4 minuten' : 'Free · No sales call · 4 minutes'}
+                </p>
               </div>
             )}
 
@@ -680,8 +627,25 @@ export default function DiagnosticPage() {
                   <button className="btn-ghost" onClick={() => ctxIndex === 0 ? setStep('intro') : setCtxIndex(i => i - 1)}>{T.back}</button>
                   <button className="btn-primary" disabled={!ctxSelected} onClick={() => {
                     if (ctxIndex < contextQuestions.length - 1) setCtxIndex(i => i + 1)
-                    else { setStep('questions'); setCurrentQ(0) }
+                    else setStep('profile')
                   }}>{T.continue}</button>
+                </div>
+              </div>
+            )}
+
+            {step === 'profile' && (
+              <div style={{ textAlign: 'center', padding: '2rem 0' }}>
+                <div className="eyebrow">{nl ? 'Jouw profiel is klaar' : 'Your profile is ready'}</div>
+                <div className="headline" style={{ fontSize: 22, marginBottom: 8 }}>
+                  {nl ? 'We stellen jouw vragen samen.' : 'Putting your questions together.'}
+                </div>
+                <div className="subline" style={{ marginBottom: '1.6rem' }}>
+                  {nl ? 'Op basis van jouw bedrijfstype en grootte.' : 'Based on your business type and size.'}
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: 8 }}>
+                  {[0, 1, 2].map(i => (
+                    <div key={i} style={{ width: 10, height: 10, borderRadius: '50%', background: 'var(--rust)', animation: `dot-pulse 1.2s ease-in-out ${i * 0.4}s infinite` }} />
+                  ))}
                 </div>
               </div>
             )}
@@ -758,14 +722,27 @@ export default function DiagnosticPage() {
                       </div>
                       <div className="pc-title">{d.title}</div>
                       <div className="pc-emotion">{d.emotion}</div>
-                      <div className="pc-desc">{d.desc}</div>
-                      <div className="pc-action">{T.pcTeaser}</div>
+                      <div className="pc-locked">
+                        <span style={{ color: 'var(--rust)' }}>&#8227;</span>
+                        {nl ? 'Exacte actiestappen ontgrendeld in jouw rapport' : 'Exact action steps unlocked in your report'}
+                      </div>
                     </div>
                   )
                 })}
                 <div className="cta-box">
                   <div className="cta-lever-label">{T.ctaLeverLabel}</div>
                   <div className="cta-sub">{T.ctaSub}</div>
+                  <div style={{ marginBottom: '1rem', fontSize: 12, color: 'var(--ink-mid)', lineHeight: 2 }}>
+                    {(nl
+                      ? ['Exacte actiestappen per knelpunt', 'Concreet 14-dagenplan op maat', 'Scripts en templates om direct mee te starten']
+                      : ['Exact action steps per bottleneck', 'Concrete personalised 14-day plan', 'Scripts and templates to start immediately']
+                    ).map(item => (
+                      <div key={item} style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                        <span style={{ color: 'var(--rust)', fontWeight: 700, flexShrink: 0 }}>&#10003;</span>
+                        {item}
+                      </div>
+                    ))}
+                  </div>
                   <button className="btn-primary" onClick={() => setStep('capture')}>{T.getFreeReport}</button>
                 </div>
               </div>
@@ -776,31 +753,14 @@ export default function DiagnosticPage() {
                 <div className="eyebrow">{T.almostThere}</div>
                 <div className="headline" style={{ fontSize: 22, marginBottom: 8 }}>{T.whereToSend}</div>
                 <div className="subline">{T.sendSubline}</div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: 'var(--cream)', borderRadius: 8, padding: '10px 14px', marginBottom: '1.4rem', fontSize: 12, color: 'var(--ink-mid)' }}>
+                  <span style={{ color: 'var(--rust)', fontWeight: 700, flexShrink: 0 }}>&#10003;</span>
+                  {nl ? 'Meer dan 500 zaakvoerders gingen je voor.' : 'More than 500 business owners have done this before you.'}
+                </div>
                 <label className="field-label">{T.yourName}</label>
                 <input className="text-input" type="text" placeholder={T.firstName} value={name} onChange={e => setName(e.target.value)} />
                 <label className="field-label">{T.emailAddress}</label>
                 <input className="text-input" type="email" placeholder="you@email.com" value={email} onChange={e => setEmail(e.target.value)} />
-                <label className="field-label">{nl ? 'Telefoonnummer' : 'Phone number'} <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0, fontSize: 11 }}>({nl ? 'optioneel' : 'optional'})</span></label>
-                <input className="text-input" type="tel" placeholder={nl ? '+32 ...' : '+32 ...'} value={phone} onChange={e => setPhone(e.target.value)} />
-                <label className="field-label">{nl ? 'Website' : 'Website'} <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0, fontSize: 11 }}>({nl ? 'optioneel' : 'optional'})</span></label>
-                <input
-                  className="text-input"
-                  type="text"
-                  placeholder="https://jouwbedrijf.be"
-                  value={noWebsite ? '' : website}
-                  disabled={noWebsite}
-                  onChange={e => setWebsite(e.target.value)}
-                  style={{ opacity: noWebsite ? 0.4 : 1 }}
-                />
-                <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: -4, marginBottom: 10, cursor: 'pointer' }}>
-                  <input
-                    type="checkbox"
-                    checked={noWebsite}
-                    onChange={e => setNoWebsite(e.target.checked)}
-                    style={{ accentColor: 'var(--rust)', width: 14, height: 14 }}
-                  />
-                  <span style={{ fontSize: 12, color: 'var(--ink-muted)' }}>{nl ? 'Ik heb nog geen website' : "I don't have a website yet"}</span>
-                </label>
                 <button className="btn-primary" disabled={submitting || !email.includes('@') || !name.trim()} onClick={handleSubmit}>
                   {submitting ? T.sending : T.sendReport}
                 </button>
@@ -834,8 +794,8 @@ export default function DiagnosticPage() {
           </h2>
           <p style={{ fontSize: 15, lineHeight: 1.75, color: '#5c5849', marginBottom: '1.5rem' }}>
             {nl
-              ? 'De diagnose brengt 7 groeihefbomen in kaart die bepalen of jouw bedrijf voor jou werkt of tegen jou: tijd van de zaakvoerder, leiderschap en team, snelheid van leadopvolging, pipeline en nurture, online aanwezigheid, sluitingspercentage en klantbehoud. Elke hefboom vertegenwoordigt een specifiek gebied waar de meeste bedrijven structureel omzet of energie laten liggen.'
-              : 'The diagnostic maps 7 growth levers that determine whether your business works for you or against you: owner time freedom, leadership and team, speed-to-lead, pipeline and follow-up, online presence, sales close rate, and client retention. Each lever represents a specific area where most businesses structurally leave revenue or energy on the table.'}
+              ? 'De diagnose brengt 6 groeihefbomen in kaart die bepalen of jouw bedrijf voor jou werkt of tegen jou: tijd van de zaakvoerder, leiderschap en team, pipeline en nurture, groeistrategie, online aanwezigheid en sluitingspercentage. Elke hefboom vertegenwoordigt een specifiek gebied waar de meeste bedrijven structureel omzet of energie laten liggen.'
+              : 'The diagnostic maps 6 growth levers that determine whether your business works for you or against you: owner time freedom, leadership and team, pipeline and follow-up, growth strategy, online presence and sales close rate. Each lever represents a specific area where most businesses structurally leave revenue or energy on the table.'}
           </p>
 
           <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 24, fontWeight: 400, marginBottom: '1rem', color: '#2a2720' }}>
@@ -853,14 +813,14 @@ export default function DiagnosticPage() {
           <div style={{ borderTop: '1px solid rgba(61,57,41,0.1)', paddingTop: '1.5rem', display: 'flex', flexDirection: 'column' as const, gap: '1.5rem' }}>
             {(nl ? [
               ['Is de diagnose echt gratis?', 'Ja. De diagnose en het persoonlijk rapport zijn volledig gratis. Er is geen verkoopsgesprek aan gekoppeld.'],
-              ['Hoe lang duurt de diagnose?', 'De meeste zaakvoerders ronden de diagnose af in 4 tot 6 minuten. Er zijn 4 contextvragen en 7 scoringsvragen.'],
+              ['Hoe lang duurt de diagnose?', 'De meeste zaakvoerders ronden de diagnose af in 3 tot 4 minuten. Er zijn 3 contextvragen en 6 scoringsvragen.'],
               ['Wat ontvang ik na de diagnose?', 'Je ontvangt een persoonlijk rapport met jouw sterkte score, jouw top 3 groeihefbomen op prioriteit, en concrete actiestappen per gap om de komende 14 dagen mee aan de slag te gaan. Afgeleverd per e-mail binnen enkele minuten.'],
-              ['Wat zijn de 7 groeihefbomen?', 'Tijd van de zaakvoerder, leiderschap en team, snelheid van opvolging, pipeline en nurture, online aanwezigheid en marketing, sluitingspercentage en klantbehoud en doorverwijzingen.'],
+              ['Wat zijn de 6 groeihefbomen?', 'Tijd van de zaakvoerder, leiderschap en team, pipeline en nurture, groeistrategie en go-to-market, online aanwezigheid en marketing, sluitingspercentage.'],
             ] : [
               ['Is the diagnostic really free?', 'Yes. The diagnostic and the personalised report are completely free. There is no sales call attached.'],
-              ['How long does the diagnostic take?', 'Most business owners complete it in 4 to 6 minutes. There are 4 context questions and 7 scored questions.'],
+              ['How long does the diagnostic take?', 'Most business owners complete it in 3 to 4 minutes. There are 3 context questions and 6 scored questions.'],
               ['What do I receive after the diagnostic?', 'You receive a personalised report with your strength score, your top 3 growth levers by priority, and concrete action steps per gap to act on in the next 14 days. Delivered by email within minutes.'],
-              ['What are the 7 growth levers?', 'Owner time freedom, leadership and team, speed-to-lead, pipeline and follow-up, online presence and marketing, sales close rate, and client retention and referrals.'],
+              ['What are the 6 growth levers?', 'Owner time freedom, leadership and team, pipeline and follow-up, growth strategy and go-to-market, online presence and marketing, and sales close rate.'],
             ]).map(([q, a]) => (
               <div key={q as string}>
                 <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: '0.5rem', color: '#2a2720' }}>{q}</h3>

@@ -104,7 +104,7 @@ export default function OndernemerZonderBurnoutPage() {
                   Herken je 1 of meer<br />van <em>deze?</em>
                 </div>
                 <div className="subline" style={{ marginBottom: '1rem' }}>
-                  Je bent al ver gekomen met je sterktes, nu is het tijd deze nog sterker en duurzaam in te leren zetten.
+                  Eén of meer van deze patronen kost je nu al vrijheid, energie en controle. Er is een betere manier.
                 </div>
                 <div style={{ fontSize: 12, color: 'var(--ink-muted)', marginBottom: '0.8rem' }}>
                   Vink aan wat van toepassing is.
@@ -142,10 +142,13 @@ export default function OndernemerZonderBurnoutPage() {
               <div>
                 <div className="eyebrow">Gratis consultatie</div>
                 <div className="headline" style={{ fontSize: 20, marginBottom: 8, lineHeight: 1.3 }}>
-                  Jouw gegevens, zodat ik je kan contacteren.
+                  Je consultatie staat bijna vast.
                 </div>
-                <div className="subline" style={{ marginBottom: '1.2rem' }}>
-                  Bewezen methodes die in samenwerking met KMO's al 35+ jaar worden toegepast. Ik bel je op binnen 48 uur.
+                <div className="subline" style={{ marginBottom: '.6rem' }}>
+                  Je krijgt binnen 48 uur een persoonlijke oproep voor jouw gratis sessie van 90 minuten. Bewezen methodes, al 35 jaar toegepast met Vlaamse KMO's.
+                </div>
+                <div style={{ fontSize: 12, color: 'var(--green)', marginBottom: '1rem', fontWeight: 500 }}>
+                  ✓ Meer dan 200 zaakvoerders gingen je voor.
                 </div>
                 <div className="section-divider" style={{ marginBottom: '1.2rem' }} />
                 <label className="field-label">Jouw naam</label>
@@ -154,8 +157,6 @@ export default function OndernemerZonderBurnoutPage() {
                 <input className="text-input" type="email" placeholder="you@email.com" value={email} onChange={e => setEmail(e.target.value)} />
                 <label className="field-label">GSM-nummer</label>
                 <input className="text-input" type="tel" placeholder="+32 ..." value={gsm} onChange={e => setGsm(e.target.value)} />
-                <label className="field-label">Aantal werknemers</label>
-                <input className="text-input" type="text" placeholder="bv. 12" value={werknemers} onChange={e => setWerknemers(e.target.value)} />
                 <button
                   className="btn-primary"
                   disabled={submitting || !email.includes('@') || !name.trim() || !gsm.trim()}
