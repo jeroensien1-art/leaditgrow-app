@@ -33,7 +33,6 @@ export function About() {
           transition: background 0.4s;
         }
         .b-about-right {
-          background: ${BG};
           padding: 80px 56px;
           display: flex;
           flex-direction: column;
