@@ -20,6 +20,15 @@ interface Message {
   text: string
 }
 
+// ── Brutalist design tokens ──────────────────────────────────────────────────
+const B    = 'var(--font-brutalist, system-ui)'
+const M    = 'var(--font-mono-brutalist, monospace)'
+const INK  = '#0e0d0b'
+const BG   = '#f2f0eb'
+const BG2  = '#eae8e2'
+const GRN  = '#1a5e35'
+const MUT  = '#787068'
+
 // ── Main component ─────────────────────────────────────────────────────────────
 
 export function ChatWidget() {
@@ -155,11 +164,11 @@ export function ChatWidget() {
           right: 24,
           width: 56,
           height: 56,
-          borderRadius: '50%',
-          background: '#c96442',
+          borderRadius: 0,
+          background: GRN,
           color: '#fff',
-          border: 'none',
-          boxShadow: '0 8px 32px rgba(201,100,66,0.45)',
+          border: `2px solid ${INK}`,
+          boxShadow: `4px 4px 0 ${INK}`,
           cursor: 'pointer',
           display: open ? 'none' : 'flex',
           alignItems: 'center',
@@ -182,15 +191,16 @@ export function ChatWidget() {
             right: -3,
             width: 18,
             height: 18,
-            background: '#15803d',
+            background: '#4ade80',
             borderRadius: '50%',
             fontSize: 10,
             fontWeight: 700,
-            color: '#fff',
+            fontFamily: M,
+            color: INK,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            border: '2px solid #faf9f5',
+            border: `2px solid ${BG}`,
           }}>1</span>
         )}
       </button>
@@ -204,25 +214,26 @@ export function ChatWidget() {
             right: 24,
             width: 340,
             maxWidth: 'calc(100vw - 32px)',
-            borderRadius: 16,
-            background: '#faf9f5',
-            boxShadow: '0 20px 60px rgba(0,0,0,0.22)',
-            border: '1px solid rgba(61,57,41,0.1)',
+            borderRadius: 0,
+            background: BG,
+            boxShadow: `6px 6px 0 rgba(14,13,11,0.18)`,
+            border: `2px solid ${INK}`,
             zIndex: 1000,
             display: 'flex',
             flexDirection: 'column',
             maxHeight: '80vh',
             overflow: 'hidden',
+            fontFamily: B,
           }}
         >
           {/* Header */}
           <div style={{
             padding: '14px 16px',
-            background: '#3d3929',
+            background: INK,
             display: 'flex',
             alignItems: 'center',
             gap: 10,
-            borderRadius: '16px 16px 0 0',
+            borderBottom: `2px solid ${INK}`,
           }}>
             <div style={{
               width: 40,
@@ -230,8 +241,8 @@ export function ChatWidget() {
               borderRadius: '50%',
               overflow: 'hidden',
               flexShrink: 0,
-              border: '2px solid rgba(250,249,245,0.25)',
-              background: '#c96442',
+              border: '2px solid rgba(242,240,235,0.25)',
+              background: GRN,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -247,11 +258,11 @@ export function ChatWidget() {
               />
             </div>
             <div style={{ flex: 1 }}>
-              <LogoFull height={56} textColor="#faf9f5" />
+              <LogoFull height={56} textColor={BG} />
             </div>
             <button
               onClick={() => setOpen(false)}
-              style={{ background: 'none', border: 'none', color: 'rgba(250,249,245,0.5)', cursor: 'pointer', padding: 4 }}
+              style={{ background: 'none', border: 'none', color: 'rgba(242,240,235,0.5)', cursor: 'pointer', padding: 4 }}
             >
               <X size={18} />
             </button>
@@ -277,9 +288,9 @@ export function ChatWidget() {
                 <div style={{
                   maxWidth: '82%',
                   padding: '9px 12px',
-                  borderRadius: m.from === 'user' ? '12px 12px 2px 12px' : '12px 12px 12px 2px',
-                  background: m.from === 'user' ? '#c96442' : '#f3f1eb',
-                  color: m.from === 'user' ? '#fff' : '#3d3929',
+                  borderRadius: 0,
+                  background: m.from === 'user' ? GRN : BG2,
+                  color: m.from === 'user' ? '#fff' : INK,
                   fontSize: 13,
                   lineHeight: 1.55,
                 }}>
@@ -292,8 +303,8 @@ export function ChatWidget() {
               <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                 <div style={{
                   padding: '10px 14px',
-                  background: '#f3f1eb',
-                  borderRadius: '12px 12px 12px 2px',
+                  background: BG2,
+                  borderRadius: 0,
                   display: 'flex',
                   gap: 4,
                   alignItems: 'center',
@@ -303,7 +314,7 @@ export function ChatWidget() {
                       width: 6,
                       height: 6,
                       borderRadius: '50%',
-                      background: '#b0aea8',
+                      background: MUT,
                       display: 'inline-block',
                       animation: `bounce 1.2s ease-in-out ${i * 0.2}s infinite`,
                     }} />
@@ -315,11 +326,11 @@ export function ChatWidget() {
           </div>
 
           {/* Quick replies / input area */}
-          <div style={{ padding: '8px 14px 14px', borderTop: '1px solid rgba(61,57,41,0.08)' }}>
+          <div style={{ padding: '8px 14px 14px', borderTop: `2px solid ${INK}` }}>
 
             {botStep === 'challenge' && !typing && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                <div style={{ fontSize: 11, color: '#b0aea8', marginBottom: 2 }}>
+                <div style={{ fontFamily: M, fontSize: 10, letterSpacing: '.08em', textTransform: 'uppercase', color: MUT, marginBottom: 2 }}>
                   {nl ? 'Jouw grootste uitdaging:' : 'Your biggest challenge:'}
                 </div>
                 {challenges.map(c => (
@@ -328,17 +339,18 @@ export function ChatWidget() {
                     onClick={() => handleChallenge(c)}
                     style={{
                       padding: '9px 12px',
-                      background: '#f3f1eb',
-                      border: '1.5px solid rgba(61,57,41,0.1)',
-                      borderRadius: 9,
+                      background: BG2,
+                      border: `1.5px solid rgba(14,13,11,0.15)`,
+                      borderRadius: 0,
                       fontSize: 12,
-                      color: '#3d3929',
+                      fontFamily: B,
+                      color: INK,
                       cursor: 'pointer',
                       textAlign: 'left',
                       transition: 'border-color 0.15s',
                     }}
-                    onMouseEnter={e => (e.currentTarget.style.borderColor = '#c96442')}
-                    onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(61,57,41,0.1)')}
+                    onMouseEnter={e => (e.currentTarget.style.borderColor = GRN)}
+                    onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(14,13,11,0.15)')}
                   >
                     {c}
                   </button>
@@ -352,10 +364,11 @@ export function ChatWidget() {
                   onClick={() => handleRoute('diagnostic')}
                   style={{
                     padding: '10px 14px',
-                    background: '#c96442',
+                    background: GRN,
                     border: 'none',
-                    borderRadius: 9,
+                    borderRadius: 0,
                     fontSize: 12,
+                    fontFamily: B,
                     color: '#fff',
                     fontWeight: 600,
                     cursor: 'pointer',
@@ -371,11 +384,12 @@ export function ChatWidget() {
                   onClick={() => handleRoute('call')}
                   style={{
                     padding: '10px 14px',
-                    background: '#f3f1eb',
-                    border: '1.5px solid rgba(61,57,41,0.12)',
-                    borderRadius: 9,
+                    background: BG2,
+                    border: `1.5px solid rgba(14,13,11,0.15)`,
+                    borderRadius: 0,
                     fontSize: 12,
-                    color: '#3d3929',
+                    fontFamily: B,
+                    color: INK,
                     fontWeight: 500,
                     cursor: 'pointer',
                   }}
@@ -395,10 +409,11 @@ export function ChatWidget() {
                   style={{
                     padding: '9px 12px',
                     background: '#fff',
-                    border: '1.5px solid rgba(61,57,41,0.15)',
-                    borderRadius: 9,
+                    border: `1.5px solid rgba(14,13,11,0.2)`,
+                    borderRadius: 0,
                     fontSize: 12,
-                    color: '#3d3929',
+                    fontFamily: B,
+                    color: INK,
                     outline: 'none',
                   }}
                 />
@@ -410,10 +425,11 @@ export function ChatWidget() {
                   style={{
                     padding: '9px 12px',
                     background: '#fff',
-                    border: '1.5px solid rgba(61,57,41,0.15)',
-                    borderRadius: 9,
+                    border: `1.5px solid rgba(14,13,11,0.2)`,
+                    borderRadius: 0,
                     fontSize: 12,
-                    color: '#3d3929',
+                    fontFamily: B,
+                    color: INK,
                     outline: 'none',
                   }}
                 />
@@ -422,10 +438,11 @@ export function ChatWidget() {
                   disabled={bookSending || !bookName.trim() || !bookEmail.includes('@')}
                   style={{
                     padding: '10px 14px',
-                    background: '#c96442',
+                    background: GRN,
                     border: 'none',
-                    borderRadius: 9,
+                    borderRadius: 0,
                     fontSize: 12,
+                    fontFamily: B,
                     color: '#fff',
                     fontWeight: 600,
                     cursor: 'pointer',
@@ -451,9 +468,10 @@ export function ChatWidget() {
                   justifyContent: 'center',
                   gap: 6,
                   padding: '10px 14px',
-                  background: '#15803d',
-                  borderRadius: 9,
+                  background: GRN,
+                  borderRadius: 0,
                   fontSize: 12,
+                  fontFamily: B,
                   color: '#fff',
                   fontWeight: 600,
                   textDecoration: 'none',
@@ -465,7 +483,7 @@ export function ChatWidget() {
             )}
 
             {botStep === 'done_call' && !typing && (
-              <p style={{ fontSize: 11, color: '#b0aea8', textAlign: 'center', margin: 0 }}>
+              <p style={{ fontSize: 11, fontFamily: B, color: MUT, textAlign: 'center', margin: 0 }}>
                 {nl ? 'Tot snel!' : 'Talk soon!'}
               </p>
             )}

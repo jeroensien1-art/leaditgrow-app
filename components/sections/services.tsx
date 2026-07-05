@@ -6,7 +6,6 @@ import { useLang } from '@/components/lang-context'
 const B    = 'var(--font-brutalist, system-ui)'
 const M    = 'var(--font-mono-brutalist, monospace)'
 const INK  = '#0e0d0b'
-const BG   = '#f2f0eb'
 const GRN  = '#1a5e35'
 const LIME = '#4ade80'
 const MUT  = '#787068'
@@ -88,7 +87,6 @@ export function Services() {
       <style>{`
         .b-ladder-section {
           border-bottom: 3px solid ${INK};
-          background: ${BG};
           position: relative;
           z-index: 1;
         }
@@ -306,8 +304,8 @@ export function Services() {
           <div className="b-ladder-header-right">
             <p className="b-ladder-desc-text">
               {t(
-                'Per niveau de acties met de hoogste ROI. De volgorde is geen voorkeur — het is fysica.',
-                'Per level the actions with the highest ROI. The order is not a preference — it is physics.'
+                'Per niveau de acties met de hoogste ROI. De volgorde is geen voorkeur. Het is fysica.',
+                'Per level the actions with the highest ROI. The order is not a preference. It is physics.'
               )}
             </p>
           </div>

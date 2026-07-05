@@ -23,7 +23,6 @@ export function Hero() {
           border-bottom: 3px solid ${INK};
           position: relative;
           z-index: 1;
-          background: ${BG};
         }
         .b-hero-main {
           display: grid;
@@ -35,7 +34,6 @@ export function Hero() {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          background: ${BG};
         }
         .b-hero-year {
           font-family: ${M};
@@ -212,7 +210,7 @@ export function Hero() {
         <div className="b-hero-main">
           <div className="b-hero-left">
             <div className="b-hero-year">
-              {t('Groeisystemen voor Vlaamse ondernemers', 'Growth systems for Flemish entrepreneurs')} — 2025
+              {t('Groeisystemen voor Vlaamse ondernemers', 'Growth systems for Flemish entrepreneurs')} · 2025
             </div>
 
             <h1 className="b-hero-h1">
@@ -246,8 +244,8 @@ export function Hero() {
               <p>{t('Gratis rapport', 'Free report')}</p>
               <strong>
                 {t(
-                  'Jouw top 3 groeikansen en een 14-dagenplan — volledig gratis.',
-                  'Your top 3 growth gaps and a 14-day action plan — completely free.'
+                  'Jouw top 3 groeikansen en een 14-dagenplan, volledig gratis.',
+                  'Your top 3 growth gaps and a 14-day action plan, completely free.'
                 )}
               </strong>
             </div>

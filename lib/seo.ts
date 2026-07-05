@@ -2,11 +2,11 @@ import { Metadata } from 'next'
 
 export const seoMetadata = {
   nl: {
-    title: 'Lead it, Grow — Groeisystemen voor Vlaamse ondernemers',
+    title: 'Lead it, Grow · Groeisystemen voor Vlaamse ondernemers',
     description: 'Wij helpen Vlaamse zaakvoerders groeien met geautomatiseerde leadopvolging, groeisystemen en meetbare impact. Actief in Antwerpen, Gent en heel Vlaanderen.',
   },
   en: {
-    title: 'Lead it, Grow — Growth Systems for Entrepreneurs',
+    title: 'Lead it, Grow · Growth Systems for Entrepreneurs',
     description: 'We help entrepreneurs grow with automated lead follow-up, growth systems, and measurable impact.',
   },
 }
