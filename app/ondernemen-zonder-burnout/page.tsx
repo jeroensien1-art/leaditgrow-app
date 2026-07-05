@@ -1,15 +1,24 @@
 'use client'
 
 import { useState } from 'react'
+import { useLang } from '@/components/lang-context'
 
 type Step = 'intro' | 'intake' | 'thanks'
 
-const CHECKS = [
+const CHECKS_NL = [
   'Altijd tijd en energie te kort',
   'Niet effectief delegeren',
   'Inefficiente aanwervingen',
   'Spanningen in het team',
   "'s Avonds nog piekeren over de zaak",
+]
+
+const CHECKS_EN = [
+  'Always short on time and energy',
+  'Not delegating effectively',
+  'Inefficient hires',
+  'Tension within the team',
+  'Lying awake worrying about the business',
 ]
 
 const css = `
@@ -60,6 +69,9 @@ const css = `
 `
 
 export default function OndernemerZonderBurnoutPage() {
+  const { lang } = useLang()
+  const nl = lang === 'nl'
+  const CHECKS = nl ? CHECKS_NL : CHECKS_EN
   const [step, setStep] = useState<Step>('intro')
   const [checks, setChecks]       = useState<string[]>([])
   const [name, setName]           = useState('')
@@ -99,15 +111,17 @@ export default function OndernemerZonderBurnoutPage() {
 
             {step === 'intro' && (
               <div>
-                <div className="eyebrow">Ondernemen zonder burnout</div>
+                <div className="eyebrow">{nl ? 'Ondernemen zonder burnout' : 'Entrepreneurship without burnout'}</div>
                 <div className="headline">
-                  Herken je 1 of meer<br />van <em>deze?</em>
+                  {nl ? <>Herken je 1 of meer<br />van <em>deze?</em></> : <>Recognise 1 or more<br />of <em>these?</em></>}
                 </div>
                 <div className="subline" style={{ marginBottom: '1rem' }}>
-                  Eén of meer van deze patronen kost je nu al vrijheid, energie en controle. Er is een betere manier.
+                  {nl
+                    ? 'Eén of meer van deze patronen kost je nu al vrijheid, energie en controle. Er is een betere manier.'
+                    : 'One or more of these patterns is already costing you freedom, energy, and control. There is a better way.'}
                 </div>
                 <div style={{ fontSize: 12, color: 'var(--ink-muted)', marginBottom: '0.8rem' }}>
-                  Vink aan wat van toepassing is.
+                  {nl ? 'Vink aan wat van toepassing is.' : 'Check what applies to you.'}
                 </div>
                 {CHECKS.map(item => {
                   const checked = checks.includes(item)
@@ -123,48 +137,50 @@ export default function OndernemerZonderBurnoutPage() {
                   )
                 })}
                 <div className="italic-note" style={{ marginTop: '1.2rem' }}>
-                  Er is een betere manier. Wacht niet tot het te laat is.
+                  {nl ? 'Er is een betere manier. Wacht niet tot het te laat is.' : 'There is a better way. Do not wait until it is too late.'}
                 </div>
                 <div className="badge">
-                  <span>Volledig gratis</span>
+                  <span>{nl ? 'Volledig gratis' : 'Completely free'}</span>
                   <span style={{ opacity: .4 }}>·</span>
-                  <span>Geen verplichtingen</span>
+                  <span>{nl ? 'Geen verplichtingen' : 'No obligations'}</span>
                   <span style={{ opacity: .4 }}>·</span>
-                  <span>90 min consultatie</span>
+                  <span>{nl ? '90 min consultatie' : '90-min consultation'}</span>
                 </div>
                 <button className="btn-primary" onClick={() => setStep('intake')}>
-                  Plan mijn gratis consultatie
+                  {nl ? 'Plan mijn gratis consultatie' : 'Book my free consultation'}
                 </button>
               </div>
             )}
 
             {step === 'intake' && (
               <div>
-                <div className="eyebrow">Gratis consultatie</div>
+                <div className="eyebrow">{nl ? 'Gratis consultatie' : 'Free consultation'}</div>
                 <div className="headline" style={{ fontSize: 20, marginBottom: 8, lineHeight: 1.3 }}>
-                  Je consultatie staat bijna vast.
+                  {nl ? 'Je consultatie staat bijna vast.' : 'Your consultation is almost booked.'}
                 </div>
                 <div className="subline" style={{ marginBottom: '.6rem' }}>
-                  Je krijgt binnen 48 uur een persoonlijke oproep voor jouw gratis sessie van 90 minuten. Bewezen methodes, al 35 jaar toegepast met Vlaamse KMO's.
+                  {nl
+                    ? "Je krijgt binnen 48 uur een persoonlijke oproep voor jouw gratis sessie van 90 minuten. Bewezen methodes, al 35 jaar toegepast met Vlaamse KMO's."
+                    : 'You will receive a personal call within 48 hours to schedule your free 90-minute session. Proven methods, applied with Belgian SMEs for 35 years.'}
                 </div>
                 <div style={{ fontSize: 12, color: 'var(--green)', marginBottom: '1rem', fontWeight: 500 }}>
-                  ✓ Meer dan 200 zaakvoerders gingen je voor.
+                  {nl ? '✓ Meer dan 200 zaakvoerders gingen je voor.' : '✓ More than 200 business owners came before you.'}
                 </div>
                 <div className="section-divider" style={{ marginBottom: '1.2rem' }} />
-                <label className="field-label">Jouw naam</label>
-                <input className="text-input" type="text" placeholder="Voornaam" value={name} onChange={e => setName(e.target.value)} />
-                <label className="field-label">E-mailadres</label>
+                <label className="field-label">{nl ? 'Jouw naam' : 'Your name'}</label>
+                <input className="text-input" type="text" placeholder={nl ? 'Voornaam' : 'First name'} value={name} onChange={e => setName(e.target.value)} />
+                <label className="field-label">{nl ? 'E-mailadres' : 'Email address'}</label>
                 <input className="text-input" type="email" placeholder="you@email.com" value={email} onChange={e => setEmail(e.target.value)} />
-                <label className="field-label">GSM-nummer</label>
+                <label className="field-label">{nl ? 'GSM-nummer' : 'Mobile number'}</label>
                 <input className="text-input" type="tel" placeholder="+32 ..." value={gsm} onChange={e => setGsm(e.target.value)} />
                 <button
                   className="btn-primary"
                   disabled={submitting || !email.includes('@') || !name.trim() || !gsm.trim()}
                   onClick={handleSubmit}
                 >
-                  {submitting ? 'Versturen...' : 'Bevestig mijn gratis consultatie'}
+                  {submitting ? (nl ? 'Versturen...' : 'Sending...') : (nl ? 'Bevestig mijn gratis consultatie' : 'Confirm my free consultation')}
                 </button>
-                <button className="btn-ghost" onClick={() => setStep('intro')}>Terug</button>
+                <button className="btn-ghost" onClick={() => setStep('intro')}>{nl ? 'Terug' : 'Back'}</button>
               </div>
             )}
 
@@ -172,16 +188,18 @@ export default function OndernemerZonderBurnoutPage() {
               <div className="thanks-wrap">
                 <div className="thanks-circle">&#10003;</div>
                 <div className="headline" style={{ fontSize: 20, marginBottom: 10 }}>
-                  Ik neem contact met je op binnen 48 uur.
+                  {nl ? 'Ik neem contact met je op binnen 48 uur.' : 'I will contact you within 48 hours.'}
                 </div>
                 <div className="subline" style={{ marginBottom: 0 }}>
-                  Ik contacteer je om een volledig gratis diepgaande consultatie rond leiderschap en beter uitspelen van jouw persoonlijke sterktes (90 min) in te plannen. Een uiterst boeiend gesprek met practische inzichten die je als leider naar een hoger niveau helpen.
+                  {nl
+                    ? 'Ik contacteer je om een volledig gratis diepgaande consultatie rond leiderschap en beter uitspelen van jouw persoonlijke sterktes (90 min) in te plannen. Een uiterst boeiend gesprek met practische inzichten die je als leider naar een hoger niveau helpen.'
+                    : 'I will get in touch to schedule a completely free, in-depth consultation on leadership and playing to your personal strengths (90 min). A genuinely engaging conversation with practical insights to take you to the next level as a leader.'}
                 </div>
                 <div className="what-in">
-                  <div className="what-in-title">Wat te verwachten</div>
-                  <div className="what-item">Een bevestigingsmail is onderweg naar jouw inbox.</div>
-                  <div className="what-item">Wij bellen je op binnen de 48 uur.</div>
-                  <div className="what-item">90 minuten volledig gratis. Geen verplichtingen.</div>
+                  <div className="what-in-title">{nl ? 'Wat te verwachten' : 'What to expect'}</div>
+                  <div className="what-item">{nl ? 'Een bevestigingsmail is onderweg naar jouw inbox.' : 'A confirmation email is on its way to your inbox.'}</div>
+                  <div className="what-item">{nl ? 'Wij bellen je op binnen de 48 uur.' : 'We will call you within 48 hours.'}</div>
+                  <div className="what-item">{nl ? '90 minuten volledig gratis. Geen verplichtingen.' : '90 minutes, completely free. No obligations.'}</div>
                 </div>
               </div>
             )}
