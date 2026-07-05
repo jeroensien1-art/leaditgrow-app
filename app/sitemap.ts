@@ -18,6 +18,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/diagnostic`, lastModified: new Date('2026-04-15'), changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/calculator`, lastModified: new Date('2026-04-15'), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/blog`, lastModified: new Date('2026-04-21'), changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${BASE_URL}/speed-to-lead`, lastModified: new Date('2026-07-05'), changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE_URL}/leadmagneet-bouwen`, lastModified: new Date('2026-07-05'), changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE_URL}/website-cro`, lastModified: new Date('2026-07-05'), changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE_URL}/kanaal-opschalen`, lastModified: new Date('2026-07-05'), changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE_URL}/seo-als-systeem`, lastModified: new Date('2026-07-05'), changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE_URL}/ai-agents`, lastModified: new Date('2026-07-05'), changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE_URL}/systeem-op-autopilot`, lastModified: new Date('2026-07-05'), changeFrequency: 'monthly', priority: 0.7 },
     ...(!isEn ? [
       { url: `${BASE_URL}/diensten`, lastModified: new Date('2026-04-15'), changeFrequency: 'monthly' as const, priority: 0.9 },
       { url: `${BASE_URL}/actiehandboek`, lastModified: new Date('2026-04-15'), changeFrequency: 'monthly' as const, priority: 0.8 },

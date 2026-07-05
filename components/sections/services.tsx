@@ -15,7 +15,11 @@ function getLevels(t: (nl: string, en: string) => string) {
   return [
     {
       id: '01', name: 'Foundation',
-      keywords: [t('Aanbod definiëren', 'Define offer'), t('ICP bepalen', 'Determine ICP'), 'Speed-to-lead'],
+      keywords: [
+        { label: t('Aanbod definiëren', 'Define offer') },
+        { label: t('ICP bepalen', 'Determine ICP') },
+        { label: 'Speed-to-lead', href: '/speed-to-lead' },
+      ],
       desc: t(
         'Je hebt al klanten. De vraag is niet of je aanbod werkt, maar voor wie het het beste werkt en via welk kanaal je er meer van vindt.',
         'You already have customers. The question is not whether your offer works, but who it works best for and which channel brings you more of them.'
@@ -24,7 +28,11 @@ function getLevels(t: (nl: string, en: string) => string) {
     },
     {
       id: '02', name: 'Capture',
-      keywords: [t('CRM activeren', 'Activate CRM'), t('Leadmagneet bouwen', 'Build lead magnet'), t('Nurture sequentie', 'Nurture sequence')],
+      keywords: [
+        { label: t('CRM activeren', 'Activate CRM') },
+        { label: t('Leadmagneet bouwen', 'Build lead magnet'), href: '/leadmagneet-bouwen' },
+        { label: t('Nurture sequentie', 'Nurture sequence') },
+      ],
       desc: t(
         '60 tot 80% van de leads lekt weg omdat niemand ze consequent opvolgt. Een CRM en nurture sequentie verdubbelen je omzet zonder één extra lead.',
         '60 to 80% of leads leak away because nobody follows up consistently. A CRM and nurture sequence double your revenue without a single extra lead.'
@@ -33,7 +41,11 @@ function getLevels(t: (nl: string, en: string) => string) {
     },
     {
       id: '03', name: 'Convert',
-      keywords: [t('Salesscript documenteren', 'Document sales script'), 'Website CRO', 'Offer ladder'],
+      keywords: [
+        { label: t('Salesscript documenteren', 'Document sales script') },
+        { label: 'Website CRO', href: '/website-cro' },
+        { label: 'Offer ladder' },
+      ],
       desc: t(
         'Conversie van 25 naar 35% bouwt meer omzet dan een verdubbeling van je adbudget. Eerst de pipeline fixen, dan de kraan openzetten.',
         'Boosting conversion from 25 to 35% builds more revenue than doubling your ad budget. Fix the pipeline first, then open the tap.'
@@ -42,7 +54,11 @@ function getLevels(t: (nl: string, en: string) => string) {
     },
     {
       id: '04', name: 'Acquire',
-      keywords: [t('Best kanaal opschalen', 'Scale best channel'), 'Retargeting', t('Tweede kanaal', 'Second channel')],
+      keywords: [
+        { label: t('Best kanaal opschalen', 'Scale best channel'), href: '/kanaal-opschalen' },
+        { label: 'Retargeting' },
+        { label: t('Tweede kanaal', 'Second channel') },
+      ],
       desc: t(
         'Schaal alleen wat al bewezen converteert. Een nieuw kanaal in deze fase is een experiment van maximaal 10% van het budget.',
         'Only scale what already converts. A new channel at this stage is an experiment capped at 10% of the budget.'
@@ -51,7 +67,11 @@ function getLevels(t: (nl: string, en: string) => string) {
     },
     {
       id: '05', name: 'Compound',
-      keywords: [t('SEO als systeem', 'SEO as a system'), t('Videoprogramma', 'Video programme'), 'Thought leadership'],
+      keywords: [
+        { label: t('SEO als systeem', 'SEO as a system'), href: '/seo-als-systeem' },
+        { label: t('Videoprogramma', 'Video programme') },
+        { label: 'Thought leadership' },
+      ],
       desc: t(
         'SEO en video starten hier pas gestructureerd. Tot dit niveau ontbreekt het budget om 12 tot 18 maanden geduldig te zijn voor het rendement komt.',
         'SEO and video only start in a structured way here. Below this level, there is no budget to stay patient for the 12 to 18 months it takes to pay off.'
@@ -60,7 +80,11 @@ function getLevels(t: (nl: string, en: string) => string) {
     },
     {
       id: '06', name: 'Multiply',
-      keywords: ['AI agents', t('Partnerprogramma', 'Partner programme'), t('Categorie definiëren', 'Define category')],
+      keywords: [
+        { label: 'AI agents', href: '/ai-agents' },
+        { label: t('Partnerprogramma', 'Partner programme') },
+        { label: t('Categorie definiëren', 'Define category') },
+      ],
       desc: t(
         'Brand, AI en partnerships zijn compounding assets. Jouw rol verschuift van uitvoering naar richting geven.',
         'Brand, AI, and partnerships are compounding assets. Your role shifts from execution to direction.'
@@ -222,6 +246,8 @@ export function Services() {
           color: ${GRN};
           font-weight: 700;
         }
+        .b-lr-kw-link { color: ${ORANGE}; border-color: rgba(201,100,66,.4); text-decoration: none; cursor: pointer; font-weight: 700; }
+        .b-ladder-row.open .b-lr-kw-link { color: ${ORANGE}; border-color: ${ORANGE}; }
         .b-lr-expand {
           display: none;
           padding-top: 12px;
@@ -298,6 +324,7 @@ export function Services() {
         .b-ladder-section.in-view .b-ladder-row.open .b-lr-num  { color: rgba(14,13,11,.45); }
         .b-ladder-section.in-view .b-ladder-row.open .b-lr-name { color: ${INK}; }
         .b-ladder-section.in-view .b-ladder-row.open .b-lr-kw   { color: ${INK}; border-color: rgba(14,13,11,.3); font-weight: 700; }
+        .b-ladder-section.in-view .b-ladder-row.open .b-lr-kw-link { color: ${INK}; border-color: rgba(14,13,11,.5); }
         .b-ladder-section.in-view .b-ladder-row.open .b-lr-expand-desc { color: ${INK}; opacity: .6; }
         .b-ladder-section.in-view .b-ladder-row.open .b-lr-action {
           color: ${INK}; border-top-color: rgba(14,13,11,.35); background: rgba(14,13,11,.06);
@@ -346,7 +373,11 @@ export function Services() {
               <div className="b-lr-content">
                 <div className="b-lr-keywords">
                   {l.keywords.map(k => (
-                    <span key={k} className="b-lr-kw">{k}</span>
+                    k.href ? (
+                      <a key={k.label} href={k.href} className="b-lr-kw b-lr-kw-link">{k.label}</a>
+                    ) : (
+                      <span key={k.label} className="b-lr-kw">{k.label}</span>
+                    )
                   ))}
                 </div>
                 <div className="b-lr-expand">

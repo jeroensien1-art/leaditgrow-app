@@ -5,7 +5,7 @@ import { useLang } from '@/components/lang-context'
 const STATS = [
   { value: '78%',   nl: 'van leads verloren bij opvolging na meer dan 2 uur', en: 'of leads lost when follow-up takes more than 2 hours' },
   { value: '+40%',  nl: 'meer conversie zonder extra advertentiebudget', en: 'more conversions without extra ad budget' },
-  { value: '4 wk',  nl: 'van constante druk naar systeem op autopilot', en: 'from constant pressure to a system on autopilot' },
+  { value: '4 wk',  nl: 'van constante druk naar systeem op autopilot', en: 'from constant pressure to a system on autopilot', href: '/systeem-op-autopilot' },
   { value: '80%',   nl: 'minder manueel werk dankzij automatisering', en: 'less manual work thanks to automation' },
 ]
 
@@ -58,18 +58,27 @@ export function StatsBar() {
           font-family: var(--font-brutalist, system-ui);
           transition: color 0.4s;
         }
+        .stat-block-link { text-decoration: none; cursor: pointer; }
+        .stat-n-link { color: #c96442; }
         @media (max-width: 768px) {
           .stats-bar { grid-template-columns: 1fr 1fr; }
           .stat-block { border-bottom: 1px solid rgba(255,255,255,.08); }
         }
       `}</style>
       <div className="stats-bar" data-spot>
-        {STATS.map(s => (
-          <div key={s.value} className="stat-block">
-            <div className="stat-n">{s.value}</div>
-            <p className="stat-t">{t(s.nl, s.en)}</p>
-          </div>
-        ))}
+        {STATS.map(s => {
+          const inner = (
+            <>
+              <div className={`stat-n${s.href ? ' stat-n-link' : ''}`}>{s.value}</div>
+              <p className="stat-t">{t(s.nl, s.en)}</p>
+            </>
+          )
+          return s.href ? (
+            <a key={s.value} href={s.href} className="stat-block stat-block-link">{inner}</a>
+          ) : (
+            <div key={s.value} className="stat-block">{inner}</div>
+          )
+        })}
       </div>
     </>
   )

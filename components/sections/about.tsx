@@ -9,6 +9,7 @@ const BG   = '#f2f0eb'
 const GRN  = '#1a5e35'
 const LIME = '#4ade80'
 const MUT  = '#787068'
+const ORANGE = '#c96442'
 
 export function About() {
   const { t } = useLang()
@@ -56,7 +57,7 @@ export function About() {
           color: ${BG};
           transition: color 0.4s;
         }
-        .b-about-h2 .accent { color: ${GRN}; transition: color 0.4s; }
+        .b-about-h2 .accent { color: ${ORANGE}; transition: color 0.4s; text-decoration: none; cursor: pointer; }
         .b-about-body {
           font-size: 14px;
           color: rgba(242,240,235,.5);
@@ -95,6 +96,7 @@ export function About() {
           line-height: 1;
           transition: color 0.4s;
         }
+        .b-about-stat-val-link { color: ${ORANGE}; }
         .b-about-stat-label {
           font-size: 13px;
           color: ${MUT};
@@ -102,6 +104,7 @@ export function About() {
           font-family: ${B};
           transition: color 0.4s;
         }
+        .b-about-stat-row-link { text-decoration: none; cursor: pointer; }
         .b-about-uman {
           margin-top: 40px;
           padding: 24px 28px;
@@ -157,6 +160,7 @@ export function About() {
         .b-about-section.in-view .b-about-body { color: rgba(14,13,11,.55); }
         .b-about-section.in-view .b-about-cta { color: ${INK}; }
         .b-about-section.in-view .b-about-stat-val { color: ${GRN}; }
+        .b-about-section.in-view .b-about-stat-val-link { color: ${INK}; }
         .b-about-section.in-view .b-about-right { background: ${LIME}; }
         .b-about-section.in-view .b-about-uman { background: rgba(14,13,11,.06); border-left-color: ${INK}; }
         .b-about-section.in-view .b-about-uman-label { color: ${INK}; }
@@ -178,7 +182,7 @@ export function About() {
           <h2 className="b-about-h2">
             {t('Systemen die', 'Systems that')}<br />
             {t('tijd', 'give back')}<br />
-            <span className="accent">{t('teruggeven.', 'time.')}</span>
+            <a href="/systeem-op-autopilot" className="accent">{t('teruggeven.', 'time.')}</a>
           </h2>
           <p className="b-about-body">
             {t(
@@ -206,10 +210,10 @@ export function About() {
             <div className="b-about-stat-val">+40%</div>
             <div className="b-about-stat-label">{t('meer conversie zonder extra advertentiebudget', 'more conversions without extra ad budget')}</div>
           </div>
-          <div className="b-about-stat-row">
-            <div className="b-about-stat-val">4 wk</div>
+          <a href="/systeem-op-autopilot" className="b-about-stat-row b-about-stat-row-link">
+            <div className="b-about-stat-val b-about-stat-val-link">4 wk</div>
             <div className="b-about-stat-label">{t('van constante druk naar systeem op autopilot', 'from constant pressure to a system on autopilot')}</div>
-          </div>
+          </a>
           <div className="b-about-stat-row">
             <div className="b-about-stat-val">80%</div>
             <div className="b-about-stat-label">{t('minder manueel werk dankzij automatisering', 'less manual work thanks to automation')}</div>

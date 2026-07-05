@@ -92,7 +92,7 @@ export function Tools() {
           font-weight: 700;
           letter-spacing: .14em;
           text-transform: uppercase;
-          color: ${GRN};
+          color: ${ORANGE};
         }
         .b-tool-title {
           font-size: 22px;
@@ -131,6 +131,7 @@ export function Tools() {
         .b-tools-section.in-view .b-tools-h2 .accent { color: ${INK}; }
         .b-tools-section.in-view .b-tools-desc { color: rgba(14,13,11,.55); }
         .b-tools-section.in-view .b-tool-card { background: ${LIME}; border-top-color: ${INK}; border-right-color: rgba(14,13,11,.15); border-bottom-color: rgba(14,13,11,.15); }
+        .b-tools-section.in-view .b-tool-tag { color: ${INK}; }
         .b-tools-section.in-view .b-tool-title { color: ${INK}; }
         .b-tools-section.in-view .b-tool-body { color: rgba(14,13,11,.55); }
         .b-tools-section.in-view .b-tool-cta { color: ${INK}; }
@@ -178,7 +179,7 @@ export function Tools() {
           </a>
 
           <a href="/diagnostic" className="b-tool-card">
-            <div className="b-tool-tag">{t('Wat houdt mij tegen?', 'What is holding me back?')}</div>
+            <div className="b-tool-tag">{t('Wat houdt mijn bedrijf tegen?', 'What is holding my business back?')}</div>
             <div className="b-tool-title">{t('Business Diagnostic', 'Business Diagnostic')}</div>
             <p className="b-tool-body">
               {t(
