@@ -211,7 +211,7 @@ export function Hero() {
         <div className="b-hero-main">
           <div className="b-hero-left">
             <div className="b-hero-year">
-              {t('Groeisystemen voor Vlaamse ondernemers', 'Growth systems for Flemish entrepreneurs')} · 2025
+              {t('Vrijheid en groei voor ondernemers', 'Freedom and growth for entrepreneurs')} · 2026
             </div>
 
             <h1 className="b-hero-h1">
