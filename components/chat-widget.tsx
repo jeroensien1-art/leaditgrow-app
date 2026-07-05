@@ -65,8 +65,8 @@ export function ChatWidget() {
         setMessages([{
           from: 'bot',
           text: nl
-            ? 'Hoi! Ik ben Jeroen. Beantwoord 2 korte vragen, dan weet ik of een samenwerking nuttig kan zijn en toon ik je de weg naar meer omzet mét meer controle en vrijheid.'
-            : 'Hi! I\'m Jeroen. Answer 2 short questions, then I\'ll know if working together makes sense and I\'ll show you the way to more revenue with more control and freedom.',
+            ? 'Hoi! Lead it, Grow hier. Beantwoord 2 korte vragen, dan weten we of een samenwerking nuttig kan zijn en tonen we je de weg naar meer omzet mét meer controle en vrijheid.'
+            : 'Hi! Lead it, Grow here. Answer 2 short questions, then we\'ll know if working together makes sense and we\'ll show you the way to more revenue with more control and freedom.',
         }])
         setBotStep('challenge')
       }, 700)
@@ -117,8 +117,8 @@ export function ChatWidget() {
     } else {
       addBot(
         nl
-          ? 'Top. Laat je naam en email achter en ik stuur je direct enkele beschikbare momenten.'
-          : 'Perfect. Leave your name and email and I\'ll send you available time slots right away.',
+          ? 'Top. Laat je naam en email achter en we sturen je direct enkele beschikbare momenten.'
+          : 'Perfect. Leave your name and email and we\'ll send you available time slots right away.',
         'book_form',
       )
     }

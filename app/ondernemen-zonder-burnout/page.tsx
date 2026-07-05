@@ -188,12 +188,12 @@ export default function OndernemerZonderBurnoutPage() {
               <div className="thanks-wrap">
                 <div className="thanks-circle">&#10003;</div>
                 <div className="headline" style={{ fontSize: 20, marginBottom: 10 }}>
-                  {nl ? 'Ik neem contact met je op binnen 48 uur.' : 'I will contact you within 48 hours.'}
+                  {nl ? 'We nemen contact met je op binnen 48 uur.' : 'We will contact you within 48 hours.'}
                 </div>
                 <div className="subline" style={{ marginBottom: 0 }}>
                   {nl
-                    ? 'Ik contacteer je om een volledig gratis diepgaande consultatie rond leiderschap en beter uitspelen van jouw persoonlijke sterktes (90 min) in te plannen. Een uiterst boeiend gesprek met practische inzichten die je als leider naar een hoger niveau helpen.'
-                    : 'I will get in touch to schedule a completely free, in-depth consultation on leadership and playing to your personal strengths (90 min). A genuinely engaging conversation with practical insights to take you to the next level as a leader.'}
+                    ? 'We contacteren je om een volledig gratis diepgaande consultatie rond leiderschap en beter uitspelen van jouw persoonlijke sterktes (90 min) in te plannen. Een uiterst boeiend gesprek met practische inzichten die je als leider naar een hoger niveau helpen.'
+                    : 'We will get in touch to schedule a completely free, in-depth consultation on leadership and playing to your personal strengths (90 min). A genuinely engaging conversation with practical insights to take you to the next level as a leader.'}
                 </div>
                 <div className="what-in">
                   <div className="what-in-title">{nl ? 'Wat te verwachten' : 'What to expect'}</div>

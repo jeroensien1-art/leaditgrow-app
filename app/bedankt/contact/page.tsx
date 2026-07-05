@@ -24,8 +24,8 @@ export default function BedanktContact() {
           </h1>
           <p style={{ color: '#555', fontSize: '1.05rem', lineHeight: 1.7, marginBottom: '2rem' }}>
             {t(
-              'Ik kom zo snel mogelijk bij je terug, meestal binnen 24 uur.',
-              'I will get back to you as soon as possible, usually within 24 hours.'
+              'We komen zo snel mogelijk bij je terug, meestal binnen 24 uur.',
+              'We will get back to you as soon as possible, usually within 24 hours.'
             )}
           </p>
           <Link href="/" style={{ display: 'inline-block', background: '#c95d3b', color: '#fff', padding: '0.75rem 1.75rem', borderRadius: 8, fontWeight: 600, textDecoration: 'none' }}>

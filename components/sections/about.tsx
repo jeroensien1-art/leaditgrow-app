@@ -178,7 +178,7 @@ export function About() {
       <section className="b-about-section" id="about" data-spot>
         <div className="b-about-left">
           <div>
-            <div className="b-about-num">// 03 {t('Over mij', 'About me')}</div>
+            <div className="b-about-num">// 03 {t('Over ons', 'About us')}</div>
           </div>
           <a href="/systeem-op-autopilot" className="b-about-h2-link">
             <h2 className="b-about-h2">
@@ -189,8 +189,8 @@ export function About() {
           </a>
           <p className="b-about-body">
             {t(
-              'Ik combineer business strategy met een voorspelbare groeimotor: systemen die leads automatisch opvolgen, kwalificeren en converteren. Zo leg ik de operationele last weg en creëer ik ruimte voor wat jij het best doet: leiden en bouwen.',
-              'I combine business strategy with a predictable growth engine: systems that automatically follow up, qualify, and convert leads. That removes the operational weight and creates room for what you do best: leading and building.'
+              'We combineren business strategy met een voorspelbare groeimotor: systemen die leads automatisch opvolgen, kwalificeren en converteren. Zo leggen we de operationele last weg en creëren we ruimte voor wat jij het best doet: leiden en bouwen.',
+              'We combine business strategy with a predictable growth engine: systems that automatically follow up, qualify, and convert leads. That removes the operational weight and creates room for what you do best: leading and building.'
             )}
           </p>
           <p className="b-about-body">
