@@ -5,29 +5,32 @@ import { RefreshCw, TrendingUp, Search, ArrowLeft, Zap, AlertTriangle, BarChart2
 import Link from 'next/link'
 import type { AnalyticsData, ChannelRow, StrikingDistanceRow, CtrGapRow, DecayRow, LandingPageRow } from '@/lib/analytics'
 
-// ─── Style constants (matches /dashboard) ────────────────────────────────────
+// ─── Style constants (matches /dashboard, brutalist system) ─────────────────
+
+const B = 'var(--font-brutalist, system-ui)'
+const M = 'var(--font-mono-brutalist, monospace)'
 
 const C = {
-  bg: '#faf9f5',
-  surface: 'rgba(255,255,255,0.04)',
-  border: 'rgba(61,57,41,0.15)',
+  bg: '#f2f0eb',
+  surface: 'rgba(14,13,11,0.03)',
+  border: 'rgba(14,13,11,0.15)',
   accent: '#c96442',
-  muted: '#83827d',
-  text: '#3d3929',
-  green: '#3dba6e',
-  red: '#e05b3a',
-  yellow: '#ca8a04',
+  muted: '#787068',
+  text: '#0e0d0b',
+  green: '#1a5e35',
+  red: '#c96442',
+  yellow: '#b8794f',
   blue: '#3b82f6',
 }
 
 const card: React.CSSProperties = {
   background: '#fff',
-  border: `1px solid ${C.border}`,
-  borderRadius: 14,
+  border: `2px solid ${C.text}`,
   padding: '20px 24px',
 }
 
 const sectionTitle: React.CSSProperties = {
+  fontFamily: M,
   fontSize: 13,
   fontWeight: 700,
   color: C.text,
@@ -40,15 +43,16 @@ const sectionTitle: React.CSSProperties = {
 }
 
 const badge = (n: number): React.CSSProperties => ({
+  fontFamily: M,
   fontSize: 11,
   fontWeight: 700,
-  background: n > 0 ? 'rgba(201,100,66,0.12)' : 'rgba(61,57,41,0.06)',
+  background: n > 0 ? 'rgba(201,100,66,0.12)' : 'rgba(14,13,11,0.06)',
   color: n > 0 ? C.accent : C.muted,
-  borderRadius: 20,
   padding: '2px 8px',
 })
 
 const th: React.CSSProperties = {
+  fontFamily: M,
   fontSize: 10,
   fontWeight: 700,
   color: C.muted,
@@ -56,21 +60,22 @@ const th: React.CSSProperties = {
   letterSpacing: '0.08em',
   padding: '6px 10px',
   textAlign: 'left',
-  borderBottom: `1px solid ${C.border}`,
+  borderBottom: `2px solid ${C.text}`,
   whiteSpace: 'nowrap',
 }
 
 const td: React.CSSProperties = {
+  fontFamily: B,
   fontSize: 13,
   color: C.text,
   padding: '10px 10px',
-  borderBottom: `1px solid rgba(61,57,41,0.06)`,
+  borderBottom: `1px solid rgba(14,13,11,0.1)`,
   verticalAlign: 'middle',
 }
 
 function Pill({ label, color, bg }: { label: string; color: string; bg: string }) {
   return (
-    <span style={{ fontSize: 11, fontWeight: 600, color, background: bg, borderRadius: 20, padding: '2px 8px', whiteSpace: 'nowrap' }}>
+    <span style={{ fontFamily: M, fontSize: 11, fontWeight: 600, color, background: bg, padding: '2px 8px', whiteSpace: 'nowrap' }}>
       {label}
     </span>
   )
@@ -215,7 +220,7 @@ function DecayTable({ rows }: { rows: DecayRow[] }) {
         </thead>
         <tbody>
           {rows.map(r => (
-            <tr key={r.page} style={{ background: 'rgba(224,91,58,0.03)' }}>
+            <tr key={r.page} style={{ background: 'rgba(201,100,66,0.05)' }}>
               <td style={{ ...td, maxWidth: 300, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 <span title={r.page}>{r.page.replace(/^https?:\/\/[^/]+/, '')}</span>
               </td>
@@ -299,15 +304,15 @@ export default function AnalyticsDashboard() {
   const paid = data?.channels.find(c => c.channel === 'Paid Search')
 
   return (
-    <div style={{ minHeight: '100vh', background: C.bg, fontFamily: 'system-ui, sans-serif' }}>
+    <div style={{ minHeight: '100vh', background: C.bg, fontFamily: B }}>
 
       {/* Header */}
-      <div style={{ background: '#fff', borderBottom: `1px solid ${C.border}`, padding: '14px 32px', display: 'flex', alignItems: 'center', gap: 16 }}>
-        <Link href="/dashboard" style={{ color: C.muted, display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, textDecoration: 'none' }}>
+      <div style={{ background: C.bg, borderBottom: `3px solid ${C.text}`, padding: '14px 32px', display: 'flex', alignItems: 'center', gap: 16 }}>
+        <Link href="/dashboard" style={{ color: C.text, display: 'flex', alignItems: 'center', gap: 6, fontFamily: M, fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.04em', textDecoration: 'none' }}>
           <ArrowLeft size={14} /> Dashboard
         </Link>
-        <span style={{ color: C.border }}>›</span>
-        <span style={{ fontSize: 14, fontWeight: 700, color: C.text }}>Analytics</span>
+        <span style={{ color: C.muted }}>›</span>
+        <span style={{ fontFamily: M, fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.04em', color: C.text }}>Analytics</span>
         <div style={{ flex: 1 }} />
         {data && (
           <span style={{ fontSize: 11, color: C.muted }}>
@@ -317,7 +322,7 @@ export default function AnalyticsDashboard() {
         <button
           onClick={load}
           disabled={loading}
-          style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, fontWeight: 600, color: loading ? C.muted : C.accent, background: 'none', border: `1px solid ${C.border}`, borderRadius: 8, padding: '6px 12px', cursor: loading ? 'not-allowed' : 'pointer' }}
+          style={{ display: 'flex', alignItems: 'center', gap: 6, fontFamily: M, fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.04em', color: loading ? C.muted : C.text, background: '#fff', border: `2px solid ${C.text}`, padding: '6px 12px', cursor: loading ? 'not-allowed' : 'pointer' }}
         >
           <RefreshCw size={13} style={{ animation: loading ? 'spin 1s linear infinite' : 'none' }} />
           {loading ? 'Laden…' : 'Vernieuwen'}
@@ -330,7 +335,7 @@ export default function AnalyticsDashboard() {
 
         {/* Error */}
         {error && (
-          <div style={{ ...card, borderColor: C.red, background: 'rgba(224,91,58,0.05)', color: C.red, fontSize: 13 }}>
+          <div style={{ ...card, borderColor: C.red, background: 'rgba(201,100,66,0.06)', color: C.red, fontSize: 13 }}>
             <strong>Fout:</strong> {error}
             {error.includes('not set') && (
               <div style={{ marginTop: 8, color: C.muted }}>
@@ -365,9 +370,9 @@ export default function AnalyticsDashboard() {
                   { label: 'Organisch conv.', value: organic?.conversions ?? '—', color: C.accent },
                   { label: 'Betaald conv.', value: paid?.conversions ?? '—', color: C.blue },
                 ].map(s => (
-                  <div key={s.label} style={{ background: 'rgba(61,57,41,0.03)', border: `1px solid ${C.border}`, borderRadius: 10, padding: '14px 16px' }}>
-                    <div style={{ fontSize: 11, color: C.muted, fontWeight: 600, marginBottom: 6 }}>{s.label}</div>
-                    <div style={{ fontSize: 24, fontWeight: 800, color: s.color, lineHeight: 1 }}>{s.value}</div>
+                  <div key={s.label} style={{ background: C.surface, border: `2px solid ${C.text}`, padding: '14px 16px' }}>
+                    <div style={{ fontFamily: M, fontSize: 11, color: C.muted, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.04em', marginBottom: 6 }}>{s.label}</div>
+                    <div style={{ fontFamily: M, fontSize: 24, fontWeight: 700, color: s.color, lineHeight: 1 }}>{s.value}</div>
                     {s.sub && <div style={{ marginTop: 4 }}>{s.sub}</div>}
                   </div>
                 ))}
@@ -412,7 +417,7 @@ export default function AnalyticsDashboard() {
               <div style={sectionTitle}>
                 <AlertTriangle size={15} color={C.red} />
                 Content Decay
-                <span style={{ ...badge(data.decay.length), background: data.decay.length > 0 ? 'rgba(224,91,58,0.12)' : undefined, color: data.decay.length > 0 ? C.red : undefined }}>
+                <span style={{ ...badge(data.decay.length), background: data.decay.length > 0 ? 'rgba(201,100,66,0.12)' : undefined, color: data.decay.length > 0 ? C.red : undefined }}>
                   {data.decay.length} pagina&apos;s
                 </span>
                 <span style={{ fontSize: 11, color: C.muted, fontWeight: 400, textTransform: 'none', letterSpacing: 0, marginLeft: 4 }}>
@@ -448,8 +453,8 @@ export default function AnalyticsDashboard() {
                   { label: 'Organisch Search', row: organic, color: C.green },
                   { label: 'Paid Search', row: paid, color: C.blue },
                 ].map(({ label, row, color }) => (
-                  <div key={label} style={{ background: 'rgba(61,57,41,0.03)', border: `1px solid ${C.border}`, borderRadius: 10, padding: '16px 20px' }}>
-                    <div style={{ fontSize: 12, fontWeight: 700, color, marginBottom: 12 }}>{label}</div>
+                  <div key={label} style={{ background: C.surface, border: `2px solid ${C.text}`, padding: '16px 20px' }}>
+                    <div style={{ fontFamily: M, fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.04em', color, marginBottom: 12 }}>{label}</div>
                     {row ? (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                         {[
@@ -474,10 +479,10 @@ export default function AnalyticsDashboard() {
             </div>
 
             {/* Setup instructions (shown when credentials are set) */}
-            <div style={{ ...card, background: 'rgba(61,57,41,0.02)', borderStyle: 'dashed' }}>
+            <div style={{ ...card, background: C.surface, borderStyle: 'dashed' }}>
               <div style={{ fontSize: 12, color: C.muted }}>
                 <strong style={{ color: C.text }}>Configuratie</strong> — vereiste env vars in Vercel of .env.local:
-                <code style={{ display: 'block', marginTop: 8, fontSize: 11, background: 'rgba(61,57,41,0.06)', padding: '10px 14px', borderRadius: 8, lineHeight: 1.8 }}>
+                <code style={{ display: 'block', marginTop: 8, fontFamily: M, fontSize: 11, background: 'rgba(14,13,11,0.06)', padding: '10px 14px', lineHeight: 1.8 }}>
                   GOOGLE_SERVICE_ACCOUNT_KEY={'{...service account JSON als string}'}<br/>
                   GA_PROPERTY_ID=properties/XXXXXXXXX<br/>
                   GSC_SITE_URL=https://jouwdomein.be

@@ -5,29 +5,39 @@ import { Search, RefreshCw, ChevronDown, ChevronUp, Mail, Users, TrendingUp, Clo
 import Link from 'next/link'
 import type { Lead } from '@/lib/crm/claude'
 
+// ─── Brutalist design tokens ────────────────────────────────────────────────
+
+const B = 'var(--font-brutalist, system-ui)'
+const M = 'var(--font-mono-brutalist, monospace)'
+const INK = '#0e0d0b'
+const BG = '#f2f0eb'
+const GRN = '#1a5e35'
+const LIME = '#4ade80'
+const ORANGE = '#c96442'
+const MUT = '#787068'
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 const STATUS_OPTIONS: Lead['status'][] = ['new', 'replied', 'followed_up', 'booked', 'closed']
 
 const SOURCE_STYLE: Record<string, { bg: string; color: string; label: string }> = {
-  widget:     { bg: 'rgba(61,57,41,0.08)',    color: '#83827d',  label: 'Widget' },
-  calculator: { bg: 'rgba(52,130,246,0.12)',  color: '#3b82f6',  label: 'Calculator' },
-  diagnostic: { bg: 'rgba(201,100,66,0.12)',  color: '#c96442',  label: 'Diagnostic' },
+  widget:     { bg: 'rgba(120,112,104,0.12)',  color: MUT,    label: 'Widget' },
+  calculator: { bg: 'rgba(201,100,66,0.12)',   color: ORANGE, label: 'Calculator' },
+  diagnostic: { bg: 'rgba(26,94,53,0.12)',     color: GRN,    label: 'Diagnostic' },
 }
 
 const STATUS_STYLE: Record<string, { bg: string; color: string }> = {
-  new:          { bg: 'rgba(201,100,66,0.15)',  color: '#e07a52' },
-  replied:      { bg: 'rgba(61,186,110,0.12)',  color: '#3dba6e' },
-  followed_up:  { bg: 'rgba(234,179,8,0.12)',   color: '#ca8a04' },
-  booked:       { bg: 'rgba(52,130,246,0.15)',  color: '#60a5fa' },
-  closed:       { bg: 'rgba(255,255,255,0.06)', color: '#6b7280' },
+  new:          { bg: 'rgba(201,100,66,0.15)', color: ORANGE },
+  replied:      { bg: 'rgba(26,94,53,0.12)',   color: GRN },
+  followed_up:  { bg: 'rgba(120,112,104,0.15)', color: MUT },
+  booked:       { bg: 'rgba(74,222,128,0.18)', color: '#1a7a45' },
+  closed:       { bg: 'rgba(14,13,11,0.06)',   color: MUT },
 }
 
 function scoreColor(s: number) {
-  if (s <= 3) return '#e05b3a'
-  if (s <= 5) return '#e8a838'
-  if (s <= 7) return '#7ec87e'
-  return '#3dba6e'
+  if (s <= 5) return ORANGE
+  if (s <= 7) return GRN
+  return '#1a7a45'
 }
 
 function timeAgo(ms: number) {
@@ -41,13 +51,13 @@ function timeAgo(ms: number) {
 
 function Stat({ label, value, sub, icon }: { label: string; value: string | number; sub?: string; icon: React.ReactNode }) {
   return (
-    <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(61,57,41,0.15)', borderRadius: 14, padding: '18px 22px' }}>
+    <div style={{ background: '#fff', border: `2px solid ${INK}`, padding: '18px 22px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-        <div style={{ color: '#c96442', opacity: 0.8 }}>{icon}</div>
-        <span style={{ fontSize: 11, color: '#83827d', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>{label}</span>
+        <div style={{ color: ORANGE }}>{icon}</div>
+        <span style={{ fontFamily: M, fontSize: 11, color: MUT, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em' }}>{label}</span>
       </div>
-      <div style={{ fontSize: 30, fontWeight: 800, color: '#3d3929', lineHeight: 1 }}>{value}</div>
-      {sub && <div style={{ fontSize: 12, color: '#83827d', marginTop: 5 }}>{sub}</div>}
+      <div style={{ fontFamily: M, fontSize: 30, fontWeight: 700, color: INK, lineHeight: 1 }}>{value}</div>
+      {sub && <div style={{ fontSize: 12, color: MUT, marginTop: 5, fontFamily: B }}>{sub}</div>}
     </div>
   )
 }
@@ -139,27 +149,27 @@ export default function Dashboard() {
   // ─────────────────────────────────────────────────────────────────────────────
 
   return (
-    <div style={{ minHeight: '100svh', background: '#faf9f5', color: '#3d3929', fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}>
+    <div style={{ minHeight: '100svh', background: BG, color: INK, fontFamily: B }}>
 
       {/* Header */}
-      <div style={{ borderBottom: '1px solid rgba(61,57,41,0.1)', padding: '18px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#fff' }}>
+      <div style={{ borderBottom: `3px solid ${INK}`, padding: '18px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: BG }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo-email.svg" alt="Lead it, Grow" style={{ height: 36 }} />
-          <h1 style={{ fontSize: 20, fontWeight: 700, color: '#3d3929', margin: 0 }}>Lead Dashboard</h1>
+          <h1 style={{ fontFamily: B, fontSize: 16, fontWeight: 700, color: INK, margin: 0, textTransform: 'uppercase', letterSpacing: '.08em' }}>Lead Dashboard</h1>
         </div>
         <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-          <Link href="/dashboard/analytics" style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 600, color: '#83827d', background: 'rgba(61,57,41,0.06)', border: '1px solid rgba(61,57,41,0.12)', borderRadius: 8, padding: '7px 14px', textDecoration: 'none' }}>
+          <Link href="/dashboard/analytics" style={{ display: 'flex', alignItems: 'center', gap: 6, fontFamily: M, fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: INK, background: BG, border: `2px solid ${INK}`, padding: '7px 14px', textDecoration: 'none' }}>
             <BarChart2 size={13} /> Analytics
           </Link>
           {stats.needsFollowUp > 0 && (
-            <div style={{ background: 'rgba(201,100,66,0.12)', border: '1px solid rgba(201,100,66,0.3)', borderRadius: 8, padding: '6px 12px', fontSize: 12, color: '#c96442', fontWeight: 600 }}>
+            <div style={{ background: ORANGE, border: `2px solid ${INK}`, padding: '6px 12px', fontFamily: M, fontSize: 11, color: '#fff', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.04em' }}>
               ⚠ {stats.needsFollowUp} follow-up{stats.needsFollowUp > 1 ? 's' : ''} due
             </div>
           )}
           <button
             onClick={load}
-            style={{ background: 'rgba(61,57,41,0.06)', border: '1px solid rgba(61,57,41,0.12)', borderRadius: 8, padding: '7px 14px', color: '#83827d', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontSize: 13 }}
+            style={{ background: BG, border: `2px solid ${INK}`, padding: '7px 14px', color: INK, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: M, fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em' }}
           >
             <RefreshCw size={13} /> Refresh
           </button>
@@ -180,12 +190,12 @@ export default function Dashboard() {
         {/* Filters */}
         <div style={{ display: 'flex', gap: 10, marginBottom: 18, flexWrap: 'wrap', alignItems: 'center' }}>
           <div style={{ position: 'relative', flex: 1, minWidth: 220 }}>
-            <Search size={13} style={{ position: 'absolute', left: 11, top: '50%', transform: 'translateY(-50%)', color: '#83827d' }} />
+            <Search size={13} style={{ position: 'absolute', left: 11, top: '50%', transform: 'translateY(-50%)', color: MUT }} />
             <input
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search name, email, message…"
-              style={{ width: '100%', background: '#fff', border: '1px solid rgba(61,57,41,0.12)', borderRadius: 9, padding: '8px 12px 8px 32px', color: '#3d3929', fontSize: 13, outline: 'none' }}
+              style={{ width: '100%', background: '#fff', border: `2px solid ${INK}`, padding: '8px 12px 8px 32px', color: INK, fontFamily: B, fontSize: 13, outline: 'none' }}
             />
           </div>
           {(['all', ...STATUS_OPTIONS] as const).map(s => (
@@ -193,13 +203,13 @@ export default function Dashboard() {
               key={s}
               onClick={() => setStatusFilter(s)}
               style={{
-                padding: '7px 14px', borderRadius: 7,
-                border: '1px solid rgba(61,57,41,0.12)',
-                background: statusFilter === s ? 'rgba(201,100,66,0.1)' : '#fff',
-                color: statusFilter === s ? '#c96442' : '#83827d',
-                fontSize: 12, cursor: 'pointer',
-                fontWeight: statusFilter === s ? 700 : 400,
-                textTransform: 'capitalize',
+                padding: '7px 14px',
+                border: `2px solid ${INK}`,
+                background: statusFilter === s ? INK : '#fff',
+                color: statusFilter === s ? BG : INK,
+                fontFamily: M, fontSize: 11, cursor: 'pointer',
+                fontWeight: 700,
+                textTransform: 'uppercase', letterSpacing: '.04em',
               }}
             >
               {s === 'all' ? `All (${leads.length})` : s.replace('_', ' ')}
@@ -209,18 +219,18 @@ export default function Dashboard() {
 
         {/* Table */}
         {loading ? (
-          <div style={{ textAlign: 'center', padding: 80, color: '#83827d' }}>Loading leads…</div>
+          <div style={{ textAlign: 'center', padding: 80, color: MUT, fontFamily: M, fontSize: 12, textTransform: 'uppercase', letterSpacing: '.08em' }}>Loading leads…</div>
         ) : error ? (
-          <div style={{ textAlign: 'center', padding: 80, color: '#e05b3a' }}>{error}</div>
+          <div style={{ textAlign: 'center', padding: 80, color: ORANGE, fontFamily: M, fontSize: 12 }}>{error}</div>
         ) : filtered.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: 80, color: '#83827d' }}>
+          <div style={{ textAlign: 'center', padding: 80, color: MUT, fontFamily: M, fontSize: 12, textTransform: 'uppercase', letterSpacing: '.08em' }}>
             {leads.length === 0 ? 'No leads yet. Submit the contact form to test.' : 'No leads match your filter.'}
           </div>
         ) : (
-          <div style={{ background: '#fff', border: '1px solid rgba(61,57,41,0.1)', borderRadius: 14, overflow: 'hidden' }}>
+          <div style={{ background: '#fff', border: `2px solid ${INK}`, overflow: 'hidden' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
               <thead>
-                <tr style={{ borderBottom: '1px solid rgba(61,57,41,0.08)', background: '#faf9f5' }}>
+                <tr style={{ borderBottom: `2px solid ${INK}`, background: BG }}>
                   {([
                     { col: 'name' as keyof Lead, label: 'Name' },
                     { col: 'source' as keyof Lead, label: 'Source' },
@@ -230,11 +240,11 @@ export default function Dashboard() {
                     { col: 'submittedAt' as keyof Lead, label: 'Submitted' },
                   ]).map(({ col, label }) => (
                     <th key={col} onClick={() => toggleSort(col)}
-                      style={{ textAlign: 'left', padding: '10px 16px', color: '#83827d', fontWeight: 600, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.08em', cursor: 'pointer', userSelect: 'none', whiteSpace: 'nowrap' }}>
+                      style={{ textAlign: 'left', padding: '10px 16px', color: MUT, fontFamily: M, fontWeight: 700, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.08em', cursor: 'pointer', userSelect: 'none', whiteSpace: 'nowrap' }}>
                       <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}>{label}<SortIcon col={col} /></span>
                     </th>
                   ))}
-                  <th style={{ padding: '10px 16px', color: '#83827d', fontWeight: 600, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.08em', textAlign: 'left' }}>Actions</th>
+                  <th style={{ padding: '10px 16px', color: MUT, fontFamily: M, fontWeight: 700, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.08em', textAlign: 'left' }}>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -244,23 +254,23 @@ export default function Dashboard() {
                       key={lead.id}
                       onClick={() => setExpandedId(expandedId === lead.id ? null : lead.id)}
                       style={{
-                        borderBottom: '1px solid rgba(61,57,41,0.06)',
+                        borderBottom: `1px solid rgba(14,13,11,0.12)`,
                         cursor: 'pointer',
-                        background: expandedId === lead.id ? 'rgba(201,100,66,0.03)' : 'transparent',
+                        background: expandedId === lead.id ? 'rgba(26,94,53,0.05)' : 'transparent',
                         transition: 'background 0.15s',
                       }}
                     >
                       {/* Name + email */}
                       <td style={{ padding: '12px 16px' }}>
-                        <div style={{ fontWeight: 600, color: '#3d3929' }}>{lead.name}</div>
-                        <div style={{ fontSize: 12, color: '#83827d' }}>{lead.email}</div>
+                        <div style={{ fontWeight: 700, color: INK }}>{lead.name}</div>
+                        <div style={{ fontSize: 12, color: MUT }}>{lead.email}</div>
                       </td>
                       {/* Source */}
                       <td style={{ padding: '12px 16px' }}>
                         {(() => {
                           const s = SOURCE_STYLE[lead.source ?? 'widget'] ?? SOURCE_STYLE.widget
                           return (
-                            <span style={{ fontSize: 11, fontWeight: 700, background: s.bg, color: s.color, borderRadius: 5, padding: '2px 7px', whiteSpace: 'nowrap' }}>
+                            <span style={{ fontFamily: M, fontSize: 11, fontWeight: 700, background: s.bg, color: s.color, padding: '2px 7px', whiteSpace: 'nowrap' }}>
                               {s.label}
                             </span>
                           )
@@ -273,10 +283,10 @@ export default function Dashboard() {
                           disabled={updating === lead.id}
                           onChange={e => updateStatus(lead.id, e.target.value as Lead['status'])}
                           style={{
-                            fontSize: 12, fontWeight: 700,
+                            fontFamily: M, fontSize: 11, fontWeight: 700,
                             background: STATUS_STYLE[lead.status].bg,
                             color: STATUS_STYLE[lead.status].color,
-                            border: 'none', borderRadius: 6, padding: '3px 8px',
+                            border: 'none', padding: '3px 8px',
                             cursor: 'pointer', outline: 'none',
                           }}
                         >
@@ -289,26 +299,26 @@ export default function Dashboard() {
                       <td style={{ padding: '12px 16px' }}>
                         {lead.source === 'diagnostic' && lead.diagnosticGapScore !== undefined ? (
                           <>
-                            <span style={{ fontSize: 15, fontWeight: 800, color: (100 - lead.diagnosticGapScore) >= 70 ? '#3dba6e' : (100 - lead.diagnosticGapScore) >= 40 ? '#e8a838' : '#e05b3a' }}>{100 - lead.diagnosticGapScore}</span>
-                            <span style={{ fontSize: 11, color: '#83827d' }}>/100</span>
+                            <span style={{ fontFamily: M, fontSize: 15, fontWeight: 700, color: scoreColor((100 - lead.diagnosticGapScore) / 10) }}>{100 - lead.diagnosticGapScore}</span>
+                            <span style={{ fontSize: 11, color: MUT }}>/100</span>
                           </>
                         ) : (
                           <>
-                            <span style={{ fontSize: 15, fontWeight: 800, color: scoreColor(lead.score) }}>{lead.score}</span>
-                            <span style={{ fontSize: 11, color: '#83827d' }}>/10</span>
-                            {lead.qualified && <span style={{ marginLeft: 6, fontSize: 10, background: 'rgba(61,186,110,0.12)', color: '#3dba6e', borderRadius: 4, padding: '1px 5px', fontWeight: 700 }}>✓ qualified</span>}
+                            <span style={{ fontFamily: M, fontSize: 15, fontWeight: 700, color: scoreColor(lead.score) }}>{lead.score}</span>
+                            <span style={{ fontSize: 11, color: MUT }}>/10</span>
+                            {lead.qualified && <span style={{ marginLeft: 6, fontFamily: M, fontSize: 10, background: 'rgba(26,94,53,0.12)', color: GRN, padding: '1px 5px', fontWeight: 700 }}>✓ qualified</span>}
                           </>
                         )}
                       </td>
                       {/* Lang */}
-                      <td style={{ padding: '12px 16px', color: '#83827d', fontSize: 12, textTransform: 'uppercase', fontWeight: 600 }}>{lead.lang}</td>
+                      <td style={{ padding: '12px 16px', color: MUT, fontFamily: M, fontSize: 12, textTransform: 'uppercase', fontWeight: 700 }}>{lead.lang}</td>
                       {/* Time */}
-                      <td style={{ padding: '12px 16px', color: '#83827d', fontSize: 12, whiteSpace: 'nowrap' }}>{timeAgo(lead.submittedAt)}</td>
+                      <td style={{ padding: '12px 16px', color: MUT, fontSize: 12, whiteSpace: 'nowrap' }}>{timeAgo(lead.submittedAt)}</td>
                       {/* Actions */}
                       <td style={{ padding: '12px 16px' }} onClick={e => e.stopPropagation()}>
                         <a
                           href={`mailto:${lead.email}`}
-                          style={{ fontSize: 12, color: '#c96442', textDecoration: 'none', fontWeight: 600 }}
+                          style={{ fontFamily: M, fontSize: 11, color: ORANGE, textDecoration: 'none', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.04em' }}
                         >
                           Email →
                         </a>
@@ -317,7 +327,7 @@ export default function Dashboard() {
 
                     {/* Expanded row */}
                     {expandedId === lead.id && (
-                      <tr key={`${lead.id}-exp`} style={{ background: '#faf9f5', borderBottom: '1px solid rgba(61,57,41,0.06)' }}>
+                      <tr key={`${lead.id}-exp`} style={{ background: 'rgba(26,94,53,0.03)', borderBottom: `1px solid rgba(14,13,11,0.12)` }}>
                         <td colSpan={7} style={{ padding: '16px 24px' }}>
                           {lead.source === 'diagnostic' && lead.diagnosticContext && (
                             <div style={{ display: 'flex', gap: 20, marginBottom: 16, flexWrap: 'wrap' }}>
@@ -328,15 +338,15 @@ export default function Dashboard() {
                                 { label: 'Deal value', value: lead.diagnosticContext.avgDealValue },
                                 ...(lead.diagnosticContext.phone ? [{ label: 'Telefoon', value: lead.diagnosticContext.phone }] : []),
                               ].map(({ label, value }) => (
-                                <div key={label} style={{ background: '#fff', border: '1px solid rgba(61,57,41,0.1)', borderRadius: 8, padding: '6px 12px' }}>
-                                  <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#83827d', marginBottom: 2 }}>{label}</div>
-                                  <div style={{ fontSize: 13, fontWeight: 600, color: '#3d3929' }}>{value}</div>
+                                <div key={label} style={{ background: '#fff', border: `1px solid rgba(14,13,11,0.15)`, padding: '6px 12px' }}>
+                                  <div style={{ fontFamily: M, fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: MUT, marginBottom: 2 }}>{label}</div>
+                                  <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>{value}</div>
                                 </div>
                               ))}
                               {lead.diagnosticContext.website && (
-                                <div style={{ background: '#fff', border: '1px solid rgba(61,57,41,0.1)', borderRadius: 8, padding: '6px 12px' }}>
-                                  <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#83827d', marginBottom: 2 }}>Website</div>
-                                  <a href={lead.diagnosticContext.website.startsWith('http') ? lead.diagnosticContext.website : `https://${lead.diagnosticContext.website}`} target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, fontWeight: 600, color: '#c96442', textDecoration: 'none' }}>{lead.diagnosticContext.website}</a>
+                                <div style={{ background: '#fff', border: `1px solid rgba(14,13,11,0.15)`, padding: '6px 12px' }}>
+                                  <div style={{ fontFamily: M, fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: MUT, marginBottom: 2 }}>Website</div>
+                                  <a href={lead.diagnosticContext.website.startsWith('http') ? lead.diagnosticContext.website : `https://${lead.diagnosticContext.website}`} target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, fontWeight: 700, color: ORANGE, textDecoration: 'none' }}>{lead.diagnosticContext.website}</a>
                                 </div>
                               )}
                             </div>
@@ -346,7 +356,7 @@ export default function Dashboard() {
                             <div>
                               {lead.source === 'diagnostic' && lead.diagnosticAnswers ? (
                                 <>
-                                  <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#83827d', marginBottom: 10 }}>Diagnostic antwoorden</div>
+                                  <div style={{ fontFamily: M, fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: MUT, marginBottom: 10 }}>Diagnostic antwoorden</div>
                                   {(() => {
                                     const LEVER_LABELS: Record<string, string> = {
                                       marketing: 'Online aanwezigheid & inbound',
@@ -369,19 +379,19 @@ export default function Dashboard() {
                                     const order = lead.diagnosticTopLevers ?? Object.keys(LEVER_LABELS)
                                     return order.map(key => {
                                       const val = lead.diagnosticAnswers![key] ?? 0
-                                      const dotColor = val === 3 ? '#e05b3a' : val === 2 ? '#e8a838' : val === 1 ? '#7ec87e' : '#e5e3dc'
+                                      const dotColor = val === 3 ? ORANGE : val === 2 ? '#b8794f' : val === 1 ? GRN : 'rgba(14,13,11,0.1)'
                                       const answerText = ANSWER_TEXT[key]?.[val] ?? '—'
                                       return (
                                         <div key={key} style={{ marginBottom: 10 }}>
                                           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2 }}>
                                             <div style={{ display: 'flex', gap: 3 }}>
                                               {[1, 2, 3].map(i => (
-                                                <div key={i} style={{ width: 8, height: 8, borderRadius: 2, background: i <= val ? dotColor : 'rgba(61,57,41,0.08)' }} />
+                                                <div key={i} style={{ width: 8, height: 8, background: i <= val ? dotColor : 'rgba(14,13,11,0.08)' }} />
                                               ))}
                                             </div>
-                                            <span style={{ fontSize: 11, fontWeight: 700, color: '#83827d', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{LEVER_LABELS[key] ?? key}</span>
+                                            <span style={{ fontFamily: M, fontSize: 11, fontWeight: 700, color: MUT, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{LEVER_LABELS[key] ?? key}</span>
                                           </div>
-                                          <div style={{ fontSize: 12, color: '#3d3929', fontStyle: 'italic', paddingLeft: 30 }}>&ldquo;{answerText}&rdquo;</div>
+                                          <div style={{ fontSize: 12, color: INK, fontStyle: 'italic', paddingLeft: 30 }}>&ldquo;{answerText}&rdquo;</div>
                                         </div>
                                       )
                                     })
@@ -389,14 +399,14 @@ export default function Dashboard() {
                                 </>
                               ) : (
                                 <>
-                                  <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#83827d', marginBottom: 6 }}>Message</div>
-                                  <p style={{ fontSize: 13, lineHeight: 1.6, color: '#535146', margin: 0 }}>{lead.message}</p>
+                                  <div style={{ fontFamily: M, fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: MUT, marginBottom: 6 }}>Message</div>
+                                  <p style={{ fontSize: 13, lineHeight: 1.6, color: INK, margin: 0 }}>{lead.message}</p>
                                 </>
                               )}
                             </div>
                             {/* Right: outreach timeline */}
                             <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-                              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#83827d', marginBottom: 12 }}>Outreach timeline</div>
+                              <div style={{ fontFamily: M, fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: MUT, marginBottom: 12 }}>Outreach timeline</div>
                               {(() => {
                                 const sub = lead.submittedAt
                                 const now = Date.now()
@@ -441,24 +451,24 @@ export default function Dashboard() {
                                 ]
 
                                 const dotStyle: Record<StepStatus, { bg: string; label: string }> = {
-                                  done:     { bg: '#3dba6e', label: '✓' },
-                                  upcoming: { bg: '#e8a838', label: '·' },
-                                  pending:  { bg: '#e05b3a', label: '!' },
-                                  replied:  { bg: '#3dba6e', label: '✓' },
-                                  missed:   { bg: '#b0aea8', label: '—' },
+                                  done:     { bg: GRN,    label: '✓' },
+                                  upcoming: { bg: MUT,    label: '·' },
+                                  pending:  { bg: ORANGE, label: '!' },
+                                  replied:  { bg: GRN,    label: '✓' },
+                                  missed:   { bg: 'rgba(14,13,11,0.3)', label: '—' },
                                 }
 
                                 return (
                                   <div style={{ position: 'relative', paddingLeft: 24 }}>
-                                    <div style={{ position: 'absolute', left: 7, top: 8, bottom: 8, width: 1, background: 'rgba(61,57,41,0.1)' }} />
+                                    <div style={{ position: 'absolute', left: 7, top: 8, bottom: 8, width: 1, background: 'rgba(14,13,11,0.15)' }} />
                                     {steps.map((s, i) => {
                                       const d = dotStyle[s.status]
                                       return (
                                         <div key={i} style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 10, position: 'relative' }}>
-                                          <div style={{ position: 'absolute', left: -24, top: 2, width: 15, height: 15, borderRadius: '50%', background: d.bg, color: '#fff', fontSize: 9, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{d.label}</div>
+                                          <div style={{ position: 'absolute', left: -24, top: 2, width: 15, height: 15, borderRadius: '50%', background: d.bg, color: '#fff', fontSize: 9, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{d.label}</div>
                                           <div>
-                                            <div style={{ fontSize: 12, fontWeight: 600, color: '#3d3929', lineHeight: 1.3 }}>{s.label}</div>
-                                            <div style={{ fontSize: 11, color: s.status === 'pending' && !lead.repliedAt ? '#e05b3a' : '#83827d', marginTop: 1 }}>{s.detail}</div>
+                                            <div style={{ fontSize: 12, fontWeight: 700, color: INK, lineHeight: 1.3 }}>{s.label}</div>
+                                            <div style={{ fontSize: 11, color: s.status === 'pending' && !lead.repliedAt ? ORANGE : MUT, marginTop: 1 }}>{s.detail}</div>
                                           </div>
                                         </div>
                                       )
@@ -468,24 +478,24 @@ export default function Dashboard() {
                               })()}
 
                               {/* Actions */}
-                              <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 8, paddingTop: 12, borderTop: '1px solid rgba(61,57,41,0.08)' }}>
+                              <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 8, paddingTop: 12, borderTop: `1px solid rgba(14,13,11,0.12)` }}>
                                 <a
                                   href={`https://mail.google.com/mail/u/0/#search/${encodeURIComponent(lead.email)}`}
                                   target="_blank" rel="noopener noreferrer"
-                                  style={{ fontSize: 12, color: '#3b82f6', fontWeight: 600 }}
+                                  style={{ fontSize: 12, color: INK, fontWeight: 700 }}
                                 >
                                   Bekijk thread in Gmail →
                                 </a>
                                 <a
                                   href={`mailto:${lead.email}?subject=Re: jouw diagnose`}
-                                  style={{ fontSize: 12, color: '#c96442', fontWeight: 600 }}
+                                  style={{ fontSize: 12, color: ORANGE, fontWeight: 700 }}
                                 >
                                   Stuur persoonlijk antwoord →
                                 </a>
                                 <a
                                   href="https://calendly.com/sovereign-now333/free-intro-call-clone"
                                   target="_blank" rel="noopener noreferrer"
-                                  style={{ fontSize: 12, color: '#83827d', fontWeight: 600 }}
+                                  style={{ fontSize: 12, color: MUT, fontWeight: 700 }}
                                 >
                                   Boek gesprek →
                                 </a>
@@ -502,7 +512,7 @@ export default function Dashboard() {
           </div>
         )}
 
-        <div style={{ marginTop: 12, fontSize: 12, color: '#83827d', textAlign: 'right' }}>
+        <div style={{ marginTop: 12, fontFamily: M, fontSize: 11, color: MUT, textAlign: 'right', textTransform: 'uppercase', letterSpacing: '.04em' }}>
           {filtered.length} of {leads.length} leads
         </div>
       </div>

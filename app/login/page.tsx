@@ -3,6 +3,12 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
+const B = 'var(--font-brutalist, system-ui)'
+const M = 'var(--font-mono-brutalist, monospace)'
+const INK = '#0e0d0b'
+const BG = '#f2f0eb'
+const ORANGE = '#c96442'
+
 export default function Login() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -31,18 +37,18 @@ export default function Login() {
   return (
     <div style={{
       minHeight: '100svh',
-      background: 'linear-gradient(to bottom, #faf9f5, #f0ede4)',
+      background: BG,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      fontFamily: B,
     }}>
       <div style={{ width: '100%', maxWidth: 360, padding: '0 24px' }}>
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#c96442', marginBottom: 8 }}>
+          <div style={{ fontFamily: M, fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: ORANGE, marginBottom: 8 }}>
             Lead it, Grow
           </div>
-          <h1 style={{ fontSize: 22, fontWeight: 700, color: '#3d3929', margin: 0 }}>Dashboard</h1>
+          <h1 style={{ fontFamily: B, fontSize: 22, fontWeight: 700, color: INK, margin: 0, textTransform: 'uppercase', letterSpacing: '-.02em' }}>Dashboard</h1>
         </div>
         <form onSubmit={handleSubmit}>
           <input
@@ -54,29 +60,31 @@ export default function Login() {
             style={{
               width: '100%',
               padding: '12px 16px',
-              borderRadius: 12,
-              border: '1px solid rgba(61,57,41,0.15)',
+              border: `2px solid ${INK}`,
               background: '#fff',
+              fontFamily: B,
               fontSize: 15,
-              color: '#3d3929',
+              color: INK,
               outline: 'none',
               marginBottom: 12,
               boxSizing: 'border-box',
             }}
           />
-          {error && <p style={{ fontSize: 13, color: '#e05b3a', marginBottom: 10 }}>{error}</p>}
+          {error && <p style={{ fontFamily: M, fontSize: 12, color: ORANGE, marginBottom: 10 }}>{error}</p>}
           <button
             type="submit"
             disabled={loading || !password}
             style={{
               width: '100%',
               padding: '13px',
-              borderRadius: 12,
-              border: 'none',
-              background: '#c96442',
-              color: '#fff',
-              fontSize: 15,
+              border: `2px solid ${INK}`,
+              background: INK,
+              color: BG,
+              fontFamily: B,
+              fontSize: 14,
               fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '.06em',
               cursor: loading ? 'not-allowed' : 'pointer',
               opacity: loading || !password ? 0.6 : 1,
             }}
