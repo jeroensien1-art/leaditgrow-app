@@ -9,6 +9,7 @@ const BG  = '#f2f0eb'
 const GRN = '#1a5e35'
 const LIME = '#4ade80'
 const MUT = '#787068'
+const ORANGE = '#c96442'
 
 export function Hero() {
   const { t } = useLang()
@@ -51,7 +52,7 @@ export function Hero() {
           text-transform: uppercase;
           font-family: ${B};
         }
-        .b-hero-h1 .accent-word { color: ${GRN}; display: block; transition: color 0.4s; }
+        .b-hero-h1 .accent-word { color: ${ORANGE}; display: block; transition: color 0.4s; }
         .b-hero-h1 .outline-word {
           -webkit-text-stroke: 2px ${INK};
           color: transparent;
@@ -189,7 +190,7 @@ export function Hero() {
           border-color: ${LIME};
           box-shadow: 0 0 28px rgba(74,222,128,0.3);
         }
-        .b-hero.in-view .b-hero-h1 .accent-word { color: ${LIME}; }
+        .b-hero.in-view .b-hero-h1 .accent-word { color: ${INK}; }
         .b-hero.in-view .b-hero-right-mid {
           background: ${LIME};
           box-shadow: none;
@@ -214,20 +215,20 @@ export function Hero() {
             </div>
 
             <h1 className="b-hero-h1">
-              <span>{t('Voorspel-', 'Predict-')}</span>
-              <span className="accent-word">{t('bare', 'able')}</span>
-              <span className="outline-word">{t('groei.', 'growth.')}</span>
+              <span>{t('Je omzet', 'Your revenue')}</span>
+              <span className="accent-word">{t('lekt.', 'leaks.')}</span>
+              <span className="outline-word">{t('Elke maand.', 'Every month.')}</span>
             </h1>
 
             <div className="b-hero-bottom">
               <p className="b-hero-tagline">
                 {t(
-                  'Bouw een groeimotor die leads aanbrengt, converteert en jou tijd teruggeeft voor leiderschap, strategie en creativiteit.',
-                  'Build a growth engine that attracts, converts leads and gives you back time for leadership, strategy and creativity.'
+                  '78% van je aanvragen koopt bij wie het eerst antwoordt. Terwijl jij offertes maakt of op de werf staat, tekent jouw lead bij een ander.',
+                  '78% of buyers go with whoever answers first. While you are drafting quotes or on site, your lead is signing with someone else.'
                 )}
               </p>
               <div className="b-hero-ctas">
-                <a href="/diagnostic" className="b-btn-black">{t('Start diagnose', 'Start diagnostic')} →</a>
+                <a href="/diagnostic" className="b-btn-black">{t('Toon mijn lek', 'Show me my leak')} →</a>
                 <a href="#contact" className="b-btn-outline">{t('Plan gesprek', 'Book a call')}</a>
               </div>
             </div>
@@ -244,8 +245,8 @@ export function Hero() {
               <p>{t('Gratis rapport', 'Free report')}</p>
               <strong>
                 {t(
-                  'Jouw top 3 groeikansen en een 14-dagenplan, volledig gratis.',
-                  'Your top 3 growth gaps and a 14-day action plan, completely free.'
+                  'De 3 lekken die jou nu het meeste kosten, plus een 14-dagenplan om ze te dichten.',
+                  'The 3 leaks costing you the most right now, plus a 14-day plan to close them.'
                 )}
               </strong>
             </div>

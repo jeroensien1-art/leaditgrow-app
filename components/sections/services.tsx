@@ -9,6 +9,7 @@ const INK  = '#0e0d0b'
 const GRN  = '#1a5e35'
 const LIME = '#4ade80'
 const MUT  = '#787068'
+const ORANGE = '#c96442'
 
 function getLevels(t: (nl: string, en: string) => string) {
   return [
@@ -274,13 +275,13 @@ export function Services() {
         }
         .b-ladder-cta-btn {
           display: inline-flex; align-items: center; gap: 8px;
-          background: ${GRN}; color: #fff; padding: 12px 22px;
+          background: ${ORANGE}; color: #fff; padding: 12px 22px;
           font-size: 12px; font-weight: 700; letter-spacing: .06em;
           text-transform: uppercase; text-decoration: none; flex-shrink: 0;
           font-family: ${B};
           transition: background .15s;
         }
-        .b-ladder-cta-btn:hover { background: #0f3d21; }
+        .b-ladder-cta-btn:hover { background: #a84f34; }
 
         /* SPOTLIGHT */
         .b-ladder-section.in-view .b-ladder-header-left {
@@ -366,13 +367,13 @@ export function Services() {
             <div className="b-ladder-cta-label">{t('Gratis rapport', 'Free report')}</div>
             <div className="b-ladder-cta-title">
               {t(
-                'Krijg jouw gratis bedrijfsrapport en 14-dagenplan.',
-                'Get your free business report and 14-day plan.'
+                'Vind je grootste lek. Dicht het in 14 dagen.',
+                'Find your biggest leak. Close it in 14 days.'
               )}
             </div>
           </div>
           <a href="/diagnostic" className="b-ladder-cta-btn">
-            {t('Start gratis', 'Start free')} →
+            {t('Toon mijn lek', 'Show me my leak')} →
           </a>
         </div>
       </section>

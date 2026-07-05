@@ -229,7 +229,7 @@ export function Contact() {
                   type="submit"
                   disabled={sending || !turnstileToken}
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90 disabled:opacity-60"
-                  style={{ background: '#1a5e35' }}
+                  style={{ background: '#c96442' }}
                 >
                   {sending ? t('Versturen...', 'Sending...') : t('Verstuur', 'Send')}
                   <ArrowRight className="w-4 h-4" />

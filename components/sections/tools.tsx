@@ -9,6 +9,7 @@ const BG   = '#f2f0eb'
 const GRN  = '#1a5e35'
 const LIME = '#4ade80'
 const MUT  = '#787068'
+const ORANGE = '#c96442'
 
 export function Tools() {
   const { t } = useLang()
@@ -56,7 +57,7 @@ export function Tools() {
           color: ${BG};
           transition: color 0.4s;
         }
-        .b-tools-h2 .accent { color: ${GRN}; transition: color 0.4s; }
+        .b-tools-h2 .accent { color: ${ORANGE}; transition: color 0.4s; }
         .b-tools-desc {
           font-size: 14px;
           color: rgba(242,240,235,.38);
@@ -148,9 +149,9 @@ export function Tools() {
           <div className="b-tools-header-left">
             <div className="b-tools-num">// 02 {t('Gratis tools', 'Free tools')}</div>
             <h2 className="b-tools-h2">
-              {t('Waar wil', 'Where do')}<br />
-              {t('je', 'you want')}<br />
-              <span className="accent">{t('starten?', 'to start?')}</span>
+              {t('Waar', 'Where')}<br />
+              {t('jouw omzet', 'your revenue')}<br />
+              <span className="accent">{t('lekt.', 'leaks.')}</span>
             </h2>
           </div>
           <div className="b-tools-header-right">
@@ -185,7 +186,7 @@ export function Tools() {
                 '6 targeted questions. You get a personalised report with your top 3 growth gaps and a 14-day action plan.'
               )}
             </p>
-            <div className="b-tool-cta">{t('Start gratis diagnose', 'Start free diagnostic')} →</div>
+            <div className="b-tool-cta">{t('Toon mijn 3 lekken', 'Show me my 3 leaks')} →</div>
           </a>
         </div>
       </section>

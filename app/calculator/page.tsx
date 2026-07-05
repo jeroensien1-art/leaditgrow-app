@@ -405,7 +405,7 @@ export default function CalculatorPage() {
                     className="btn-green"
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, textDecoration: 'none' }}
                   >
-                    {nl ? 'Ontdek alle groeikansen' : 'Discover all growth gaps'}
+                    {nl ? 'Toon mijn 3 lekken' : 'Show me my 3 leaks'}
                     <ArrowRight size={16} />
                   </a>
                 </div>

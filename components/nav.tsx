@@ -135,7 +135,7 @@ export function Nav() {
           ))}
           <li>
             <a href="/diagnostic" className="b-nav-cta">
-              {t('Start diagnose', 'Start diagnostic')}
+              {t('Toon mijn lek', 'Show me my leak')}
             </a>
           </li>
           <a
@@ -160,7 +160,7 @@ export function Nav() {
             <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)}>{l.label}</a>
           ))}
           <a href="/diagnostic" className="cta" onClick={() => setMenuOpen(false)}>
-            {t('Start gratis diagnose', 'Start free diagnostic')}
+            {t('Toon mijn lek', 'Show me my leak')}
           </a>
         </div>
       )}
