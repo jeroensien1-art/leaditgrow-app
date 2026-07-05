@@ -32,6 +32,7 @@ export function StatsBar() {
           background: #4ade80;
         }
         .stats-bar.in-view .stat-n  { color: #0e0d0b; text-shadow: none; }
+        .stats-bar.in-view .stat-n-link { color: #c96442; }
         .stats-bar.in-view .stat-t  { color: rgba(14,13,11,0.55); }
         .stat-block {
           padding: 56px 40px;

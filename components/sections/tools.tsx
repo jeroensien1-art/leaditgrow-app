@@ -128,10 +128,8 @@ export function Tools() {
         .b-tools-section.in-view .b-tools-header-left { background: ${LIME}; }
         .b-tools-section.in-view .b-tools-num { color: ${INK}; opacity: .5; }
         .b-tools-section.in-view .b-tools-h2 { color: ${INK}; }
-        .b-tools-section.in-view .b-tools-h2 .accent { color: ${INK}; }
         .b-tools-section.in-view .b-tools-desc { color: rgba(14,13,11,.55); }
         .b-tools-section.in-view .b-tool-card { background: ${LIME}; border-top-color: ${INK}; border-right-color: rgba(14,13,11,.15); border-bottom-color: rgba(14,13,11,.15); }
-        .b-tools-section.in-view .b-tool-tag { color: ${INK}; }
         .b-tools-section.in-view .b-tool-title { color: ${INK}; }
         .b-tools-section.in-view .b-tool-body { color: rgba(14,13,11,.55); }
         .b-tools-section.in-view .b-tool-cta { color: ${INK}; }

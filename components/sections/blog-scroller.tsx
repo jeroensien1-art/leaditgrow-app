@@ -42,7 +42,7 @@ export function BlogScroller() {
 
         <div
           className="blog-scroller-track"
-          style={{ display: 'flex', gap: '20px', width: 'max-content', animation: 'blog-scroll 40s linear infinite' }}
+          style={{ display: 'flex', gap: '20px', width: 'max-content', animation: 'blog-scroll 90s linear infinite' }}
         >
           {doubled.map((post, i) => (
             <Link

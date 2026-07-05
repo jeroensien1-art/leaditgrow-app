@@ -324,7 +324,7 @@ export function Services() {
         .b-ladder-section.in-view .b-ladder-row.open .b-lr-num  { color: rgba(14,13,11,.45); }
         .b-ladder-section.in-view .b-ladder-row.open .b-lr-name { color: ${INK}; }
         .b-ladder-section.in-view .b-ladder-row.open .b-lr-kw   { color: ${INK}; border-color: rgba(14,13,11,.3); font-weight: 700; }
-        .b-ladder-section.in-view .b-ladder-row.open .b-lr-kw-link { color: ${INK}; border-color: rgba(14,13,11,.5); }
+        .b-ladder-section.in-view .b-ladder-row.open .b-lr-kw-link { color: ${ORANGE}; border-color: ${ORANGE}; }
         .b-ladder-section.in-view .b-ladder-row.open .b-lr-expand-desc { color: ${INK}; opacity: .6; }
         .b-ladder-section.in-view .b-ladder-row.open .b-lr-action {
           color: ${INK}; border-top-color: rgba(14,13,11,.35); background: rgba(14,13,11,.06);

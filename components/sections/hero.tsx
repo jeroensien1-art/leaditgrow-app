@@ -190,7 +190,6 @@ export function Hero() {
           border-color: ${LIME};
           box-shadow: 0 0 28px rgba(74,222,128,0.3);
         }
-        .b-hero.in-view .b-hero-h1 .accent-word { color: ${INK}; }
         .b-hero.in-view .b-hero-right-mid {
           background: ${LIME};
           box-shadow: none;

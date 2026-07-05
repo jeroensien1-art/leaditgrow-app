@@ -57,7 +57,8 @@ export function About() {
           color: ${BG};
           transition: color 0.4s;
         }
-        .b-about-h2 .accent { color: ${ORANGE}; transition: color 0.4s; text-decoration: none; cursor: pointer; }
+        .b-about-h2 .accent { color: ${ORANGE}; transition: color 0.4s; }
+        .b-about-h2-link { display: block; text-decoration: none; color: inherit; cursor: pointer; }
         .b-about-body {
           font-size: 14px;
           color: rgba(242,240,235,.5);
@@ -156,11 +157,11 @@ export function About() {
         .b-about-section.in-view .b-about-left { background: ${LIME}; }
         .b-about-section.in-view .b-about-num { color: rgba(14,13,11,.4); }
         .b-about-section.in-view .b-about-h2 { color: ${INK}; }
-        .b-about-section.in-view .b-about-h2 .accent { color: ${INK}; }
+        .b-about-section.in-view .b-about-h2 .accent { color: ${ORANGE}; }
         .b-about-section.in-view .b-about-body { color: rgba(14,13,11,.55); }
         .b-about-section.in-view .b-about-cta { color: ${INK}; }
         .b-about-section.in-view .b-about-stat-val { color: ${GRN}; }
-        .b-about-section.in-view .b-about-stat-val-link { color: ${INK}; }
+        .b-about-section.in-view .b-about-stat-val-link { color: ${ORANGE}; }
         .b-about-section.in-view .b-about-right { background: ${LIME}; }
         .b-about-section.in-view .b-about-uman { background: rgba(14,13,11,.06); border-left-color: ${INK}; }
         .b-about-section.in-view .b-about-uman-label { color: ${INK}; }
@@ -179,11 +180,13 @@ export function About() {
           <div>
             <div className="b-about-num">// 03 {t('Over mij', 'About me')}</div>
           </div>
-          <h2 className="b-about-h2">
-            {t('Systemen die', 'Systems that')}<br />
-            {t('tijd', 'give back')}<br />
-            <a href="/systeem-op-autopilot" className="accent">{t('teruggeven.', 'time.')}</a>
-          </h2>
+          <a href="/systeem-op-autopilot" className="b-about-h2-link">
+            <h2 className="b-about-h2">
+              {t('Systemen die', 'Systems that')}<br />
+              {t('tijd', 'give back')}<br />
+              <span className="accent">{t('teruggeven.', 'time.')}</span>
+            </h2>
+          </a>
           <p className="b-about-body">
             {t(
               'Ik combineer business strategy met een voorspelbare groeimotor: systemen die leads automatisch opvolgen, kwalificeren en converteren. Zo leg ik de operationele last weg en creëer ik ruimte voor wat jij het best doet: leiden en bouwen.',

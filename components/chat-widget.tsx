@@ -65,8 +65,8 @@ export function ChatWidget() {
         setMessages([{
           from: 'bot',
           text: nl
-            ? 'Hoi! Ik ben Jeroen. In 2 korte vragen weet ik waarmee ik je het best kan helpen.'
-            : 'Hi! I\'m Jeroen. In 2 short questions I\'ll know exactly how I can help you best.',
+            ? 'Hoi! Ik ben Jeroen. Beantwoord 2 korte vragen, dan weet ik of een samenwerking nuttig kan zijn en toon ik je de weg naar meer omzet mét meer controle en vrijheid.'
+            : 'Hi! I\'m Jeroen. Answer 2 short questions, then I\'ll know if working together makes sense and I\'ll show you the way to more revenue with more control and freedom.',
         }])
         setBotStep('challenge')
       }, 700)
