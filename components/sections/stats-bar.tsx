@@ -1,11 +1,16 @@
+'use client'
+
+import { useLang } from '@/components/lang-context'
+
 const STATS = [
-  { value: '78%',   label: 'van leads verloren bij opvolging na meer dan 2 uur' },
-  { value: '+40%',  label: 'meer conversie zonder extra advertentiebudget' },
-  { value: '4 wk',  label: 'van constante druk naar systeem op autopilot' },
-  { value: '80%',   label: 'minder manueel werk dankzij automatisering' },
+  { value: '78%',   nl: 'van leads verloren bij opvolging na meer dan 2 uur', en: 'of leads lost when follow-up takes more than 2 hours' },
+  { value: '+40%',  nl: 'meer conversie zonder extra advertentiebudget', en: 'more conversions without extra ad budget' },
+  { value: '4 wk',  nl: 'van constante druk naar systeem op autopilot', en: 'from constant pressure to a system on autopilot' },
+  { value: '80%',   nl: 'minder manueel werk dankzij automatisering', en: 'less manual work thanks to automation' },
 ]
 
 export function StatsBar() {
+  const { t } = useLang()
   return (
     <>
       <style>{`
@@ -62,7 +67,7 @@ export function StatsBar() {
         {STATS.map(s => (
           <div key={s.value} className="stat-block">
             <div className="stat-n">{s.value}</div>
-            <p className="stat-t">{s.label}</p>
+            <p className="stat-t">{t(s.nl, s.en)}</p>
           </div>
         ))}
       </div>

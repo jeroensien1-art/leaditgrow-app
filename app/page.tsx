@@ -10,6 +10,7 @@ import { About } from '@/components/sections/about'
 import { Contact } from '@/components/sections/contact'
 import { BlogScroller } from '@/components/sections/blog-scroller'
 import { ChatWidget } from '@/components/chat-widget'
+import { FooterCta } from '@/components/footer-cta'
 
 export default function Home() {
   return (
@@ -48,9 +49,7 @@ export default function Home() {
         <span style={{ fontFamily: 'var(--font-mono-brutalist, monospace)', fontSize: '10px', color: 'rgba(242,240,235,.18)', letterSpacing: '.06em' }}>
           © {new Date().getFullYear()} · leaditgrow.be · leaditgrow.com
         </span>
-        <a href="/diagnostic" style={{ fontFamily: 'var(--font-mono-brutalist, monospace)', fontSize: '10px', fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: '#1a5e35', textDecoration: 'none' }}>
-          Start gratis →
-        </a>
+        <FooterCta />
       </footer>
       <ChatWidget />
     </>

@@ -10,49 +10,70 @@ const GRN  = '#1a5e35'
 const LIME = '#4ade80'
 const MUT  = '#787068'
 
-const LEVELS = [
-  {
-    id: '01', name: 'Foundation',
-    keywords: ['Aanbod definiëren', 'ICP bepalen', 'Speed-to-lead'],
-    desc: 'Je hebt al klanten. De vraag is niet of je aanbod werkt, maar voor wie het het beste werkt en via welk kanaal je er meer van vindt.',
-    actions: ['Aanbod scherpen', 'ICP vastleggen', 'Kanaal kiezen'],
-  },
-  {
-    id: '02', name: 'Capture',
-    keywords: ['CRM activeren', 'Leadmagneet bouwen', 'Nurture sequentie'],
-    desc: '60 tot 80% van de leads lekt weg omdat niemand ze consequent opvolgt. Een CRM en nurture sequentie verdubbelen je omzet zonder één extra lead.',
-    actions: ['CRM inrichten', 'Leadmagneet live', 'Sequentie schrijven'],
-  },
-  {
-    id: '03', name: 'Convert',
-    keywords: ['Salesscript documenteren', 'Website CRO', 'Offer ladder'],
-    desc: 'Conversie van 25 naar 35% bouwt meer omzet dan een verdubbeling van je adbudget. Eerst de pipeline fixen, dan de kraan openzetten.',
-    actions: ['Script documenteren', 'Pagina optimaliseren', 'Offer uitschrijven'],
-  },
-  {
-    id: '04', name: 'Acquire',
-    keywords: ['Best kanaal opschalen', 'Retargeting', 'Tweede kanaal'],
-    desc: 'Schaal alleen wat al bewezen converteert. Een nieuw kanaal in deze fase is een experiment van maximaal 10% van het budget.',
-    actions: ['Kanaal opschalen', 'Retargeting live', 'Test & leer'],
-  },
-  {
-    id: '05', name: 'Compound',
-    keywords: ['SEO als systeem', 'Videoprogramma', 'Thought leadership'],
-    desc: 'SEO en video starten hier pas gestructureerd. Tot dit niveau ontbreekt het budget om 12 tot 18 maanden geduldig te zijn voor het rendement komt.',
-    actions: ['SEO structuur', 'Videoprogramma', 'Content systeem'],
-  },
-  {
-    id: '06', name: 'Multiply',
-    keywords: ['AI agents', 'Partnerprogramma', 'Categorie definiëren'],
-    desc: 'Brand, AI en partnerships zijn compounding assets. Jouw rol verschuift van uitvoering naar richting geven.',
-    actions: ['AI inzetten', 'Partners vinden', 'Categorie claimen'],
-  },
-]
+function getLevels(t: (nl: string, en: string) => string) {
+  return [
+    {
+      id: '01', name: 'Foundation',
+      keywords: [t('Aanbod definiëren', 'Define offer'), t('ICP bepalen', 'Determine ICP'), 'Speed-to-lead'],
+      desc: t(
+        'Je hebt al klanten. De vraag is niet of je aanbod werkt, maar voor wie het het beste werkt en via welk kanaal je er meer van vindt.',
+        'You already have customers. The question is not whether your offer works, but who it works best for and which channel brings you more of them.'
+      ),
+      actions: [t('Aanbod scherpen', 'Sharpen offer'), t('ICP vastleggen', 'Lock in ICP'), t('Kanaal kiezen', 'Choose channel')],
+    },
+    {
+      id: '02', name: 'Capture',
+      keywords: [t('CRM activeren', 'Activate CRM'), t('Leadmagneet bouwen', 'Build lead magnet'), t('Nurture sequentie', 'Nurture sequence')],
+      desc: t(
+        '60 tot 80% van de leads lekt weg omdat niemand ze consequent opvolgt. Een CRM en nurture sequentie verdubbelen je omzet zonder één extra lead.',
+        '60 to 80% of leads leak away because nobody follows up consistently. A CRM and nurture sequence double your revenue without a single extra lead.'
+      ),
+      actions: [t('CRM inrichten', 'Set up CRM'), t('Leadmagneet live', 'Launch lead magnet'), t('Sequentie schrijven', 'Write sequence')],
+    },
+    {
+      id: '03', name: 'Convert',
+      keywords: [t('Salesscript documenteren', 'Document sales script'), 'Website CRO', 'Offer ladder'],
+      desc: t(
+        'Conversie van 25 naar 35% bouwt meer omzet dan een verdubbeling van je adbudget. Eerst de pipeline fixen, dan de kraan openzetten.',
+        'Boosting conversion from 25 to 35% builds more revenue than doubling your ad budget. Fix the pipeline first, then open the tap.'
+      ),
+      actions: [t('Script documenteren', 'Document script'), t('Pagina optimaliseren', 'Optimise page'), t('Offer uitschrijven', 'Write out offer')],
+    },
+    {
+      id: '04', name: 'Acquire',
+      keywords: [t('Best kanaal opschalen', 'Scale best channel'), 'Retargeting', t('Tweede kanaal', 'Second channel')],
+      desc: t(
+        'Schaal alleen wat al bewezen converteert. Een nieuw kanaal in deze fase is een experiment van maximaal 10% van het budget.',
+        'Only scale what already converts. A new channel at this stage is an experiment capped at 10% of the budget.'
+      ),
+      actions: [t('Kanaal opschalen', 'Scale channel'), t('Retargeting live', 'Launch retargeting'), t('Test & leer', 'Test & learn')],
+    },
+    {
+      id: '05', name: 'Compound',
+      keywords: [t('SEO als systeem', 'SEO as a system'), t('Videoprogramma', 'Video programme'), 'Thought leadership'],
+      desc: t(
+        'SEO en video starten hier pas gestructureerd. Tot dit niveau ontbreekt het budget om 12 tot 18 maanden geduldig te zijn voor het rendement komt.',
+        'SEO and video only start in a structured way here. Below this level, there is no budget to stay patient for the 12 to 18 months it takes to pay off.'
+      ),
+      actions: [t('SEO structuur', 'SEO structure'), t('Videoprogramma', 'Video programme'), t('Content systeem', 'Content system')],
+    },
+    {
+      id: '06', name: 'Multiply',
+      keywords: ['AI agents', t('Partnerprogramma', 'Partner programme'), t('Categorie definiëren', 'Define category')],
+      desc: t(
+        'Brand, AI en partnerships zijn compounding assets. Jouw rol verschuift van uitvoering naar richting geven.',
+        'Brand, AI, and partnerships are compounding assets. Your role shifts from execution to direction.'
+      ),
+      actions: [t('AI inzetten', 'Deploy AI'), t('Partners vinden', 'Find partners'), t('Categorie claimen', 'Claim category')],
+    },
+  ]
+}
 
 const INTERVAL = 2800
 
 export function Services() {
   const { t } = useLang()
+  const LEVELS = getLevels(t)
   const [openIdx, setOpenIdx] = useState(0)
   const hovered = useRef(false)
   const timer = useRef<ReturnType<typeof setInterval> | null>(null)
