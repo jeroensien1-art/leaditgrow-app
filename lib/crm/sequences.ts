@@ -7,15 +7,22 @@ const SITE = 'https://leaditgrow.be'
 
 // Derives a usable first name from whatever the form submitted.
 // Falls back through: proper name → local part of email → "beste zaakvoerder"
+// The result is interpolated unescaped into email subjects and raw HTML bodies
+// elsewhere in this file, so any character that isn't part of a real name is
+// stripped here — this is the single choke point, not a per-template fix.
 export function resolveName(name: string, email: string): string {
   const n = (name ?? '').trim()
   const source = (!n || n.includes('@')) ? email : n
+  let first: string
   if (source.includes('@')) {
     const local = source.split('@')[0].replace(/[0-9._+\-]/g, ' ').trim().split(/\s+/)[0] ?? ''
     if (!local) return 'beste zaakvoerder'
-    return local.charAt(0).toUpperCase() + local.slice(1).toLowerCase()
+    first = local.charAt(0).toUpperCase() + local.slice(1).toLowerCase()
+  } else {
+    first = source.split(' ')[0] ?? ''
   }
-  return source.split(' ')[0]
+  const safe = first.replace(/[^\p{L}\p{N}'\-]/gu, '')
+  return safe || 'beste zaakvoerder'
 }
 
 function daysFromNow(days: number): string {
@@ -28,8 +35,19 @@ function daysFromNow(days: number): string {
 // ─── PURCHASE SEQUENCE ────────────────────────────────────────────────────────
 // Triggered by Stripe checkout.session.completed
 
-export async function sendPurchaseSequence(name: string, email: string) {
+export async function sendPurchaseSequence(name: string, email: string, product: 'actiehandboek' | 'zaakvoerder-ai-toolkit' = 'actiehandboek') {
   const first = resolveName(name, email)
+
+  if (product === 'zaakvoerder-ai-toolkit') {
+    await resend.emails.send({
+      from: FROM,
+      to: email,
+      bcc: NOTIFY,
+      subject: `${first}, je Zaakvoerder AI Toolkit staat klaar`,
+      html: toolkitPurchaseDay0(first),
+    })
+    return
+  }
 
   // Day 0 — bevestiging + download
   await resend.emails.send({
@@ -69,6 +87,22 @@ export async function sendPurchaseSequence(name: string, email: string) {
     html: purchaseDay14(first),
     scheduledAt: daysFromNow(14),
   })
+}
+
+function toolkitPurchaseDay0(first: string): string {
+  return emailWrap(`
+    <p>Hoi ${first},</p>
+    <p>Betaling gelukt — de Zaakvoerder AI Toolkit staat klaar voor je.</p>
+    <cta-btn href="${SITE}/downloads/zaakvoerder-ai-toolkit.pdf">Download de toolkit →</cta-btn>
+    <p><strong>Waar te beginnen:</strong></p>
+    <ul>
+      <li><strong>Bonusgids achteraan:</strong> stel je AI-assistent één keer in met jouw bedrijfscontext. 20 minuten, en elke prompt daarna past zich automatisch aan.</li>
+      <li><strong>Prompt 1 — Offerte schrijven:</strong> test hier meteen het verschil tussen een generiek antwoord en een antwoord dat klinkt als jij.</li>
+    </ul>
+    <p>Niet tevreden? Mail me binnen 14 dagen, geen vragen, geld terug.</p>
+    <p>Aarzel niet me een bericht te sturen als je vragen hebt!</p>
+    <sign>Jeroen</sign>
+  `)
 }
 
 function purchaseDay0(first: string): string {

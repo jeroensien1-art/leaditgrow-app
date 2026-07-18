@@ -1,0 +1,9 @@
+{
+  "workflow": {
+    "ui_safety_gate": false,
+    "ui_phase": false,
+    "discuss_mode": "discuss",
+    "granularity": "standard",
+    "_auto_chain_active": false
+  }
+}

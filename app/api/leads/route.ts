@@ -45,9 +45,20 @@ async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, message, source, turnstileToken } = await req.json()
+    const raw = await req.json()
 
-    if (!name || !email || !message) {
+    if (!raw.name || !raw.email || !raw.message) {
+      return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
+    }
+
+    // name flows unescaped into email subjects/HTML bodies downstream (claude.ts, email.ts) —
+    // strip anything that isn't a real-name character here, at the public entry point.
+    const name = String(raw.name).replace(/[^\p{L}\p{N}\s'\-]/gu, '').trim().slice(0, 100)
+    const email = String(raw.email).trim().slice(0, 254)
+    const message = String(raw.message).trim().slice(0, 5000)
+    const { source, turnstileToken } = raw
+
+    if (!name) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
     }
 

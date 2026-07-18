@@ -46,13 +46,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: true })
     }
 
+    // Product wordt bepaald aan de hand van het betaalde bedrag — Payment Links
+    // dragen geen eigen productcode mee in checkout.session.completed.
+    const product = amountPaid <= 2000 ? 'zaakvoerder-ai-toolkit' : 'actiehandboek'
+    const productLabel = product === 'zaakvoerder-ai-toolkit' ? 'De Zaakvoerder AI Toolkit' : 'het actiehandboek'
+
     // Save buyer to Supabase
     const { error: insertError } = await supabase.from('buyers').insert({
       stripe_session_id: session.id,
       email,
       name,
       amount_cents: amountPaid,
-      product: 'actiehandboek',
+      product,
     })
     if (insertError) {
       console.error('[stripe/webhook] buyers insert error:', insertError.message)
@@ -60,7 +65,7 @@ export async function POST(req: NextRequest) {
 
     // Trigger purchase email sequence
     try {
-      await sendPurchaseSequence(name, email)
+      await sendPurchaseSequence(name, email, product)
     } catch (err) {
       console.error('[stripe/webhook] sendPurchaseSequence error:', err)
     }
@@ -71,7 +76,7 @@ export async function POST(req: NextRequest) {
       to: 'jeroen@leaditgrow.be',
       subject: `Nieuwe aankoop: ${name} · €${(amountPaid / 100).toFixed(2)}`,
       html: `
-        <h2 style="font-family:sans-serif;color:#3d3929">Nieuwe aankoop actiehandboek 🎉</h2>
+        <h2 style="font-family:sans-serif;color:#3d3929">Nieuwe aankoop ${productLabel} 🎉</h2>
         <p style="font-family:sans-serif;color:#535146"><strong>Naam:</strong> ${name}</p>
         <p style="font-family:sans-serif;color:#535146"><strong>Email:</strong> ${email}</p>
         <p style="font-family:sans-serif;color:#535146"><strong>Bedrag:</strong> €${(amountPaid / 100).toFixed(2)}</p>

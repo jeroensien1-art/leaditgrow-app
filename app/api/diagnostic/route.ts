@@ -557,6 +557,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing name or email' }, { status: 400 })
     }
 
+    // body.name flows unescaped into email subjects/HTML bodies below — sanitize once, here.
+    body.name = String(body.name).replace(/[^\p{L}\p{N}\s'\-]/gu, '').trim().slice(0, 100) || 'onbekend'
+
     const id = randomUUID()
 
     const { error: insertError } = await supabase.from('diagnostics').insert({

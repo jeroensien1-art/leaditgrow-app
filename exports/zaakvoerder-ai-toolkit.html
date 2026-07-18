@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>De Zaakvoerder AI Toolkit — Lead it, Grow</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #faf9f5;
+    --terracotta: #c96442;
+    --terracotta-light: #f2ddd4;
+    --charcoal: #262624;
+    --charcoal-mid: #3d3d3a;
+    --cream: #f0ede5;
+    --cream-dark: #dedad0;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #d8d4c8;
+    font-family: var(--sans);
+    color: var(--charcoal);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--parchment);
+    margin: 0 auto 12px;
+    padding: 18mm 17mm 14mm;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media print {
+    body { background: none; }
+    .page { margin: 0; page-break-after: always; }
+    @page { size: A4; margin: 0; }
+  }
+
+  /* ─── COVER ─────────────────────────────── */
+  .cover {
+    background: var(--charcoal);
+    padding: 22mm 18mm 18mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 297mm;
+  }
+
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .cover-brand {
+    font-family: var(--sans);
+    font-size: 9pt;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+  }
+
+  .cover-year {
+    font-size: 9pt;
+    color: rgba(250,249,245,0.3);
+    font-family: var(--mono);
+  }
+
+  .cover-mid {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 18mm 0 12mm;
+    position: relative;
+  }
+
+  .cover-bg-num {
+    position: absolute;
+    right: -8mm;
+    top: 0;
+    font-family: var(--serif);
+    font-size: 200pt;
+    font-weight: 700;
+    color: rgba(201,100,66,0.08);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .cover-eyebrow {
+    font-family: var(--sans);
+    font-size: 8.5pt;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(250,249,245,0.45);
+    margin-bottom: 5mm;
+  }
+
+  .cover-title {
+    font-family: var(--serif);
+    font-size: 42pt;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--parchment);
+    margin-bottom: 6mm;
+  }
+
+  .cover-title span {
+    color: var(--terracotta);
+  }
+
+  .cover-rule {
+    width: 18mm;
+    height: 2px;
+    background: var(--terracotta);
+    margin-bottom: 6mm;
+  }
+
+  .cover-sub {
+    font-size: 12.5pt;
+    font-weight: 300;
+    line-height: 1.55;
+    color: rgba(250,249,245,0.65);
+    max-width: 130mm;
+  }
+
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(250,249,245,0.08);
+    padding-top: 6mm;
+  }
+
+  .cover-compat-label {
+    font-size: 7.5pt;
+    color: rgba(250,249,245,0.3);
+    font-family: var(--sans);
+    line-height: 1;
+    margin-bottom: 2mm;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .cover-compat-items {
+    display: flex;
+    gap: 3mm;
+    flex-wrap: wrap;
+  }
+
+  .cover-chip {
+    font-family: var(--mono);
+    font-size: 7.5pt;
+    color: rgba(250,249,245,0.55);
+    background: rgba(250,249,245,0.06);
+    border: 1px solid rgba(250,249,245,0.12);
+    padding: 1.5mm 3mm;
+    border-radius: 1mm;
+  }
+
+  .cover-price {
+    text-align: right;
+  }
+
+  .cover-price-label {
+    font-size: 7.5pt;
+    color: rgba(250,249,245,0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 1mm;
+  }
+
+  .cover-price-num {
+    font-family: var(--serif);
+    font-size: 22pt;
+    font-weight: 700;
+    color: var(--parchment);
+    line-height: 1;
+  }
+
+  /* ─── INTRO PAGE ─────────────────────────── */
+  .section-eyebrow {
+    font-size: 8pt;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 3mm;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 24pt;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--charcoal);
+    margin-bottom: 5mm;
+  }
+
+  .intro-text {
+    font-size: 10pt;
+    line-height: 1.72;
+    color: var(--charcoal-mid);
+    margin-bottom: 8mm;
+  }
+
+  .steps-row {
+    display: flex;
+    gap: 4mm;
+    margin-bottom: 10mm;
+  }
+
+  .step-card {
+    flex: 1;
+    background: var(--cream);
+    border-radius: 2.5mm;
+    padding: 5.5mm 5mm;
+  }
+
+  .step-n {
+    font-family: var(--serif);
+    font-size: 24pt;
+    font-weight: 700;
+    color: var(--terracotta);
+    line-height: 1;
+    margin-bottom: 2.5mm;
+  }
+
+  .step-h {
+    font-size: 8.5pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--charcoal);
+    margin-bottom: 2mm;
+  }
+
+  .step-p {
+    font-size: 8.5pt;
+    color: var(--charcoal-mid);
+    line-height: 1.5;
+  }
+
+  .tip-box {
+    background: var(--terracotta-light);
+    border-left: 3px solid var(--terracotta);
+    border-radius: 0 2mm 2mm 0;
+    padding: 4.5mm 5.5mm;
+    margin-bottom: 10mm;
+  }
+
+  .tip-box p {
+    font-size: 9pt;
+    line-height: 1.6;
+    color: var(--charcoal);
+  }
+
+  .tip-box strong {
+    font-weight: 600;
+  }
+
+  /* ─── TOC ────────────────────────────────── */
+  .toc-heading {
+    font-family: var(--serif);
+    font-size: 14pt;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 5mm;
+    padding-top: 7mm;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 10mm;
+  }
+
+  .toc-row {
+    display: flex;
+    align-items: baseline;
+    gap: 2.5mm;
+    padding: 2mm 0;
+    border-bottom: 1px dotted var(--cream-dark);
+  }
+
+  .toc-n {
+    font-family: var(--mono);
+    font-size: 7.5pt;
+    color: var(--terracotta);
+    flex-shrink: 0;
+    width: 14pt;
+  }
+
+  .toc-t {
+    font-size: 8.5pt;
+    color: var(--charcoal-mid);
+    line-height: 1.4;
+  }
+
+  /* ─── CATEGORY HEADER ────────────────────── */
+  .cat-bar {
+    background: var(--charcoal);
+    margin: -18mm -17mm 10mm;
+    padding: 7mm 17mm;
+    display: flex;
+    align-items: center;
+    gap: 5mm;
+  }
+
+  .cat-icon-wrap {
+    width: 10mm;
+    height: 10mm;
+    background: rgba(201,100,66,0.18);
+    border-radius: 2mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12pt;
+    flex-shrink: 0;
+  }
+
+  .cat-text {}
+
+  .cat-eyebrow {
+    font-size: 7.5pt;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(250,249,245,0.4);
+    margin-bottom: 1mm;
+  }
+
+  .cat-name {
+    font-family: var(--serif);
+    font-size: 17pt;
+    font-weight: 700;
+    color: var(--parchment);
+    line-height: 1;
+  }
+
+  /* ─── PROMPT CARD ────────────────────────── */
+  .prompt-card {
+    border: 1px solid var(--cream-dark);
+    border-radius: 2.5mm;
+    padding: 6mm 6.5mm;
+    margin-bottom: 6mm;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    background: var(--parchment);
+  }
+
+  .prompt-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 3.5mm;
+    margin-bottom: 3.5mm;
+  }
+
+  .p-num {
+    font-family: var(--mono);
+    font-size: 7.5pt;
+    font-weight: 500;
+    color: var(--parchment);
+    background: var(--terracotta);
+    padding: 1mm 2.5mm;
+    border-radius: 1mm;
+    flex-shrink: 0;
+    margin-top: 0.8mm;
+    line-height: 1.3;
+  }
+
+  .p-title {
+    font-family: var(--serif);
+    font-size: 12.5pt;
+    font-weight: 600;
+    color: var(--charcoal);
+    line-height: 1.25;
+  }
+
+  .p-body {
+    font-family: var(--mono);
+    font-size: 7.2pt;
+    line-height: 1.7;
+    color: var(--charcoal-mid);
+    background: var(--cream);
+    padding: 4.5mm 5mm;
+    border-radius: 1.5mm;
+    border-left: 2.5px solid var(--terracotta);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .p-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2.5mm;
+  }
+
+  .p-compat {
+    font-size: 7pt;
+    color: rgba(38,38,36,0.3);
+    font-style: italic;
+  }
+
+  /* ─── BONUS PAGE ─────────────────────────── */
+  .bonus-page {
+    background: var(--terracotta);
+    padding: 22mm 18mm 18mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 297mm;
+  }
+
+  .bonus-eyebrow {
+    font-size: 8pt;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(250,249,245,0.55);
+    margin-bottom: 4mm;
+  }
+
+  .bonus-title {
+    font-family: var(--serif);
+    font-size: 30pt;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--parchment);
+    margin-bottom: 5mm;
+  }
+
+  .bonus-sub {
+    font-size: 11pt;
+    font-weight: 300;
+    line-height: 1.65;
+    color: rgba(250,249,245,0.8);
+    max-width: 148mm;
+    margin-bottom: 10mm;
+  }
+
+  .bonus-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5mm;
+    margin-bottom: 10mm;
+  }
+
+  .bonus-step-row {
+    display: flex;
+    gap: 4mm;
+    align-items: flex-start;
+    background: rgba(250,249,245,0.1);
+    border-radius: 2mm;
+    padding: 4mm 5mm;
+  }
+
+  .bs-num {
+    font-family: var(--serif);
+    font-size: 18pt;
+    font-weight: 700;
+    color: rgba(250,249,245,0.25);
+    flex-shrink: 0;
+    line-height: 1.1;
+    width: 10mm;
+  }
+
+  .bs-body {}
+
+  .bs-title {
+    font-size: 9.5pt;
+    font-weight: 600;
+    color: var(--parchment);
+    margin-bottom: 1mm;
+  }
+
+  .bs-desc {
+    font-size: 8.5pt;
+    color: rgba(250,249,245,0.65);
+    line-height: 1.5;
+  }
+
+  .bonus-tools {
+    display: flex;
+    gap: 3mm;
+    flex-wrap: wrap;
+  }
+
+  .bonus-tool {
+    font-family: var(--mono);
+    font-size: 8pt;
+    color: rgba(250,249,245,0.7);
+    background: rgba(250,249,245,0.1);
+    border: 1px solid rgba(250,249,245,0.2);
+    padding: 2mm 4mm;
+    border-radius: 1mm;
+  }
+
+  .bonus-footer {
+    border-top: 1px solid rgba(250,249,245,0.15);
+    padding-top: 5mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .bonus-footer-brand {
+    font-size: 8.5pt;
+    color: rgba(250,249,245,0.35);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .bonus-footer-note {
+    font-size: 8pt;
+    color: rgba(250,249,245,0.45);
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  /* ─── BACK COVER ─────────────────────────── */
+  .back-cover {
+    background: var(--charcoal);
+    padding: 22mm 18mm 18mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 297mm;
+  }
+
+  .back-top {}
+
+  .back-quote {
+    font-family: var(--serif);
+    font-size: 21pt;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--parchment);
+    max-width: 145mm;
+    margin-top: 30mm;
+    margin-bottom: 5mm;
+  }
+
+  .back-attr {
+    font-size: 9pt;
+    color: var(--terracotta);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-style: normal;
+  }
+
+  .back-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(250,249,245,0.07);
+    padding-top: 5mm;
+  }
+
+  .back-brand {
+    font-size: 9pt;
+    color: rgba(250,249,245,0.3);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .back-url {
+    font-family: var(--mono);
+    font-size: 9pt;
+    color: var(--terracotta);
+  }
+
+  /* ─── UTILITY ────────────────────────────── */
+  .rule { width: 100%; height: 1px; background: var(--cream-dark); margin: 6mm 0; }
+  .mt4 { margin-top: 4mm; }
+  .mb4 { margin-bottom: 4mm; }
+  .page-footer {
+    position: absolute;
+    bottom: 9mm;
+    left: 17mm;
+    right: 17mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pf-cat {
+    font-size: 7pt;
+    color: rgba(38,38,36,0.25);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .pf-num {
+    font-family: var(--mono);
+    font-size: 7.5pt;
+    color: rgba(38,38,36,0.22);
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 1 — COVER
+═══════════════════════════════════════════ -->
+<div class="page cover">
+  <div class="cover-top">
+    <span class="cover-brand">Lead it, Grow</span>
+    <span class="cover-year">2026</span>
+  </div>
+
+  <div class="cover-mid">
+    <div class="cover-bg-num">25</div>
+    <div class="cover-eyebrow">Digitaal Werkpakket</div>
+    <h1 class="cover-title">De Zaakvoerder<br><span>AI Toolkit</span></h1>
+    <div class="cover-rule"></div>
+    <p class="cover-sub">25 kant-en-klare prompts voor de taken die jou elke week uren kosten. Kopieer. Vul in. Klaar.</p>
+  </div>
+
+  <div class="cover-bottom">
+    <div>
+      <div class="cover-compat-label">Werkt met</div>
+      <div class="cover-compat-items">
+        <span class="cover-chip">ChatGPT</span>
+        <span class="cover-chip">Claude</span>
+        <span class="cover-chip">Gemini</span>
+      </div>
+    </div>
+    <div class="cover-price">
+      <div class="cover-price-label">Eenmalig</div>
+      <div class="cover-price-num">€17</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 2 — HOE GEBRUIK JE DIT + TOC
+═══════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-eyebrow">Lees dit eerst</div>
+  <h2 class="section-title">Hoe gebruik je dit pakket</h2>
+  <p class="intro-text">Elke prompt werkt als een ingevuld formulier. Jij vervangt de delen tussen <strong>[HAAKJES]</strong> met de context van jouw situatie. De rest laat je staan. Daarna kopieer je de volledige tekst in ChatGPT, Claude, of Gemini.</p>
+
+  <div class="steps-row">
+    <div class="step-card">
+      <div class="step-n">1</div>
+      <div class="step-h">Kies</div>
+      <p class="step-p">Zoek de prompt die past bij wat je nu nodig hebt. Offerte, vacature, briefing — alles heeft zijn eigen blok.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-n">2</div>
+      <div class="step-h">Vul in</div>
+      <p class="step-p">Vervang de <strong>[HAAKJES]</strong> met jouw specifieke situatie. 30 seconden werk.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-n">3</div>
+      <div class="step-h">Kopieer</div>
+      <p class="step-p">Plak de volledige prompt in je AI-tool. Pas de output aan waar nodig. Eerste gebruik duurt 3 minuten.</p>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <p><strong>Tip voor meer persoonlijke output:</strong> stel de AI één keer in met jouw bedrijfscontext (zie de bonusgids achteraan). Daarna past elke prompt zich automatisch aan jouw toon en sector aan.</p>
+  </div>
+
+  <div class="toc-heading">Inhoudsopgave</div>
+  <div class="toc-grid">
+    <div class="toc-row"><span class="toc-n">01</span><span class="toc-t">Offerte op basis van gespreksnotities</span></div>
+    <div class="toc-row"><span class="toc-n">02</span><span class="toc-t">Offerte herschrijven na afwijzing</span></div>
+    <div class="toc-row"><span class="toc-n">03</span><span class="toc-t">Prijsdifferentiatie per klantprofiel</span></div>
+    <div class="toc-row"><span class="toc-n">04</span><span class="toc-t">Functieprofiel naar wervende vacature</span></div>
+    <div class="toc-row"><span class="toc-n">05</span><span class="toc-t">LinkedIn-vacature die filtert</span></div>
+    <div class="toc-row"><span class="toc-n">06</span><span class="toc-t">Follow-up mail na verkoopgesprek</span></div>
+    <div class="toc-row"><span class="toc-n">07</span><span class="toc-t">Voorbereiding eerste gesprek</span></div>
+    <div class="toc-row"><span class="toc-n">08</span><span class="toc-t">Antwoord op een bezwaar</span></div>
+    <div class="toc-row"><span class="toc-n">09</span><span class="toc-t">Briefing voor medewerker</span></div>
+    <div class="toc-row"><span class="toc-n">10</span><span class="toc-t">Constructieve feedback geven</span></div>
+    <div class="toc-row"><span class="toc-n">11</span><span class="toc-t">Taakoverdracht bij vertrek</span></div>
+    <div class="toc-row"><span class="toc-n">12</span><span class="toc-t">Voor- en nadelen van een beslissing</span></div>
+    <div class="toc-row"><span class="toc-n">13</span><span class="toc-t">Kwartaalreview in 20 minuten</span></div>
+    <div class="toc-row"><span class="toc-n">14</span><span class="toc-t">Managementsamenvatting project</span></div>
+    <div class="toc-row"><span class="toc-n">15</span><span class="toc-t">Antwoord op een klacht</span></div>
+    <div class="toc-row"><span class="toc-n">16</span><span class="toc-t">Update-mail aan lopende klant</span></div>
+    <div class="toc-row"><span class="toc-n">17</span><span class="toc-t">Check-in bij slapende klant</span></div>
+    <div class="toc-row"><span class="toc-n">18</span><span class="toc-t">Takenlijst herindelen op prioriteit</span></div>
+    <div class="toc-row"><span class="toc-n">19</span><span class="toc-t">Weekstart: focus en delegatie</span></div>
+    <div class="toc-row"><span class="toc-n">20</span><span class="toc-t">Onboardingplan nieuwe medewerker</span></div>
+    <div class="toc-row"><span class="toc-n">21</span><span class="toc-t">Functioneringsgesprek voorbereiding</span></div>
+    <div class="toc-row"><span class="toc-n">22</span><span class="toc-t">10 LinkedIn-postideeën</span></div>
+    <div class="toc-row"><span class="toc-n">23</span><span class="toc-t">LinkedIn-post over een standpunt</span></div>
+    <div class="toc-row"><span class="toc-n">24</span><span class="toc-t">Nieuwe dienst of product uitschrijven</span></div>
+    <div class="toc-row"><span class="toc-n">25</span><span class="toc-t">Email naar leverancier over prijs</span></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="pf-cat">Lead it, Grow</span>
+    <span class="pf-num">02</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 3 — BLOK A: OFFERTES
+═══════════════════════════════════════════ -->
+<div class="page">
+  <div class="cat-bar">
+    <div class="cat-icon-wrap">📄</div>
+    <div class="cat-text">
+      <div class="cat-eyebrow">Blok A · 3 prompts</div>
+      <div class="cat-name">Offertes &amp; Voorstellen</div>
+    </div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">01</span>
+      <span class="p-title">Offerte schrijven op basis van gespreksnotities</span>
+    </div>
+    <div class="p-body">Je bent mijn assistent en schrijft offertes voor mijn bedrijf.
+
+Mijn bedrijf: [NAAM BEDRIJF], actief in [SECTOR].
+Mijn klant: [NAAM KLANT], een [TYPE BEDRIJF] in [SECTOR].
+Hun probleem: [WAT HEN BEZIGHOUDT].
+Mijn oplossing: [WAT IK AANBIED].
+Prijs: [BEDRAG OF RANGE].
+Twijfels die ze uitten: [BEZWAAR OF TWIJFEL].
+
+Schrijf een offerte in drie delen:
+1. Situatieschets (hun probleem in hun woorden, max 3 zinnen)
+2. Aanpak (wat ik doe, stap voor stap, concreet)
+3. Investering (prijs + wat ze daarvoor krijgen)
+
+Toon: direct, professioneel, warm. Geen jargon. Geen overdreven formele aanhef.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">02</span>
+      <span class="p-title">Offerte herschrijven na afwijzing</span>
+    </div>
+    <div class="p-body">Mijn klant [NAAM] heeft mijn offerte afgewezen.
+Hun reden: [REDEN DIE ZE GAVEN].
+Wat ik vermoed dat de echte reden is: [JOUW INSCHATTING].
+Mijn originele offerte:
+[PLAK HIER DE ORIGINELE OFFERTETEKST]
+
+Herschrijf de offerte zodat:
+- De prijs beter gerechtvaardigd is
+- Het bezwaar "[BEZWAAR]" proactief beantwoord wordt
+- De toon meer aansluit op wat de klant wil horen
+
+Verander de prijs niet. Verander wel hoe de waarde wordt uitgelegd.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="pf-cat">Offertes &amp; Voorstellen</span>
+    <span class="pf-num">03</span>
+  </div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page">
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">03</span>
+      <span class="p-title">Prijsdifferentiatie per klantprofiel</span>
+    </div>
+    <div class="p-body">Ik wil mijn dienst [NAAM DIENST] aanbieden in drie niveaus.
+Mijn doelgroep: [TYPE KLANT].
+De kern van wat ik lever: [KORTE OMSCHRIJVING].
+
+Stel drie pakketten voor met elk:
+- Een naam (geen generiek "Basic/Pro/Premium")
+- Wat er precies in zit
+- Een logische prijsrange
+- Welk klanttype het kiest
+
+Het duurste pakket mag 3-4x duurder zijn dan het goedkoopste.
+Zorg dat de pakketten psychologisch correct zijn: het middelste pakket
+moet het meest gekozen worden.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <!-- BLOK B START -->
+  <div class="cat-bar" style="margin-top: 8mm;">
+    <div class="cat-icon-wrap">👥</div>
+    <div class="cat-text">
+      <div class="cat-eyebrow">Blok B · 2 prompts</div>
+      <div class="cat-name">Vacatures</div>
+    </div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">04</span>
+      <span class="p-title">Functieprofiel naar wervende vacaturetekst</span>
+    </div>
+    <div class="p-body">Ik ben op zoek naar een [FUNCTIETITEL] voor mijn bedrijf [NAAM], actief in [SECTOR].
+
+Vereisten:
+- [VEREISTE 1]
+- [VEREISTE 2]
+- [VEREISTE 3]
+
+Wat de persoon echt gaat doen (geen mooie omschrijving, gewoon de realiteit):
+[CONCRETE TAKEN]
+
+Wat mijn bedrijf te bieden heeft:
+[VOORDELEN: salaris, sfeer, groei, vrijheid, etc.]
+
+Schrijf een vacaturetekst die:
+- Start met een zin die de juiste persoon herkent (geen "Wij zijn op zoek naar...")
+- Eerlijk beschrijft wat de job inhoudt
+- Verklaart waarom iemand hier wil werken
+- Eindigt met een concrete CTA
+
+Lengte: max 350 woorden.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="pf-cat">Vacatures</span>
+    <span class="pf-num">04</span>
+  </div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page">
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">05</span>
+      <span class="p-title">LinkedIn-vacature die goede kandidaten aantrekt en slechte weghoudt</span>
+    </div>
+    <div class="p-body">Functie: [FUNCTIETITEL]
+Bedrijf: [NAAM], [SECTOR]
+Wat we NIET zoeken: [PROFIEL DAT NIET PAST]
+Wat we WEL zoeken: [PROFIEL DAT PAST, ZO SPECIFIEK MOGELIJK]
+Grootste uitdaging in de rol: [EERLIJKE OMSCHRIJVING]
+
+Schrijf een LinkedIn-vacaturepost van max 250 woorden.
+Gebruik geen lijstjes met vereisten. Schrijf in lopende tekst.
+Zorg dat iemand die niet past denkt "dit is niets voor mij" en iemand
+die past denkt "dit zijn zij over mij."
+Sluit af met één concrete actievraag.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <!-- BLOK C START -->
+  <div class="cat-bar" style="margin-top: 8mm;">
+    <div class="cat-icon-wrap">💼</div>
+    <div class="cat-text">
+      <div class="cat-eyebrow">Blok C · 3 prompts</div>
+      <div class="cat-name">Sales &amp; Leads</div>
+    </div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">06</span>
+      <span class="p-title">Follow-up mail na verkoopgesprek</span>
+    </div>
+    <div class="p-body">Ik had een gesprek met [NAAM] van [BEDRIJF].
+We bespraken: [KORTE SAMENVATTING GESPREK].
+Hun grootste pijnpunt: [PIJNPUNT].
+Mijn aanbod: [WAT IK VOORSTEL].
+Ze twijfelden over: [TWIJFELPUNT].
+Volgende stap die we afspraken: [AFSPRAAK OF OPEN EINDE].
+
+Schrijf een follow-up mail die:
+- Verwijst naar iets concreets uit het gesprek (persoonlijk, niet generiek)
+- Hun twijfel indirect beantwoordt zonder er direct over te beginnen
+- De volgende stap duidelijk maakt
+- Kort is: max 150 woorden
+
+Geen "Naar aanleiding van ons gesprek van heden". Begin gewoon.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="pf-cat">Sales &amp; Leads</span>
+    <span class="pf-num">05</span>
+  </div>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page">
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">07</span>
+      <span class="p-title">Voorbereiding eerste kennismakingsgesprek</span>
+    </div>
+    <div class="p-body">Ik heb een eerste gesprek met [NAAM] van [BEDRIJF].
+Wat ik weet over hen: [INFORMATIE UIT WEBSITE, LINKEDIN, ETC.]
+Hun sector: [SECTOR]
+Vermoedelijk pijnpunt: [JOUW INSCHATTING]
+Mijn aanbod: [WAT IK DOE]
+
+Geef mij:
+1. Drie open vragen die hen laten praten over hun echte probleem
+2. Twee vragen die ontdekken of ze budget en beslissingsbevoegdheid hebben
+3. Één vraag die onthult of ze al nagedacht hebben over een oplossing
+4. Eén zin waarmee ik mijn aanpak introduceer zonder te pitchen
+
+Houd het gespreksklaar: korte zinnen, geen jargon.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">08</span>
+      <span class="p-title">Antwoord op een bezwaar in een salesgesprek</span>
+    </div>
+    <div class="p-body">Een prospect zei: "[EXACTE BEZWAAR]"
+Context: we spreken over [PRODUCT/DIENST], prijs [PRIJS].
+Wat ik vermoed dat het echte bezwaar is: [JOUW INSCHATTING]
+
+Schrijf drie manieren om te antwoorden:
+1. Een antwoord dat het bezwaar erkent en er direct op ingaat
+2. Een antwoord dat het bezwaar omkeert in een reden om wél te kiezen
+3. Een vraag terug die hen laat nadenken over de kostprijs van niet kiezen
+
+Geen trucjes. Geen druk. Eerlijk en direct.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <!-- BLOK D START -->
+  <div class="cat-bar" style="margin-top: 8mm;">
+    <div class="cat-icon-wrap">🤝</div>
+    <div class="cat-text">
+      <div class="cat-eyebrow">Blok D · 3 prompts</div>
+      <div class="cat-name">Team &amp; Delegatie</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="pf-cat">Team &amp; Delegatie</span>
+    <span class="pf-num">06</span>
+  </div>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page">
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">09</span>
+      <span class="p-title">Briefing voor medewerker</span>
+    </div>
+    <div class="p-body">Ik wil de volgende taak overdragen aan [NAAM/ROL]:
+Taak: [OMSCHRIJVING]
+Deadline: [DATUM]
+Verwacht resultaat: [WAT KLAAR MOET ZIJN]
+Wat ik al gedaan heb of beslist heb: [CONTEXT DIE ZE NODIG HEBBEN]
+Waar ze NIET aan mogen raken: [GRENZEN]
+Waar ze zelf beslissingen mogen nemen: [VRIJHEID]
+
+Schrijf een briefing die:
+- In max 200 woorden alles geeft wat ze nodig hebben
+- Duidelijk maakt wat succes is
+- Aangeeft wanneer ze mij moeten consulteren en wanneer niet
+- Eindigt met één vraag om te checken of ze het begrepen hebben</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">10</span>
+      <span class="p-title">Constructieve feedback aan medewerker</span>
+    </div>
+    <div class="p-body">Medewerker: [NAAM], [ROL], werkt al [DUUR] bij mij.
+Situatie: [WAT ER GEBEURD IS OF WAT IK OPGEMERKT HEB]
+Wat ik concreet wil veranderen: [GEWENST GEDRAG]
+Wat ik wil behouden: [WAT WEL GOED GAAT]
+Onze relatie: [GOED / GESPANNEN / NEUTRAAL]
+
+Schrijf een feedbackgesprek-opening van max 150 woorden die:
+- Begint met een concreet waargenomen feit, niet een oordeel
+- Ruimte laat voor hun kant van het verhaal
+- Duidelijk maakt wat ik verwacht
+- De relatie bewaart
+
+Geen sandwichmethode. Geen overdreven diplomatiek. Direct maar respectvol.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="pf-cat">Team &amp; Delegatie</span>
+    <span class="pf-num">07</span>
+  </div>
+</div>
+
+<!-- PAGE 8 -->
+<div class="page">
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">11</span>
+      <span class="p-title">Taakoverdracht bij vertrek of projectwisseling</span>
+    </div>
+    <div class="p-body">[NAAM] verlaat [FUNCTIE/PROJECT] en ik wil de taken overdragen aan [OPVOLGER/ROL].
+
+Taken die overgedragen worden:
+- [TAAK 1]
+- [TAAK 2]
+- [TAAK 3]
+
+Cruciale kennis die nergens staat:
+[ONGESCHREVEN REGELS, KLANTGEVOELIGHEDEN, ETC.]
+Lopende zaken: [WAT MIDDEN IN UITVOERING IS]
+Deadlines die eraan komen: [DEADLINES]
+
+Schrijf een overdrachtsnotitie van max 300 woorden die de opvolger alles
+geeft zonder dat ze [NAAM] nog hoeven te raadplegen.
+Voeg een apart blokje toe: "Wat je absoluut moet weten op dag 1."</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <!-- BLOK E START -->
+  <div class="cat-bar" style="margin-top: 8mm;">
+    <div class="cat-icon-wrap">🎯</div>
+    <div class="cat-text">
+      <div class="cat-eyebrow">Blok E · 3 prompts</div>
+      <div class="cat-name">Strategie &amp; Beslissingen</div>
+    </div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">12</span>
+      <span class="p-title">Voor- en nadelen van een beslissing uitwerken</span>
+    </div>
+    <div class="p-body">Ik overweeg: [BESLISSING]
+Context: [WAAROM IK DIT OVERWEEG]
+Alternatieven die ik ook overwogen heb: [ALTERNATIEVEN]
+Wat ik al weet: [INFORMATIE DIE IK AL HEB]
+Mijn grootste vrees: [WAT KAN MISGAAN]
+
+Analyseer dit beslissingsmoment:
+1. Top 3 redenen om dit te doen
+2. Top 3 redenen om het niet te doen of uit te stellen
+3. Welke aanname ik moet valideren voordat ik beslis
+4. Welke beslissing jij zou nemen en waarom
+
+Wees direct. Als er een duidelijk beter antwoord is, zeg het dan.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="pf-cat">Strategie &amp; Beslissingen</span>
+    <span class="pf-num">08</span>
+  </div>
+</div>
+
+<!-- PAGE 9 -->
+<div class="page">
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">13</span>
+      <span class="p-title">Kwartaalreview in 20 minuten</span>
+    </div>
+    <div class="p-body">Kwartaal: [Q1/Q2/Q3/Q4] [JAAR]
+Mijn bedrijf: [NAAM], [SECTOR]
+
+Wat er goed ging:
+- [RESULTAAT 1]
+- [RESULTAAT 2]
+
+Wat er niet goed ging:
+- [PROBLEEM 1]
+- [PROBLEEM 2]
+
+Doelen die ik had voor dit kwartaal: [DOELEN]
+Doelen die ik behaald heb: [BEHAALD]
+Doelen die ik niet behaald heb: [NIET BEHAALD]
+
+Schrijf een kwartaalreview van max 400 woorden die:
+- Eerlijk analyseert waarom dingen wel of niet lukten
+- Drie prioriteiten bepaalt voor het volgende kwartaal
+- Eindigt met één concreet actie voor de eerste werkweek</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">14</span>
+      <span class="p-title">Managementsamenvatting van een project</span>
+    </div>
+    <div class="p-body">Project: [NAAM]
+Doel van het project: [DOEL]
+Looptijd: [START] tot [EINDE]
+Wat er gerealiseerd is: [RESULTATEN]
+Wat er niet gerealiseerd is: [GAPS]
+Budget: gepland [BUDGET], werkelijk [WERKELIJK BUDGET]
+Betrokkenen: [NAMEN OF ROLLEN]
+
+Schrijf een managementsamenvatting van max 250 woorden voor
+[DOELGROEP: team / vennoten / raad van bestuur].
+Focus op resultaat, niet op activiteit.
+Benoem lessen voor volgende projecten.
+Gebruik geen passieve zinnen.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="pf-cat">Strategie &amp; Beslissingen</span>
+    <span class="pf-num">09</span>
+  </div>
+</div>
+
+<!-- PAGE 10 — BLOK F -->
+<div class="page">
+  <div class="cat-bar">
+    <div class="cat-icon-wrap">✉️</div>
+    <div class="cat-text">
+      <div class="cat-eyebrow">Blok F · 3 prompts</div>
+      <div class="cat-name">Klanten &amp; Communicatie</div>
+    </div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">15</span>
+      <span class="p-title">Antwoord op een klacht</span>
+    </div>
+    <div class="p-body">Klant: [NAAM/BEDRIJF]
+De klacht: [WAT ZE ZEGGEN]
+Wat er werkelijk gebeurd is: [JOUW KANT]
+Is de klacht terecht: [JA / DEELS / NEE]
+Wat ik kan aanbieden als oplossing: [OPLOSSING]
+
+Schrijf een antwoord dat:
+- De klant serieus neemt zonder meteen schuld toe te geven
+- De situatie uitlegt zonder te verdedigen
+- Een concrete volgende stap voorstelt
+- De relatie bewaart
+
+Lengte: max 150 woorden. Geen "Geachte heer/mevrouw". Begin bij het feit.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">16</span>
+      <span class="p-title">Update-mail aan lopende klant</span>
+    </div>
+    <div class="p-body">Klant: [NAAM]
+Project of dienst: [WAT IK VOOR HEN DOE]
+Status: [WAAR WE STAAN]
+Wat er afgelopen periode gerealiseerd is: [RESULTATEN OF VOORTGANG]
+Eventuele vertraging of complicatie: [INDIEN VAN TOEPASSING]
+Volgende stap: [WAT ER GAAT GEBEUREN]
+
+Schrijf een update-mail van max 200 woorden die:
+- Concreet rapporteert zonder vaag te zijn
+- Geen overbodige inleiding heeft
+- Proactief antwoord geeft op "wanneer is het klaar?"
+- De klant het gevoel geeft dat het goed zit</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="pf-cat">Klanten &amp; Communicatie</span>
+    <span class="pf-num">10</span>
+  </div>
+</div>
+
+<!-- PAGE 11 -->
+<div class="page">
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">17</span>
+      <span class="p-title">Check-in bij slapende klant</span>
+    </div>
+    <div class="p-body">Klant: [NAAM], [BEDRIJF]
+Laatste contact: [DATUM OF PERIODE GELEDEN]
+Wat we samen gedaan hebben: [KORTE OMSCHRIJVING]
+Reden waarom ik contact opneem:
+[EERLIJKE REDEN: opvolging, nieuwe dienst, gewoon checken]
+Wat ik hen kan brengen op dit moment: [WAARDE DIE IK KAN LEVEREN]
+
+Schrijf een check-in mail van max 100 woorden die:
+- Niet begint met "Ik wou eens checken hoe het gaat"
+- Verwijst naar iets concreets dat ik weet over hun situatie
+- Een lage drempel heeft om te reageren
+- Niet pusherig is</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <!-- BLOK G START -->
+  <div class="cat-bar" style="margin-top: 8mm;">
+    <div class="cat-icon-wrap">📅</div>
+    <div class="cat-text">
+      <div class="cat-eyebrow">Blok G · 2 prompts</div>
+      <div class="cat-name">Weekplanning</div>
+    </div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">18</span>
+      <span class="p-title">Takenlijst herindelen op prioriteit</span>
+    </div>
+    <div class="p-body">Mijn takenlijst voor deze week:
+[PLAK HIER JE VOLLEDIGE TAKENLIJST]
+
+Mijn beschikbare tijd deze week: [AANTAL UUR OF DAGEN]
+Mijn grootste doel deze week: [ÉÉN DOEL]
+Taken die ik absoluut zelf moet doen: [TAKEN]
+Taken die iemand anders kan doen: [NAMEN EN ROLLEN BESCHIKBAAR]
+
+Herorden mijn lijst op basis van werkelijke impact.
+Benoem welke taken ik kan schrappen of uitstellen zonder gevolgen.
+Geef me een dag-per-dag blokkenstructuur voor de drie taken die
+het meest bewegen.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="pf-cat">Weekplanning</span>
+    <span class="pf-num">11</span>
+  </div>
+</div>
+
+<!-- PAGE 12 -->
+<div class="page">
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">19</span>
+      <span class="p-title">Weekstart: wat telt, wat wacht, wat delegeer ik</span>
+    </div>
+    <div class="p-body">Vandaag is [DAG]. Dit is wat er op mijn bord ligt:
+[ALLES WAT JE HOOFD BEZIGHOUDT: TAKEN, ZORGEN, AFSPRAKEN]
+
+Mijn team: [NAMEN EN ROL IN ÉÉN ZIN PER PERSOON]
+
+Filter dit voor mij:
+1. Wat MOET ik vandaag of morgen zelf doen?
+2. Wat kan ik vandaag nog delegeren en aan wie?
+3. Wat kan wachten tot volgende week zonder consequentie?
+4. Wat staat op mijn lijst maar is eigenlijk geen taak die waarde creëert?
+
+Geef me ook één zin die ik vanmiddag kan zeggen om mijn dag gefocust
+te sluiten.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <!-- BLOK H START -->
+  <div class="cat-bar" style="margin-top: 8mm;">
+    <div class="cat-icon-wrap">🏢</div>
+    <div class="cat-text">
+      <div class="cat-eyebrow">Blok H · 2 prompts</div>
+      <div class="cat-name">HR &amp; Onboarding</div>
+    </div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">20</span>
+      <span class="p-title">Onboardingplan voor nieuwe medewerker</span>
+    </div>
+    <div class="p-body">Nieuwe medewerker: [NAAM], start op [DATUM]
+Functie: [FUNCTIETITEL]
+Wat ze al weten: [ACHTERGROND]
+Wat ze nog moeten leren: [KENNIS EN VAARDIGHEDEN]
+Wie hen begeleidt: [NAAM BUDDY OF LEIDINGGEVENDE]
+Systemen en tools die ze nodig hebben: [TOOLS]
+
+Schrijf een onboardingplan voor de eerste 30 dagen:
+- Week 1: kennismaking en observatie
+- Week 2: eerste eigen taken
+- Week 3-4: zelfstandig werken met check-ins
+
+Per fase: wat ze doen, met wie, en hoe ze weten dat het goed gaat.
+Voeg een checklist toe voor dag 1.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="pf-cat">HR &amp; Onboarding</span>
+    <span class="pf-num">12</span>
+  </div>
+</div>
+
+<!-- PAGE 13 -->
+<div class="page">
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">21</span>
+      <span class="p-title">Functioneringsgesprek voorbereiding</span>
+    </div>
+    <div class="p-body">Medewerker: [NAAM], [ROL], [DUUR IN DIENST]
+Mijn observaties: [WAT IK HET AFGELOPEN JAAR GEZIEN HEB]
+Wat ik wil bespreken: [ONDERWERPEN]
+Verwachte reactie van de medewerker: [JOUW INSCHATTING]
+Doel van dit gesprek: [EVALUATIE / BIJSTURING / GROEIGESPREK]
+
+Geef mij:
+1. Vijf open vragen die het gesprek openen
+2. Drie vragen die doorvragen op prestatie
+3. Twee vragen over hun eigen ambities en noden
+4. Een manier om het gesprek constructief af te sluiten
+   met concrete afspraken
+
+Houd het gespreksklaar, geen theoretische kaders.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <!-- BLOK I START -->
+  <div class="cat-bar" style="margin-top: 8mm;">
+    <div class="cat-icon-wrap">✍️</div>
+    <div class="cat-text">
+      <div class="cat-eyebrow">Blok I · 2 prompts</div>
+      <div class="cat-name">Contentideeën</div>
+    </div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">22</span>
+      <span class="p-title">10 LinkedIn-postideeën op basis van werkervaring</span>
+    </div>
+    <div class="p-body">Mijn rol: [FUNCTIE / ZAAKVOERDER VAN BEDRIJF IN SECTOR]
+Mijn doelgroep op LinkedIn: [WIE IK WIL BEREIKEN]
+Iets wat ik deze week meemaakte: [SITUATIE, GESPREK, INZICHT, PROBLEEM]
+Iets wat mij de afgelopen maand opviel in mijn sector: [OBSERVATIE]
+
+Genereer 10 LinkedIn-postideeën.
+Voor elk idee: één zin als hook en één zin wat de post bewijst of leert.
+Mix de formats: persoonlijk verhaal, controversieel standpunt,
+praktische tip, marktobservatie.
+Geen ideeën die beginnen met "In een wereld waar..." of clichématige
+tijdgebonden openers.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="pf-cat">Contentideeën</span>
+    <span class="pf-num">13</span>
+  </div>
+</div>
+
+<!-- PAGE 14 -->
+<div class="page">
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">23</span>
+      <span class="p-title">LinkedIn-post over een standpunt of aanpak</span>
+    </div>
+    <div class="p-body">Mijn standpunt: [WAT IK DENK]
+Waarom de meeste mensen het anders zien: [DE GANGBARE OPINIE]
+Mijn bewijs of ervaring: [CONCREET VOORBEELD OF GETAL]
+Mijn doelgroep: [WIE DIT MOET LEZEN]
+
+Schrijf een LinkedIn-post van 200-300 woorden die:
+- Begint met een zin die de lezer stopt
+- Mijn standpunt direct stelt, niet opbouwt naar een conclusie
+- Één concreet voorbeeld of getal gebruikt
+- Eindigt met een vraag of een uitdaging aan de lezer
+
+Geen bullet points. Geen headers. Lopende tekst met witruimte
+tussen alinea's.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <!-- BLOK J START -->
+  <div class="cat-bar" style="margin-top: 8mm;">
+    <div class="cat-icon-wrap">⚡</div>
+    <div class="cat-text">
+      <div class="cat-eyebrow">Blok J · 2 prompts</div>
+      <div class="cat-name">Bonus</div>
+    </div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">24</span>
+      <span class="p-title">Nieuwe dienst of product uitschrijven</span>
+    </div>
+    <div class="p-body">Ik overweeg een nieuwe dienst/product te lanceren:
+Werknaam: [NAAM]
+Wat het is: [KORTE OMSCHRIJVING]
+Voor wie: [DOELGROEP]
+Hun probleem dat ik oplost: [PROBLEEM]
+Wat ze nu doen als alternatief: [HUIDIGE OPLOSSING]
+Prijs die ik overweeg: [PRIJS]
+Hoe ik het lever: [FORMAT: workshop, retainer, product, etc.]
+
+Schrijf een businesscase van max 400 woorden:
+1. Is dit een goed idee? Wees eerlijk.
+2. Wat zijn de drie grootste risico's?
+3. Hoe valideer ik dit in 2 weken zonder er veel tijd in te steken?
+4. Wat moet ik eerst weten voor ik dit launch?</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="pf-cat">Bonus</span>
+    <span class="pf-num">14</span>
+  </div>
+</div>
+
+<!-- PAGE 15 -->
+<div class="page">
+  <div class="prompt-card">
+    <div class="prompt-top">
+      <span class="p-num">25</span>
+      <span class="p-title">Email aan leverancier over prijs of voorwaarden</span>
+    </div>
+    <div class="p-body">Leverancier: [NAAM BEDRIJF]
+Wat ze leveren: [DIENST/PRODUCT]
+Huidige prijs/voorwaarden: [HUIDIGE DEAL]
+Wat ik wil bereiken:
+[LAGERE PRIJS / BETERE BETALINGSTERMIJN / BETERE VOORWAARDEN]
+Mijn onderhandelingspositie:
+[HOELANG KLANT, VOLUME, ALTERNATIEVEN]
+Toon die past bij onze relatie: [FORMEEL / INFORMEEL / ZAKELIJK]
+
+Schrijf een email van max 150 woorden die:
+- Begint vanuit de relatie, niet vanuit de eis
+- Mijn verzoek direct en concreet stelt
+- Mijn positie uitlegt zonder te dreigen
+- Ruimte laat voor een gesprek
+
+Geen onderdanige toon. Geen agressie. Zakelijk en respectvol.</div>
+    <div class="p-footer"><span class="p-compat">Werkt met ChatGPT · Claude · Gemini</span></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="pf-cat">Bonus</span>
+    <span class="pf-num">15</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 16 — BONUS: AI ASSISTENT INSTELLEN
+═══════════════════════════════════════════ -->
+<div class="page bonus-page">
+  <div>
+    <div class="bonus-eyebrow">Inbegrepen bij dit pakket</div>
+    <h2 class="bonus-title">Jouw Eigen AI-Assistent<br>in 20 Minuten</h2>
+    <p class="bonus-sub">Elke prompt hierboven werkt standalone. Maar er is een beter niveau: stel de AI één keer in met jouw bedrijfscontext, en elke prompt past zich automatisch aan jouw toon, sector en klanten aan.</p>
+
+    <div class="bonus-steps-list">
+      <div class="bonus-step-row">
+        <div class="bs-num">1</div>
+        <div class="bs-body">
+          <div class="bs-title">Maak een Project of Custom GPT aan</div>
+          <div class="bs-desc">Claude: ga naar claude.ai → Projects → New Project. ChatGPT: Explore GPTs → Create → Configure. Duurt 2 minuten.</div>
+        </div>
+      </div>
+      <div class="bonus-step-row">
+        <div class="bs-num">2</div>
+        <div class="bs-body">
+          <div class="bs-title">Schrijf jouw bedrijfscontext in</div>
+          <div class="bs-desc">Naam, sector, klanttype, schrijfstijl, tone of voice. Eén keer invullen. De AI onthoudt dit bij elke prompt daarna. Template staat op de volgende pagina.</div>
+        </div>
+      </div>
+      <div class="bonus-step-row">
+        <div class="bs-num">3</div>
+        <div class="bs-body">
+          <div class="bs-title">Test met één prompt uit dit pakket</div>
+          <div class="bs-desc">Je ziet meteen het verschil: de output klinkt meer als jij, past bij jouw sector, minder correctiewerk.</div>
+        </div>
+      </div>
+      <div class="bonus-step-row">
+        <div class="bs-num">4</div>
+        <div class="bs-body">
+          <div class="bs-title">Gebruik de 25 prompts zoals altijd</div>
+          <div class="bs-desc">Kopieer. Plak. Vul de haakjes in. De context doet de rest. Je hoeft niets te veranderen aan de prompts zelf.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 5mm;">
+      <div class="bonus-eyebrow" style="margin-bottom: 3mm;">Compatibel met</div>
+      <div class="bonus-tools">
+        <span class="bonus-tool">Claude Projects (gratis)</span>
+        <span class="bonus-tool">ChatGPT Custom GPT (Plus)</span>
+        <span class="bonus-tool">Gemini Gems</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bonus-footer">
+    <div class="bonus-footer-brand">Lead it, Grow · 2026</div>
+    <div class="bonus-footer-note">leaditgrow.be</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 17 — CONTEXT TEMPLATE
+═══════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-eyebrow">Bonusgids — Stap 2</div>
+  <h2 class="section-title">Jouw Bedrijfscontext Template</h2>
+  <p class="intro-text" style="margin-bottom: 6mm;">Kopieer onderstaande tekst naar het System Prompt-veld van jouw Claude Project of ChatGPT Custom GPT. Vervang de haakjes. Je hoeft dit maar één keer te doen.</p>
+
+  <div class="p-body" style="font-size: 8pt; line-height: 1.75; padding: 6mm; border-radius: 2mm;">Mijn naam is [JOUW NAAM]. Ik ben zaakvoerder van [BEDRIJFSNAAM],
+een [SECTOR]-bedrijf in [LOCATIE/REGIO].
+
+We werken met [TYPE KLANTEN: beschrijf kort wie je klanten zijn].
+Ons team bestaat uit [AANTAL] mensen.
+
+Mijn schrijfstijl is [kies: direct en zakelijk / warm en persoonlijk /
+formeel maar toegankelijk]. Ik gebruik geen moeilijk jargon. Ik schrijf
+in het Nederlands.
+
+De producten of diensten die we verkopen:
+[KORTE BESCHRIJVING VAN WAT JE DOET]
+
+Mijn grootste uitdagingen op dit moment:
+- [UITDAGING 1]
+- [UITDAGING 2]
+
+Wanneer ik je een prompt geef, gebruik dan altijd deze context.
+Schrijf alsof jij mijn persoonlijke assistent bent die mijn bedrijf
+door en door kent. Vermijd generieke zakelijke taal.
+Klink menselijk, direct en concreet.</div>
+
+  <div class="rule mt4"></div>
+
+  <div class="tip-box mt4">
+    <p><strong>Wanneer update je dit?</strong> Pas de context aan als je doelgroep verschuift, je bedrijf een nieuwe richting inslaat, of je toon wil aanpassen. Niet bij elke nieuwe prompt — dat is precies het punt.</p>
+  </div>
+
+  <div class="tip-box" style="margin-top: 4mm;">
+    <p><strong>Claude vs ChatGPT:</strong> Claude Projects is iets eenvoudiger voor niet-technische gebruikers en gratis beschikbaar bij een claude.ai account. ChatGPT Custom GPTs vereisen een Plus-abonnement (€20/maand) maar hebben een iets breder ecosysteem van third-party plugins.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="pf-cat">Bonusgids</span>
+    <span class="pf-num">17</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 18 — BACK COVER
+═══════════════════════════════════════════ -->
+<div class="page back-cover">
+  <div class="back-top">
+    <div style="font-size: 8.5pt; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 4mm;">Lead it, Grow</div>
+    <p class="back-quote">"Het gereedschap is goed. De vragen zijn het probleem."</p>
+    <p class="back-attr">De Zaakvoerder AI Toolkit · 2026</p>
+  </div>
+
+  <div>
+    <div style="background: rgba(250,249,245,0.04); border-radius: 2.5mm; padding: 7mm 8mm; margin-bottom: 8mm;">
+      <div style="font-size: 8pt; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(250,249,245,0.35); margin-bottom: 5mm;">Volgende stap</div>
+      <div style="display: flex; flex-direction: column; gap: 4mm;">
+        <div style="display: flex; gap: 4mm; align-items: flex-start;">
+          <span style="font-family: var(--mono); font-size: 8pt; color: var(--terracotta); flex-shrink: 0; margin-top: 1mm;">→</span>
+          <div>
+            <div style="font-size: 9.5pt; font-weight: 600; color: var(--parchment); margin-bottom: 1mm;">Businessgroei Actiehandboek</div>
+            <div style="font-size: 8.5pt; color: rgba(250,249,245,0.5); line-height: 1.5;">Jouw 30-dagenplan om van reactief naar voorspelbare groei te gaan. Op maat van jouw bedrijfsfase.</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 4mm; align-items: flex-start;">
+          <span style="font-family: var(--mono); font-size: 8pt; color: var(--terracotta); flex-shrink: 0; margin-top: 1mm;">→</span>
+          <div>
+            <div style="font-size: 9.5pt; font-weight: 600; color: var(--parchment); margin-bottom: 1mm;">BD Sprint</div>
+            <div style="font-size: 8.5pt; color: rgba(250,249,245,0.5); line-height: 1.5;">4 weken, done-with-you. Speed-to-lead automatisering voor bedrijven van 5 tot 50 mensen.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="back-bottom">
+      <div class="back-brand">Lead it, Grow</div>
+      <div class="back-url">leaditgrow.be</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

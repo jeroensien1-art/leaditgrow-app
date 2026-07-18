@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preview — Diagnostic Results</title>
+<style>
+  :root {
+    --cream: #faf7f2; --warm-white: #fff9f4; --sand: #f0e9de; --sand-mid: #e2d5c3;
+    --ink: #1c1a18; --ink-mid: #4a4540; --ink-muted: #9a9088; --ink-faint: #c8bfb4;
+    --rust: #c96442; --rust-light: #fdf1eb; --rust-border: rgba(201,100,66,0.2);
+    --border: rgba(28,26,24,0.08); --border-mid: rgba(28,26,24,0.14);
+    --font-display: 'Georgia', serif; --font-body: system-ui, sans-serif;
+    --shadow-card: 0 1px 3px rgba(28,26,24,0.06);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-body); background: var(--sand); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; }
+  .wrap { background: var(--warm-white); border-radius: 20px; max-width: 520px; width: 100%; overflow: hidden; box-shadow: 0 8px 48px rgba(28,26,24,0.12); }
+  .top-stripe { height: 4px; background: linear-gradient(90deg,#c96442,#e0845a,#c96442); }
+  .inner { padding: 2.2rem 2rem 2.6rem; }
+  .section-label { font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:12px; }
+  .priority-card { background:var(--cream); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin-bottom:8px; box-shadow:var(--shadow-card); }
+  .priority-card.top-pick { background:var(--warm-white); border-color:var(--rust-border); border-left:3px solid var(--rust); }
+  .pc-row { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:5px; }
+  .pc-rank { font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); }
+  .priority-card.top-pick .pc-rank { color:var(--rust); }
+  .pc-badge { font-size:9px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; background:var(--rust-light); color:var(--rust); padding:3px 8px; border-radius:20px; border:1px solid var(--rust-border); }
+  .pc-title { font-family:var(--font-display); font-size:15px; font-weight:700; color:var(--ink); margin-bottom:5px; line-height:1.3; }
+  .pc-emotion { font-size:13px; font-style:italic; color:var(--ink-muted); margin-bottom:8px; line-height:1.5; }
+  .pc-desc { font-size:13px; color:var(--ink-mid); line-height:1.6; margin-bottom:10px; }
+  .pc-action { font-size:12px; font-weight:600; color:var(--rust); }
+  .cta-box { background:var(--sand); border-radius:12px; padding:1.4rem 1.6rem; border:1px solid var(--sand-mid); margin-top:1.4rem; }
+  .cta-lever-label { font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--rust); margin-bottom:6px; }
+  .cta-title { font-family:var(--font-display); font-size:18px; font-weight:700; color:var(--ink); margin-bottom:5px; }
+  .cta-sub { font-family: Georgia, serif; font-size:17px; font-weight:700; color:var(--ink); line-height:1.4; margin-bottom:14px; }
+  .btn-primary { width:100%; padding:16px 24px; background:var(--rust); color:white; border:none; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer; box-shadow:0 2px 8px rgba(201,100,66,.25); letter-spacing:.01em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top-stripe"></div>
+  <div class="inner">
+
+    <div class="section-label">JOUW TOP PRIORITEITEN</div>
+    <div style="margin-bottom:8px"></div>
+
+    <!-- PRIORITEIT 1 (top-pick) -->
+    <div class="priority-card top-pick">
+      <div class="pc-row">
+        <div class="pc-rank">PRIORITEIT 1</div>
+        <div class="pc-badge">GROOTSTE IMPACT</div>
+      </div>
+      <div class="pc-title">Koop jouw tijd terug</div>
+      <div class="pc-emotion">"Ik ben niet voor mezelf begonnen om meer te werken dan in loondienst."</div>
+      <div class="pc-desc">Elke taak die alleen jij kunt doen is een plafond op jouw groei. Het doel is een bedrijf dat draait zonder jouw constante aanwezigheid.</div>
+      <div class="pc-action">Ontvang de exacte stappen die je in 14 dagen kan toepassen via het gratis rapport onderaan.</div>
+    </div>
+
+    <!-- PRIORITEIT 2 -->
+    <div class="priority-card">
+      <div class="pc-row">
+        <div class="pc-rank">PRIORITEIT 2</div>
+      </div>
+      <div class="pc-title">Stop de bottleneck te zijn</div>
+      <div class="pc-emotion">"Mijn team is geweldig, maar alles komt toch nog bij mij terecht."</div>
+      <div class="pc-desc">Het bedrijf kan alleen zo snel groeien als jouw aandacht toelaat. Bouw duidelijke beslissingskaders zodat jouw team kan handelen zonder op jou te wachten.</div>
+      <div class="pc-action">Ontvang de exacte stappen die je in 14 dagen kan toepassen via het gratis rapport onderaan.</div>
+    </div>
+
+    <!-- CTA BOX -->
+    <div class="cta-box">
+      <div class="cta-lever-label">Jouw #1 knelpunt: Koop jouw tijd terug</div>
+      <div class="cta-sub">Win binnen 14 dagen je tijd terug met de exacte stappen die je vindt in het gratis rapport met actieplan. Ontvang het nu in je inbox!</div>
+      <button class="btn-primary">Ontvang mijn gratis rapport</button>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

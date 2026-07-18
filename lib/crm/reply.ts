@@ -2,7 +2,7 @@ import Anthropic from '@anthropic-ai/sdk'
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
-export type Intent = 'JA_INTERESSE' | 'VRAAG' | 'LATER' | 'NEE' | 'OOT' | 'GEEN'
+export type Intent = 'JA_INTERESSE' | 'VRAAG' | 'LATER' | 'LATER_SPECIFIEK' | 'NEE' | 'OOT' | 'GEEN'
 
 export interface ReplyResult {
   intent: Intent
@@ -10,6 +10,7 @@ export interface ReplyResult {
   replySubject: string
   replyBody: string      // plain text (for Claude to write naturally)
   replyBodyHtml: string  // HTML version with signature — built from replyBody
+  followUpDate?: string  // ISO date (YYYY-MM-DD), alleen gezet bij LATER_SPECIFIEK
 }
 
 export function buildHtmlEmail(plainText: string): string {
@@ -156,25 +157,27 @@ Hun bericht:
 ${replyText}
 
 Jouw opdracht:
-1. Classificeer de intent: JA_INTERESSE (positief/interesse), VRAAG (stellen een vraag), LATER (niet nu), NEE (geen interesse), OOT (buiten doelgroep), GEEN (spam/onbelangrijk)
+1. Classificeer de intent: JA_INTERESSE (positief/interesse), VRAAG (stellen een vraag), LATER (niet nu, geen concrete datum genoemd), LATER_SPECIFIEK (ze noemen een concreet moment waarop ze terug bereikbaar zijn, bv. "neem in oktober contact op", "na de zomer", "bel me in januari"), NEE (geen interesse), OOT (buiten doelgroep), GEEN (spam/onbelangrijk)
 2. ALTIJD kwalificeren: als je nog niet weet wat hun voornaamste groeibottleneck is, hoe groot het team is of wat hun huidige aanpak is voor BD — stel max 1 gerichte vraag.
 3. ALTIJD een meeting proberen te boeken: stel de 3 tijdslots voor en vraag hun gsm-nummer om te bevestigen.
 4. Als ze een vraag stellen: beantwoord bondig en correct op basis van de website info, dan direct doorsturen naar een meeting.
 5. Als intent NEE is: sluit vriendelijk af, bied aan om over 3 maanden terug te komen.
 6. Als intent LATER is: erken, stel toch 1 slot voor "gewoon om het al in te plannen, je kan altijd verzetten".
-7. Nooit holle zinnen. Geen "ik hoop dat dit bericht je goed vindt". Direct en warm.
-8. Onderteken altijd: Jeroen Sienaert / Lead it, Grow · leaditgrow.be
+7. Als intent LATER_SPECIFIEK is: erken hun timing expliciet, bevestig dat je exact op dat moment terugkomt, stel GEEN meeting-slot voor nu. Bepaal ook "followUpDate": de eerstvolgende werkdag (maandag-vrijdag) van de genoemde periode, als ISO-datum YYYY-MM-DD, uitgaande van vandaag (${today}). Bij een maand zonder dag ("oktober"): neem de 1e werkdag van die maand. Bij "na de zomer": 1 september. Als het jaar niet genoemd wordt en de datum al voorbij zou zijn dit jaar, neem volgend jaar.
+8. Nooit holle zinnen. Geen "ik hoop dat dit bericht je goed vindt". Direct en warm.
+9. Onderteken altijd: Jeroen Sienaert / Lead it, Grow · leaditgrow.be
 
 Antwoord met geldig JSON, geen markdown:
 {
-  "intent": "JA_INTERESSE|VRAAG|LATER|NEE|OOT|GEEN",
+  "intent": "JA_INTERESSE|VRAAG|LATER|LATER_SPECIFIEK|NEE|OOT|GEEN",
   "summary": "<één zin die beschrijft wie dit is en wat ze willen>",
   "replySubject": "${replySubjectBase}",
-  "replyBody": "<plain text email body>"
+  "replyBody": "<plain text email body>",
+  "followUpDate": "<YYYY-MM-DD, alleen invullen bij intent LATER_SPECIFIEK, anders weglaten>"
 }`
 
   const response = await client.messages.create({
-    model: 'claude-sonnet-4-6',
+    model: 'claude-haiku-4-5-20251001',
     max_tokens: 1200,
     messages: [{ role: 'user', content: prompt }],
   })

@@ -6,6 +6,14 @@
 const PROCESSED_LABEL = 'lg-replied'
 let cachedLabelId: string | null = null
 
+const AUTOMATED_SENDER_DOMAINS = ['mailgun.net', 'mailgun.com', 'mailgun.zendesk.com', 'zendesk.com', 'lusha.com']
+const AUTOMATED_SENDER_PATTERN = /no.?reply|donotreply|mailer-daemon|notifications?@|updates?@|alerts?@/i
+
+function isAutomatedSender(fromEmail: string): boolean {
+  const lower = fromEmail.toLowerCase()
+  return AUTOMATED_SENDER_DOMAINS.some(d => lower.includes(d)) || AUTOMATED_SENDER_PATTERN.test(lower)
+}
+
 export interface GmailReply {
   id: string
   threadId: string
@@ -146,6 +154,8 @@ export async function getUnreadReplies(): Promise<GmailReply[]> {
     const subject = header(hdrs, 'Subject')
     const rawText = extractPlainText(msgData.payload)
     const text = stripQuotedText(rawText)
+
+    if (isAutomatedSender(fromEmail)) continue
 
     if (inReplyTo) {
       // Reply in a thread — only handle if the thread has a message from us
