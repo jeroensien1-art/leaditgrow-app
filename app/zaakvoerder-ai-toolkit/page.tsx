@@ -10,17 +10,19 @@ const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/TODO_ZAAKVOERDER_AI_TOOLKIT'
 // ────────────────────────────────────────────────────────────────────────────
 
 const BLOKS = [
-  { icon: MessageSquare, title: 'Offertes, sales & klanten', desc: '11 prompts voor offertes, vacatures, follow-ups en klachten die klinken als jij, niet als een template.' },
-  { icon: Zap,           title: 'Team & weekplanning', desc: '9 prompts voor briefings, feedback, onboarding en je week filteren op wat écht telt.' },
-  { icon: Sparkles,      title: 'Strategie & content', desc: '5 prompts voor beslissingen, reviews en LinkedIn-content vanuit je eigen ervaring.' },
+  { icon: MessageSquare, title: 'Plak je transcript', desc: 'Een salesgesprek, klantmeeting of klacht — geen opmaak nodig, rommelige notities werken net zo goed.' },
+  { icon: Zap,           title: 'De AI doet het denkwerk', desc: 'Bezwaren eruit halen, actiepunten trekken, een offerte bouwen. Niet enkel herschrijven, het echte werk.' },
+  { icon: Sparkles,      title: 'Eenmalig je context instellen', desc: 'De AI ondervraagt jou over je bedrijf — geen sjabloon met haakjes die je zelf moet invullen.' },
 ]
 
 const INCLUDES = [
-  '25 kant-en-klare prompts, ingedeeld in 10 categorieën',
-  'Elke prompt: kopieer, vul de haakjes in, klaar',
-  'Bonusgids: jouw AI-assistent instellen in 20 minuten',
-  'Context-template zodat elke prompt automatisch jouw toon aanhoudt',
-  'Werkt met ChatGPT, Claude en Gemini',
+  'Intake-interview: de AI stelt de vragen, bouwt je bedrijfscontext op',
+  'Sales-transcript → bezwaren + antwoordstrategie',
+  'Meeting-notities → actiepunten en risico\'s',
+  'Offerte-generator op basis van een gesprek',
+  'Klacht-transcript → antwoordstrategie',
+  'Volledige uitleg: Claude Skills, MCP en Connections instellen',
+  'Werkt met Claude, ChatGPT en Gemini',
   'PDF, direct beschikbaar na aankoop',
 ]
 
@@ -69,15 +71,14 @@ export default function ZaakvoerderAiToolkitPage() {
           className="relative z-10 leading-tight mb-5 max-w-3xl"
           style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(32px, 5.5vw, 64px)', fontWeight: 400, color: '#faf9f5' }}
         >
-          Je gebruikt AI al. Maar krijg je ooit een antwoord dat{' '}
-          <em style={{ color: '#c96442' }}>echt op jouw bedrijf</em> past?
+          Stop met prompts <em style={{ color: '#c96442' }}>zelf invullen</em>. Plak je transcript en laat de AI het werk doen.
         </h1>
 
         <p
           className="relative z-10 text-base sm:text-lg leading-relaxed mb-10 max-w-xl"
           style={{ color: 'rgba(250,249,245,0.6)' }}
         >
-          25 kant-en-klare prompts voor offertes, klantmails, vacatures en delegatie, plus de gids om AI eindelijk context te geven over jouw bedrijf. Kopieer. Vul in. Klaar.
+          Geen sjablonen met haakjes waar jij zelf het denkwerk al gedaan moet hebben. Plak een salesgesprek, meeting-notities of een klacht — de AI haalt er zelf de bezwaren, actiepunten en context uit.
         </p>
 
         <div className="relative z-10 flex flex-wrap gap-4 justify-center mb-4">
@@ -113,7 +114,7 @@ export default function ZaakvoerderAiToolkitPage() {
         >
           <div style={{ fontFamily: 'monospace', fontSize: '8px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(250,249,245,0.3)' }}>Lead it, Grow · 2026</div>
           <div>
-            <div style={{ fontFamily: 'monospace', fontSize: '8px', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#c96442', marginBottom: '1rem' }}>25 prompts · ChatGPT · Claude · Gemini</div>
+            <div style={{ fontFamily: 'monospace', fontSize: '8px', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#c96442', marginBottom: '1rem' }}>Plak transcript · Claude · ChatGPT · Gemini</div>
             <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(26px, 4vw, 38px)', fontWeight: 400, lineHeight: 0.95, color: '#faf9f5', letterSpacing: '-0.02em' }}>
               De<br /><em style={{ color: '#c96442' }}>Zaakvoerder</em><br />AI Toolkit
             </div>
@@ -126,8 +127,8 @@ export default function ZaakvoerderAiToolkitPage() {
       <section className="px-6 py-12 border-b" style={{ borderColor: 'rgba(61,57,41,0.1)' }}>
         <div className="max-w-3xl mx-auto grid grid-cols-3 gap-6 text-center">
           {[
-            { stat: '25', label: 'kant-en-klare prompts, klaar om te kopiëren' },
-            { stat: '10 min', label: 'om je AI-assistent één keer in te stellen' },
+            { stat: '5', label: 'AI-gestuurde flows: intake, sales, meetings, offertes, klachten' },
+            { stat: '10 min', label: 'om je bedrijfscontext één keer op te laten bouwen' },
             { stat: '€17', label: 'eenmalig, geen abonnement' },
           ].map(({ stat, label }) => (
             <div key={stat}>
@@ -142,7 +143,7 @@ export default function ZaakvoerderAiToolkitPage() {
       <section className="px-6 py-20 max-w-3xl mx-auto">
         <div className="text-[10px] font-bold uppercase tracking-widest mb-3" style={{ color: '#c96442' }}>Wat zit erin</div>
         <h2 className="text-2xl sm:text-3xl font-semibold mb-10 leading-tight" style={{ fontFamily: 'var(--font-serif)', fontWeight: 400 }}>
-          25 prompts voor de taken die jou elke week uren kosten.
+          Geen sjabloon invullen. De AI haalt het zelf uit je input.
         </h2>
         <div className="grid sm:grid-cols-3 gap-5 mb-12">
           {BLOKS.map(({ icon: Icon, title, desc }) => (
@@ -174,7 +175,7 @@ export default function ZaakvoerderAiToolkitPage() {
             className="text-xl sm:text-2xl leading-relaxed mb-5"
             style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: 'rgba(250,249,245,0.85)' }}
           >
-            "Het gereedschap is goed. De vragen zijn het probleem."
+            "Het gereedschap is goed. Maar het echte werk moet de AI doen, niet jij."
           </blockquote>
           <div className="text-xs font-bold uppercase tracking-widest" style={{ color: '#c96442', fontFamily: 'monospace' }}>Jeroen · Lead it, Grow</div>
         </div>
@@ -187,7 +188,7 @@ export default function ZaakvoerderAiToolkitPage() {
           €17. Directe toegang. Vandaag nog bruikbaar.
         </h2>
         <p className="text-base mb-10 max-w-md leading-relaxed" style={{ color: '#83827d' }}>
-          25 prompts plus de bonusgids om je AI-assistent in 20 minuten in te stellen. Eén offerte herschrijven kost je normaal vijftien minuten — dit pakket kost je €17, eenmalig.
+          5 AI-gestuurde flows plus de volledige uitleg om je AI-assistent in te stellen. Plak een transcript, de AI doet de rest — geen haakjes zelf invullen.
         </p>
         <a
           href={STRIPE_PAYMENT_LINK}
