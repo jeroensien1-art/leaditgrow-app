@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { saveLead } from '@/lib/crm/store'
+import { addToEmailList } from '@/lib/crm/email-list'
 import { randomUUID } from 'crypto'
 import { Resend } from 'resend'
 import { FREEBIES, type FreebieId } from '@/lib/freebies'
@@ -67,6 +68,15 @@ export async function POST(req: NextRequest) {
       status: 'new',
       source: 'widget',
     })
+
+    // e-maillijst: één rij per adres, tag per gedownloade freebie
+    await addToEmailList({
+      email,
+      name,
+      tag: config.id,
+      source: 'freebie',
+      lang: 'nl',
+    }).catch(err => console.error('[freebie-optin] email-list error:', err))
 
     resend.emails.send({
       from: FROM,
