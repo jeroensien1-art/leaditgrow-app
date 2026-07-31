@@ -28,12 +28,12 @@ export const postsEn: BlogPost[] = [
             {
               '@type': 'Question',
               name: 'What is the ideal response time for a new lead?',
-              acceptedAnswer: { '@type': 'Answer', text: 'Research from Velocify shows calling within 1 minute increases conversion odds by 391% compared to waiting 2 minutes. Responding within the first 5 minutes gives the highest odds of conversion; after 5 minutes, those odds already drop by 80%.' },
+              acceptedAnswer: { '@type': 'Answer', text: 'Research from Velocify shows calling within 1 minute increases conversion odds by 391% compared to waiting 2 minutes. Responding within the first 5 minutes gives the highest odds of conversion: MIT/InsideSales.com found leads are 21x more likely to qualify and 100x more likely to be contacted, compared to waiting 30 minutes.' },
             },
             {
               '@type': 'Question',
               name: 'How many businesses actually respond fast enough?',
-              acceptedAnswer: { '@type': 'Answer', text: 'Globally, only 7% of B2B companies hit the 5-minute benchmark, with an average response time of 42 hours across 253,817 studied leads. National figures vary, but given how widely SMEs already use AI tools, the technology to close this gap is already in most businesses\' hands.' },
+              acceptedAnswer: { '@type': 'Answer', text: 'Globally, only 7% of B2B companies hit the 5-minute benchmark, with an average response time of 42 hours across 253,817 studied leads (Artemis GTM Speed-to-Lead Benchmark). National figures vary, but Belgian businesses rank among Europe\'s top 5 for AI adoption (34.5% use at least one AI technology, 2025), so the technology to close this gap is already in most businesses\' hands.' },
             },
             {
               '@type': 'Question',
@@ -50,7 +50,7 @@ export const postsEn: BlogPost[] = [
       ],
     },
     content: `
-<p class="blog-intro">A new benchmark study across 253,817 inbound leads at 1,247 companies exposes an uncomfortable truth: the average response time to a new lead is 42 hours. Not 42 minutes. 42 hours. Only 7% of businesses hit the 5-minute benchmark that demonstrably gives the highest odds of conversion.</p>
+<p class="blog-intro">A benchmark study by Artemis GTM across 253,817 inbound leads at 1,247 companies exposes an uncomfortable truth: the average response time to a new lead is 42 hours. Not 42 minutes. 42 hours. Only 7% of businesses hit the 5-minute benchmark that demonstrably gives the highest odds of conversion.</p>
 
 <p><strong>Every lead that waits more than a few minutes for a reply is already checking out a competitor.</strong> That is not a guess. It is measurable, and the numbers got sharper this year.</p>
 
@@ -59,11 +59,11 @@ export const postsEn: BlogPost[] = [
 <p>Meanwhile customer expectations keep climbing: 64% of consumers now expect a real-time response, up from 58% in 2023. The bar was already high. It is still rising.</p>
 
 <h2>Why this is a blind spot for digitally advanced businesses</h2>
-<p>This is where it gets uncomfortable for small businesses that consider themselves digitally ahead. Recent figures on European SMEs show many rank among the continent's digital leaders: over a third run fully in the cloud, and three in four use AI tools weekly or daily. That is not a small detail. It means most business owners already own the technology needed to respond within minutes.</p>
+<p>This is where it gets uncomfortable for small businesses that consider themselves digitally ahead. Recent figures show Belgian businesses rank among Europe's top 5 for AI adoption: 34.5% use at least one AI technology (2025), and Statbel reports 1 in 4 Belgian SMEs already use AI in daily operations. That is not a small detail. It means most business owners already own the technology needed to respond within minutes.</p>
 <p>The problem is rarely a lack of tools. It is that none of those tools have been pointed at the first response. A business automates invoicing, bookkeeping, sometimes even marketing, but the first contact moment with a new lead still depends on whoever happens to open their inbox.</p>
 
-<h2>The 10x cliff</h2>
-<p>The odds of qualifying a lead drop by a factor of 10 after the first hour without a contact attempt. That is not gradual. It is a cliff. Every hour of delay pushes a deal closer to "never heard back."</p>
+<h2>Why every hour matters</h2>
+<p>The MIT/InsideSales.com study shows that qualification odds drop sharply within the first hour without a contact attempt. It is not a gradual decline. Every hour of delay pushes a deal closer to "never heard back."</p>
 <p>Run the numbers: if you receive 20 leads a month and your average deal is worth €3,000, the difference between 25% and 35% conversion is 3 extra deals a month. €9,000. Over a year, more than €100,000, purely from responding faster to leads you already have.</p>
 
 <h2>What actually works</h2>
@@ -74,7 +74,7 @@ export const postsEn: BlogPost[] = [
 
 <div class="faq-item">
   <h3>What is the ideal response time for a new lead?</h3>
-  <p>Research from Velocify shows calling within 1 minute increases conversion odds by 391% compared to waiting 2 minutes. Responding within the first 5 minutes gives the highest odds of conversion; after 5 minutes, those odds already drop by 80%.</p>
+  <p>Research from Velocify shows calling within 1 minute increases conversion odds by 391% compared to waiting 2 minutes. Responding within the first 5 minutes gives the highest odds of conversion: MIT/InsideSales.com found leads are 21x more likely to qualify and 100x more likely to be contacted, compared to waiting 30 minutes.</p>
 </div>
 
 <div class="faq-item">
@@ -134,7 +134,7 @@ export const postsEn: BlogPost[] = [
 <h2>The Three Symptoms of a Stalled Growth System</h2>
 
 <h3>1. You react to leads instead of managing them</h3>
-<p>Research from InsideSales shows that your chance of converting a lead drops by 80% if you don't respond within 5 minutes. Most service businesses are structurally leaving revenue on the table,not because their offer isn't good, but because they're too slow. The solution isn't a better calendar. It's a system that automates the first response so every lead gets a personalised reply within 60 seconds,even at 11pm on a Friday.</p>
+<p>Research from MIT/InsideSales.com shows you are 21x more likely to qualify a lead if you respond within 5 minutes instead of after 30 minutes. Most service businesses are structurally leaving revenue on the table, not because their offer isn't good, but because they're too slow. The solution isn't a better calendar. It's a system that automates the first response so every lead gets a personalised reply within 60 seconds, even at 11pm on a Friday.</p>
 
 <h3>2. Your pipeline depends on your personal energy</h3>
 <p>In the early growth phases, that works. You are the business. But the moment you want to scale, you hit a wall: there is only one of you. The most successful growing businesses decouple their commercial activity from the owner's presence. A well-configured CRM, automated follow-up sequences, and a clear onboarding journey do the heavy lifting. The owner closes the deal and delivers the quality.</p>
@@ -287,7 +287,7 @@ export const postsEn: BlogPost[] = [
         {
           '@type': 'FAQPage',
           mainEntity: [
-            { '@type': 'Question', name: 'How does a real estate agency stand out when everyone offers free valuations?', acceptedAnswer: { '@type': 'Answer', text: 'By responding faster than the competition. Research shows that 78% of listings go to the first agency to make contact. An automated follow-up system that responds within 60 seconds gives you a structural advantage that has nothing to do with your price or brand.' } },
+            { '@type': 'Question', name: 'How does a real estate agency stand out when everyone offers free valuations?', acceptedAnswer: { '@type': 'Answer', text: 'By responding faster than the competition. InsideSales.com research found that in competitive markets, up to 78% of deals go to whoever responds first. An automated follow-up system that responds within 60 seconds gives you a structural advantage that has nothing to do with your price or brand.' } },
             { '@type': 'Question', name: 'How many extra listings can an agency generate through automated follow-up?', acceptedAnswer: { '@type': 'Answer', text: 'Agencies that switch to automated follow-up typically see a 20 to 40% increase in converted enquiries, without any additional marketing spend.' } },
           ],
         },
@@ -315,7 +315,7 @@ export const postsEn: BlogPost[] = [
 <p>If the property owner doesn't respond to the first email, the system follows up automatically: a friendly reminder the next day, an SMS reminder two days later. Not pushy. Consistent. Always personal in tone.</p>
 
 <h2>The Numbers in Practice</h2>
-<p>A real estate agency receives 40 valuation enquiries per month. Average commission per listing: 8,000 euros. Current conversion rate: 20% = 8 listings = 64,000 euros per month. With automated follow-up, the conversion rate rises to 32% = 13 listings = 104,000 euros. That's <strong>40,000 euros extra revenue per month</strong>, without spending a single extra euro on advertising.</p>
+<p>Run the numbers for a real estate agency receiving 40 valuation enquiries per month at an average commission of 8,000 euros per listing. At a 20% conversion rate, that's 8 listings, 64,000 euros. If the conversion rate rises to 32% through faster follow-up, that's 13 listings, 104,000 euros. That difference, <strong>40,000 euros extra revenue per month</strong> in this example, comes purely from response speed, without spending a single extra euro on advertising.</p>
 
 <div class="faq-item">
   <h3>How does a real estate agency stand out when everyone offers free valuations?</h3>
@@ -365,7 +365,7 @@ export const postsEn: BlogPost[] = [
 <p>The moment someone fills out your contact form, the system automatically triggers a response. Not a generic confirmation email, but a personalised message: the lead's name, a reference to their question, and concrete time slots for a conversation. This happens within 60 seconds. At 10:15pm. At 7am on Saturday. On Christmas Day. Always.</p>
 
 <h2>What This Means in Practice</h2>
-<p>An installation engineer we worked with received an average of 25 enquiries per month through his website. He responded on average within 4 to 8 hours. His conversion rate was 24%. After implementing automated follow-up, his average response time dropped to 45 seconds. His conversion rate rose to 38%. That's 3 to 4 extra clients per month, with the same marketing budget. The system paid for itself in the first week.</p>
+<p>Take an installation engineer receiving an average of 25 enquiries per month through his website, with a response time of 4 to 8 hours and a conversion rate around 24%. Automate the first response down to under a minute, and a rise to 35-40% conversion is realistic at that enquiry volume: 3 to 4 extra clients per month, with the same marketing budget.</p>
 
 <div class="faq-item">
   <h3>When do people most often submit enquiries?</h3>
@@ -436,19 +436,19 @@ export const postsEn: BlogPost[] = [
     slug: 'vijf-minuten-regel-eerste-reactie-alles-bepaalt',
     title: 'The 5-Minute Rule: Why the First Response Determines Everything',
     metaTitle: 'The 5-Minute Rule: First Response to Leads Determines Everything | Lead it, Grow',
-    metaDescription: 'If you don\'t respond to a lead within 5 minutes, your conversion chance drops by 80%. Discover what the 5-minute rule is and how to apply it automatically.',
+    metaDescription: 'If you don\'t respond to a lead within 5 minutes, you have 21x less chance of qualifying it. Discover what the 5-minute rule is and how to apply it automatically.',
     publishDate: '2026-04-16',
     readingTime: 6,
     category: 'Lead Follow-Up',
     region: 'Europe',
-    excerpt: 'There is one number that explains everything: 80%. That\'s the drop in conversion chance if you don\'t respond to a new lead within 5 minutes. Not 5 hours. 5 minutes.',
+    excerpt: 'There is one number that explains everything: 21x. That\'s how much more likely you are to qualify a lead if you respond within 5 minutes instead of after 30 minutes. Not 5 hours. 5 minutes.',
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
         {
           '@type': 'Article',
           headline: 'The 5-Minute Rule: Why the First Response Determines Everything',
-          description: 'If you don\'t respond to a lead within 5 minutes, your conversion chance drops by 80%. Discover what the 5-minute rule is and how to apply it automatically.',
+          description: 'If you don\'t respond to a lead within 5 minutes, you have 21x less chance of qualifying it. Discover what the 5-minute rule is and how to apply it automatically.',
           datePublished: '2026-04-16',
           author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.com' },
           publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.com' },
@@ -456,32 +456,32 @@ export const postsEn: BlogPost[] = [
         {
           '@type': 'FAQPage',
           mainEntity: [
-            { '@type': 'Question', name: 'What is the 5-minute rule in sales and lead follow-up?', acceptedAnswer: { '@type': 'Answer', text: 'The 5-minute rule states that your chance of converting a lead drops by 80% if you don\'t respond within 5 minutes. This is based on research by InsideSales.com analysing over 100,000 leads. The reason: a potential client is most ready to decide at the moment they take action.' } },
+            { '@type': 'Question', name: 'What is the 5-minute rule in sales and lead follow-up?', acceptedAnswer: { '@type': 'Answer', text: 'The 5-minute rule states that you are 21x more likely to qualify a lead and 100x more likely to make contact if you respond within 5 minutes instead of after 30 minutes. Based on the MIT/InsideSales.com Lead Response Management study (Dr. James Oldroyd, 2007, 15,000+ leads across 6 companies).' } },
             { '@type': 'Question', name: 'How do I apply the 5-minute rule without being constantly available?', acceptedAnswer: { '@type': 'Answer', text: 'By automating your first response. An automated system detects every new enquiry and sends a personalised reply within 60 seconds, with the lead\'s name and concrete time slots for a call.' } },
           ],
         },
       ],
     },
     content: `
-<p class="blog-intro">In 2011, InsideSales.com published a study that turned the sales world upside down. They analysed over 100,000 leads and asked one question: what is the impact of response time on conversion? The answer was unambiguous. If you don't respond within 5 minutes, your chance of conversion drops by 80%. After an hour, the chance of making contact at all has fallen by 60%. This became known as the 5-minute rule. And in 2026, most businesses violate it structurally,every single day.</p>
+<p class="blog-intro">In 2007, MIT and InsideSales.com published a study that turned the sales world upside down. They analysed over 15,000 leads across six companies and asked one question: what is the impact of response time on conversion? The answer was unambiguous. Respond within 5 minutes instead of after 30 minutes, and you are 21x more likely to qualify a lead, and 100x more likely to make contact at all. This became known as the 5-minute rule. And in 2026, most businesses violate it structurally, every single day.</p>
 
 <h2>Why 5 Minutes Is So Critical</h2>
 <p>It has nothing to do with impatience. It has everything to do with the psychology of decisions. At the moment someone fills out a contact form, they are in a state of decision readiness. They have defined their problem and taken action. That state is fleeting. After 10 minutes they're back at their work. After an hour their urgency has faded. The competitor who already responded is already in their head. You're a name on a list.</p>
 
 <h2>Three Response Patterns We See</h2>
-<p><strong>Pattern 1: The daily mail check.</strong> The owner checks email morning, midday and evening. Average response time: 4 to 8 hours. In 40% of cases, they respond the next day because enquiries come in after they've logged off.</p>
+<p><strong>Pattern 1: The daily mail check.</strong> The owner checks email morning, midday and evening. Average response time: 4 to 8 hours. In many cases, they respond the next day because enquiries come in after they've logged off.</p>
 <p><strong>Pattern 2: The reactive approach.</strong> Someone handles emails, but only during office hours. Enquiries arriving Friday after 5pm are handled Monday. Response time: 40 to 70 hours.</p>
 <p><strong>Pattern 3: The structured system.</strong> A minority. The system responds automatically within a minute, always. Conversion rate: consistently higher than patterns 1 and 2.</p>
 
 <h2>What an Effective Automated First Response Contains</h2>
 <p>A generic confirmation email doesn't work. "We've received your message and will get back to you shortly" is the equivalent of being put on hold. An effective first response contains: the lead's name, a reference to their specific question, two or three concrete time slots for a call, and a personal sign-off from the relevant person. This is composed automatically from the data the enquirer provided and sent within 60 seconds. It doesn't sound like a robot. It sounds like you.</p>
 
-<h2>What It Delivers</h2>
-<p>An advisory firm we worked with had an average response time of 5 hours. After implementing automated first-response: 47 seconds. Their conversion rate on website leads rose from 18% to 31% in the first month. Without a single extra euro in advertising. Without extra staff.</p>
+<h2>What This Can Deliver in Practice</h2>
+<p>Picture an advisory firm with an average response time of 5 hours. After automating the first response: 47 seconds. With a steady lead volume and a conversion rate that improves alongside faster follow-up, the monthly difference is often the equivalent of a few extra clients, without extra ad spend or extra staff.</p>
 
 <div class="faq-item">
   <h3>What is the 5-minute rule in sales and lead follow-up?</h3>
-  <p>The 5-minute rule states that your conversion chance drops by 80% if you don't respond within 5 minutes of a new enquiry. Based on InsideSales.com research across 100,000+ leads. The reason: a potential client is most ready to decide at the exact moment they reach out.</p>
+  <p>The 5-minute rule states that you are 21x more likely to qualify a lead and 100x more likely to make contact if you respond within 5 minutes instead of after 30 minutes. Based on the MIT/InsideSales.com Lead Response Management study (2007, 15,000+ leads). The reason: a potential client is most ready to decide at the exact moment they reach out.</p>
 </div>
 <div class="faq-item">
   <h3>How do I apply the 5-minute rule without being constantly available?</h3>
@@ -587,7 +587,7 @@ export const postsEn: BlogPost[] = [
 <p>The first weeks after signing determine whether a client stays loyal or switches after two years. A structured onboarding process,with automated checklists and scheduled check-ins,ensures every new client has the same strong experience, regardless of how busy the practice is. This is also what fuels word-of-mouth.</p>
 
 <h2>What a Growth System Delivers</h2>
-<p>An independent accountant we worked with was averaging 2 new files per month through referrals. After setting up a website widget, automated follow-up, and a structured onboarding process: an average of 5 new files per month, 2 of which came through direct website enquiries. Investment: 800 euros one-time plus 4 hours of their own time. Payback period at an average client lifetime value of 1,500 euros per year: less than one month.</p>
+<p>Take an independent accountant averaging 2 new files per month through referrals. After setting up a website widget, automated follow-up, and a structured onboarding process, growth to an average of 5 new files per month is realistic, some of which through direct website enquiries. At a one-time investment of around 800 euros plus a few hours of setup time, and an average client lifetime value of 1,500 euros per year, the payback period is typically under a month.</p>
 
 <div class="faq-item">
   <h3>Is a growth system relevant for a small accounting practice with fewer than 50 clients?</h3>
@@ -801,7 +801,7 @@ export const postsEn: BlogPost[] = [
 
 <div class="faq-item">
   <h3>How do I start a leadership analysis for my business?</h3>
-  <p>Through Lead it, Grow we offer a free, personal leadership analysis built on 35 years of experience with SMEs. Comment "Leadership" on LinkedIn or send a message via leaditgrow.com to get started. No sales call, no obligation,just an honest conversation about what is really going on.</p>
+  <p>Through Lead it, Grow we offer a free, personal leadership analysis built on 35 years of experience with SMEs. Comment "Leadership" on LinkedIn or send a message via leaditgrow.com to get started. No obligation, just an honest conversation about what is really going on.</p>
 </div>
 `,
   },
@@ -1095,7 +1095,7 @@ export const postsEn: BlogPost[] = [
 
 <h2>What changes when you stop doing everything yourself</h2>
 
-<p>An advisory firm founder we worked with was spending 58% of his working hours on tasks a junior team member could handle. After running the 3-Layer Filter for 30 days, that dropped to 21%. He did not work fewer hours. He worked differently. His revenue grew 34% in the following quarter, not because he found more time, but because his attention finally went to the work only he could do.</p>
+<p>Picture a founder who realises, once he actually tracks it, that more than half of his working hours go to tasks a junior team member could handle. Running the 3-Layer Filter for 30 days typically cuts that share sharply, not because he works fewer hours, but because he works differently. The revenue impact rarely comes from finding more time. It comes from his attention finally going to the work only he can do.</p>
 
 <div class="faq-item">
   <h3>How do I know which tasks only I can do?</h3>
@@ -1388,7 +1388,7 @@ export const postsEn: BlogPost[] = [
 <p>Set up that one task properly, let it run for a month, measure the difference. Only once it stands do you move to the next. That way you build a system that works instead of a collection of tools you end up correcting yourself anyway.</p>
 
 <h2>How do you know which task pays off most?</h2>
-<p>We built a free diagnostic that maps in four minutes which of the seven growth levers in your business is stuck. No sales call. Just an honest report on where you stand today and which automation has the most impact for your situation.</p>
+<p>We built a free diagnostic that maps in four minutes which of the seven growth levers in your business is stuck. Just an honest report on where you stand today and which automation has the most impact for your situation.</p>
 
 <h2>Frequently asked questions</h2>
 
@@ -1456,7 +1456,7 @@ export const postsEn: BlogPost[] = [
 <h2>Three places where the load piles up</h2>
 
 <h3>Decisions waiting on you</h3>
-<p>If every small choice has to pass through you, you make hundreds of micro-decisions a day. Research on decision fatigue shows the quality of your choices drops as the day goes on. By evening you decide worse and everything feels heavier, not because the problem is bigger, but because your supply of mental energy is spent.</p>
+<p>If every small choice has to pass through you, you make hundreds of micro-decisions a day. Psychological research on "decision fatigue" shows the quality of your choices drops the more decisions you make in a row. By evening you decide worse and everything feels heavier, not because the problem is bigger, but because your supply of mental energy is spent.</p>
 
 <h3>Leads and follow-up you guard yourself</h3>
 <p>As long as you are the only one who knows which lead still deserves a reply, you are the follow-up system. That is a full-time task on top of everything else. An automated system that answers every lead within the minute and guards the follow-up lifts that entire layer out of your head.</p>
@@ -1549,7 +1549,7 @@ export const postsEn: BlogPost[] = [
 <p>This is not about stepping away from your business or caring less. It is about the place you take. A conductor plays no instrument during the concert, and yet the performance stands or falls with them. That role is not smaller. It is different, and it lets the whole become bigger than the sum of what you could play alone.</p>
 
 <h2>Where do you stand today?</h2>
-<p>Our free diagnostic maps in four minutes how strongly your business still leans on you as the central point, and which growth levers stall because of it. No sales call, just a clear mirror. For those who want to take the step to leader deeper, an in-depth leadership analysis is available through our partner network that exposes your patterns.</p>
+<p>Our free diagnostic maps in four minutes how strongly your business still leans on you as the central point, and which growth levers stall because of it. Just a clear mirror. For those who want to take the step to leader deeper, an in-depth leadership analysis is available through our partner network that exposes your patterns.</p>
 
 <h2>Frequently asked questions</h2>
 

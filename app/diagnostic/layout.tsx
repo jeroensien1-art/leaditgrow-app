@@ -12,14 +12,14 @@ export async function generateMetadata(): Promise<Metadata> {
   if (isEn) {
     return {
       title: 'Free Business Growth Diagnostic — Discover What Is Holding Your Business Back | Lead it, Grow',
-      description: '7 honest questions. Discover which of the 7 growth levers in your business are blocked. Free personalised report in your inbox within minutes. No sales call.',
+      description: '7 honest questions. Discover which of the 7 growth levers in your business are blocked. Free personalised report in your inbox within minutes.',
       alternates: { canonical: 'https://leaditgrow.com/diagnostic' },
       openGraph: { title: 'Free Business Growth Diagnostic | Lead it, Grow', description: '7 questions. Discover your #1 growth lever. Free personalised report.', url: 'https://leaditgrow.com/diagnostic', type: 'website' },
     }
   }
   return {
     title: 'Gratis Groeidiagnose — Ontdek Wat Jouw Bedrijf Tegenhoudt | Lead it, Grow',
-    description: '7 eerlijke vragen. Ontdek welke van de 7 groeihefbomen in jouw bedrijf op slot staan. Gratis persoonlijk rapport in jouw inbox. Geen verkoopsgesprek.',
+    description: '7 eerlijke vragen. Ontdek welke van de 7 groeihefbomen in jouw bedrijf op slot staan. Gratis persoonlijk rapport in jouw inbox.',
     alternates: { canonical: 'https://leaditgrow.be/diagnostic' },
     openGraph: { title: 'Gratis Groeidiagnose | Lead it, Grow', description: '7 vragen. Ontdek jouw #1 groeihefboom. Gratis persoonlijk rapport.', url: 'https://leaditgrow.be/diagnostic', type: 'website' },
   }
@@ -51,12 +51,12 @@ export default async function DiagnosticLayout({ children }: { children: React.R
           { '@type': 'Question', name: 'What are the 7 growth levers in the diagnostic?', acceptedAnswer: { '@type': 'Answer', text: 'The 7 levers are: owner time freedom, leadership and team, speed-to-lead, pipeline and follow-up, online presence and marketing, sales close rate, and client retention and referrals. Each lever represents a distinct area where most businesses leave revenue on the table.' } },
           { '@type': 'Question', name: 'How long does the business diagnostic take?', acceptedAnswer: { '@type': 'Answer', text: 'The diagnostic consists of 4 context questions and 7 scored questions. Most business owners complete it in 4 to 6 minutes.' } },
           { '@type': 'Question', name: 'What do I receive after completing the diagnostic?', acceptedAnswer: { '@type': 'Answer', text: 'You receive a personalised report with your strength score, your top 3 growth levers ranked by priority, and concrete action steps per gap to act on in the next 14 days. Delivered by email within minutes.' } },
-          { '@type': 'Question', name: 'Is the diagnostic really free?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The diagnostic and the personalised report are completely free. There is no sales call attached. The goal is to give you honest insight into where your business stands today.' } },
+          { '@type': 'Question', name: 'Is the diagnostic really free?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The diagnostic and the personalised report are completely free. You are not committing to anything. The goal is to give you honest insight into where your business stands today.' } },
         ] : [
           { '@type': 'Question', name: 'Wat zijn de 7 groeihefbomen in de diagnose?', acceptedAnswer: { '@type': 'Answer', text: 'De 7 hefbomen zijn: tijd van de zaakvoerder, leiderschap en team, snelheid van opvolging, pipeline en nurture, online aanwezigheid en marketing, sluitingspercentage en klantbehoud. Elk vertegenwoordigt een gebied waar de meeste bedrijven omzet laten liggen.' } },
           { '@type': 'Question', name: 'Hoe lang duurt de groeidiagnose?', acceptedAnswer: { '@type': 'Answer', text: 'De diagnose bestaat uit 4 contextvragen en 7 scoringsvragen. De meeste zaakvoerders ronden het af in 4 tot 6 minuten.' } },
           { '@type': 'Question', name: 'Wat ontvang ik na het invullen van de diagnose?', acceptedAnswer: { '@type': 'Answer', text: 'Je ontvangt een persoonlijk rapport met jouw sterkte score, jouw top 3 groeihefbomen gerangschikt op prioriteit, en concrete actiestappen per gap om de komende 14 dagen mee te starten. Afgeleverd per e-mail binnen enkele minuten.' } },
-          { '@type': 'Question', name: 'Is de diagnose echt gratis?', acceptedAnswer: { '@type': 'Answer', text: 'Ja. De diagnose en het persoonlijk rapport zijn volledig gratis. Er is geen verkoopsgesprek aan gekoppeld. Het doel is je eerlijk inzicht te geven in waar jouw bedrijf vandaag staat.' } },
+          { '@type': 'Question', name: 'Is de diagnose echt gratis?', acceptedAnswer: { '@type': 'Answer', text: 'Ja. De diagnose en het persoonlijk rapport zijn volledig gratis. Je zit nergens aan vast. Het doel is je eerlijk inzicht te geven in waar jouw bedrijf vandaag staat.' } },
         ],
       },
     ],

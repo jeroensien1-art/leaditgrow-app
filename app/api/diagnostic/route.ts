@@ -524,7 +524,7 @@ function buildReport(submission: DiagnosticSubmission, leadId: string): { subjec
       <p style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.65;margin:0 0 16px">
         ${nl
           ? `Op basis van jouw diagnose begin ik in een gratis gesprek van 15 minuten bij jouw #1 hefboom: <strong style="color:#fff">${top1Data?.label ?? top1}</strong>. Geen verkooppraatje. Gewoon kijken wat er voor jou specifiek werkt.`
-          : `Based on your diagnostic I start a free 15-minute call with your #1 lever: <strong style="color:#fff">${top1Data?.label ?? top1}</strong>. No sales pitch. Just looking at what specifically works for you.`}
+          : `Based on your diagnostic I start a free 15-minute call with your #1 lever: <strong style="color:#fff">${top1Data?.label ?? top1}</strong>. Just looking at what specifically works for you.`}
       </p>
       <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:10px">${nl ? 'Kies een tijdstip dat voor jou past:' : 'Choose a time that works for you:'}</div>
       ${slots.map(s => `<a href="${BASE_URL}/api/book?id=${leadId}&slot=${s.encoded}" style="display:block;background:#c96442;color:#fff;text-decoration:none;border-radius:8px;padding:12px 16px;text-align:center;font-size:13px;font-weight:600;margin-bottom:8px">${s.label}</a>`).join('')}

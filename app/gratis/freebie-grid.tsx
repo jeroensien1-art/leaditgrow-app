@@ -10,15 +10,16 @@ export function FreebieGrid({ items }: { items: FreebieConfig[] }) {
 
   return (
     <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
-      {items.map(item => {
+      {items.map((item, index) => {
         const isOpen = open === item.id
         const isKlaar = klaar.includes(item.id)
+        const isEerste = index === 0
         return (
           <article
             key={item.id}
             style={{
               background: '#fff',
-              border: `1px solid ${isOpen ? 'rgba(201,100,66,0.35)' : 'rgba(61,57,41,0.1)'}`,
+              border: `1px solid ${isOpen || isEerste ? 'rgba(201,100,66,0.35)' : 'rgba(61,57,41,0.1)'}`,
               borderRadius: '16px',
               padding: '1.75rem',
               display: 'flex',
@@ -26,17 +27,33 @@ export function FreebieGrid({ items }: { items: FreebieConfig[] }) {
               transition: 'border-color 0.2s',
             }}
           >
-            <div style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#c96442', marginBottom: '0.75rem' }}>
-              Keyword {item.keyword}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '0.75rem' }}>
+              {isEerste && (
+                <span style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#faf9f5', background: '#1a5e35', padding: '3px 8px', borderRadius: '999px' }}>
+                  Begin hier
+                </span>
+              )}
+              <span style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#c96442' }}>
+                Keyword {item.keyword}
+              </span>
             </div>
 
             <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '21px', fontWeight: 400, lineHeight: 1.25, color: '#0a1e10', margin: '0 0 0.75rem' }}>
               {item.title}
             </h2>
 
-            <p style={{ fontSize: '14px', color: '#535146', lineHeight: 1.65, margin: '0 0 0.75rem' }}>
+            <p style={{ fontSize: '14px', color: '#535146', lineHeight: 1.65, margin: '0 0 1rem' }}>
               {item.pitch}
             </p>
+
+            <div style={{ background: '#f5f3ee', border: '1px solid rgba(26,94,53,0.18)', borderRadius: '10px', padding: '0.85rem 1rem', margin: '0 0 1rem' }}>
+              <div style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#1a5e35', marginBottom: '0.4rem' }}>
+                Wat je eraan overhoudt
+              </div>
+              <p style={{ fontSize: '13.5px', color: '#2a2721', lineHeight: 1.6, margin: 0 }}>
+                {item.uitkomst}
+              </p>
+            </div>
 
             <p style={{ fontSize: '13px', color: '#83827d', lineHeight: 1.6, margin: '0 0 1.5rem', fontStyle: 'italic' }}>
               {item.voorWie}

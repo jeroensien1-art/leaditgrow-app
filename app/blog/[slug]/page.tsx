@@ -52,8 +52,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const backLabel = lang === 'en' ? 'All articles' : 'Alle artikels'
 
   const cta = lang === 'en'
-    ? { label: 'Free · 4 minutes', title: 'Discover where your business stands today.', body: 'The free diagnostic maps out in 4 minutes which of the 7 growth levers in your business are blocked. Direct insight. No sales call.', btn: 'Start the free diagnostic' }
-    : { label: 'Gratis · 4 minuten', title: 'Ontdek waar jouw bedrijf vandaag staat.', body: 'De gratis diagnose brengt in 4 minuten in kaart welke van de 7 groeihefbomen in jouw bedrijf op slot staan. Direct inzicht. Geen verkoopsgesprek.', btn: 'Start de gratis diagnose' }
+    ? { label: 'Free · 4 minutes', title: 'Discover where your business stands today.', body: 'The free diagnostic maps out in 4 minutes which of the 7 growth levers in your business are blocked. Direct insight into what to tackle first.', btn: 'Start the free diagnostic' }
+    : { label: 'Gratis · 4 minuten', title: 'Ontdek waar jouw bedrijf vandaag staat.', body: 'De gratis diagnose brengt in 4 minuten in kaart welke van de 7 groeihefbomen in jouw bedrijf op slot staan. Direct inzicht in wat je als eerste moet aanpakken.', btn: 'Start de gratis diagnose' }
 
   return (
     <>

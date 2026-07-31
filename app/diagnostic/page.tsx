@@ -596,7 +596,7 @@ export default function DiagnosticPage() {
                 <p className="italic-note">{T.italicNote}</p>
                 <button className="btn-primary" onClick={() => setStep('context')}>{T.startBtn}</button>
                 <p style={{ marginTop: '10px', fontSize: '12px', color: 'var(--ink-faint)', textAlign: 'center' }}>
-                  {nl ? 'Gratis · Geen verkoopsgesprek · 4 minuten' : 'Free · No sales call · 4 minutes'}
+                  {nl ? 'Gratis · 4 minuten · direct een rapport' : 'Free · 4 minutes · report straight away'}
                 </p>
               </div>
             )}
@@ -812,12 +812,12 @@ export default function DiagnosticPage() {
           </h2>
           <div style={{ borderTop: '1px solid rgba(61,57,41,0.1)', paddingTop: '1.5rem', display: 'flex', flexDirection: 'column' as const, gap: '1.5rem' }}>
             {(nl ? [
-              ['Is de diagnose echt gratis?', 'Ja. De diagnose en het persoonlijk rapport zijn volledig gratis. Er is geen verkoopsgesprek aan gekoppeld.'],
+              ['Is de diagnose echt gratis?', 'Ja. De diagnose en het persoonlijk rapport zijn volledig gratis. Je zit nergens aan vast.'],
               ['Hoe lang duurt de diagnose?', 'De meeste zaakvoerders ronden de diagnose af in 3 tot 4 minuten. Er zijn 3 contextvragen en 6 scoringsvragen.'],
               ['Wat ontvang ik na de diagnose?', 'Je ontvangt een persoonlijk rapport met jouw sterkte score, jouw top 3 groeihefbomen op prioriteit, en concrete actiestappen per gap om de komende 14 dagen mee aan de slag te gaan. Afgeleverd per e-mail binnen enkele minuten.'],
               ['Wat zijn de 6 groeihefbomen?', 'Tijd van de zaakvoerder, leiderschap en team, pipeline en nurture, groeistrategie en go-to-market, online aanwezigheid en marketing, sluitingspercentage.'],
             ] : [
-              ['Is the diagnostic really free?', 'Yes. The diagnostic and the personalised report are completely free. There is no sales call attached.'],
+              ['Is the diagnostic really free?', 'Yes. The diagnostic and the personalised report are completely free. You are not committing to anything.'],
               ['How long does the diagnostic take?', 'Most business owners complete it in 3 to 4 minutes. There are 3 context questions and 6 scored questions.'],
               ['What do I receive after the diagnostic?', 'You receive a personalised report with your strength score, your top 3 growth levers by priority, and concrete action steps per gap to act on in the next 14 days. Delivered by email within minutes.'],
               ['What are the 6 growth levers?', 'Owner time freedom, leadership and team, pipeline and follow-up, growth strategy and go-to-market, online presence and marketing, and sales close rate.'],

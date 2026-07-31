@@ -22,7 +22,7 @@
 > "Fijn dat je er bent. Ik had gedacht om het zo aan te pakken: ik stel je een paar gerichte vragen over hoe het nu loopt, dan kijk ik welke van de 7 groeihefbomen in jouw bedrijf het meeste potentieel heeft. Op het einde geef ik je een eerlijk beeld en een concreet voorstel — of ik geef je gewoon mee wat je zelf kan doen. Geen verkooppraatje. Werkt dat voor jou?"
 
 **EN:**
-> "Good to have you here. Here's what I had in mind: I'll ask you a few focused questions about how things currently work, then identify which of the 7 growth levers in your business has the most untapped potential. At the end I'll give you an honest picture and a concrete proposal — or I'll simply tell you what you can do yourself. No sales pitch. Does that work for you?"
+> "Good to have you here. Here's what I had in mind: I'll ask you a few focused questions about how things currently work, then identify which of the 7 growth levers in your business has the most untapped potential. At the end I'll give you an honest picture and a concrete proposal — or I'll simply tell you what you can do yourself. Does that work for you?"
 
 ---
 

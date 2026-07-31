@@ -450,7 +450,7 @@ export const posts: BlogPost[] = [
 <p>Niet 20 procedures. Niet een volledig kwaliteitshandboek. Gewoon de drie processen die als eerste stilvallen als jij op vakantie gaat. Dat is de maximale hefboom voor minimale inspanning.</p>
 
 <h2>Hoe weet je waar jij staat?</h2>
-<p>We hebben een gratis diagnostisch instrument ontwikkeld dat in 4 minuten in kaart brengt welke van de 7 groeihefbomen in jouw bedrijf op slot staan. Geen verkoopsgesprek. Geen verplichting. Gewoon een eerlijk rapport over waar jouw bedrijf vandaag staat en wat de volgende stap is.</p>
+<p>We hebben een gratis diagnostisch instrument ontwikkeld dat in 4 minuten in kaart brengt welke van de 7 groeihefbomen in jouw bedrijf op slot staan. Geen verplichting. Gewoon een eerlijk rapport over waar jouw bedrijf vandaag staat en wat de volgende stap is.</p>
 
 <p>Vlaamse zaakvoerders die de diagnose invullen, geven gemiddeld aan dat ze 2 tot 3 hefbomen als kritiek ervaren. De meest voorkomende combinatie in de regio Antwerpen-Gent: speed-to-lead, pipeline-opvolging en leiderschap. Niet toevallig de drie die het meest met de persoon van de zaakvoerder verweven zijn.</p>
 
@@ -1248,7 +1248,7 @@ export const posts: BlogPost[] = [
 
 <div class="faq-item">
   <h3>Hoe begin ik met een leiderschapsanalyse voor mijn KMO?</h3>
-  <p>Via Lead it, Grow bieden we een gratis, persoonlijke leiderschapsanalyse aan, gebouwd op 35 jaar ervaring met Vlaamse KMOs. Comment "Leiderschap" op LinkedIn of stuur een bericht via leaditgrow.be om te starten. Geen verkoopsgesprek, geen verplichting. Gewoon een eerlijk gesprek over wat er speelt.</p>
+  <p>Via Lead it, Grow bieden we een gratis, persoonlijke leiderschapsanalyse aan, gebouwd op 35 jaar ervaring met Vlaamse KMOs. Comment "Leiderschap" op LinkedIn of stuur een bericht via leaditgrow.be om te starten. Geen verplichting. Gewoon een eerlijk gesprek over wat er speelt.</p>
 </div>
 `,
   },
@@ -1846,7 +1846,7 @@ export const posts: BlogPost[] = [
 <p>Eén vrije ochtend per week verandert niets als de rest van de week structureel overbelast is. Herstel werkt alleen als het ingebakken zit in de manier waarop het bedrijf functioneert — niet als uitzondering, maar als ontwerp. Dat begint met systematisch delegeren van de drie zwaarste uitvoerende taken in jouw agenda.</p>
 
 <h2>Waar sta jij vandaag?</h2>
-<p>De gratis diagnose van Lead it, Grow brengt in 4 minuten in kaart welke van de 7 groeihefbomen in jouw bedrijf geblokkeerd zijn. Inclusief een eerlijk beeld van hoe jouw huidige leiderschapsstijl jouw team — en jezelf — beïnvloedt. Geen verkoopsgesprek. Gewoon inzicht.</p>
+<p>De gratis diagnose van Lead it, Grow brengt in 4 minuten in kaart welke van de 7 groeihefbomen in jouw bedrijf geblokkeerd zijn. Inclusief een eerlijk beeld van hoe jouw huidige leiderschapsstijl jouw team — en jezelf — beïnvloedt. Gewoon inzicht in wat je vandaag remt.</p>
 
 <h2>Veelgestelde vragen</h2>
 
@@ -2077,7 +2077,7 @@ export const posts: BlogPost[] = [
 <p>De meest destructieve gewoonte bij gedeeltelijke delegatie is tussentijdse procescontrole. Elke check halverwege is een signaal dat je het vertrouwen niet volledig geeft. Verschuif naar resultaatcontrole: afgesproken uitkomst op afgesproken moment. Wat daartussen gebeurt, is het eigenaarschap van je medewerker.</p>
 
 <h2>De volgende stap</h2>
-<p>De gratis diagnose van Lead it, Grow brengt in 4 minuten in kaart waar jouw bedrijf vandaag staat op de 7 groeihefbomen — inclusief delegatie en leiderschapsprofiel. Je krijgt direct inzicht in welke verschuiving voor jou de grootste impact heeft. Geen verkoopsgesprek. Gewoon een eerlijk startpunt.</p>
+<p>De gratis diagnose van Lead it, Grow brengt in 4 minuten in kaart waar jouw bedrijf vandaag staat op de 7 groeihefbomen — inclusief delegatie en leiderschapsprofiel. Je krijgt direct inzicht in welke verschuiving voor jou de grootste impact heeft. Gewoon een eerlijk startpunt.</p>
 
 <h2>Veelgestelde vragen</h2>
 
@@ -2174,7 +2174,7 @@ export const posts: BlogPost[] = [
 <p>Zet die ene taak goed op, laat hem een maand draaien, meet het verschil. Pas als die staat, ga je naar de volgende. Zo bouw je een systeem dat werkt in plaats van een verzameling tools die je toch weer zelf moet bijsturen.</p>
 
 <h2>Hoe weet je welke taak het meeste oplevert?</h2>
-<p>We hebben een gratis diagnostisch instrument gemaakt dat in vier minuten in kaart brengt welke van de zeven groeihefbomen in jouw bedrijf vastloopt. Geen verkoopsgesprek. Gewoon een eerlijk rapport over waar je vandaag staat en welke automatisering het meeste effect heeft voor jouw situatie.</p>
+<p>We hebben een gratis diagnostisch instrument gemaakt dat in vier minuten in kaart brengt welke van de zeven groeihefbomen in jouw bedrijf vastloopt. Gewoon een eerlijk rapport over waar je vandaag staat en welke automatisering het meeste effect heeft voor jouw situatie.</p>
 
 <h2>Veelgestelde vragen</h2>
 
@@ -2267,7 +2267,7 @@ export const posts: BlogPost[] = [
 <p>Dat begint met zicht krijgen op waar de last vandaan komt. Welke beslissingen kan je delegeren? Welke opvolging kan een systeem overnemen? Welke processen liggen nog nergens vast? Elke lus die je sluit, geeft een stukje hoofd terug.</p>
 
 <h2>Breng in kaart waar jouw energie weglekt</h2>
-<p>Onze gratis diagnose brengt in vier minuten in beeld welke van de zeven groeihefbomen in jouw bedrijf vastloopt en op jouw schouders rust. Het resultaat is een eerlijk rapport, geen verkoopsgesprek. Voor zaakvoerders die dieper willen kijken naar hun rol als leider, bieden we via ons partnernetwerk een uitgebreide leiderschapsanalyse aan.</p>
+<p>Onze gratis diagnose brengt in vier minuten in beeld welke van de zeven groeihefbomen in jouw bedrijf vastloopt en op jouw schouders rust. Het resultaat is een eerlijk rapport. Voor zaakvoerders die dieper willen kijken naar hun rol als leider, bieden we via ons partnernetwerk een uitgebreide leiderschapsanalyse aan.</p>
 
 <h2>Veelgestelde vragen</h2>
 
@@ -2359,7 +2359,7 @@ export const posts: BlogPost[] = [
 <p>Dit gaat niet over afstand nemen van je bedrijf of er minder om geven. Het gaat over de plek die je inneemt. Een dirigent speelt geen enkel instrument tijdens het concert, en toch staat of valt de uitvoering met hem. Die rol is niet kleiner. Ze is anders, en ze laat het geheel groter worden dan de som van wat jij alleen kan spelen.</p>
 
 <h2>Waar sta jij vandaag?</h2>
-<p>Onze gratis diagnose brengt in vier minuten in kaart hoe sterk jouw bedrijf nog op jou als centraal punt leunt, en welke groeihefbomen daardoor vastlopen. Geen verkoopsgesprek, gewoon een heldere spiegel. Voor wie de stap naar leider dieper wil zetten, bestaat er via ons partnernetwerk een uitgebreide leiderschapsanalyse die je patronen blootlegt.</p>
+<p>Onze gratis diagnose brengt in vier minuten in kaart hoe sterk jouw bedrijf nog op jou als centraal punt leunt, en welke groeihefbomen daardoor vastlopen. Gewoon een heldere spiegel. Voor wie de stap naar leider dieper wil zetten, bestaat er via ons partnernetwerk een uitgebreide leiderschapsanalyse die je patronen blootlegt.</p>
 
 <h2>Veelgestelde vragen</h2>
 

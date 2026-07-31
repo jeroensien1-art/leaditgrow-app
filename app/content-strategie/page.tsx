@@ -277,7 +277,7 @@ export default function ContentStrategiePage() {
             <p className="cs-cta-h">Klaar om te stoppen met uitleggen wat je bedoelt?</p>
             <p className="cs-cta-sub">
               Plan een gesprek van 20 minuten. We bekijken of het systeem past bij wat jij wil bereiken.
-              Geen verkoopsgesprek, wel een eerlijk beeld van wat het kost en wat je terugkrijgt.
+              Een eerlijk beeld van wat het kost en wat je terugkrijgt.
             </p>
             <Link href="/#contact" className="cs-cta-btn">Plan een gesprek</Link>
           </div>

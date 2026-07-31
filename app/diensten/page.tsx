@@ -47,8 +47,8 @@ function useServices(nl: boolean): Service[] {
         ? 'Inzicht in welke van de 7 groeihefbomen in jouw bedrijf geblokkeerd zijn.'
         : 'Clarity on which of the 7 growth levers in your business are blocked.',
       description: nl
-        ? 'De diagnose scant speed-to-lead, pipeline, leiderschap, retentie, marketing, systemen en team. Je krijgt een persoonlijk rapport met je top 3 prioriteiten. Geen verkoopsgesprek.'
-        : 'The diagnostic scans speed-to-lead, pipeline, leadership, retention, marketing, systems and team. You get a personalised report with your top 3 priorities. No sales call.',
+        ? 'De diagnose scant speed-to-lead, pipeline, leiderschap, retentie, marketing, systemen en team. Je krijgt een persoonlijk rapport met je top 3 prioriteiten.'
+        : 'The diagnostic scans speed-to-lead, pipeline, leadership, retention, marketing, systems and team. You get a personalised report with your top 3 priorities.',
       cta: nl ? 'Start gratis diagnose' : 'Start free diagnostic',
       href: '/diagnostic',
       accent: '#15803d',

@@ -4,13 +4,13 @@ import { FREEBIES, FREEBIE_ORDER } from '@/lib/freebies'
 import { FreebieGrid } from './freebie-grid'
 
 export const metadata: Metadata = {
-  title: 'Gratis downloads voor zaakvoerders · kaders, templates en checklists | Lead it, Grow',
+  title: 'Gratis tools voor zaakvoerders · vrijheid terug zonder te stoppen met groeien | Lead it, Grow',
   description:
-    'Zeven gratis hulpmiddelen voor KMO-zaakvoerders: het delegatiekader, een tijdlog-template, de stress-checklist, een promptlijst voor AI, een gespreksgids en twee opvolgtools. Direct in je inbox.',
+    'Zeven gratis tools voor KMO-zaakvoerders: speed-to-lead template, opvolgchecklist, AI-promptlijst, delegatiekader, tijdlog, stress-checklist en gespreksgids. Bij elke download staat wat je eraan overhoudt.',
   alternates: { canonical: 'https://leaditgrow.be/gratis' },
   openGraph: {
-    title: 'Gratis downloads voor zaakvoerders | Lead it, Grow',
-    description: 'Kaders, templates en checklists die je vandaag nog kan gebruiken. Vul je e-mailadres in en je krijgt ze meteen toegestuurd.',
+    title: 'Tools die jou je vrijheid teruggeven, terwijl je bedrijf blijft groeien',
+    description: 'Zeven gratis kaders, templates en checklists voor KMO-zaakvoerders. Bij elke download staat wat je eraan overhoudt en hoeveel tijd het kost.',
     type: 'website',
     url: 'https://leaditgrow.be/gratis',
   },
@@ -43,14 +43,14 @@ export default function GratisPage() {
       <main style={{ background: '#faf9f5', minHeight: '100vh', paddingTop: '6rem' }}>
         <div style={{ background: 'linear-gradient(160deg, #0a1e10 0%, #163320 100%)', padding: '4rem 1.5rem 5rem' }}>
           <div style={{ maxWidth: '760px', margin: '0 auto' }}>
-            <div style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c96442', marginBottom: '1rem' }}>
-              Gratis · geen verkoopgesprek
+            <div style={{ fontFamily: 'monospace', fontSize: '12px', letterSpacing: '0.04em', color: '#c96442', marginBottom: '1rem' }}>
+              Want ondernemers moeten zich kunnen focussen op de belangrijke zaken.
             </div>
             <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(30px, 5vw, 50px)', fontWeight: 400, lineHeight: 1.12, color: '#faf9f5', margin: '0 0 1.25rem' }}>
-              Hulpmiddelen die je<br /><em style={{ color: '#c96442' }}>vandaag nog gebruikt</em>
+              Tools die jou vandaag je vrijheid teruggeven,<br /><em style={{ color: '#c96442' }}>terwijl je bedrijf nooit stopt met groeien</em>
             </h1>
             <p style={{ fontSize: '17px', color: 'rgba(250,249,245,0.65)', lineHeight: 1.7, maxWidth: '540px', margin: 0 }}>
-              Geen ebooks van veertig pagina&apos;s. Kaders, templates en checklists van één tot vier bladzijden, gemaakt voor zaakvoerders die vandaag iets willen veranderen. Kies wat je nodig hebt, vul je e-mailadres in, en het staat binnen een minuut in je inbox.
+              Geen ebooks van veertig pagina&apos;s. Kaders, templates en checklists van één tot vier bladzijden. Bij elke download staat wat je eraan overhoudt en hoeveel tijd het kost. Bovenaan staat wat het snelst klanten oplevert.
             </p>
           </div>
         </div>

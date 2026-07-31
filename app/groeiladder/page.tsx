@@ -285,7 +285,7 @@ export default function GroeiladderPage() {
           <div className="gl-cta-card">
             <div className="gl-cta-title">Waar sta jij op de ladder?</div>
             <div className="gl-cta-sub">
-              De gratis diagnose scant je bedrijf op alle 7 groeihefbomen en geeft je een persoonlijk rapport met de top 3 prioriteiten op jouw niveau. 10 minuten. Geen verkoopsgesprek.
+              De gratis diagnose scant je bedrijf op alle 7 groeihefbomen en geeft je een persoonlijk rapport met de top 3 prioriteiten op jouw niveau. 10 minuten, en je weet waar te beginnen.
             </div>
             <div className="gl-ctas">
               <Link href="/diagnostic" className="gl-btn-primary">
