@@ -341,9 +341,11 @@ const css = `
     --rust: #c96442; --rust-light: #fdf1eb; --rust-border: rgba(201,100,66,0.2);
     --green: #2d6a4f; --green-light: #eaf4ee;
     --border: rgba(28,26,24,0.08); --border-mid: rgba(28,26,24,0.14);
-    --font-display: var(--font-brutalist, system-ui); --font-body: var(--font-brutalist, system-ui);
     --shadow-card: 0 1px 3px rgba(28,26,24,0.06);
   }
+  /* --font-brutalist staat op body, niet op :root, dus deze twee moeten hier
+     gedeclareerd worden en niet in het :root-blok hierboven */
+  .diag-page { --font-display: var(--font-brutalist, system-ui); --font-body: var(--font-brutalist, system-ui); }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   .diag-page { font-family: var(--font-body); background: var(--sand); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; }
   .wrap { background: var(--warm-white); border-radius: 20px; max-width: 520px; width: 100%; overflow: hidden; box-shadow: 0 8px 48px rgba(28,26,24,0.12); }
