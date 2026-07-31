@@ -29,16 +29,16 @@ export function FreebieGrid({ items }: { items: FreebieConfig[] }) {
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '0.75rem' }}>
               {isEerste && (
-                <span style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#faf9f5', background: '#1a5e35', padding: '3px 8px', borderRadius: '999px' }}>
+                <span style={{ fontFamily: 'var(--font-mono-brutalist, monospace)', fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#faf9f5', background: '#1a5e35', padding: '3px 8px', borderRadius: '999px' }}>
                   Begin hier
                 </span>
               )}
-              <span style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#c96442' }}>
+              <span style={{ fontFamily: 'var(--font-mono-brutalist, monospace)', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#c96442' }}>
                 Keyword {item.keyword}
               </span>
             </div>
 
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '21px', fontWeight: 400, lineHeight: 1.25, color: '#0a1e10', margin: '0 0 0.75rem' }}>
+            <h2 style={{ fontFamily: 'var(--font-brutalist, system-ui)', fontSize: '21px', fontWeight: 400, lineHeight: 1.25, color: '#0a1e10', margin: '0 0 0.75rem' }}>
               {item.title}
             </h2>
 
@@ -47,7 +47,7 @@ export function FreebieGrid({ items }: { items: FreebieConfig[] }) {
             </p>
 
             <div style={{ background: '#f5f3ee', border: '1px solid rgba(26,94,53,0.18)', borderRadius: '10px', padding: '0.85rem 1rem', margin: '0 0 1rem' }}>
-              <div style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#1a5e35', marginBottom: '0.4rem' }}>
+              <div style={{ fontFamily: 'var(--font-mono-brutalist, monospace)', fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#1a5e35', marginBottom: '0.4rem' }}>
                 Wat je eraan overhoudt
               </div>
               <p style={{ fontSize: '13.5px', color: '#2a2721', lineHeight: 1.6, margin: 0 }}>

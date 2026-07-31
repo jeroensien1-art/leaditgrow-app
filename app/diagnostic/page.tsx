@@ -341,7 +341,7 @@ const css = `
     --rust: #c96442; --rust-light: #fdf1eb; --rust-border: rgba(201,100,66,0.2);
     --green: #2d6a4f; --green-light: #eaf4ee;
     --border: rgba(28,26,24,0.08); --border-mid: rgba(28,26,24,0.14);
-    --font-display: 'Georgia', serif; --font-body: system-ui, sans-serif;
+    --font-display: var(--font-brutalist, system-ui); --font-body: var(--font-brutalist, system-ui);
     --shadow-card: 0 1px 3px rgba(28,26,24,0.06);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -772,7 +772,7 @@ export default function DiagnosticPage() {
       {/* SEO content section */}
       <section style={{ background: '#faf9f5', padding: '3rem 1.5rem 4rem' }}>
         <div style={{ maxWidth: 680, margin: '0 auto', color: '#3d3929' }}>
-          <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 24, fontWeight: 400, marginBottom: '1rem', color: '#2a2720' }}>
+          <h2 style={{ fontFamily: 'var(--font-brutalist, system-ui)', fontSize: 24, fontWeight: 400, marginBottom: '1rem', color: '#2a2720' }}>
             {nl ? 'Wat meet de groeidiagnose?' : 'What does the business diagnostic measure?'}
           </h2>
           <p style={{ fontSize: 15, lineHeight: 1.75, color: '#5c5849', marginBottom: '1.5rem' }}>
@@ -781,7 +781,7 @@ export default function DiagnosticPage() {
               : 'The diagnostic maps 6 growth levers that determine whether your business works for you or against you: owner time freedom, leadership and team, pipeline and follow-up, growth strategy, online presence and sales close rate. Each lever represents a specific area where most businesses structurally leave revenue or energy on the table.'}
           </p>
 
-          <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 24, fontWeight: 400, marginBottom: '1rem', color: '#2a2720' }}>
+          <h2 style={{ fontFamily: 'var(--font-brutalist, system-ui)', fontSize: 24, fontWeight: 400, marginBottom: '1rem', color: '#2a2720' }}>
             {nl ? 'Voor wie is de diagnose bedoeld?' : 'Who is the diagnostic designed for?'}
           </h2>
           <p style={{ fontSize: 15, lineHeight: 1.75, color: '#5c5849', marginBottom: '1.5rem' }}>
@@ -790,7 +790,7 @@ export default function DiagnosticPage() {
               : 'The diagnostic is designed for owners of service businesses with 1 to 20 employees who feel their business demands more from them than it gives back. They work hard, revenue grows, but freedom stays out of reach. The diagnostic reveals which lever breaks down first.'}
           </p>
 
-          <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 24, fontWeight: 400, marginBottom: '1rem', color: '#2a2720' }}>
+          <h2 style={{ fontFamily: 'var(--font-brutalist, system-ui)', fontSize: 24, fontWeight: 400, marginBottom: '1rem', color: '#2a2720' }}>
             {nl ? 'Veelgestelde vragen' : 'Frequently asked questions'}
           </h2>
           <div style={{ borderTop: '1px solid rgba(61,57,41,0.1)', paddingTop: '1.5rem', display: 'flex', flexDirection: 'column' as const, gap: '1.5rem' }}>

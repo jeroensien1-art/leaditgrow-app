@@ -43,10 +43,10 @@ export default function GratisPage() {
       <main style={{ background: '#faf9f5', minHeight: '100vh', paddingTop: '6rem' }}>
         <div style={{ background: 'linear-gradient(160deg, #0a1e10 0%, #163320 100%)', padding: '4rem 1.5rem 5rem' }}>
           <div style={{ maxWidth: '760px', margin: '0 auto' }}>
-            <div style={{ fontFamily: 'monospace', fontSize: '12px', letterSpacing: '0.04em', color: '#c96442', marginBottom: '1rem' }}>
+            <div style={{ fontFamily: 'var(--font-mono-brutalist, monospace)', fontSize: '12px', letterSpacing: '0.04em', color: '#c96442', marginBottom: '1rem' }}>
               Want ondernemers moeten zich kunnen focussen op de belangrijke zaken.
             </div>
-            <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(30px, 5vw, 50px)', fontWeight: 400, lineHeight: 1.12, color: '#faf9f5', margin: '0 0 1.25rem' }}>
+            <h1 style={{ fontFamily: 'var(--font-brutalist, system-ui)', fontSize: 'clamp(30px, 5vw, 50px)', fontWeight: 400, lineHeight: 1.12, color: '#faf9f5', margin: '0 0 1.25rem' }}>
               Tools die jou vandaag je vrijheid teruggeven,<br /><em style={{ color: '#c96442' }}>terwijl je bedrijf nooit stopt met groeien</em>
             </h1>
             <p style={{ fontSize: '17px', color: 'rgba(250,249,245,0.65)', lineHeight: 1.7, maxWidth: '540px', margin: 0 }}>
@@ -59,10 +59,10 @@ export default function GratisPage() {
           <FreebieGrid items={items} />
 
           <div style={{ marginTop: '4rem', padding: '2.5rem', borderRadius: '16px', background: '#0a1e10', textAlign: 'center' }}>
-            <div style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c96442', marginBottom: '1rem' }}>
+            <div style={{ fontFamily: 'var(--font-mono-brutalist, monospace)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c96442', marginBottom: '1rem' }}>
               Gratis · 4 minuten
             </div>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(22px, 4vw, 32px)', fontWeight: 400, color: '#faf9f5', marginBottom: '1rem', lineHeight: 1.2 }}>
+            <h2 style={{ fontFamily: 'var(--font-brutalist, system-ui)', fontSize: 'clamp(22px, 4vw, 32px)', fontWeight: 400, color: '#faf9f5', marginBottom: '1rem', lineHeight: 1.2 }}>
               Weet je niet waar te beginnen?
             </h2>
             <p style={{ fontSize: '15px', color: 'rgba(250,249,245,0.55)', lineHeight: 1.65, maxWidth: '440px', margin: '0 auto 1.75rem' }}>
