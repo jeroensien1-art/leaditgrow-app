@@ -19,6 +19,8 @@ Marketing site + funnel voor Lead it, Grow (Jeroen's agency). Bezoekers landen o
 | `/diagnostic` | Gratis diagnose (scored quiz, email-gate) | Live |
 | `/diensten` | Dienstenoverzicht | Live |
 | `/content-strategie` | Sales page content intelligence systeem | Live (deploy 2026-07-15) |
+| `/gratis` | Freebie-hub: alle 7 freebies op één pagina, e-mailgate per kaart | Live (2026-07-30) |
+| `/api/freebie-optin` | Freebie opt-in: mail + lead + e-maillijst met tag | Live |
 | `/api/leads` | Lead opslaan vanuit diagnostic | Live |
 | `/api/diagnostic` | Diagnostic score berekenen | Live |
 | `/api/calculator` | ROI calculator | Live |
@@ -38,8 +40,21 @@ import { useLang } from '@/components/lang-context'
 // Inline styles, geen Tailwind classes
 ```
 
+## Freebies
+
+Config staat in `lib/freebies.ts` (7 stuks, elk met `keyword` voor de comment-DM-flow). PDF's worden gegenereerd met `node exports/build-freebies.mjs` (headless Chrome, print-CSS) naar `public/downloads/`. Nieuwe freebie toevoegen: config-entry, content in het build-script, PDF renderen, en `FREEBIE_ORDER` aanvullen.
+
+Opt-in doet drie dingen: `saveLead` (CRM), `addToEmailList` (e-maillijst met tag = freebie-id), en de mail via Resend.
+
+## Supabase — email_list
+
+Tabel `email_list`: één rij per e-mailadres, `tags text[]` bevat de freebie-ids die iemand downloadde. Unieke index op `lower(email)`, RLS aan zonder policies (enkel service role). Helper: `lib/crm/email-list.ts`.
+
 ## Open punten
 
+- [ ] **Migratie `supabase/migrations/20260730_email_list.sql` nog draaien** in de Supabase SQL editor. Tot dan faalt het wegschrijven naar de e-maillijst stil (gelogd, blokkeert de opt-in niet).
+- [ ] ManyChat-flows per keyword: KADER, RUST, TIJD, PROMPTS, GESPREK, SCORE, START, VRAGEN, SYSTEEM. Blauwdruk: `leaditgrow-content/LIG-manychat-checklist-flow.md`.
+- [ ] Freebies SCORE (preselectie-scorekaart), START (integratieplan) en VRAGEN (50 verkoopvragen) bestaan nog niet, worden wel in de content genoemd.
 - [ ] Groeiladder component porten naar React (vervangt PineTreeLadder, design: variant-2.html "Het Pad")
 - [ ] Content-strategie pagina live verifiëren via curl
 
