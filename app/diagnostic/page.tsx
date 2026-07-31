@@ -353,10 +353,6 @@ const css = `
   .headline { font-family:var(--font-display); font-size:26px; font-weight:700; color:var(--ink); line-height:1.2; margin-bottom:10px; }
   .headline em { font-style:italic; color:var(--rust); }
   .subline { font-size:14px; color:var(--ink-muted); line-height:1.7; margin-bottom:1.8rem; }
-  .moments { display:flex; flex-direction:column; gap:6px; margin-bottom:1.6rem; }
-  .moment { display:flex; align-items:flex-start; gap:10px; padding:11px 14px; background:var(--cream); border-radius:8px; border-left:2px solid var(--sand-mid); }
-  .moment-text { font-size:13px; color:var(--ink-mid); line-height:1.55; }
-  .moment-text strong { font-weight:600; color:var(--ink); display:block; margin-bottom:2px; }
   .btn-primary { width:100%; padding:16px 24px; background:var(--rust); color:white; border:none; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer; transition:all .15s; box-shadow:0 2px 8px rgba(201,100,66,.25); letter-spacing:.01em; }
   .cta-lever-label { font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--rust); margin-bottom:6px; }
   .btn-primary:hover { background:#b8572a; transform:translateY(-1px); }
@@ -432,7 +428,6 @@ const css = `
   .what-in-title { font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--rust); margin-bottom:10px; }
   .what-item { font-size:13px; color:var(--ink-mid); line-height:1.9; display:flex; gap:8px; }
   .what-item::before { content:'·'; color:var(--ink-faint); flex-shrink:0; }
-  .italic-note { font-family:var(--font-display); font-size:13px; font-style:italic; color:var(--ink-muted); margin-bottom:1.6rem; line-height:1.6; }
   .pc-locked { font-size:12px; color:var(--ink-faint); font-style:italic; margin-top:6px; display:flex; align-items:center; gap:6px; }
   @keyframes dot-pulse { 0%,100%{opacity:.25} 50%{opacity:1} }
 `
@@ -531,12 +526,8 @@ export default function DiagnosticPage() {
 
   const T = {
     eyebrow:        nl ? 'Voor ondernemers'                        : 'For business owners',
-    headline:       nl ? <>Je bouwde dit bedrijf.<br />Werkt het ook <em>voor jou?</em></> : <>You built this business.<br />Is it <em>working for you?</em></>,
-    subline:        nl ? '6 gerichte vragen. Je krijgt een helder beeld van welke ene verandering, in leiderschap, groeistrategie, verkoop of tijd, het meeste oplevert.' : '6 targeted questions. You get a clear picture of which one change, in leadership, growth strategy, sales or time, would give you the most back.',
-    moments:        nl
-      ? [['Omzet stijgt, maar alles stijgt mee', 'Meer klanten, meer problemen, meer van jouw tijd. Groei voelt alsof het meer kost dan het opbrengt.'], ['Je hebt een team, maar doet nog alles zelf', 'Het zijn goede mensen. Maar elke echte beslissing belandt nog steeds op jouw bureau.'], ['Er komen leads binnen, maar niet allemaal converteren', 'Sommigen gaan koud voor iemand opvolgde. Anderen werden nooit een tweede keer benaderd.'], ['Er is meer omzet die onbenut blijft', 'Vroegere klanten die niet zijn teruggekomen. Doorverwijzingen die nooit zijn gevraagd.']]
-      : [['Revenue is up, but so is everything else', 'More clients, more problems, more of your time. Growth feels like it costs more than it gives back.'], ['You have a team, but you are still doing everything', 'They are good people. But every real decision still lands on your desk.'], ['Leads are coming in, but not all of them convert', 'Some go cold before anyone followed up. Others were never chased a second time.'], ['There is more revenue sitting there, untouched', 'Past clients who never came back. Referrals that were never asked for.']],
-    italicNote:     nl ? 'Deze diagnose vindt welke hefboom je als eerste moet aanpakken, zodat je omzet kunt laten groeien, beter kunt leiden en een bedrijf kunt bouwen dat jou jouw leven teruggeeft.' : 'This diagnostic finds which lever to pull first, so you can grow revenue, lead better and build a business that gives you your life back.',
+    headline:       nl ? <>Dit is hoe je stopt met tijd en omzet te lekken<br />en je bedrijf <em>blijft groeien</em></> : <>This is how you stop leaking time and revenue<br />while your business <em>keeps growing</em></>,
+    subline:        nl ? 'Waar je nu best mee begint, en hoe.' : 'Where to start now, and how.',
     startBtn:       nl ? 'Laat me zien wat mijn bedrijf tegenhoudt' : 'Show me what is holding my business back',
     aboutBusiness:  nl ? 'Over je bedrijf'   : 'About your business',
     ctxProgress:    (i: number, t: number) => nl ? `Context ${i} van ${t}` : `Context ${i} of ${t}`,
@@ -585,15 +576,7 @@ export default function DiagnosticPage() {
               <div>
                 <div className="eyebrow">{T.eyebrow}</div>
                 <div className="headline">{T.headline}</div>
-                <div className="subline">{T.subline}</div>
-                <div className="moments">
-                  {T.moments.map((m) => (
-                    <div key={m[0]} className="moment">
-                      <div className="moment-text"><strong>{m[0]}</strong>{m[1]}</div>
-                    </div>
-                  ))}
-                </div>
-                <p className="italic-note">{T.italicNote}</p>
+                <div className="subline" style={{ marginBottom: '2rem' }}>{T.subline}</div>
                 <button className="btn-primary" onClick={() => setStep('context')}>{T.startBtn}</button>
                 <p style={{ marginTop: '10px', fontSize: '12px', color: 'var(--ink-faint)', textAlign: 'center' }}>
                   {nl ? 'Gratis · 4 minuten · direct een rapport' : 'Free · 4 minutes · report straight away'}
