@@ -14,6 +14,253 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: 'kan-jouw-zaak-twee-weken-zonder-jou-vakantietest',
+    title: 'Kan jouw zaak twee weken zonder jou? Doe de vakantietest.',
+    metaTitle: 'Kan jouw zaak twee weken zonder jou? De vakantietest | Lead it, Grow',
+    metaDescription: '1 op 5 zelfstandigen neemt geen vakantie. Jouw vakantie is de eerlijkste test van je bedrijf: dit bereid je voor, dit meet je, en dit doe je met wat er misloopt.',
+    publishDate: '2026-08-02',
+    readingTime: 6,
+    category: 'Van oprichter naar leider',
+    region: 'België · Vlaanderen',
+    excerpt: 'Eén op vijf zelfstandigen gunt zichzelf geen vakantie. Meestal met dezelfde reden: "als ik weg ben, ligt alles stil." Dat is geen tijdsprobleem maar een systeemprobleem, en augustus is de perfecte stresstest.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: 'Kan jouw zaak twee weken zonder jou? Doe de vakantietest.',
+          description: '1 op 5 zelfstandigen neemt geen vakantie. Jouw vakantie is de eerlijkste test van je bedrijf: zo bereid je ze voor en dit leer je uit wat misloopt.',
+          datePublished: '2026-08-02',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'Waarom is vakantie een goede test voor mijn bedrijf?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Vakantie legt bloot wat je in een gewone werkweek kan verbergen door harder te werken: welke beslissingen enkel jij kan nemen, welke kennis enkel in jouw hoofd zit en welke klantvragen zonder jou blijven liggen. Elke storing tijdens je afwezigheid wijst naar een ontbrekend systeem, en dat is precies de informatie die je nodig hebt om te bouwen.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Wat moet ik regelen voor ik twee weken offline ga?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Drie dingen: wie nieuwe leads en klantvragen beantwoordt, tot welk bedrag of welke situatie je team zelf mag beslissen, en welk kanaal enkel voor echte noodgevallen dient. Zet daarnaast je leadopvolging op een automatisch systeem, zodat geen enkele aanvraag op jou hoeft te wachten.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Mijn zaak kan echt niet zonder mij. Wat nu?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Dan is dat de belangrijkste vaststelling van het jaar, want een bedrijf dat volledig aan de eigenaar hangt is kwetsbaar én onverkoopbaar. Begin klein: documenteer één terugkerend proces per maand en automatiseer de eerste reactie op nieuwe leads. Binnen een jaar overleeft je zaak een vakantie zonder brandjes.' },
+            },
+          ],
+        },
+      ],
+    },
+    content: `
+<p class="blog-intro">Eén op vijf zelfstandigen nam vorig jaar geen vakantie, blijkt uit een Xerius-bevraging bij 2.282 ondernemers. Bijna altijd met dezelfde reden: "als ik weg ben, ligt alles stil." Dat is geen tijdsprobleem. Het is een systeemprobleem, en de zomer is de eerlijkste stresstest die je bedrijf ooit krijgt.</p>
+
+<h2>De eigenaar die dag drie niet haalde</h2>
+<p>Een Amerikaanse fabriekseigenaar deed dit voorjaar een experiment dat viraal ging op Reddit: vijf dagen volledig off-grid, om te zien of zijn bedrijf zonder hem kon. Dag twee belde zijn supervisor over prijszetting. Dag drie stond zijn office manager aan de lijn over facturen. Test mislukt.</p>
+<p>Zijn conclusie werd duizenden keren gedeeld: als je bedrijf niet zonder jou kan, heb je geen bedrijf. Je hebt een veeleisende job. Het verhaal raakt omdat bijna elke zaakvoerder zichzelf erin herkent: de telefoon die meegaat naar het strand, de mails tussen twee duiken door, de opluchting én de lichte paniek wanneer het thuisfront zegt dat het "wel zal draaien".</p>
+
+<h2>Waarom dit meer is dan een gemiste vakantie</h2>
+<p>VLAIO zegt het onomwonden aan wie ooit wil verkopen: zorg dat je als zaakvoerder niet onmisbaar bent, want een bedrijf dat volledig aan de eigenaar hangt is voor een overnemer bijna waardeloos. Elke koper stelt dezelfde eerste vraag: draait dit zonder de huidige eigenaar?</p>
+<p>Zelfs als verkopen nooit je plan is, blijft de lakmoesproef dezelfde. Een zaak die twee weken zonder jou draait, geeft je keuzes: uitbreiden, delegeren, of gewoon eens écht thuis zijn. Een zaak die dat niet kan, bepaalt jouw agenda, je gezinstijd en je nachtrust. Uit een Liantis-bevraging bij 1.721 zelfstandigen bleek dat zeven op tien zelfs op vrije dagen mentaal niet loskomen van het werk.</p>
+
+<h2>De vakantietest: zo doe je ze goed</h2>
+
+<h3>1. Leg beslissingsdrempels vast</h3>
+<p>Schrijf op één A4 wie wat mag beslissen tijdens je afwezigheid: tot welk bedrag beslist het team zelf, welke klantsituaties mogen ze zelfstandig oplossen, en wat is aanvaardbaar leergeld als het fout loopt. De meeste "noodoproepen" tijdens vakanties zijn geen noodgevallen; het zijn vragen waarvoor niemand het mandaat kreeg.</p>
+
+<h3>2. Documenteer je drie meest gestelde vragen</h3>
+<p>Jij weet uit het hoofd wat een spoedorder kost, welke leverancier je belt bij een tekort en hoe je die ene lastige klant aanpakt. Zet die drie antwoorden op papier voor je vertrekt. Meer hoeft niet: de vragen die het vaakst bij jou landen, veroorzaken ook de meeste onderbrekingen.</p>
+
+<h3>3. Automatiseer je leadopvolging vóór je vertrekt</h3>
+<p>Nieuwe aanvragen wachten niet tot september. Wie in augustus een offerte vraagt en twee weken stilte krijgt, tekent intussen bij een concurrent. Een <a href="/speed-to-lead">automatisch opvolgsysteem</a> beantwoordt elke aanvraag binnen minuten, kwalificeert ze en plant een gesprek in voor na je terugkeer. Dat is het verschil tussen terugkomen op een lege inbox of op een gevulde agenda.</p>
+
+<h3>4. Noteer elke storing als data</h3>
+<p>Loopt er toch iets fout? Perfect. Elke oproep, elke gemiste beslissing en elk brandje is een precieze aanwijzing van welk systeem er ontbreekt. De test mislukt pas echt als je er in september niets mee doet.</p>
+
+<h2>Wat als de test mislukt?</h2>
+<p>Dan weet je meer dan de meeste zaakvoerders ooit meten. Kies het proces dat het hardst faalde en documenteer het volledig, van aanvraag tot factuur. Volgende maand het tweede. Wil je weten waar je vandaag staat? <a href="/diagnostic">De gratis diagnose</a> brengt in vier minuten in kaart welke groeihefbomen bij jou op slot staan.</p>
+
+<h2>Veelgestelde vragen</h2>
+
+<div class="faq-item">
+  <h3>Waarom is vakantie een goede test voor mijn bedrijf?</h3>
+  <p>Vakantie legt bloot wat je in een gewone werkweek verbergt door harder te werken: welke beslissingen enkel jij kan nemen, welke kennis enkel in jouw hoofd zit en welke klantvragen zonder jou blijven liggen. Elke storing wijst naar een ontbrekend systeem.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Wat moet ik regelen voor ik twee weken offline ga?</h3>
+  <p>Drie dingen: wie leads en klantvragen beantwoordt, tot welk bedrag je team zelf mag beslissen, en welk kanaal enkel voor echte noodgevallen dient. Zet daarnaast je leadopvolging op een automatisch systeem.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Mijn zaak kan echt niet zonder mij. Wat nu?</h3>
+  <p>Dan is dat de belangrijkste vaststelling van het jaar: een bedrijf dat volledig aan de eigenaar hangt is kwetsbaar én onverkoopbaar. Documenteer één terugkerend proces per maand en automatiseer de eerste reactie op nieuwe leads. Binnen een jaar overleeft je zaak een vakantie zonder brandjes.</p>
+</div>
+`,
+  },
+  {
+    slug: 'ai-paradox-kmo-2026-81-procent-gebruikt-helft-weet-niet-hoe',
+    title: 'De AI-paradox bij Vlaamse KMO\'s: 81% gebruikt het, de helft weet niet hoe',
+    metaTitle: 'AI-paradox KMO 2026: 81% gebruikt AI, 51% weet niet hoe | Lead it, Grow',
+    metaDescription: 'AI-gebruik bij Belgische KMO\'s steeg van 8% naar 81% in twee jaar, maar 51% weet niet hoe het effectief in te zetten. Dit automatiseer je wel, dit nooit.',
+    publishDate: '2026-08-02',
+    readingTime: 6,
+    category: 'AI & Automatisering',
+    region: 'België · Vlaanderen',
+    excerpt: 'Het AI-gebruik bij Belgische KMO\'s explodeerde van 8% naar 81% in twee jaar. Tegelijk zegt de helft niet te weten hoe ze het effectief inzetten. Het verschil tussen winst en verlies zit in wat je automatiseert.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: 'De AI-paradox bij Vlaamse KMO\'s: 81% gebruikt het, de helft weet niet hoe',
+          description: 'AI-gebruik bij Belgische KMO\'s steeg van 8% naar 81%, maar 51% weet niet hoe het effectief in te zetten. Dit automatiseer je wel, dit nooit.',
+          datePublished: '2026-08-02',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'Wat moet een KMO als eerste automatiseren met AI?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Begin bij de uitvoering van repetitief klantcontact: de eerste reactie op nieuwe leads, afspraakbevestigingen, offerteherinneringen en administratieve opvolging. Dat zijn taken met een vast patroon waar snelheid direct geld oplevert. Automatiseer nooit je strategie, prijszetting of de persoonlijke relatie met klanten.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Kan AI-gebruik mij klanten kosten?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Ja, als je het verkeerde automatiseert. In een Amerikaanse bevraging zei 1 op 4 eigenaars dat AI hen klanten kostte, vrijwel altijd doordat klanten generieke, kille AI-antwoorden kregen op persoonlijke vragen. Automatiseer de logistiek van je klantcontact, en houd de relatie zelf menselijk.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Waarom mislukken zoveel AI-projecten bij bedrijven?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Ze worden te groot gedacht. Gartner voorspelt dat ruim 40% van de agentic AI-projecten geannuleerd wordt tegen eind 2027, en in een Carnegie Mellon-benchmark voltooiden de beste AI-agents amper 24% van echte kantoortaken. Eén afgebakend proces volledig automatiseren werkt wél: klein beginnen, waterdicht maken, dan pas uitbreiden.' },
+            },
+          ],
+        },
+      ],
+    },
+    content: `
+<p class="blog-intro">Het AI-gebruik bij Belgische KMO's ging van 8% in 2024 naar 81% in 2026, blijkt uit de Exact KMO Barometer. Een explosie. Maar in hetzelfde onderzoek zegt 51% niet te weten hoe ze AI effectief inzetten. De meeste zaakvoerders laten ChatGPT mailtjes herschrijven terwijl hun leads uren op antwoord wachten. Dat is de paradox van dit moment: iedereen gebruikt het, bijna niemand haalt er rendement uit.</p>
+
+<h2>Waar het misloopt: denkwerk uitbesteden</h2>
+<p>Alex Hormozi vertelde er in juli een pijnlijk voorbeeld over in The Diary of a CEO: een bedrijf gaf 350.000 dollar uit aan een AI-systeem dat elf assistenten moest vervangen. Dat bedrag dekt meer dan drie jaar van hun loonkosten. Zijn conclusie: wie zijn denkwerk aan AI uitbesteedt, neemt een slechte beslissing.</p>
+<p>De cijfers geven hem gelijk. Gartner voorspelt dat ruim 40% van de agentic AI-projecten geannuleerd wordt tegen eind 2027. En in een benchmark van Carnegie Mellon voltooiden de beste AI-agents amper 24% van echte kantoortaken. Een agent die "heel je sales doet" bestaat vandaag simpelweg niet.</p>
+
+<h2>Waar het wél werkt: uitvoering</h2>
+<p>Tegenover die mislukkingen staat een andere realiteit: in een Amerikaanse SMB-bevraging bespaarde 58% van de AI-gebruikende eigenaars meer dan 20 uur per maand. Het verschil zit niet in de tool maar in de taakkeuze. AI is vandaag uitstekend in taken met een vast patroon en een meetbaar resultaat: een nieuwe lead binnen minuten beantwoorden, een afspraak bevestigen, een offerteherinnering sturen, gegevens overzetten.</p>
+<p>De vuistregel is simpel: strategie blijft bij jou, repetitie gaat naar het systeem. Je prijszetting, je positionering en het moeilijke klantgesprek zijn denkwerk. De 42 uur die een gemiddelde B2B-lead op een eerste antwoord wacht, is uitvoering, en <a href="/blog/42-uur-reactietijd-leads-verliezen">exact daar lekt bij de meeste KMO's het meeste geld weg</a>.</p>
+
+<h2>De valkuil: de relatie automatiseren</h2>
+<p>Er is één grens die je nooit oversteekt. In een Amerikaanse bevraging zei 1 op 4 eigenaars dat AI hen klanten kostte. Vrijwel altijd om dezelfde reden: klanten voelden meteen dat een robot hun persoonlijke vraag beantwoordde. Het generieke antwoord, de kille opvolging op een klacht.</p>
+<p>Wat klanten wél waarderen is snelheid in de logistiek: direct antwoord op hun aanvraag, een bevestiging binnen de minuut, een herinnering op tijd. Automatiseer dus de logistiek van je klantcontact. Houd de relatie zelf menselijk.</p>
+
+<h2>Zo start je zonder developer</h2>
+<p>Kies één proces dat elke week terugkomt en automatiseer dat volledig voor je aan het volgende begint. Voor de meeste KMO's is dat de leadopvolging: het proces met het vaste patroon én het directe omzetlek. Hoe dat er concreet uitziet lees je in <a href="/blog/ai-automatiseren-vlaamse-kmo-zonder-developer">deze gids voor Vlaamse KMO's</a>, of doe eerst <a href="/diagnostic">de gratis diagnose</a> om te zien welke groeihefboom bij jou het hardst op slot staat.</p>
+
+<h2>Veelgestelde vragen</h2>
+
+<div class="faq-item">
+  <h3>Wat moet een KMO als eerste automatiseren met AI?</h3>
+  <p>De uitvoering van repetitief klantcontact: de eerste reactie op nieuwe leads, afspraakbevestigingen, offerteherinneringen en administratieve opvolging. Taken met een vast patroon waar snelheid direct geld oplevert. Automatiseer nooit je strategie, prijszetting of de persoonlijke relatie met klanten.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Kan AI-gebruik mij klanten kosten?</h3>
+  <p>Ja, als je het verkeerde automatiseert. In een Amerikaanse bevraging zei 1 op 4 eigenaars dat AI hen klanten kostte, vrijwel altijd doordat klanten generieke antwoorden kregen op persoonlijke vragen. Automatiseer de logistiek, houd de relatie menselijk.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Waarom mislukken zoveel AI-projecten bij bedrijven?</h3>
+  <p>Ze worden te groot gedacht. Gartner voorspelt dat ruim 40% van de agentic AI-projecten geannuleerd wordt tegen eind 2027, en in een Carnegie Mellon-benchmark voltooiden de beste agents amper 24% van echte kantoortaken. Eén afgebakend proces waterdicht automatiseren werkt wél.</p>
+</div>
+`,
+  },
+  {
+    slug: 'faillissementsrecord-2026-voorspelbare-pipeline',
+    title: 'Recordjaar voor faillissementen. Wat de overlevers anders doen.',
+    metaTitle: 'Faillissementsrecord 2026: wat overlevende KMO\'s anders doen | Lead it, Grow',
+    metaDescription: '3.048 faillissementen in Q1 2026, het hoogste kwartaal ooit gemeten. Wat overlevende KMO\'s gemeen hebben is zelden een beter product, wel een voorspelbare pipeline.',
+    publishDate: '2026-08-02',
+    readingTime: 6,
+    category: 'Pipeline & Groei',
+    region: 'België · Vlaanderen',
+    excerpt: 'Q1 2026 brak het Belgische faillissementsrecord: 3.048 bedrijven, bijna allemaal KMO\'s. Wat de overlevers gemeen hebben is zelden een beter product. Het is een voorspelbare instroom van klanten.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: 'Recordjaar voor faillissementen. Wat de overlevers anders doen.',
+          description: '3.048 faillissementen in Q1 2026, het hoogste kwartaal ooit. Wat overlevende KMO\'s gemeen hebben is een voorspelbare pipeline, geen beter product.',
+          datePublished: '2026-08-02',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'Waarom gaan er in 2026 zoveel Belgische bedrijven failliet?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Q1 2026 telde 3.048 faillissementen, het hoogste kwartaal ooit gemeten (het vorige record was 3.040 in 2013). De combinatie van hoge loonkosten, dalende rendabiliteit en economische onzekerheid raakt vooral KMO\'s. Bedrijven zonder voorspelbare klanteninstroom voelen elke schommeling het hardst.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Wat is een voorspelbare pipeline?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Een voorspelbare pipeline betekent dat je elke week weet hoeveel nieuwe aanvragen er binnenkomen, hoeveel er opgevolgd zijn en hoeveel offertes er buiten staan. Wie die drie getallen kent, kan bijsturen voor het te laat is. Wie op mond-tot-mond hoopt, ontdekt een terugval pas wanneer de agenda al leeg is.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Hoe bouw ik voorspelbaarheid zonder extra personeel aan te werven?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Begin met meten: het aantal nieuwe aanvragen per week en hoe snel ze een eerste antwoord krijgen. Automatiseer daarna de opvolging, want reageren binnen vijf minuten converteert tot negen keer beter dan een dag wachten. Een opvolgsysteem werkt zonder verlof en zonder ziektedag, precies wat je nodig hebt nu amper 1 op 4 KMO\'s nog durft aan te werven.' },
+            },
+          ],
+        },
+      ],
+    },
+    content: `
+<p class="blog-intro">3.048 bedrijven gingen failliet in de eerste drie maanden van 2026. Dat is het hoogste kwartaal ooit gemeten in België; het vorige record stond sinds 2013. Bijna allemaal KMO's. En wat de overlevers gemeen hebben is zelden een beter product. Het is een voorspelbare instroom van klanten.</p>
+
+<h2>Het klimaat is hard, en zaakvoerders voelen het</h2>
+<p>De cijfers van dit voorjaar schetsen hetzelfde beeld vanuit drie hoeken. GraydonCreditsafe en Statbel registreerden het faillissementsrecord. De SD Worx KMO-jobbarometer van juli toont dat nog maar 25% van de KMO's durft aan te werven, tegenover 40% een jaar eerder; de ontslagplannen stegen naar 15%. En uit een Liantis/UNIZO-bevraging bij 1.568 ondernemers blijkt dat 65% zich dagelijks zorgen maakt over de toekomst van hun bedrijf. Dagelijks.</p>
+<p>Je kan daar somber van worden. Of je kan kijken naar wat de bedrijven die wél overeind blijven anders doen.</p>
+
+<h2>Overleven is een pipeline-kwestie</h2>
+<p>Een faillissement begint zelden bij een slecht product. Het begint bij onvoorspelbaarheid: een sterke maand, dan twee stille, en geen zicht op waar de volgende tien offertes vandaan komen. Wie elke maand weet wat er binnenkomt, kan kosten plannen, investeren op het juiste moment en een tegenvaller opvangen. Wie hoopt op mond-tot-mond, ontdekt een terugval pas wanneer de agenda al leeg is.</p>
+<p>Voorspelbaarheid is geen kwestie van meer marketingbudget. Het begint bij drie getallen die je wekelijks bijhoudt: hoeveel nieuwe aanvragen kwamen er binnen, hoeveel kregen een opvolging, en hoeveel offertes staan er buiten. Alles wat je meet, wordt bespreekbaar. Alles wat bespreekbaar is, kan je verbeteren.</p>
+
+<h2>Het snelste lek om te dichten: je reactietijd</h2>
+<p>Er is één plek waar bijna elke KMO vandaag omzet laat liggen zonder het te zien: de tijd tussen een nieuwe aanvraag en het eerste antwoord. De gemiddelde B2B-lead wacht 42 uur. Wie binnen vijf minuten reageert, converteert tot negen keer beter dan wie een dag wacht. <a href="/blog/42-uur-reactietijd-leads-verliezen">De volledige cijfers achter die reactietijd lees je hier</a>.</p>
+<p>Dat lek dichten vraagt geen extra verkoper, en dat komt goed uit in een jaar waarin aanwerven voor de meeste KMO's stilligt. Een <a href="/speed-to-lead">automatisch opvolgsysteem</a> beantwoordt elke aanvraag direct, kwalificeert ze en plant het gesprek in. Je bestaande team doet dan het werk waar een mens echt het verschil maakt.</p>
+
+<h2>Bouw de voorspelbaarheid vóór je ze nodig hebt</h2>
+<p>De bedrijven die dit record-kwartaal overleefden, bouwden hun pipeline in betere tijden. Dat is de les: begin vandaag, met wat je hebt. Meet je wekelijkse instroom, dicht het reactietijd-lek, en documenteer wat werkt. Wil je weten waar jouw bedrijf vandaag staat? <a href="/diagnostic">De gratis diagnose</a> brengt in vier minuten in kaart welke van de zeven groeihefbomen bij jou op slot staan.</p>
+
+<h2>Veelgestelde vragen</h2>
+
+<div class="faq-item">
+  <h3>Waarom gaan er in 2026 zoveel Belgische bedrijven failliet?</h3>
+  <p>Q1 2026 telde 3.048 faillissementen, het hoogste kwartaal ooit gemeten; het vorige record was 3.040 in 2013. Hoge loonkosten, dalende rendabiliteit en economische onzekerheid raken vooral KMO's. Bedrijven zonder voorspelbare klanteninstroom voelen elke schommeling het hardst.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Wat is een voorspelbare pipeline?</h3>
+  <p>Dat je elke week weet hoeveel nieuwe aanvragen er binnenkomen, hoeveel er opgevolgd zijn en hoeveel offertes er buiten staan. Wie die drie getallen kent, kan bijsturen voor het te laat is.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Hoe bouw ik voorspelbaarheid zonder extra personeel?</h3>
+  <p>Meet je wekelijkse instroom en reactietijd, en automatiseer daarna de opvolging: binnen vijf minuten reageren converteert tot negen keer beter dan een dag wachten. Een opvolgsysteem werkt zonder verlof en zonder ziektedag.</p>
+</div>
+`,
+  },
+  {
     slug: 'jij-bent-het-plafond-van-je-bedrijf',
     title: 'Jij bent het plafond van je eigen bedrijf (en zo verleg je het)',
     metaTitle: 'Jij bent het plafond van je eigen bedrijf · zo verleg je het | Lead it, Grow',
