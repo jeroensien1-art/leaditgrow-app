@@ -42,6 +42,64 @@ const rij = (n = 8) => Array.from({ length: n }, () => '<tr><td></td><td></td><t
 
 const FREEBIES = [
   {
+    file: 'vakantietest',
+    titel: 'De vakantietest: kan je zaak twee weken zonder jou?',
+    sub: 'Gebruik je vakantie als bedrijfstest, en maak elke volgende vakantie relaxter.',
+    body: `
+<p>E&eacute;n op vijf zelfstandigen nam vorig jaar geen vakantie (Xerius-bevraging bij 2.282 ondernemers). Bijna altijd met dezelfde reden: "als ik weg ben, ligt alles stil." Dat is geen tijdsprobleem maar een systeemprobleem, en je vakantie is de eerlijkste stresstest die je bedrijf ooit krijgt.</p>
+<p>Vakantie legt bloot wat je in een gewone werkweek verbergt door harder te werken: welke beslissingen enkel jij kan nemen, welke kennis enkel in jouw hoofd zit en welke klantvragen zonder jou blijven liggen. Elke storing wijst naar een ontbrekend systeem. Deze handleiding zet de test in vier stappen klaar. Achteraan staat de AI-prompt die de hele voorbereiding voor je doet.</p>
+
+<h2>Stap 1 &middot; Leg beslissingsdrempels vast</h2>
+<p>De meeste "noodoproepen" tijdens vakanties zijn geen noodgevallen. Het zijn vragen waarvoor niemand het mandaat kreeg. Leg op &eacute;&eacute;n blad vast wat het team zelf beslist, en tot waar.</p>
+<table>
+<tr><th style="width:44%">Situatie of beslissing</th><th style="width:28%">Team beslist zelf tot</th><th style="width:28%">Wacht op mijn terugkeer</th></tr>
+${Array.from({ length: 6 }, () => '<tr><td></td><td></td><td></td></tr>').join('')}
+</table>
+<p class="hint">Vuistregel: alles wat omkeerbaar is en onder een bedrag blijft dat je zonder pijn kan missen, beslist het team.</p>
+
+<h2>Stap 2 &middot; Schrijf je drie meest gestelde vragen uit</h2>
+<p>Jij weet uit het hoofd wat een spoedorder kost, welke leverancier je belt bij een tekort en hoe je die ene lastige klant aanpakt. Zet die drie antwoorden op papier voor je vertrekt. De vragen die het vaakst bij jou landen, veroorzaken ook de meeste onderbrekingen.</p>
+<div class="blok"><h3>Vraag 1</h3><p>&nbsp;</p><h3>Antwoord</h3><p>&nbsp;</p><p>&nbsp;</p></div>
+<div class="blok"><h3>Vraag 2</h3><p>&nbsp;</p><h3>Antwoord</h3><p>&nbsp;</p><p>&nbsp;</p></div>
+<div class="blok"><h3>Vraag 3</h3><p>&nbsp;</p><h3>Antwoord</h3><p>&nbsp;</p><p>&nbsp;</p></div>
+
+<h2 class="nieuw">Stap 3 &middot; Spreek het noodkanaal af</h2>
+<p>Er blijven situaties waarin het team jou w&eacute;l moet bereiken. Maak die expliciet, anders wordt elke twijfel een telefoontje naar het strand.</p>
+<div class="blok">
+<h3>Bel of stuur mij enkel als:</h3>
+<ul><li>het over meer gaat dan ......................</li><li>er een veiligheids- of juridisch risico is</li><li>de beslissing niet terug te draaien is</li><li>........................................................................</li></ul>
+<h3>Via dit ene kanaal:</h3><p>&nbsp;</p>
+</div>
+<p>Zet daarnaast je leadopvolging op een automatisch systeem v&oacute;&oacute;r je vertrekt. Wie in augustus een offerte vraagt en twee weken stilte krijgt, tekent intussen bij een concurrent.</p>
+
+<h2>Stap 4 &middot; Noteer elke storing als data</h2>
+<p>Loopt er toch iets fout? Perfect. Elke oproep, elke gemiste beslissing en elk brandje wijst precies aan welk systeem er ontbreekt. De test mislukt pas echt als je er in september niets mee doet.</p>
+<table>
+<tr><th style="width:22%">Datum</th><th style="width:39%">Wat gebeurde er / wie kon niet verder</th><th style="width:39%">Welk systeem ontbrak</th></tr>
+${Array.from({ length: 6 }, () => '<tr><td></td><td></td><td></td></tr>').join('')}
+</table>
+
+<h2 class="nieuw">De AI-prompt: laat de voorbereiding voor je klaarzetten</h2>
+<p>Plak deze prompt in ChatGPT of Claude, beantwoord de vragen &eacute;&eacute;n voor &eacute;&eacute;n, en je krijgt je beslissingskader, antwoordblad en noodafspraak kant-en-klaar terug.</p>
+<div class="prompt">Je bent mijn bedrijfsanalist. Ik ben zaakvoerder van een KMO en wil de vakantietest doen: nagaan of mijn bedrijf twee weken zonder mij kan, en alles klaarzetten zodat dat lukt.
+
+Stel me eerst een voor een deze vragen en wacht telkens op mijn antwoord:
+1. Wat doet mijn bedrijf en hoe groot is het team?
+2. Welke beslissingen kwamen de afgelopen maand enkel bij mij terecht?
+3. Welke vragen stelde mijn team me deze week?
+4. Hoe komt een nieuwe lead of klantvraag vandaag binnen, en wie antwoordt hoe snel?
+5. Wat liep er fout tijdens mijn laatste afwezigheid?
+
+Maak daarna op basis van mijn antwoorden:
+A. Een beslissingskader van een A4: wat het team zelf beslist (met bedrag- of tijdgrenzen), wat op mij wacht, en welke fouten aanvaardbaar leergeld zijn.
+B. Een antwoordblad met mijn drie meest gestelde vragen, uitgeschreven zodat het team het zonder mij kan gebruiken.
+C. Een noodafspraak: wat is een echt noodgeval, en via welk kanaal bereikt dat mij.
+D. Een storingslog-sjabloon waarin het team elke onderbreking tijdens mijn afwezigheid noteert: wat gebeurde er, wie kon niet verder, welk systeem ontbrak.
+
+Verzin niets: gebruik enkel wat ik je vertelde, en stel bijkomende vragen als informatie ontbreekt.</div>
+<p class="hint">Tip: bewaar de output als "vakantiedraaiboek" en overloop het met je team voor je vertrekt. Een kader dat niemand gezien heeft, verandert niets.</p>`,
+  },
+  {
     file: 'delegatiekader',
     titel: 'Het delegatiekader op 1 A4',
     sub: 'Waarover beslist je team zelf, waarover jij, en welke fouten mogen gemaakt worden.',

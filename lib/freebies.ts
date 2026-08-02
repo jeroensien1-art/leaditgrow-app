@@ -6,6 +6,7 @@ export type FreebieId =
   | 'tijdlog'
   | 'promptlijst'
   | 'gespreksgids'
+  | 'vakantietest'
 
 export interface FreebieConfig {
   id: FreebieId
@@ -25,6 +26,21 @@ export interface FreebieConfig {
 }
 
 export const FREEBIES: Record<FreebieId, FreebieConfig> = {
+  'vakantietest': {
+    id: 'vakantietest',
+    keyword: 'SYSTEEM',
+    title: 'De vakantietest: kan je zaak twee weken zonder jou?',
+    pitch: 'De handleiding om je vakantie te gebruiken als bedrijfstest, plus de AI-prompt die de hele voorbereiding voor je klaarzet.',
+    uitkomst: 'Voor je vertrekt liggen je beslissingsdrempels, je drie meest gestelde vragen en je noodafspraak op papier. Elke storing tijdens je afwezigheid wordt data in plaats van paniek.',
+    voorWie: 'Voor wie de laptop meeneemt op vakantie omdat het anders "in brand staat".',
+    subject: 'je vakantietest-handleiding met AI-prompt',
+    downloadFile: 'vakantietest.pdf',
+    emailIntro: 'Zoals beloofd: de vakantietest staat klaar. De handleiding om je vakantie te gebruiken als bedrijfstest, met achteraan de AI-prompt die de hele voorbereiding voor je klaarzet.',
+    emailBullets: [
+      'Start bij de AI-prompt achteraan: plak hem in ChatGPT of Claude, beantwoord de vragen, en je krijgt je beslissingskader en antwoordblad kant-en-klaar terug.',
+      'Noteer tijdens je vakantie elke storing in het log. Dat lijstje is in september je verbouwlijst, geen verwijt.',
+    ],
+  },
   'delegatiekader': {
     id: 'delegatiekader',
     keyword: 'KADER',
@@ -142,6 +158,7 @@ export const FREEBIE_ORDER: FreebieId[] = [
   'template-speedtolead',
   'checklist-opvolging',
   'promptlijst',
+  'vakantietest',
   'delegatiekader',
   'tijdlog',
   'stress-checklist',
