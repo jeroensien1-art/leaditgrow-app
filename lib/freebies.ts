@@ -7,6 +7,7 @@ export type FreebieId =
   | 'promptlijst'
   | 'gespreksgids'
   | 'vakantietest'
+  | 'vrijheid'
 
 export interface FreebieConfig {
   id: FreebieId
@@ -26,6 +27,21 @@ export interface FreebieConfig {
 }
 
 export const FREEBIES: Record<FreebieId, FreebieConfig> = {
+  'vrijheid': {
+    id: 'vrijheid',
+    keyword: 'VRIJHEID',
+    title: 'De 80%-test',
+    pitch: 'De checklist waarmee je in tien minuten de taken vindt die iemand anders voor 80% even goed kan als jij.',
+    uitkomst: 'Na tien minuten heb je een lijst met taken die je deze maand kan loslaten, en per taak wat er moet vastliggen voor je ze overdraagt.',
+    voorWie: 'Voor wie wacht "tot het rustiger wordt" om eindelijk een systeem te bouwen.',
+    subject: 'je 80%-test checklist',
+    downloadFile: 'vrijheid.pdf',
+    emailIntro: 'Zoals beloofd: de 80%-test staat klaar. Tien minuten om de taken te vinden die iemand anders voor 80% even goed kan als jij.',
+    emailBullets: [
+      'Vul de tabel in voor één gewone werkweek, niet voor je hele takenpakket. Dat is in tien minuten klaar en geeft meteen een eerste kandidaat.',
+      'Draag deze week één taak over, niet vijf. De criteria die je erbij schrijft, bepalen of het lukt.',
+    ],
+  },
   'vakantietest': {
     id: 'vakantietest',
     keyword: 'SYSTEEM',
@@ -159,6 +175,7 @@ export const FREEBIE_ORDER: FreebieId[] = [
   'checklist-opvolging',
   'promptlijst',
   'vakantietest',
+  'vrijheid',
   'delegatiekader',
   'tijdlog',
   'stress-checklist',

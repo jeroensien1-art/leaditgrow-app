@@ -42,6 +42,47 @@ const rij = (n = 8) => Array.from({ length: n }, () => '<tr><td></td><td></td><t
 
 const FREEBIES = [
   {
+    file: 'vrijheid',
+    titel: 'De 80%-test',
+    sub: 'De checklist waarmee je in tien minuten de taken vindt die iemand anders voor 80% even goed kan als jij.',
+    body: `
+<p>Zolang je wacht "tot het rustiger wordt", verandert er niets. Rustiger wordt het nooit vanzelf: rust komt uit systemen, en een systeem begint met &eacute;&eacute;n taak die je loslaat.</p>
+<p>Deze test kost je tien minuten. Vul ze in voor &eacute;&eacute;n gewone werkweek, niet voor je hele takenpakket.</p>
+
+<h2>Stap 1 &middot; Noteer wat je deze week deed</h2>
+<p>Schrijf per rij een taak op die deze week bij jou terechtkwam, ook de kleine. De kleine zijn vaak de taken die het vaakst terugkomen.</p>
+<table>
+<tr><th style="width:36%">Taak</th><th style="width:16%">Hoe vaak deze week?</th><th style="width:24%">Kan iemand anders dit voor 80%?</th><th style="width:24%">Wat ontbreekt om het over te dragen?</th></tr>
+${Array.from({ length: 10 }, () => '<tr><td></td><td></td><td></td><td></td></tr>').join('')}
+</table>
+<p class="hint">Vuistregel: "kan iemand anders dit voor 80%?" is bijna altijd ja. De vraag die overblijft is niet w&iacute;e, maar w&aacute;t er moet vastliggen zodat die persoon het zonder jou kan.</p>
+
+<h2 class="nieuw">Stap 2 &middot; Kies er &eacute;&eacute;n uit</h2>
+<p>Niet vijf, &eacute;&eacute;n. Kies de taak die het vaakst terugkwam &eacute;n waarvan de kolom "wat ontbreekt" het kortst is. Dat is je snelste winst.</p>
+<div class="blok">
+<h3>Deze taak draag ik als eerste over:</h3><p>&nbsp;</p>
+<h3>Aan wie:</h3><p>&nbsp;</p>
+</div>
+
+<h2>Stap 3 &middot; Leg de criteria vast</h2>
+<p>"Niemand doet het zoals ik" is geen compliment aan jezelf, het is de reden dat niemand het kan overnemen. Schrijf op wat jij vanzelfsprekend vindt: de stappen, de kwaliteitscriteria, een voorbeeld van goed werk.</p>
+<div class="blok">
+<h3>Stappen</h3><p>&nbsp;</p><p>&nbsp;</p>
+<h3>Zo weet je dat het goed is</h3><p>&nbsp;</p>
+<h3>Aanvaardbare fout (leergeld)</h3><p>&nbsp;</p>
+</div>
+
+<h2 class="nieuw">Stap 4 &middot; Spreek een testperiode af</h2>
+<p>Twee weken is genoeg. Spreek expliciet af dat er in die periode fouten mogen vallen, en reageer op de eerste zelfstandige beslissing met steun, ook als je het zelf anders had gedaan. Die eerste reactie bepaalt of er een tweede komt.</p>
+<table>
+<tr><th style="width:30%">Testperiode</th><th style="width:35%">Wat controleer ik na week 1</th><th style="width:35%">Wat betekent "geslaagd"</th></tr>
+<tr><td></td><td></td><td></td></tr>
+</table>
+
+<h2>En daarna?</h2>
+<p>Kom elke maand terug naar stap 1 met een nieuwe week. Na een jaar heb je geen takenlijst meer overgedragen, je hebt een bedrijf gebouwd dat niet meer volledig aan jou hangt.</p>`,
+  },
+  {
     file: 'vakantietest',
     titel: 'De vakantietest: kan je zaak twee weken zonder jou?',
     sub: 'Gebruik je vakantie als bedrijfstest, en maak elke volgende vakantie relaxter.',
