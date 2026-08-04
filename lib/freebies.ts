@@ -151,7 +151,7 @@ export const FREEBIES: Record<FreebieId, FreebieConfig> = {
     id: 'template-speedtolead',
     keyword: 'TEMPLATE',
     title: 'De Speed-to-Lead Quick Course',
-    pitch: 'Hoe een compleet opvolgsysteem eruitziet, de zeven valkuilen, en twee kant-en-klare e-mailtemplates plus opvolgmails om vandaag te starten.',
+    pitch: 'Hoe een compleet opvolgsysteem eruitziet, de negen valkuilen, en twee kant-en-klare e-mailtemplates plus opvolgmails om vandaag te starten.',
     uitkomst: 'Na een half uur lezen weet je hoe de 7% snelste bedrijven hun leads opvolgen, heb je twee templates klaarstaan in je mailprogramma, en ken je de drie niveaus richting volledige automatisering.',
     voorWie: 'Voor wie aanvragen ziet binnenkomen terwijl hij op de baan zit, aan het eten is of slaapt.',
     subject: 'je Speed-to-Lead Quick Course',
