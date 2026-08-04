@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Speed-to-lead e-mailtemplate — Lead it, Grow</title>
+<title>Speed-to-Lead Quick Course — Lead it, Grow</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -20,26 +20,57 @@
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: #d8d4c8; font-family: var(--sans); color: var(--charcoal); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .page { width: 210mm; min-height: 297mm; background: var(--parchment); margin: 0 auto 12px; padding: 20mm 18mm 16mm; position: relative; }
+  .page { width: 210mm; min-height: 297mm; background: var(--parchment); margin: 0 auto 12px; padding: 18mm 18mm 14mm; position: relative; }
   @media print { body { background: none; } .page { margin: 0; page-break-after: always; } @page { size: A4; margin: 0; } }
 
   .cover { background: var(--charcoal); padding: 24mm 20mm; display: flex; flex-direction: column; justify-content: space-between; min-height: 297mm; }
   .cover-brand { font-size: 9pt; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terracotta); }
-  .cover-eyebrow { font-size: 8.5pt; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,249,245,0.45); margin: 40mm 0 6mm; }
-  .cover-title { font-family: var(--serif); font-size: 34pt; font-weight: 700; line-height: 1.2; color: var(--parchment); margin-bottom: 8mm; }
+  .cover-eyebrow { font-size: 8.5pt; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,249,245,0.45); margin: 36mm 0 6mm; }
+  .cover-title { font-family: var(--serif); font-size: 33pt; font-weight: 700; line-height: 1.2; color: var(--parchment); margin-bottom: 8mm; }
   .cover-title span { color: var(--terracotta); }
-  .cover-sub { font-size: 12pt; font-weight: 300; line-height: 1.6; color: rgba(250,249,245,0.65); max-width: 130mm; }
+  .cover-sub { font-size: 11.5pt; font-weight: 300; line-height: 1.6; color: rgba(250,249,245,0.65); max-width: 135mm; margin-bottom: 10mm; }
+  .cover-toc { border-top: 1px solid rgba(250,249,245,0.15); padding-top: 6mm; max-width: 135mm; }
+  .cover-toc div { font-size: 9.5pt; color: rgba(250,249,245,0.55); line-height: 2; }
+  .cover-toc span { color: var(--terracotta); font-family: var(--mono); margin-right: 4mm; font-size: 8.5pt; }
   .cover-bottom { font-size: 9pt; color: rgba(250,249,245,0.3); letter-spacing: 0.1em; text-transform: uppercase; }
 
   .section-eyebrow { font-size: 8pt; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 3mm; }
-  .section-title { font-family: var(--serif); font-size: 20pt; font-weight: 700; line-height: 1.2; color: var(--charcoal); margin-bottom: 6mm; }
-  .intro { font-size: 10pt; line-height: 1.7; color: var(--charcoal-mid); margin-bottom: 8mm; }
+  .section-title { font-family: var(--serif); font-size: 19pt; font-weight: 700; line-height: 1.2; color: var(--charcoal); margin-bottom: 5mm; }
+  .intro { font-size: 10pt; line-height: 1.65; color: var(--charcoal-mid); margin-bottom: 6mm; }
+  h3.sub { font-family: var(--serif); font-size: 12.5pt; font-weight: 600; color: var(--charcoal); margin: 7mm 0 3mm; }
 
-  .template-body { font-family: var(--mono); font-size: 9pt; line-height: 1.8; color: var(--charcoal-mid); background: var(--cream); padding: 7mm 8mm; border-radius: 2mm; border-left: 3px solid var(--terracotta); white-space: pre-wrap; margin-bottom: 8mm; }
+  .template-body { font-family: var(--mono); font-size: 8.5pt; line-height: 1.7; color: var(--charcoal-mid); background: var(--cream); padding: 6mm 7mm; border-radius: 2mm; border-left: 3px solid var(--terracotta); white-space: pre-wrap; margin-bottom: 6mm; }
 
-  .tip-box { background: var(--terracotta-light); border-left: 3px solid var(--terracotta); border-radius: 0 2mm 2mm 0; padding: 5mm 6mm; margin-bottom: 6mm; }
+  .tip-box { background: var(--terracotta-light); border-left: 3px solid var(--terracotta); border-radius: 0 2mm 2mm 0; padding: 4.5mm 6mm; margin-bottom: 5mm; }
   .tip-box p { font-size: 9pt; line-height: 1.6; color: var(--charcoal); }
   .tip-box strong { font-weight: 600; }
+
+  .stat-row { display: flex; gap: 4mm; margin-bottom: 7mm; }
+  .stat { flex: 1; background: var(--cream); border-top: 3px solid var(--terracotta); padding: 5mm 5mm 4mm; }
+  .stat-num { font-family: var(--serif); font-size: 22pt; font-weight: 700; color: var(--charcoal); line-height: 1; margin-bottom: 2mm; }
+  .stat-lbl { font-size: 8pt; line-height: 1.45; color: var(--charcoal-mid); }
+
+  ol.steps { margin: 0 0 6mm; padding-left: 5mm; }
+  ol.steps li { font-size: 9.5pt; line-height: 1.6; color: var(--charcoal-mid); margin-bottom: 3mm; }
+  ol.steps strong { color: var(--charcoal); font-weight: 600; }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 6mm; font-size: 9pt; }
+  th { background: var(--charcoal); color: var(--parchment); text-align: left; padding: 3mm 4mm; font-weight: 500; font-size: 8.5pt; }
+  td { border: 1px solid var(--cream-dark); padding: 3.5mm 4mm; vertical-align: top; line-height: 1.5; color: var(--charcoal-mid); }
+  td strong { color: var(--charcoal); font-weight: 600; }
+
+  .hint { font-size: 8.5pt; color: #6b675d; font-style: italic; line-height: 1.55; }
+
+  .system-step { display: flex; gap: 5mm; margin-bottom: 5mm; align-items: flex-start; }
+  .system-num { font-family: var(--serif); font-size: 17pt; font-weight: 700; color: var(--terracotta); line-height: 1; flex-shrink: 0; width: 9mm; padding-top: 1mm; }
+  .system-body { flex: 1; border-bottom: 1px solid var(--cream-dark); padding-bottom: 4.5mm; }
+  .system-head { font-size: 10.5pt; font-weight: 600; color: var(--charcoal); margin-bottom: 1.5mm; }
+  .system-text { font-size: 9.5pt; line-height: 1.55; color: var(--charcoal-mid); }
+
+  .valkuil { margin-bottom: 5.5mm; border-left: 3px solid var(--charcoal); padding-left: 5mm; }
+  .valkuil-head { font-size: 10.5pt; font-weight: 600; color: var(--charcoal); margin-bottom: 1.5mm; }
+  .valkuil-text { font-size: 9.5pt; line-height: 1.55; color: var(--charcoal-mid); }
+  .valkuil-text strong { color: var(--terracotta); font-weight: 600; }
 
   .back-cover { background: var(--terracotta); padding: 24mm 20mm; display: flex; flex-direction: column; justify-content: space-between; min-height: 297mm; }
   .back-title { font-family: var(--serif); font-size: 24pt; font-weight: 700; color: var(--parchment); line-height: 1.2; margin-bottom: 6mm; }
@@ -53,50 +84,342 @@
 <div class="page cover">
   <span class="cover-brand">Lead it, Grow</span>
   <div>
-    <div class="cover-eyebrow">Gratis mini-template</div>
-    <h1 class="cover-title">De <span>speed-to-lead</span><br>e-mailtemplate</h1>
-    <p class="cover-sub">Eén kant-en-klare e-mail die je binnen twee minuten na een nieuwe lead kan versturen. Kopiëren, aanpassen, gebruiken.</p>
+    <div class="cover-eyebrow">Gratis quick course</div>
+    <h1 class="cover-title">De <span>speed-to-lead</span><br>quick course</h1>
+    <p class="cover-sub">Hoe een compleet opvolgsysteem eruitziet, de zeven valkuilen die het verpesten, en de templates om vandaag te starten. Gebaseerd op de systemen die wij voor klanten bouwen en op benchmarkonderzoek uit 2026.</p>
+    <div class="cover-toc">
+      <div><span>01</span>Waarom de eerste minuten alles bepalen</div>
+      <div><span>02</span>Hoe een compleet systeem eruitziet</div>
+      <div><span>03</span>Template: de schattingsaanvraag (vastgoed)</div>
+      <div><span>04</span>Template: de offerte-aanvraag (diensten)</div>
+      <div><span>05</span>Vijf kwalificatievragen, en wat ze je vertellen</div>
+      <div><span>06</span>De opvolgmails voor dag 2 en dag 5</div>
+      <div><span>07</span>De zeven valkuilen</div>
+      <div><span>08</span>Best practices uit de praktijk</div>
+      <div><span>09</span>Jouw route: drie niveaus</div>
+    </div>
   </div>
   <div class="cover-bottom">Lead it, Grow · 2026</div>
 </div>
 
 <div class="page">
-  <div class="section-eyebrow">Hoe gebruik je dit</div>
-  <h2 class="section-title">Kopieer, vul de haakjes in, verstuur</h2>
-  <p class="intro">Deze template is bedoeld als eerste reactie op een nieuwe lead — het bericht dat binnen enkele minuten na binnenkomst vertrekt, nog voor je zelf de tijd hebt om het gesprek inhoudelijk te voeren. Het doel is niet om te verkopen. Het doel is om te bevestigen dat je gezien hebt wat ze vroegen en wanneer ze concreet iets van je horen.</p>
+  <div class="section-eyebrow">01 · Waarom</div>
+  <h2 class="section-title">Wie eerst antwoordt, krijgt meestal de afspraak</h2>
+  <p class="intro">Niet omdat hij de beste is. Omdat hij er als eerste was. Een lead die een formulier invult, vult er meestal drie in. In de uren die volgen kiest hij niet op kwaliteit, maar op wie hem het eerst het gevoel geeft dat hij gezien is.</p>
 
-  <div class="template-body">Onderwerp: [NAAM], we hebben je aanvraag ontvangen
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">42u</div>
+      <div class="stat-lbl">mediane reactietijd op een B2B-lead (Artemis GTM Benchmark, 2026)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">7%</div>
+      <div class="stat-lbl">van de bedrijven antwoordt binnen 5 minuten</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">21x</div>
+      <div class="stat-lbl">meer kans om een lead te kwalificeren bij reactie binnen 5 min i.p.v. 30 min (HBR/InsideSales)</div>
+    </div>
+  </div>
 
-Hoi [NAAM],
-
-Bedankt voor je bericht over [WAT ZE VROEGEN/PRODUCT/DIENST].
-
-Ik heb het gezien en neem [TIJDSTIP: bv. "morgenvroeg" of "vandaag nog voor 17u"]
-persoonlijk contact met je op om [WAT ER GAAT GEBEUREN: bv. "je vraag te
-bespreken" of "een voorstel klaar te maken"].
-
-Heb je ondertussen iets dat ik alvast moet weten? Antwoord gerust op deze
-mail.
-
-Tot snel,
-[JOUW NAAM]
-[BEDRIJFSNAAM]</div>
+  <p class="intro">Reken het even om naar jouw situatie. Krijg je tien aanvragen per maand en converteert trage opvolging er twee, dan laat het verschil met snelle opvolging elke maand een handvol afspraken liggen. Zelfde marketingbudget, zelfde website, ander resultaat.</p>
 
   <div class="tip-box">
-    <p><strong>Waarom dit werkt:</strong> het bericht belooft geen oplossing, het belooft een moment. Dat is het enige wat een lead in de eerste minuten nodig heeft om te weten dat hij niet genegeerd wordt.</p>
+    <p><strong>De kern van deze hele course in één zin:</strong> een lead is geen bericht dat je beantwoordt wanneer je tijd hebt. Het is een voorraad die vervalt, en de houdbaarheidsdatum staat op enkele minuten.</p>
+  </div>
+
+  <h3 class="sub">Wat "beantwoorden" hier betekent</h3>
+  <p class="intro">Een echte eerste reactie doet vier dingen tegelijk: ze bevestigt dat er een mens naar gekeken heeft, ze geeft één alinea inhoud over jouw aanpak, ze stelt twee of drie kwalificatievragen, en ze biedt concrete momenten aan. Een kale ontvangstbevestiging ("wij nemen spoedig contact op") doet geen van de vier, en telt dus niet.</p>
+</div>
+
+<div class="page">
+  <div class="section-eyebrow">02 · Het systeem</div>
+  <h2 class="section-title">Hoe een compleet speed-to-lead systeem eruitziet</h2>
+  <p class="intro">Dit is de architectuur die wij voor klanten bouwen. Vijf schakels, en de ketting is zo sterk als de zwakste. Je kan elke schakel handmatig doen of automatiseren; het systeem verandert niet, alleen wie het werk doet.</p>
+
+  <div class="system-step">
+    <div class="system-num">1</div>
+    <div class="system-body">
+      <div class="system-head">Capture: elke aanvraag komt op één plek binnen</div>
+      <div class="system-text">Contactformulier, chat widget, telefoonnotitie, DM. Alles wat een lead is, landt in één lijst. Aanvragen die in drie inboxen verspreid zitten, zijn aanvragen die vergeten worden.</div>
+    </div>
+  </div>
+
+  <div class="system-step">
+    <div class="system-num">2</div>
+    <div class="system-body">
+      <div class="system-head">Kwalificatie: het systeem stelt de eerste vragen</div>
+      <div class="system-text">Timing, budget, beslisser, aanleiding. Bij onze klanten kwalificeert AI de aanvraag op het moment van binnenkomst: wat vroeg deze persoon precies, hoe dringend is het, past het bij het aanbod. Handmatige variant: de kwalificatievragen zitten standaard in je eerste mail (zie pagina 5).</div>
+    </div>
+  </div>
+
+  <div class="system-step">
+    <div class="system-num">3</div>
+    <div class="system-body">
+      <div class="system-head">Eerste reactie: persoonlijk, binnen minuten, vanuit jouw naam</div>
+      <div class="system-text">Geen "no-reply@", geen robotoon. De mail vertrekt vanuit jouw eigen domein, in jouw stijl, en verwijst naar wat de lead concreet vroeg. Dit is de schakel waar de 21x winst zit. Ons doel bij klanten: binnen 60 seconden, 24/7.</div>
+    </div>
+  </div>
+
+  <div class="system-step">
+    <div class="system-num">4</div>
+    <div class="system-body">
+      <div class="system-head">Agenda en CRM: van reactie naar afspraak, zonder heen-en-weer</div>
+      <div class="system-text">De mail biedt concrete tijdsloten aan of linkt naar je agenda. Tegelijk wordt de lead met alle context in je CRM gezet: bron, vraag, antwoorden, status. Zo weet je 's ochtends exact wat er 's nachts gebeurde.</div>
+    </div>
+  </div>
+
+  <div class="system-step">
+    <div class="system-num">5</div>
+    <div class="system-body">
+      <div class="system-head">Opvolging: het systeem geeft niet op na één mail</div>
+      <div class="system-text">Geen antwoord? Na twee uur een korte herinnering, dag 2 een nuttige tweede mail, dag 5 een afsluitbericht. De meeste leads gaan niet verloren bij de eerste mail; ze gaan verloren omdat er nooit een tweede kwam.</div>
+    </div>
   </div>
 
   <div class="tip-box">
-    <p><strong>Volgende stap:</strong> als je dit bericht handmatig verstuurt, ben je nog steeds afhankelijk van hoe snel jij het ziet. Een automatische versie (verstuurd zodra het formulier binnenkomt, ook 's avonds en in het weekend) sluit het laatste gat. Dat is precies wat het speed-to-lead-systeem uit het Actiehandboek doet.</p>
+    <p><strong>Uit de praktijk:</strong> als wij dit systeem bij een klant opleveren, is de eerste vraag altijd "moet ik nu niets meer doen?". Het antwoord: jij doet het gesprek en de offerte, het systeem doet alles daarvoor en daartussen. Automatiseer de logistiek, nooit de relatie.</p>
+  </div>
+</div>
+
+<div class="page">
+  <div class="section-eyebrow">03 · Template vastgoed</div>
+  <h2 class="section-title">De schattingsaanvraag</h2>
+  <p class="intro">Voor makelaars en schatters. Vervang de haakjes, de rest kan je letterlijk overnemen.</p>
+
+  <div class="template-body">Onderwerp: Uw schattingsaanvraag voor [ADRES/GEMEENTE]
+
+Beste [NAAM],
+
+Bedankt voor uw aanvraag. Ik heb ze net gezien.
+
+Zo pak ik een schatting aan: ik kom ter plaatse langs, overloop
+de staat, de indeling en de recente verkopen in [GEMEENTE], en
+u krijgt binnen [X] werkdagen een onderbouwde waardebepaling op
+papier. Geen richtprijs uit een rekentool, wel een cijfer dat u
+kan verdedigen tegenover een koper.
+
+Om het bezoek voor te bereiden, drie korte vragen:
+
+1. Denkt u aan verkopen binnen de zes maanden, of wilt u vooral
+   weten waar u vandaag staat?
+2. Woont u er zelf, of staat het pand leeg of verhuurd?
+3. Zijn er de laatste jaren nog werken uitgevoerd die ik moet
+   meenemen?
+
+Voor het bezoek zelf kan ik deze week:
+· [DAG] tussen [UUR] en [UUR]
+· [DAG] tussen [UUR] en [UUR]
+· [DAG] tussen [UUR] en [UUR]
+
+Antwoord gerust met wat u past, dan zet ik het meteen vast.
+
+Met vriendelijke groeten,
+[JOUW NAAM]
+[KANTOOR] · [TELEFOON]</div>
+
+  <div class="tip-box">
+    <p><strong>Waarom drie momenten en geen "wanneer past het u":</strong> een open vraag verplaatst het werk naar de klant en levert vaak dagen stilte op. Drie opties maken van antwoorden een keuze van vijf seconden.</p>
+  </div>
+</div>
+
+<div class="page">
+  <div class="section-eyebrow">04 · Template diensten</div>
+  <h2 class="section-title">De offerte- of prijsaanvraag</h2>
+  <p class="intro">Voor installateurs, aannemers, consultants en andere dienstverleners waar een offerte voorafgaat aan het werk.</p>
+
+  <div class="template-body">Onderwerp: Uw aanvraag voor [DIENST] - de volgende stap
+
+Beste [NAAM],
+
+Bedankt voor uw aanvraag over [WAT ZE VROEGEN]. Ik heb ze net
+gelezen.
+
+Zo werken wij: eerst een kort gesprek van [X] minuten om te
+horen wat u precies nodig hebt, daarna een offerte met een vaste
+prijs en een concrete uitvoeringsdatum. Geen richtprijzen die
+achteraf oplopen.
+
+Drie dingen die ik alvast moet weten:
+
+1. Voor wanneer moet dit klaar zijn?
+2. Vroeg u dit ook bij andere partijen op, of zijn wij de eerste?
+3. Ligt er al een budget vast, of zoekt u nog een richting?
+
+Ik kan deze week bellen op:
+· [DAG] tussen [UUR] en [UUR]
+· [DAG] tussen [UUR] en [UUR]
+
+Laat gerust weten wat past.
+
+Met vriendelijke groeten,
+[JOUW NAAM]
+[BEDRIJF] · [TELEFOON]</div>
+
+  <div class="tip-box">
+    <p><strong>Vraag 2 lijkt brutaal, maar werkt:</strong> mensen antwoorden er eerlijk op. Weet je dat er drie offertes lopen, dan weet je ook dat snelheid en duidelijkheid belangrijker zijn dan de laagste prijs.</p>
+  </div>
+</div>
+
+<div class="page">
+  <div class="section-eyebrow">05 · Kwalificatie</div>
+  <h2 class="section-title">Vijf vragen, en wat de antwoorden je vertellen</h2>
+  <p class="intro">Kies er twee of drie per mail. Meer wordt een vragenlijst en dan antwoordt niemand nog.</p>
+
+  <table>
+    <tr><th style="width:42%">De vraag</th><th style="width:58%">Wat je eruit leert</th></tr>
+    <tr>
+      <td><strong>Voor wanneer moet dit rond zijn?</strong></td>
+      <td>Onderscheidt de oriënterende kijker van iemand met een deadline. Geen datum betekent bijna altijd: nog niet beslist.</td>
+    </tr>
+    <tr>
+      <td><strong>Vroeg u dit ook elders op?</strong></td>
+      <td>Vertelt of je in een vergelijking zit en hoe hard je op snelheid moet spelen. Eerlijke antwoorden zijn de norm.</td>
+    </tr>
+    <tr>
+      <td><strong>Wat maakte dat u nu contact opneemt?</strong></td>
+      <td>De aanleiding is de echte koopreden. Een lekkend dak, een erfenis, een verhuis. Die zin gebruik je later in je offerte.</td>
+    </tr>
+    <tr>
+      <td><strong>Wie beslist er mee?</strong></td>
+      <td>Voorkomt dat je na twee gesprekken opnieuw begint met een partner of vennoot die er nog niets van weet.</td>
+    </tr>
+    <tr>
+      <td><strong>Ligt er al een budget of richting vast?</strong></td>
+      <td>Bespaart je een offerte die er ver naast zit. Wie geen bedrag noemt, weet het meestal echt nog niet.</td>
+    </tr>
+  </table>
+
+  <p class="hint">Stel ze in de mail, niet pas aan de telefoon. Een lead die deze vragen beantwoordt vóór het eerste gesprek, is al veel verder in zijn hoofd dan een lead die enkel "ok, bel maar" typte. En bij een geautomatiseerd systeem komen die antwoorden bij jou binnen terwijl jij iets anders doet.</p>
+</div>
+
+<div class="page">
+  <div class="section-eyebrow">06 · Opvolging</div>
+  <h2 class="section-title">Wat je stuurt als er geen antwoord komt</h2>
+  <p class="intro">De meeste leads gaan niet verloren bij de eerste mail. Ze gaan verloren omdat er nooit een tweede kwam. Twee korte berichten volstaan.</p>
+
+  <h3 class="sub">Dag 2 · de nuttige herinnering</h3>
+  <div class="template-body">Onderwerp: Re: [ORIGINEEL ONDERWERP]
+
+Beste [NAAM],
+
+Nog even over uw aanvraag van [DAG]. Mocht [DAG/UUR] niet
+passen, ik kan ook [ALTERNATIEF MOMENT].
+
+Eén ding dat vaak helpt in uw situatie: [KORTE, CONCRETE TIP
+DIE HEM VOORUITHELPT, OOK ALS HIJ NIET MET U IN ZEE GAAT].
+
+Laat gerust weten of het nog actueel is.
+
+[JOUW NAAM]</div>
+
+  <h3 class="sub">Dag 5 · het afsluitbericht</h3>
+  <div class="template-body">Onderwerp: Re: [ORIGINEEL ONDERWERP]
+
+Beste [NAAM],
+
+Ik heb nog niets van u gehoord, dus ik ga ervan uit dat het
+even niet aan de orde is. Geen probleem.
+
+Ik zet uw dossier op non-actief. Komt het later terug, stuur
+dan gerust een lijn, dan pik ik het meteen weer op.
+
+[JOUW NAAM]</div>
+
+  <div class="tip-box">
+    <p><strong>Waarom het afsluitbericht het meest beantwoorde bericht is:</strong> het haalt de druk weg en geeft mensen een reden om te reageren. Een verrassend aantal antwoordt met "nee wacht, het is nog actueel".</p>
+  </div>
+</div>
+
+<div class="page">
+  <div class="section-eyebrow">07 · Valkuilen</div>
+  <h2 class="section-title">De zeven valkuilen die het systeem verpesten</h2>
+  <p class="intro">Dit zijn de fouten die we het vaakst tegenkomen wanneer we bij een nieuwe klant binnenkijken. Elke valkuil apart lijkt klein. Samen verklaren ze waarom de gemiddelde reactietijd op 42 uur ligt.</p>
+
+  <div class="valkuil">
+    <div class="valkuil-head">1 · De kale ontvangstbevestiging</div>
+    <div class="valkuil-text">"Wij nemen spoedig contact op" is geen reactie, het is een wachtrijticket. De lead weet nog niets over jou en wacht nog steeds. <strong>Fix:</strong> gebruik de vier onderdelen van pagina 2: bevestiging, inhoud, vragen, momenten.</div>
+  </div>
+
+  <div class="valkuil">
+    <div class="valkuil-head">2 · Jij bént het systeem</div>
+    <div class="valkuil-text">Mail op de telefoon en "ik antwoord altijd snel" voelt als een systeem, tot je op plaatsbezoek zit, aan het eten bent of slaapt. Precies dan komen de meeste aanvragen binnen. <strong>Fix:</strong> minstens de eerste reactie automatiseren (niveau 2, pagina 9).</div>
+  </div>
+
+  <div class="valkuil">
+    <div class="valkuil-head">3 · Alleen tijdens kantooruren</div>
+    <div class="valkuil-text">Particulieren vullen formulieren in na het avondeten en in het weekend. Wie enkel tussen 9 en 17u reageert, geeft elke avondaanvraag 12 tot 60 uur voorsprong aan een snellere concurrent.</div>
+  </div>
+
+  <div class="valkuil">
+    <div class="valkuil-head">4 · De robotmail</div>
+    <div class="valkuil-text">Automatisch mag nooit automatisch klinken. In een Amerikaanse bevraging zei 1 op 4 eigenaars dat AI hen klanten kostte, vrijwel altijd door generieke, kille antwoorden op persoonlijke vragen. <strong>Fix:</strong> de mail vertrekt vanuit jouw naam en domein, verwijst naar de concrete vraag, en klinkt zoals jij. Test dit met een eigen proefaanvraag voor je live gaat.</div>
+  </div>
+
+  <div class="valkuil">
+    <div class="valkuil-head">5 · Eén mail en dan stilte</div>
+    <div class="valkuil-text">Geen antwoord betekent zelden "geen interesse". Het betekent druk, twijfel, of een mail die onderaan de stapel gleed. Zonder dag 2- en dag 5-bericht laat je de leads liggen die het traagst beslissen, en dat zijn er veel.</div>
+  </div>
+
+  <div class="valkuil">
+    <div class="valkuil-head">6 · De lead staat nergens</div>
+    <div class="valkuil-text">Aanvraag beantwoord, en dan? Als de lead niet met status en context in een lijst of CRM staat, bestaat hij volgende week niet meer. Opvolging die van je geheugen afhangt, is geen opvolging.</div>
+  </div>
+
+  <div class="valkuil">
+    <div class="valkuil-head">7 · Automatiseren en nooit meer kijken</div>
+    <div class="valkuil-text">Een systeem opzetten en er zes maanden niet naar omzien is de omgekeerde fout. Aanbod verandert, vragen veranderen, en soms sluipt er een fout in. <strong>Fix:</strong> bekijk wekelijks een steekproef van de verstuurde mails. Vijf minuten volstaan.</div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="section-eyebrow">08 · Best practices</div>
+  <h2 class="section-title">Wat de best werkende systemen gemeen hebben</h2>
+  <p class="intro">Uit de systemen die wij bouwen en bijhouden, telkens dezelfde patronen bij de klanten waar het rendeert.</p>
+
+  <ol class="steps">
+    <li><strong>60 seconden als doel, 5 minuten als grens.</strong> Binnen 5 minuten reageren kwalificeert tot 21x beter dan na 30 minuten. Wie automatiseert, mikt meteen op de minuut; het kost niets extra.</li>
+    <li><strong>Eigen domein, eigen naam, eigen toon.</strong> De mail komt van jou, niet van "noreply@systeem.io". Deliverability en vertrouwen beginnen bij de afzender.</li>
+    <li><strong>Concrete tijdsloten in de eerste mail.</strong> Elk heen-en-weer-bericht dat je uitspaart, verhoogt de kans op een afspraak. Drie opties of een agendalink, nooit "wanneer past het u".</li>
+    <li><strong>Kwalificatie vóór het gesprek.</strong> Twee of drie vragen in de mail. De antwoorden bepalen wie je eerst belt, en je eerste gesprek start met een voorsprong.</li>
+    <li><strong>De aanleiding noteren en hergebruiken.</strong> "Wat maakte dat u nu contact opneemt" levert de zin op die je later letterlijk in je offerte zet. Offertes die de aanleiding benoemen, winnen vaker.</li>
+    <li><strong>Opvolgen op een ritme: 2 uur, dag 2, dag 5.</strong> Kort en nuttig, nooit "heeft u mijn mail al gezien". Het afsluitbericht op dag 5 is verrassend vaak het bericht dat het gesprek opent.</li>
+    <li><strong>Drie getallen per week meten.</strong> Nieuwe aanvragen, mediane reactietijd, geboekte afspraken. Meer dashboards heb je niet nodig om te weten of het werkt.</li>
+    <li><strong>Wekelijkse steekproef op kwaliteit.</strong> Lees vijf verstuurde mails. Klinkt het nog als jij? Kloppen de tijdsloten nog? Vijf minuten die het systeem eerlijk houden.</li>
+  </ol>
+
+  <div class="tip-box">
+    <p><strong>De volgorde is de helft van het werk:</strong> eerst de tekst (templates), dan het ritme (opvolging), dan pas de techniek. Wie met de tool begint, automatiseert meestal een slechte mail heel erg snel.</p>
+  </div>
+</div>
+
+<div class="page">
+  <div class="section-eyebrow">09 · Jouw route</div>
+  <h2 class="section-title">Drie niveaus, kies waar je vandaag staat</h2>
+
+  <h3 class="sub">Niveau 1 · Vandaag nog, zonder tools</h3>
+  <p class="intro">Zet de twee templates als opgeslagen antwoord in je mailprogramma (Gmail: "sjablonen", Outlook: "snelonderdelen"). Spreek met jezelf één regel af: elke nieuwe aanvraag krijgt binnen het uur dit bericht, ook als je nog geen tijd hebt voor het echte werk.</p>
+  <p class="hint">Beperking: je bent nog steeds afhankelijk van hoe snel jij je mail ziet. Om 21u45 werkt dit niet.</p>
+
+  <h3 class="sub">Niveau 2 · Automatisch verzonden</h3>
+  <p class="intro">Koppel je websiteformulier aan een automatische eerste mail. Elke aanvraag krijgt binnen enkele minuten het bericht, ook 's avonds en in het weekend. De kwalificatievragen komen bij jou binnen als antwoord, vóór je eerste gesprek.</p>
+  <p class="hint">Dit is het niveau waar de meeste omzet vandaan komt, en het is meestal in één namiddag gebouwd.</p>
+
+  <h3 class="sub">Niveau 3 · Automatisch en meedenkend</h3>
+  <p class="intro">Het volledige systeem van pagina 3: AI kwalificeert elke aanvraag op inhoud, schrijft een persoonlijke reactie in jouw stijl, biedt tijdsloten aan, zet alles met context in je CRM en volgt zelf op. Jij ziet 's ochtends enkel dat je agenda voller staat dan gisteren.</p>
+  <p class="hint">Dit is wat wij als dienst bouwen. Setup in dagen, daarna draait het zonder omkijken, met een wekelijkse steekproef als enige onderhoud.</p>
+
+  <div class="tip-box">
+    <p><strong>Waar begin je:</strong> niveau 1 kost je twintig minuten en levert al resultaat. Doe dat vandaag. Niveau 2 bouw je erna, met exact dezelfde tekst die dan al bewezen heeft dat ze werkt.</p>
   </div>
 </div>
 
 <div class="page back-cover">
   <div>
     <div class="back-brand" style="margin-bottom: 30mm;">Lead it, Grow</div>
-    <h2 class="back-title">Eén template is een start. Een systeem is het verschil.</h2>
-    <p class="back-sub">De Zaakvoerder AI Toolkit (€17) geeft je 25 prompts om dit soort communicatie sneller te schrijven. Het Businessgroei Actiehandboek (€97) automatiseert de opvolging zelf.</p>
-    <div class="back-cta">leaditgrow.be/zaakvoerder-ai-toolkit</div>
+    <h2 class="back-title">Een template is een start. Een systeem is het verschil.</h2>
+    <p class="back-sub">Deze course brengt je tot niveau 1 en 2. Wil je zien wat er bij jou vandaag blijft liggen tussen aanvraag en eerste antwoord? De gratis diagnose brengt het in vier minuten in kaart.</p>
+    <div class="back-cta">leaditgrow.be/diagnostic</div>
   </div>
   <div class="back-brand">leaditgrow.be</div>
 </div>
