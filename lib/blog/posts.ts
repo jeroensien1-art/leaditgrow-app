@@ -14,6 +14,112 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: 'compounding-effect-tijd-brainpower-zaakvoerder',
+    title: 'Het compounding effect van tijd en brainpower',
+    metaTitle: 'Compounding effect van tijd en focus voor zaakvoerders | Lead it, Grow',
+    metaDescription: 'Constant schakelen tussen taken kost tot 40% van je productieve tijd. Zo werkt attention residue, en zo pak je met zes stappen je focus terug.',
+    publishDate: '2026-08-04',
+    readingTime: 7,
+    category: 'Van oprichter naar leider',
+    region: 'België · Vlaanderen',
+    excerpt: 'Je aandacht op één scherm duurt gemiddeld 47 seconden. Elke onderbreking kost niet alleen die twee minuten, maar ook het kwartier erna. En net zoals verlies compoundt, compoundt winst: elke taak die je systeem overneemt geeft élke week tijd terug.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: 'Het compounding effect van tijd en brainpower',
+          description: 'Constant schakelen tussen taken kost tot 40% van je productieve tijd. Zo werkt attention residue, en zo pak je met zes stappen je focus terug.',
+          datePublished: '2026-08-04',
+          author: { '@type': 'Person', name: 'Jeroen', url: 'https://leaditgrow.be' },
+          publisher: { '@type': 'Organization', name: 'Lead it, Grow', url: 'https://leaditgrow.be' },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'Wat is attention residue?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Attention residue is het verschijnsel dat een deel van je aandacht blijft hangen bij een vorige taak wanneer je overschakelt naar een nieuwe. Onderzoeker Sophie Leroy beschreef dit in 2009: je prestatie op de nieuwe taak daalt meetbaar, en het effect is het sterkst wanneer je de vorige taak onafgewerkt achterliet.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Hoeveel tijd kost multitasken echt?',
+              acceptedAnswer: { '@type': 'Answer', text: 'De Amerikaanse psychologenvereniging APA schat, op basis van onderzoek van Rubinstein, Meyer en Evans uit 2001, dat veelvuldig schakelen tussen taken tot 40% van je productieve tijd kan kosten. Volgens Gloria Mark duurt het na een echte onderbreking bovendien ruim 23 minuten voor je volledig terug in je oorspronkelijke taak zit.' },
+            },
+            {
+              '@type': 'Question',
+              name: 'Hoe krijg ik als zaakvoerder meer focustijd per dag?',
+              acceptedAnswer: { '@type': 'Answer', text: 'Werk in blokken van 60 tot 90 minuten en sluit elk blok af met één zin over waar je stond. Zet meldingen uit en behandel je inbox op twee vaste momenten. Doe je moeilijkste denkwerk vóór je eerste mailcheck. Geef elk blok één doel dat je in één zin kan zeggen. En haal de terugkerende onderbrekingen structureel weg door leads en opvolging door een systeem te laten afhandelen.' },
+            },
+          ],
+        },
+      ],
+    },
+    content: `
+<p class="blog-intro">Je aandacht op één scherm duurt vandaag gemiddeld 47 seconden. In 2004 was dat nog tweeënhalve minuut. Onderzoeker Gloria Mark volgt kenniswerkers al twintig jaar, en die daling is de rode draad in haar werk. Voor een zaakvoerder is dat geen weetje: het verklaart waarom je tien uur werkt en je toch afvraagt waar de dag naartoe ging.</p>
+
+<h2>Wisselen is niet gratis</h2>
+<p>Het probleem is zelden dat je te veel doet. Het is dat je te vaak wisselt.</p>
+<p>Sophie Leroy toonde in 2009 aan wat er in je hoofd gebeurt bij elke taakwissel: een deel van je aandacht blijft hangen bij de vorige taak. Ze noemt het attention residue. Je beantwoordt een klantvraag tussendoor, en de twintig minuten daarna denkt een stukje van je brein nog aan die klant terwijl jij een offerte probeert te schrijven. Het effect is het sterkst bij taken die je onafgewerkt achterlaat, en dat zijn er bij een zaakvoerder nogal wat.</p>
+<p>Volgens Gloria Mark duurt het na een echte onderbreking ruim 23 minuten voor je volledig terug in je oorspronkelijke taak zit. De Amerikaanse psychologenvereniging APA schat, op basis van onderzoek van Rubinstein, Meyer en Evans, dat veelvuldig schakelen tot 40 procent van je productieve tijd kan kosten.</p>
+<p>Reken dat eens door voor jouw week. Niet je gewerkte uren zijn het probleem. De versnippering is het probleem.</p>
+
+<h2>Waarom dit compoundt</h2>
+<p>Hier wordt het interessant voor wie een bedrijf leidt.</p>
+<p>Verlies compoundt. Elke onderbreking kost niet alleen die twee minuten, maar ook het residu erna. Wie de hele dag bereikbaar is voor elke vraag, werkt in een permanente staat van half-focus en neemt in die staat ook zijn beslissingen.</p>
+<p>Maar winst compoundt net zo goed. Elke terugkerende taak die je uit je hoofd haalt (een lead die automatisch beantwoord wordt, een mail die zichzelf sorteert, een vraag die je team zelf mag beslissen) geeft niet één keer tijd terug. Ze geeft élke week tijd terug. En belangrijker: ze haalt een onderbreking weg, waardoor de uren die overblijven meer waard worden.</p>
+<p>Tijd en aandacht zijn de enige twee resources die je niet kan bijkopen. Je kan ze wel beschermen, en bescherming stapelt op.</p>
+
+<h2>De andere kant: flow</h2>
+<p>Tegenover de versnipperde staat staat wat Mihaly Csikszentmihalyi flow noemde: volledige opslorping in één taak, waarbij concentratie moeiteloos aanvoelt en je gevoel van tijd verdwijnt. Decennia onderzoek wijzen naar drie voorwaarden: een duidelijk doel, directe feedback op wat je doet, en een uitdaging die je vaardigheid nét overstijgt.</p>
+<p>Merk op wat er niet in dat lijstje staat: motivatie, discipline, een ochtendroutine van twee uur. Flow is geen karaktereigenschap. Het is een omgeving die je ontwerpt.</p>
+
+<h2>Zes manieren om je focustijd per dag te vergroten</h2>
+
+<h3>1. Werk in blokken van 60 tot 90 minuten, en sluit elk blok expliciet af</h3>
+<p>Leroy's onderzoek geeft hier een praktische sleutel: het residu is het grootst bij onafgewerkte taken. Kan je iets niet afronden, schrijf dan in één zin op waar je stond en wat de volgende stap is. Dat sluit de lus in je hoofd en maakt de wissel goedkoper.</p>
+
+<h3>2. Batch je inbox naar twee of drie vaste momenten</h3>
+<p>Elke melding is een kandidaat-onderbreking van ruim twintig minuten. Meldingen uit, mail op vaste tijdstippen. Wie bang is iets dringends te missen: echte noodgevallen bellen, die mailen niet.</p>
+
+<h3>3. Zet je moeilijkste denkwerk vóór je eerste mailcheck</h3>
+<p>Eén keer je inbox openen volstaat om residu van tien open dossiers mee te nemen in je belangrijkste taak. Draai het om: eerst het blok dat er echt toe doet, dan pas de rest van de wereld.</p>
+
+<h3>4. Geef elk werkblok één doel dat je in één zin kan zeggen</h3>
+<p>"Offerte X verzendklaar" werkt. "Administratie" niet. Vage blokken produceren vage aandacht, en dat is precies het omgekeerde van de flow-voorwaarden.</p>
+
+<h3>5. Laat AI je inbox voorsorteren</h3>
+<p>Een goed ingestelde assistent categoriseert je mail en zet de terugkerende antwoorden klaar. Je leest 's ochtends een gesorteerde stapel in plaats van vijftig losse beslissingen te nemen voor je aan je eerste echte taak begint.</p>
+
+<h3>6. Haal de terugkerende onderbrekingen structureel weg</h3>
+<p>De vijf tips hierboven beschermen je aandacht. Deze vermenigvuldigt ze: elke lead, vraag of mail die een <a href="/speed-to-lead">systeem</a> of je team afhandelt zonder jou, is een onderbreking die nooit meer gebeurt. Daarom zijn automatisering en delegatie geen efficiëntie-speeltjes. Het zijn aandachts-beschermers, en hun effect stapelt week na week op.</p>
+
+<h2>De ongemakkelijke conclusie</h2>
+<p>De meeste zaakvoerders proberen hun focusprobleem op te lossen met wilskracht: vroeger opstaan, harder proberen, nog een app. Het onderzoek wijst een andere kant op. Je aandacht volgt je omgeving, en jouw omgeving is je bedrijf. Zolang elke aanvraag, vraag en mail bij jou binnenkomt, is versnippering geen zwakte van jou. Het is de architectuur.</p>
+<p>Verander de architectuur, en de focus volgt. Elke week een beetje meer. Wil je weten waar bij jou vandaag de meeste onderbrekingen vandaan komen? <a href="/diagnostic">De gratis diagnose</a> brengt het in vier minuten in kaart.</p>
+
+<h2>Veelgestelde vragen</h2>
+
+<div class="faq-item">
+  <h3>Wat is attention residue?</h3>
+  <p>Attention residue is het verschijnsel dat een deel van je aandacht blijft hangen bij een vorige taak wanneer je overschakelt. Sophie Leroy beschreef dit in 2009: je prestatie op de nieuwe taak daalt meetbaar, het sterkst wanneer je de vorige taak onafgewerkt achterliet.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Hoeveel tijd kost multitasken echt?</h3>
+  <p>De APA schat, op basis van onderzoek van Rubinstein, Meyer en Evans uit 2001, dat veelvuldig schakelen tot 40% van je productieve tijd kan kosten. Volgens Gloria Mark duurt het na een onderbreking bovendien ruim 23 minuten voor je volledig terug in je taak zit.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Hoe krijg ik als zaakvoerder meer focustijd per dag?</h3>
+  <p>Werk in blokken van 60 tot 90 minuten en sluit elk blok af met één zin over waar je stond. Zet meldingen uit, behandel mail op vaste momenten, en doe je moeilijkste denkwerk vóór je eerste mailcheck. Haal daarna de terugkerende onderbrekingen structureel weg door leads en opvolging door een systeem te laten afhandelen.</p>
+</div>
+
+<p class="hint" style="margin-top:2rem;font-size:0.85em;color:#83827d;">Bronnen: Gloria Mark, "Attention Span" (2023) · Sophie Leroy, Organizational Behavior and Human Decision Processes (2009) · APA, "Multitasking: switching costs", op basis van Rubinstein, Meyer &amp; Evans (2001) · Mihaly Csikszentmihalyi, "Flow" (1990).</p>
+`,
+  },
+  {
     slug: 'kan-jouw-zaak-twee-weken-zonder-jou-vakantietest',
     title: 'Kan jouw zaak twee weken zonder jou? Doe de vakantietest.',
     metaTitle: 'Kan jouw zaak twee weken zonder jou? De vakantietest | Lead it, Grow',
