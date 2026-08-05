@@ -71,6 +71,11 @@ export const posts: BlogPost[] = [
 <p>Maar winst compoundt net zo goed. Elke terugkerende taak die je uit je hoofd haalt (een lead die automatisch beantwoord wordt, een mail die zichzelf sorteert, een vraag die je team zelf mag beslissen) geeft niet één keer tijd terug. Ze geeft élke week tijd terug. En belangrijker: ze haalt een onderbreking weg, waardoor de uren die overblijven meer waard worden.</p>
 <p>Tijd en aandacht zijn de enige twee resources die je niet kan bijkopen. Je kan ze wel beschermen, en bescherming stapelt op.</p>
 
+<div class="blog-visual">
+  <iframe src="/visuals/compounding-tijd-brainpower.html" title="Het compounding effect van tijd en brainpower" scrolling="no"></iframe>
+</div>
+<p class="blog-visual-caption">Elke taak die je systeem overneemt, geeft elke week tijd terug · Lead it, Grow</p>
+
 <h2>De andere kant: flow</h2>
 <p>Tegenover de versnipperde staat staat wat Mihaly Csikszentmihalyi flow noemde: volledige opslorping in één taak, waarbij concentratie moeiteloos aanvoelt en je gevoel van tijd verdwijnt. Decennia onderzoek wijzen naar drie voorwaarden: een duidelijk doel, directe feedback op wat je doet, en een uitdaging die je vaardigheid nét overstijgt.</p>
 <p>Merk op wat er niet in dat lijstje staat: motivatie, discipline, een ochtendroutine van twee uur. Flow is geen karaktereigenschap. Het is een omgeving die je ontwerpt.</p>
@@ -265,6 +270,11 @@ export const posts: BlogPost[] = [
 <h2>De valkuil: de relatie automatiseren</h2>
 <p>Er is één grens die je nooit oversteekt. In een Amerikaanse bevraging zei 1 op 4 eigenaars dat AI hen klanten kostte. Vrijwel altijd om dezelfde reden: klanten voelden meteen dat een robot hun persoonlijke vraag beantwoordde. Het generieke antwoord, de kille opvolging op een klacht.</p>
 <p>Wat klanten wél waarderen is snelheid in de logistiek: direct antwoord op hun aanvraag, een bevestiging binnen de minuut, een herinnering op tijd. Automatiseer dus de logistiek van je klantcontact. Houd de relatie zelf menselijk.</p>
+
+<div class="blog-visual">
+  <iframe src="/visuals/chatgpt-vs-ai-agent.html" title="ChatGPT-mail tegenover een AI-agent die je bedrijfscontext kent" scrolling="no"></iframe>
+</div>
+<p class="blog-visual-caption">Hetzelfde gereedschap, een ander resultaat · Lead it, Grow</p>
 
 <h2>Zo start je zonder developer</h2>
 <p>Kies één proces dat elke week terugkomt en automatiseer dat volledig voor je aan het volgende begint. Voor de meeste KMO's is dat de leadopvolging: het proces met het vaste patroon én het directe omzetlek. Hoe dat er concreet uitziet lees je in <a href="/blog/ai-automatiseren-vlaamse-kmo-zonder-developer">deze gids voor Vlaamse KMO's</a>, of doe eerst <a href="/diagnostic">de gratis diagnose</a> om te zien welke groeihefboom bij jou het hardst op slot staat.</p>
@@ -691,6 +701,11 @@ export const posts: BlogPost[] = [
 
 <h2>Wat wel werkt</h2>
 <p>De bedrijven die deze cijfers omzeilen, doen niet meer werk. Ze automatiseren het eerste antwoord. Een <a href="/speed-to-lead">speed-to-lead systeem</a> of <a href="/ai-agents">AI agent</a> stuurt binnen 60 seconden een persoonlijk klinkend bericht, stelt tijdssloten voor en houdt de lead warm tot een mens het gesprek overneemt. Dat is letterlijk het verschil tussen 42 uur en 1 minuut, zonder dat er een extra persoon wordt aangenomen.</p>
+
+<div class="blog-visual">
+  <iframe src="/visuals/schattingsaanvraag-tijdlijn.html" title="Een aanvraag om 21u45, beantwoord om 21u48" scrolling="no"></iframe>
+</div>
+<p class="blog-visual-caption">Drie minuten, zonder dat de zaakvoerder iets deed · Lead it, Grow</p>
 <p>Wil je weten hoeveel omzet jouw reactietijd je vandaag kost? <a href="/calculator">Bereken het in 2 minuten</a>, of <a href="/diagnostic">start de gratis diagnose</a> voor een volledig beeld van waar je bedrijf staat.</p>
 
 <h2>Veelgestelde vragen</h2>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>One-Pager · Compounding effect tijd en brainpower · Lead it, Grow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background:transparent; display:flex; flex-direction:column; align-items:center; gap:0; padding:0; margin:0; font-family:'Space Grotesk',sans-serif; overflow:hidden; }
+    .page-label { display:none; color:#787068; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; font-family:'Space Mono',monospace; }
+    .card { width:1080px; height:1080px; position:relative; overflow:hidden; flex-shrink:0; background:#0e0d0b; }
+    .top-bar { position:absolute; top:0; left:0; right:0; height:6px; background:#c96442; z-index:3; }
+    .content { position:absolute; inset:0; padding:70px 80px 64px; display:flex; flex-direction:column; justify-content:space-between; }
+    .brand { display:flex; align-items:center; gap:10px; }
+    .brand-dot { width:12px; height:12px; background:#c96442; }
+    .brand-word { font-family:'Space Mono',monospace; font-size:15px; letter-spacing:0.18em; text-transform:uppercase; color:#f2f0eb; }
+    .headline { font-size:58px; font-weight:700; line-height:1.08; color:#f2f0eb; letter-spacing:-0.025em; max-width:900px; }
+    .headline em { font-style:normal; color:#c96442; }
+    .chart-zone { display:flex; flex-direction:column; gap:22px; }
+    .chart { display:flex; align-items:flex-end; gap:14px; height:330px; border-bottom:3px solid #2a2924; padding-bottom:0; }
+    .bar { flex:1; display:flex; flex-direction:column; justify-content:flex-end; gap:0; height:100%; }
+    .bar-fill { background:#1a5e35; width:100%; }
+    .bar:nth-child(n+7) .bar-fill { background:#4ade80; }
+    .bar:last-child .bar-fill { background:#c96442; }
+    .chart-labels { display:flex; gap:14px; }
+    .chart-labels div { flex:1; text-align:center; font-family:'Space Mono',monospace; font-size:12px; color:#787068; }
+    .legend { display:flex; gap:34px; }
+    .legend-item { display:flex; align-items:center; gap:10px; font-family:'Space Mono',monospace; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:#a8a49a; }
+    .legend-swatch { width:14px; height:14px; }
+    .bottom { display:flex; flex-direction:column; gap:16px; padding-top:34px; border-top:3px solid #c96442; }
+    .bottom-line { font-size:31px; font-weight:600; line-height:1.32; color:#f2f0eb; letter-spacing:-0.01em; max-width:920px; }
+    .bottom-line span { color:#4ade80; }
+    .bottom-sub { font-family:'Space Mono',monospace; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:#787068; }
+  </style>
+</head>
+<body>
+  <p class="page-label">LinkedIn Afbeelding · 1080 × 1080px · Lead it, Grow</p>
+
+  <div class="card">
+    <div class="top-bar"></div>
+    <div class="content">
+      <div class="brand">
+        <div class="brand-dot"></div>
+        <div class="brand-word">Lead it, Grow</div>
+      </div>
+
+      <div class="headline">Het compounding effect van <em>tijd en brainpower</em></div>
+
+      <div class="chart-zone">
+        <div class="chart">
+          <div class="bar"><div class="bar-fill" style="height:8%"></div></div>
+          <div class="bar"><div class="bar-fill" style="height:11%"></div></div>
+          <div class="bar"><div class="bar-fill" style="height:15%"></div></div>
+          <div class="bar"><div class="bar-fill" style="height:20%"></div></div>
+          <div class="bar"><div class="bar-fill" style="height:27%"></div></div>
+          <div class="bar"><div class="bar-fill" style="height:36%"></div></div>
+          <div class="bar"><div class="bar-fill" style="height:48%"></div></div>
+          <div class="bar"><div class="bar-fill" style="height:63%"></div></div>
+          <div class="bar"><div class="bar-fill" style="height:82%"></div></div>
+          <div class="bar"><div class="bar-fill" style="height:100%"></div></div>
+        </div>
+        <div class="chart-labels">
+          <div>wk 1</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div>wk 10</div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-swatch" style="background:#1a5e35"></div>5u per week terug</div>
+          <div class="legend-item"><div class="legend-swatch" style="background:#4ade80"></div>focus die zich opstapelt</div>
+          <div class="legend-item"><div class="legend-swatch" style="background:#c96442"></div>het punt waarop je team het overneemt</div>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <div class="bottom-line">Elke taak die je systeem overneemt, geeft niet één keer tijd terug. <span>Ze geeft elke week tijd terug.</span> En focus die niet versnipperd raakt, telt dubbel.</div>
+        <div class="bottom-sub">Tijd en aandacht zijn de enige twee resources die je niet kan bijkopen</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
