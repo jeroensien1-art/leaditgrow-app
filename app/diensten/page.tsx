@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, Zap, TrendingUp, BarChart2, BookOpen, Users, MessageCircle } from 'lucide-react'
+import { ArrowRight, Zap, TrendingUp, BarChart2, BookOpen, Users, MessageCircle, FlaskConical } from 'lucide-react'
 import { Nav } from '@/components/nav'
 import { useLang } from '@/components/lang-context'
 
@@ -56,6 +56,23 @@ function useServices(nl: boolean): Service[] {
       border: 'rgba(21,128,61,0.15)',
       ctaStyle: 'solid-green',
       featured: true,
+    },
+    {
+      icon: FlaskConical,
+      tag: nl ? 'Betaald · €297 eenmalig' : 'Paid · €297 one-time',
+      title: nl ? 'De Markttest' : 'The Market Test',
+      outcome: nl
+        ? 'Weet binnen 14 dagen welke boodschap jouw klanten doet klikken, vóór je budget aan campagnes geeft.'
+        : 'Know within 14 days which message makes your customers click, before you spend budget on campaigns.',
+      description: nl
+        ? 'We testen 9 varianten van jouw verhaal met een klein advertentiebudget op Facebook en Instagram (testbudget inbegrepen). Je krijgt een rapport met de winnende boodschap en waar je ze meteen inzet. Volledig verrekend bij een vervolgtraject.'
+        : 'We test 9 versions of your story with a small ad budget on Facebook and Instagram (test budget included). You get a report with the winning message and where to use it right away. Fully credited towards any follow-up project.',
+      cta: nl ? 'Bekijk de Markttest' : 'See the Market Test',
+      href: '/markttest',
+      accent: '#c96442',
+      bg: 'rgba(201,100,66,0.06)',
+      border: 'rgba(201,100,66,0.15)',
+      ctaStyle: 'ghost',
     },
     {
       icon: TrendingUp,
