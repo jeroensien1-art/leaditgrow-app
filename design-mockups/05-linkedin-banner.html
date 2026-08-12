@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="nl" class="font-clash">
+<head>
+<meta charset="utf-8">
+<title>LinkedIn banner · Lead it, Grow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=clash-display@400,500,600,700&display=swap">
+<link rel="stylesheet" href="brand.css">
+<style>
+  body { background: #55524d; padding: 40px 20px; }
+  .note { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+          color: rgba(255,255,255,.55); max-width: 1584px; margin: 0 auto 14px; }
+  .note b { color: var(--lime); }
+
+  /* LinkedIn persoonlijke banner is 1584 bij 396. Screenshot dit blok op exact
+     die maat. Links onderaan blijft vrij, daar komt de profielfoto overheen. */
+  .banner { width: 1584px; height: 396px; margin: 0 auto 44px; position: relative; overflow: hidden;
+            display: grid; grid-template-columns: 1fr 430px; }
+
+  /* ── Variant 1, inkt ── */
+  .v1 { background: var(--ink); color: var(--bg); }
+  .v1 .left { padding: 40px 50px 40px 400px; display: flex; flex-direction: column; justify-content: center; }
+  .v1 .kick { font-family: var(--mono); font-size: 14px; font-weight: 700; letter-spacing: .24em;
+              text-transform: uppercase; color: var(--lime); margin-bottom: 18px; }
+  .v1 h1 { font-family: var(--display); font-weight: 700; font-size: 62px; line-height: .94;
+           letter-spacing: -.02em; text-transform: uppercase; }
+  .v1 h1 span { color: var(--orange); }
+  .v1 .sub { font-family: var(--ui); font-size: 19px; line-height: 1.45; color: rgba(242,240,235,.6);
+             margin-top: 18px; max-width: 44ch; }
+  .v1 .right { border-left: 3px solid rgba(242,240,235,.18); display: flex; flex-direction: column; }
+  .v1 .cell { flex: 1; min-height: 0; padding: 18px 32px; display: flex; flex-direction: column; justify-content: center;
+              border-bottom: 3px solid rgba(242,240,235,.18); }
+  .v1 .cell:last-child { border-bottom: 0; background: var(--lime); color: var(--ink); }
+  .v1 .cn { font-family: var(--display); font-weight: 700; font-size: 34px; line-height: 1; letter-spacing: -.02em; color: var(--orange); }
+  .v1 .cell:last-child .cn { color: var(--ink); }
+  .v1 .cl { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+            color: rgba(242,240,235,.45); margin-top: 9px; line-height: 1.45; }
+  .v1 .cell:last-child .cl { color: rgba(14,13,11,.65); }
+
+  /* ── Variant 2, papier ── */
+  .v2 { background: var(--bg); color: var(--ink); border: 4px solid var(--ink); }
+  .v2 .left { padding: 54px 60px 54px 400px; display: flex; flex-direction: column; justify-content: center; }
+  .v2 .kick { font-family: var(--mono); font-size: 15px; font-weight: 700; letter-spacing: .24em;
+              text-transform: uppercase; color: var(--orange); margin-bottom: 22px; }
+  .v2 h1 { font-family: var(--display); font-weight: 700; font-size: 72px; line-height: .92;
+           letter-spacing: -.02em; text-transform: uppercase; }
+  .v2 h1 .out { -webkit-text-stroke: 2.5px var(--ink); color: transparent; }
+  .v2 .sub { font-family: var(--ui); font-size: 21px; line-height: 1.45; color: var(--muted); margin-top: 20px; max-width: 42ch; }
+  .v2 .right { background: var(--green); color: #fff; border-left: 4px solid var(--ink);
+               padding: 44px 36px; display: flex; flex-direction: column; justify-content: space-between; }
+  .v2 .rk { font-family: var(--mono); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.6); }
+  .v2 .rt { font-family: var(--display); font-weight: 700; font-size: 34px; line-height: 1.02;
+            letter-spacing: -.015em; text-transform: uppercase; }
+  .v2 .ru { font-family: var(--mono); font-size: 15px; letter-spacing: .1em; color: var(--lime); }
+
+  /* ── Variant 3, statement ── */
+  .v3 { background: var(--orange); color: #fff; grid-template-columns: 1fr; }
+  .v3 .left { padding: 54px 60px 54px 400px; display: flex; flex-direction: column; justify-content: center; }
+  .v3 .kick { font-family: var(--mono); font-size: 15px; font-weight: 700; letter-spacing: .24em;
+              text-transform: uppercase; color: rgba(255,255,255,.65); margin-bottom: 20px; }
+  .v3 h1 { font-family: var(--display); font-weight: 700; font-size: 88px; line-height: .9;
+           letter-spacing: -.022em; text-transform: uppercase; max-width: 18ch; }
+  .v3 .sub { font-family: var(--mono); font-size: 17px; letter-spacing: .12em; text-transform: uppercase;
+             color: rgba(255,255,255,.75); margin-top: 24px; }
+
+  .safe { position: absolute; left: 62px; bottom: 34px; width: 260px; height: 260px; border-radius: 50%;
+          border: 2px dashed rgba(255,255,255,.28); display: grid; place-items: center;
+          font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+          color: rgba(255,255,255,.4); text-align: center; pointer-events: none; }
+  .v2 .safe { border-color: rgba(14,13,11,.22); color: rgba(14,13,11,.35); }
+</style>
+</head>
+<body>
+
+<div class="note">Variant 1 · inkt · <b>1584 &times; 396</b> · de cirkel toont waar je profielfoto komt, die zone blijft leeg</div>
+<div class="banner v1">
+  <div class="left">
+    <div class="kick">Lead it, Grow</div>
+    <h1>Je bedrijf draait door<br><span>zonder jou.</span></h1>
+    <div class="sub">We bouwen eerst het systeem dat vandaag het meeste kost.</div>
+  </div>
+  <div class="right">
+    <div class="cell">
+      <div class="cn">1</div>
+      <div class="cl">Systeem tegelijk,<br>het zwaarste eerst</div>
+    </div>
+    <div class="cell">
+      <div class="cn">30</div>
+      <div class="cl">Dagen tot het eerste<br>meetbare verschil</div>
+    </div>
+    <div class="cell">
+      <div class="cn">&rarr;</div>
+      <div class="cl">leaditgrow.be</div>
+    </div>
+  </div>
+  <div class="safe">Profielfoto</div>
+</div>
+
+<div class="note">Variant 2 · papier · rustiger, meer ruimte voor de tekst</div>
+<div class="banner v2">
+  <div class="left">
+    <div class="kick">Groeisystemen voor zaakvoerders</div>
+    <h1>Elke lead die<br>wacht, <span class="out">koopt elders.</span></h1>
+    <div class="sub">Wij dichten het duurste gat eerst. Daarna pas de rest.</div>
+  </div>
+  <div class="right">
+    <div class="rk">Gratis, vier vragen</div>
+    <div class="rt">Bereken wat je<br>stilte kost</div>
+    <div class="ru">leaditgrow.be/calculator</div>
+  </div>
+  <div class="safe">Profielfoto</div>
+</div>
+
+<div class="note">Variant 3 · statement · één zin, maximale leesbaarheid in de feed</div>
+<div class="banner v3">
+  <div class="left">
+    <div class="kick">Lead it, Grow</div>
+    <h1>Groei is geen ruis.<br>Het is een systeem.</h1>
+    <div class="sub">leaditgrow.be</div>
+  </div>
+  <div class="safe">Profielfoto</div>
+</div>
+
+</body>
+</html>
