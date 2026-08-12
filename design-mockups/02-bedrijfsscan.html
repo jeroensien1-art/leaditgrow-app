@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>De Bedrijfsscan · Lead it, Grow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=clash-display@400,500,600,700&display=swap">
+<link rel="stylesheet" href="brand.css">
+<style>
+  /* ── Leesbalk ── */
+  .rail { position: fixed; top: 0; left: 0; height: 3px; background: var(--orange); width: 0; z-index: 200; }
+
+  /* ── Nav ── */
+  nav { position: sticky; top: 0; z-index: 100; background: var(--ink); color: var(--bg);
+        display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 62px;
+        border-bottom: 3px solid var(--ink); }
+  nav .logo { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 16px; letter-spacing: -.01em; }
+  nav .links { display: flex; gap: 26px; }
+  nav a { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+          color: rgba(242,240,235,.5); text-decoration: none; transition: color .15s; }
+  nav a:hover { color: var(--lime); }
+  nav .nav-cta { background: var(--lime); color: var(--ink); padding: 9px 18px; font-weight: 700; }
+  nav .nav-cta:hover { color: var(--ink); background: #fff; }
+
+  /* ── Hero ── */
+  .hero { min-height: calc(100svh - 62px); display: grid; grid-template-columns: 1fr 300px;
+          border-bottom: 3px solid var(--ink); }
+  .hero-l { padding: 72px 40px 40px; display: flex; flex-direction: column; justify-content: space-between;
+            border-right: 3px solid var(--ink); }
+  .hero-r { display: flex; flex-direction: column; }
+  .hero-r > div { flex: 1; border-bottom: 3px solid var(--ink); padding: 22px 24px; display: flex;
+                  flex-direction: column; justify-content: center; }
+  .hero-r > div:last-child { border-bottom: 0; background: var(--ink); color: var(--bg); }
+  .hero-stat { font-family: var(--display); font-weight: 800; font-size: 44px; line-height: 1; letter-spacing: -.03em; }
+  .hero-stat-l { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+                 color: var(--muted); margin-top: 8px; line-height: 1.5; }
+  .hero-r > div:last-child .hero-stat-l { color: rgba(242,240,235,.45); }
+  .hero h1 { margin: 26px 0 0; max-width: 15ch; }
+  .hero-sub { font-size: 17px; line-height: 1.6; color: var(--muted); max-width: 46ch; margin-top: 28px; }
+  .hero-ctas { display: flex; margin-top: 38px; flex-wrap: wrap; }
+  .hero-ctas .btn + .btn { margin-left: -2px; }
+  .scrollcue { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+               color: var(--muted); margin-top: 48px; display: flex; align-items: center; gap: 10px; }
+  .scrollcue i { display: block; width: 1px; height: 26px; background: var(--muted); animation: drop 1.8s infinite; }
+  @keyframes drop { 0%,100% { transform: scaleY(.3); transform-origin: top; opacity: .4 } 50% { transform: scaleY(1); opacity: 1 } }
+
+  /* ── Marquee ── */
+  .marquee { background: var(--ink); color: var(--bg); overflow: hidden; padding: 15px 0;
+             border-bottom: 3px solid var(--ink); }
+  .marquee-track { display: flex; gap: 44px; width: max-content; animation: slide 32s linear infinite; }
+  .marquee span { font-family: var(--display); font-weight: 700; font-size: 19px; text-transform: uppercase;
+                  letter-spacing: .01em; white-space: nowrap; }
+  .marquee span::after { content: '·'; margin-left: 44px; color: var(--orange); }
+  @keyframes slide { to { transform: translateX(-50%) } }
+
+  /* ── Blokken ── */
+  section { border-bottom: 3px solid var(--ink); padding: 96px 40px; }
+  .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+         color: var(--orange); margin-bottom: 26px; }
+  .lead { font-size: 18px; line-height: 1.65; color: var(--muted); max-width: 56ch; margin-top: 26px; }
+
+  /* ── Cijferbalk ── */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); border: 3px solid var(--ink); margin-top: 56px; }
+  .stats > div { padding: 34px 28px; border-right: 3px solid var(--ink); }
+  .stats > div:last-child { border-right: 0; }
+  .stats .num { font-family: var(--display); font-weight: 800; font-size: clamp(48px, 6vw, 84px);
+                line-height: .9; letter-spacing: -.04em; color: var(--orange); }
+  .stats .cap { font-size: 14px; line-height: 1.55; color: var(--muted); margin-top: 14px; max-width: 30ch; }
+  .stats .src { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase;
+                color: #a49c92; margin-top: 12px; }
+
+  /* ── Sticky proces ── */
+  .proc { display: grid; grid-template-columns: 380px 1fr; gap: 0; }
+  .proc-l { position: sticky; top: 90px; align-self: start; padding-right: 40px; }
+  .proc-r { border-left: 3px solid var(--ink); }
+  .step { padding: 46px 40px; border-bottom: 3px solid var(--ink); display: grid;
+          grid-template-columns: 82px 1fr; gap: 26px; align-items: start; transition: background .3s; }
+  .step:last-child { border-bottom: 0; }
+  .step:hover { background: var(--bg2); }
+  .step .n { font-family: var(--display); font-weight: 800; font-size: 58px; line-height: .8;
+             letter-spacing: -.05em; color: transparent; -webkit-text-stroke: 2px var(--ink); }
+  .step:hover .n { color: var(--orange); -webkit-text-stroke: 2px var(--orange); }
+  .step h3 { margin-bottom: 12px; }
+  .step p { font-size: 15px; line-height: 1.7; color: var(--muted); max-width: 52ch; }
+  .step .when { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+                color: var(--green); margin-top: 14px; }
+
+  /* ── Hefbomen ── */
+  .levers { border: 3px solid var(--ink); margin-top: 48px; }
+  .lever { display: grid; grid-template-columns: 60px 1fr auto; align-items: center; gap: 20px;
+           padding: 0 28px; border-bottom: 1px solid rgba(14,13,11,.14); cursor: pointer; }
+  .lever:last-child { border-bottom: 0; }
+  .lever .k { font-family: var(--mono); font-size: 11px; color: var(--muted); padding: 22px 0; }
+  .lever .t { font-family: var(--display); font-weight: 700; font-size: clamp(19px, 2.4vw, 30px);
+              text-transform: uppercase; letter-spacing: -.02em; padding: 22px 0; transition: color .2s; }
+  .lever:hover .t { color: var(--orange); }
+  .lever .plus { font-family: var(--mono); font-size: 20px; color: var(--muted); transition: transform .25s; }
+  .lever.open .plus { transform: rotate(45deg); color: var(--orange); }
+  .lever-body { grid-column: 1 / -1; overflow: hidden; max-height: 0; transition: max-height .35s cubic-bezier(.16,1,.3,1); }
+  .lever.open .lever-body { max-height: 200px; }
+  .lever-body p { font-size: 15px; line-height: 1.7; color: var(--muted); max-width: 60ch;
+                  padding: 0 0 24px 80px; }
+
+  /* ── Bento ── */
+  .bento { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(190px, auto);
+           border: 3px solid var(--ink); margin-top: 48px; }
+  .cell { padding: 30px 28px; border-right: 3px solid var(--ink); border-bottom: 3px solid var(--ink);
+          display: flex; flex-direction: column; justify-content: space-between; }
+  .cell h4 { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 21px;
+             letter-spacing: -.02em; line-height: 1.05; }
+  .cell p { font-size: 14px; line-height: 1.6; color: var(--muted); margin-top: 12px; }
+  .cell .tag { font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
+               color: var(--muted); margin-bottom: 18px; }
+  .cell.wide { grid-column: span 2; }
+  .cell.dark { background: var(--ink); color: var(--bg); }
+  .cell.dark p { color: rgba(242,240,235,.6); }
+  .cell.dark .tag { color: var(--lime); }
+  .cell.lime { background: var(--lime); }
+  .cell.lime p { color: rgba(14,13,11,.7); }
+
+  /* ── Quote ── */
+  .quote { background: var(--ink); color: var(--bg); }
+  .quote blockquote { font-family: var(--display); font-weight: 700; font-size: clamp(26px, 3.6vw, 52px);
+                      line-height: 1.08; letter-spacing: -.03em; max-width: 20ch; }
+  .quote .who { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+                color: var(--lime); margin-top: 34px; }
+
+  /* ── FAQ ── */
+  .faq { border-top: 3px solid var(--ink); margin-top: 44px; }
+  .qa { border-bottom: 3px solid var(--ink); }
+  .qa button { width: 100%; background: none; border: 0; text-align: left; cursor: pointer;
+               display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 26px 0;
+               font-family: var(--display); font-weight: 700; font-size: clamp(17px, 2vw, 24px);
+               text-transform: uppercase; letter-spacing: -.015em; color: var(--ink); }
+  .qa button:hover { color: var(--orange); }
+  .qa .a { max-height: 0; overflow: hidden; transition: max-height .35s cubic-bezier(.16,1,.3,1); }
+  .qa.open .a { max-height: 300px; }
+  .qa .a p { font-size: 15px; line-height: 1.75; color: var(--muted); max-width: 62ch; padding-bottom: 28px; }
+  .qa .sign { font-family: var(--mono); font-size: 20px; color: var(--muted); flex-shrink: 0; transition: transform .25s; }
+  .qa.open .sign { transform: rotate(45deg); color: var(--orange); }
+
+  /* ── Slot ── */
+  .final { background: var(--orange); color: #fff; text-align: center; border-bottom: 0; }
+  .final h2 { color: #fff; }
+  .final p { font-size: 17px; line-height: 1.6; color: rgba(255,255,255,.8); max-width: 44ch; margin: 24px auto 34px; }
+  .final .btn { border-color: #fff; background: #fff; color: var(--orange); }
+  .final .btn:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-l { border-right: 0; border-bottom: 3px solid var(--ink); padding: 48px 20px 32px; }
+    .hero-r { flex-direction: row; }
+    .hero-r > div { border-bottom: 0; border-right: 3px solid var(--ink); }
+    .hero-r > div:last-child { border-right: 0; }
+    .proc { grid-template-columns: 1fr; }
+    .proc-l { position: static; padding: 0 0 34px; }
+    .proc-r { border-left: 0; border-top: 3px solid var(--ink); }
+    .step { padding: 32px 20px; grid-template-columns: 56px 1fr; gap: 16px; }
+    .stats, .bento { grid-template-columns: 1fr; }
+    .stats > div { border-right: 0; border-bottom: 3px solid var(--ink); }
+    .stats > div:last-child { border-bottom: 0; }
+    .cell { border-right: 0; }
+    .cell.wide { grid-column: span 1; }
+    section { padding: 56px 20px; }
+    .lever { grid-template-columns: 40px 1fr auto; padding: 0 18px; }
+    .lever-body p { padding-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="rail" id="rail"></div>
+
+<nav>
+  <span class="logo">Lead it, Grow</span>
+  <div class="links">
+    <a href="#proces">Proces</a>
+    <a href="#meten">Wat we meten</a>
+    <a href="#krijg">Wat je krijgt</a>
+    <a href="#faq">Vragen</a>
+    <a href="03-calculator.html" class="nav-cta">Start de scan</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="hero-l">
+    <div>
+      <div class="t-kicker">De bedrijfsscan · gratis · 4 vragen</div>
+      <h1 class="t-hero">Elke lead die<br>wacht koopt<br><span style="color:var(--orange)">elders.</span></h1>
+      <p class="hero-sub">In vier vragen zie je wat trage opvolging jouw bedrijf deze maand kost. Geen offerte, geen verkoopgesprek. Een getal, en waar het vandaan komt.</p>
+      <div class="hero-ctas">
+        <a href="03-calculator.html" class="btn btn-solid">Start de scan &rarr;</a>
+        <a href="#proces" class="btn btn-outline">Hoe het werkt</a>
+      </div>
+    </div>
+    <div class="scrollcue"><i></i> Scroll</div>
+  </div>
+  <div class="hero-r">
+    <div>
+      <div class="hero-stat" data-count="4">0</div>
+      <div class="hero-stat-l">Vragen</div>
+    </div>
+    <div>
+      <div class="hero-stat" data-count="2">0</div>
+      <div class="hero-stat-l">Minuten</div>
+    </div>
+    <div>
+      <div class="hero-stat" data-count="0">0</div>
+      <div class="hero-stat-l">Euro, en geen verkoopgesprek achteraf</div>
+    </div>
+  </div>
+</header>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee">
+  <div class="marquee-track" id="mq">
+    <span>Reactiesnelheid</span><span>Opvolging</span><span>Offertes</span><span>Website</span>
+    <span>Leadbron</span><span>Opvolgritme</span><span>Herhaalomzet</span>
+    <span>Reactiesnelheid</span><span>Opvolging</span><span>Offertes</span><span>Website</span>
+    <span>Leadbron</span><span>Opvolgritme</span><span>Herhaalomzet</span>
+  </div>
+</div>
+
+<!-- ── PROBLEEM ── -->
+<section>
+  <div class="reveal">
+    <div class="lbl">01 / Het probleem</div>
+    <h2 class="t-h2">Je pipeline lekt<br>waar je niet kijkt</h2>
+    <p class="lead">De meeste bedrijven zoeken meer leads terwijl het geld weglekt bij de leads die er al zijn. Twee oorzaken verklaren het grootste deel: hoe snel je reageert, en hoe vaak je terugkomt.</p>
+  </div>
+  <div class="stats reveal">
+    <div>
+      <div class="num"><span data-count="78">0</span>%</div>
+      <div class="cap">van de deals gaat naar wie als eerste antwoordt</div>
+      <div class="src">InsideSales research</div>
+    </div>
+    <div>
+      <div class="num"><span data-count="80">0</span>%</div>
+      <div class="cap">van de verkopen vraagt vijf of meer contactmomenten</div>
+      <div class="src">HubSpot Sales Report</div>
+    </div>
+    <div>
+      <div class="num"><span data-count="44">0</span>%</div>
+      <div class="cap">van de verkopers stopt na één poging</div>
+      <div class="src">Brevet Group</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCES ── -->
+<section id="proces">
+  <div class="proc">
+    <div class="proc-l reveal">
+      <div class="lbl">02 / Hoe het werkt</div>
+      <h2 class="t-h2">Drie stappen,<br>drie dagen</h2>
+      <p class="lead">Je vult de scan in op je telefoon. De rest gebeurt zonder dat jij er tijd in steekt.</p>
+    </div>
+    <div class="proc-r">
+      <div class="step reveal">
+        <div class="n">01</div>
+        <div>
+          <h3 class="t-h3">Je vult vier vragen in</h3>
+          <p>Aantal leads, gemiddelde opdrachtwaarde, reactiesnelheid, opvolgritme. Geen registratie, geen bedrijfsgegevens. Je ziet je getal meteen op het scherm.</p>
+          <div class="when">Duur, twee minuten</div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="n">02</div>
+        <div>
+          <h3 class="t-h3">Wij leggen het naast je sector</h3>
+          <p>We vergelijken je antwoorden met wat vergelijkbare bedrijven in jouw sector halen, en kijken zelf naar je website, je formulieren en je opvolgmails.</p>
+          <div class="when">Binnen twee werkdagen</div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="n">03</div>
+        <div>
+          <h3 class="t-h3">Je krijgt een plan, geen rapport</h3>
+          <p>Drie ingrepen, gerangschikt op wat het snelst geld oplevert. Met wat het kost aan tijd, wat het oplevert, en wat je zelf kan doen zonder ons.</p>
+          <div class="when">Binnen drie werkdagen</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HEFBOMEN ── -->
+<section id="meten">
+  <div class="reveal">
+    <div class="lbl">03 / Wat we meten</div>
+    <h2 class="t-h2">Zeven hefbomen</h2>
+    <p class="lead">Klik een hefboom open om te zien waar we naar kijken.</p>
+  </div>
+  <div class="levers reveal" id="levers">
+    <div class="lever"><div class="k">L01</div><div class="t">Reactiesnelheid</div><div class="plus">+</div>
+      <div class="lever-body"><p>Hoelang duurt het voor een nieuwe aanvraag antwoord krijgt, gemeten op je echte formulier, je mailbox en je telefoon buiten de kantooruren.</p></div></div>
+    <div class="lever"><div class="k">L02</div><div class="t">Opvolgritme</div><div class="plus">+</div>
+      <div class="lever-body"><p>Hoeveel keer en over welke periode een lead die niet meteen koopt nog iets van je hoort, en of dat handwerk of systeem is.</p></div></div>
+    <div class="lever"><div class="k">L03</div><div class="t">Offerteproces</div><div class="plus">+</div>
+      <div class="lever-body"><p>Doorlooptijd van vraag tot offerte, hoe de offerte eruitziet, en wat er gebeurt in de stilte tussen versturen en beslissen.</p></div></div>
+    <div class="lever"><div class="k">L04</div><div class="t">Website conversie</div><div class="plus">+</div>
+      <div class="lever-body"><p>Wat er gebeurt tussen bezoek en aanvraag. Waar mensen afhaken, hoeveel drempels je formulier opwerpt, of mobiel even goed werkt.</p></div></div>
+    <div class="lever"><div class="k">L05</div><div class="t">Leadbron</div><div class="plus">+</div>
+      <div class="lever-body"><p>Waar je aanvragen vandaan komen, welke bron de duurste klanten levert, en welke bron je onbewust subsidieert.</p></div></div>
+    <div class="lever"><div class="k">L06</div><div class="t">Herhaalomzet</div><div class="plus">+</div>
+      <div class="lever-body"><p>Wat er na de eerste opdracht gebeurt. Of er een tweede aanleiding tot contact bestaat, en of iemand die opvolgt.</p></div></div>
+    <div class="lever"><div class="k">L07</div><div class="t">Zichtbaarheid</div><div class="plus">+</div>
+      <div class="lever-body"><p>Of je gevonden wordt op de zoekopdrachten waar koopintentie in zit, en wat een concurrent daar wel doet en jij niet.</p></div></div>
+  </div>
+</section>
+
+<!-- ── WAT JE KRIJGT ── -->
+<section id="krijg">
+  <div class="reveal">
+    <div class="lbl">04 / Wat je krijgt</div>
+    <h2 class="t-h2">Op papier, in<br>drie dagen</h2>
+  </div>
+  <div class="bento reveal">
+    <div class="cell wide dark">
+      <div class="tag">Deliverable 01</div>
+      <div>
+        <h4>Jouw omzetlek in één getal</h4>
+        <p>Wat trage opvolging je vandaag kost, per maand en per jaar, opgesplitst naar oorzaak zodat je ziet welk stuk het zwaarst weegt.</p>
+      </div>
+    </div>
+    <div class="cell lime">
+      <div class="tag">Deliverable 02</div>
+      <div>
+        <h4>Drie ingrepen</h4>
+        <p>Gerangschikt op opbrengst tegenover moeite.</p>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="tag">Deliverable 03</div>
+      <div>
+        <h4>Sectorvergelijking</h4>
+        <p>Waar je staat tegenover vergelijkbare bedrijven in jouw sector en regio.</p>
+      </div>
+    </div>
+    <div class="cell wide">
+      <div class="tag">Deliverable 04</div>
+      <div>
+        <h4>Een doe-het-zelf lijst</h4>
+        <p>Wat je deze week zelf kan aanpassen zonder ons, met de exacte instellingen en teksten. Wij verdienen niets aan dit deel, en dat is het punt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── QUOTE ── -->
+<section class="quote">
+  <div class="reveal">
+    <div class="lbl" style="color:var(--lime)">05 / Wat het opleverde</div>
+    <blockquote>Wij dachten dat we te weinig aanvragen hadden. We hadden te trage antwoorden.</blockquote>
+    <div class="who">Bart V. · zaakvoerder installatiebedrijf · 14 medewerkers</div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section id="faq">
+  <div class="reveal">
+    <div class="lbl">06 / Vragen</div>
+    <h2 class="t-h2">Voor je begint</h2>
+  </div>
+  <div class="faq reveal" id="faq-list">
+    <div class="qa"><button>Kost dit iets<span class="sign">+</span></button>
+      <div class="a"><p>Nee. De scan is gratis en er volgt geen factuur. Wat we ermee winnen is dat je ziet hoe we werken.</p></div></div>
+    <div class="qa"><button>Bel je me daarna op<span class="sign">+</span></button>
+      <div class="a"><p>Alleen als je dat aankruist. Vink je niets aan, dan krijg je het plan in je inbox en hoor je verder niets van ons.</p></div></div>
+    <div class="qa"><button>Hoe nauwkeurig is het getal<span class="sign">+</span></button>
+      <div class="a"><p>Het is een onderbouwde schatting op basis van je eigen input en gepubliceerd sectoronderzoek. Het is geen boekhoudkundig rapport, wel een betrouwbaar beeld van de orde van grootte.</p></div></div>
+    <div class="qa"><button>Wat doen jullie met mijn gegevens<span class="sign">+</span></button>
+      <div class="a"><p>Je e-mailadres wordt gebruikt om het plan te sturen. We verkopen niets door en we zetten je niet in een nieuwsbrief zonder dat je daarvoor kiest.</p></div></div>
+  </div>
+</section>
+
+<!-- ── SLOT ── -->
+<section class="final">
+  <div class="reveal">
+    <div class="t-kicker" style="color:rgba(255,255,255,.6)">Vier vragen, twee minuten</div>
+    <h2 class="t-h2" style="margin-top:18px">Wat kost jouw<br>stilte per maand</h2>
+    <p>Je hebt geen registratie nodig en je ziet je getal voor je iets invult.</p>
+    <a href="03-calculator.html" class="btn">Start de scan &rarr;</a>
+  </div>
+</section>
+
+<script>
+  /* Leesbalk */
+  const rail = document.getElementById('rail');
+  addEventListener('scroll', () => {
+    const h = document.documentElement.scrollHeight - innerHeight;
+    rail.style.width = (scrollY / h * 100) + '%';
+  }, { passive: true });
+
+  /* Scroll reveal */
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* Cijfers laten oplopen */
+  const countIO = new IntersectionObserver((es) => {
+    es.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, target = +el.dataset.count, dur = 1100, t0 = performance.now();
+      const tick = (t) => {
+        const p = Math.min((t - t0) / dur, 1);
+        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      countIO.unobserve(el);
+    });
+  }, { threshold: .6 });
+  document.querySelectorAll('[data-count]').forEach(el => countIO.observe(el));
+
+  /* Hefbomen en FAQ open en dicht */
+  document.querySelectorAll('#levers .lever').forEach(l => {
+    l.addEventListener('click', () => l.classList.toggle('open'));
+  });
+  document.querySelectorAll('#faq-list .qa button').forEach(b => {
+    b.addEventListener('click', () => b.parentElement.classList.toggle('open'));
+  });
+</script>
+</body>
+</html>

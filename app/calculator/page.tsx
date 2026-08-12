@@ -1,25 +1,14 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { ArrowRight, TrendingDown } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { Nav } from '@/components/nav'
 import { useLang } from '@/components/lang-context'
+import { CONVERSION_RATE, leadsMap, dealMap } from '@/lib/leak'
 
 // ── Lookup tables ──────────────────────────────────────────────────────────────
 
-const leadsMap: Record<string, number> = {
-  'Fewer than 5': 3,      'Minder dan 5': 3,
-  '5 to 20': 12,          '5 tot 20': 12,
-  '20 to 50': 35,         '20 tot 50': 35,
-  'More than 50': 65,     'Meer dan 50': 65,
-}
-const dealMap: Record<string, number> = {
-  'Under €1,000': 600,          'Onder €1.000': 600,
-  '€1,000 to €5,000': 2500,    '€1.000 tot €5.000': 2500,
-  '€5,000 to €20,000': 10000,  '€5.000 tot €20.000': 10000,
-  'Over €20,000': 25000,        'Boven €20.000': 25000,
-}
 const speedLossMap: Record<string, number> = {
   'Within 5 minutes, automatically': 0,     'Binnen 5 minuten, automatisch': 0,
   'Within 1 hour, usually': 0.18,           'Binnen 1 uur, meestal': 0.18,
@@ -38,7 +27,8 @@ function calcLeak(leads: string, deal: string, speed: string, followup: string) 
   const d = dealMap[deal] ?? 0
   const sLoss = speedLossMap[speed] ?? 0
   const fLoss = followupLossMap[followup] ?? 0
-  const base = l * d
+  // Haalbare maandomzet uit de huidige leadstroom, niet het volledige leadvolume
+  const base = l * d * CONVERSION_RATE
   const speedLeak = base * sLoss
   const followupLeak = (base - speedLeak) * fLoss
   const monthly = Math.round((speedLeak + followupLeak) / 500) * 500
@@ -54,86 +44,126 @@ function calcLeak(leads: string, deal: string, speed: string, followup: string) 
 
 const css = `
   :root {
-    --rust: #c96442;
-    --rust-light: rgba(201,100,66,.08);
-    --rust-border: rgba(201,100,66,.25);
-    --ink: #3d3929;
-    --ink-mid: #535146;
-    --ink-muted: #83827d;
-    --ink-faint: #b0aea8;
-    --cream: #f3f1eb;
-    --warm-white: #faf9f5;
-    --border: rgba(61,57,41,.1);
-    --border-mid: rgba(61,57,41,.15);
-    --shadow-card: 0 2px 8px rgba(0,0,0,.06);
-    --font-display: var(--font-serif);
-    --green: #15803d;
+    --c-ink: #0e0d0b;
+    --c-bg: #f2f0eb;
+    --c-bg2: #eae8e2;
+    --c-orange: #c96442;
+    --c-green: #1a5e35;
+    --c-lime: #4ade80;
+    --c-muted: #787068;
   }
-  .calc-page { min-height:100svh; background:#faf9f5; padding-top:80px; padding-bottom:60px; }
-  .calc-wrap { max-width:520px; margin:0 auto; padding:0 20px; }
-  .calc-card { background:#fff; border-radius:16px; box-shadow:0 8px 40px rgba(0,0,0,.1); border:1px solid var(--border); overflow:hidden; }
-  .calc-top { height:4px; background:linear-gradient(90deg,var(--rust) 0%,#e8845e 100%); }
-  .calc-inner { padding:2rem 2rem 2rem; }
-  .eyebrow { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--rust); margin-bottom:10px; }
-  .headline { font-family:var(--font-display); font-size:22px; font-weight:700; color:var(--ink); line-height:1.3; margin-bottom:6px; }
-  .subline { font-size:14px; color:var(--ink-muted); line-height:1.6; margin-bottom:1.8rem; }
-  .q-label { font-size:13px; font-weight:600; color:var(--ink); margin-bottom:8px; }
-  .q-group { margin-bottom:1.4rem; }
-  .opts { display:flex; flex-direction:column; gap:6px; }
-  .opt { background:var(--cream); border:1.5px solid transparent; border-radius:9px; padding:10px 14px; cursor:pointer; text-align:left; font-size:13px; color:var(--ink-mid); transition:all .15s; }
-  .opt:hover { border-color:var(--border-mid); background:var(--warm-white); }
-  .opt.sel { border-color:var(--rust); background:var(--rust-light); color:var(--ink); font-weight:500; }
-  .btn-primary { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:13px 20px; background:var(--rust); color:#fff; border:none; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer; transition:opacity .15s; margin-top:1.2rem; }
-  .btn-primary:hover { opacity:.9; }
-  .btn-primary:disabled { opacity:.5; cursor:not-allowed; }
-  .btn-ghost { display:flex; align-items:center; justify-content:center; width:100%; padding:11px; background:transparent; border:1.5px solid var(--border-mid); border-radius:10px; font-size:13px; color:var(--ink-muted); cursor:pointer; transition:opacity .15s; margin-top:8px; }
-  .btn-ghost:hover { opacity:.7; }
-  .result-hero { background:var(--ink); border-radius:12px; padding:1.6rem; margin-bottom:1.4rem; }
-  .rh-eyebrow { font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:8px; }
-  .rh-amount { font-family:var(--font-display); font-size:52px; font-weight:700; color:var(--rust); line-height:1; margin-bottom:4px; }
-  .rh-period { font-size:14px; color:rgba(255,255,255,.45); }
-  .rh-annual { font-size:13px; color:rgba(255,255,255,.6); margin-top:6px; }
-  .breakdown { display:flex; flex-direction:column; gap:8px; margin-bottom:1.4rem; }
-  .bk-row { display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--cream); border-radius:9px; }
-  .bk-label { font-size:12px; color:var(--ink-mid); }
-  .bk-value { font-size:13px; font-weight:600; color:var(--ink); }
-  .cta-box { background:var(--cream); border-radius:12px; padding:1.4rem; border:1px solid var(--border); }
-  .cta-title { font-family:var(--font-display); font-size:16px; font-weight:700; color:var(--ink); margin-bottom:6px; }
-  .cta-sub { font-size:12px; color:var(--ink-muted); line-height:1.6; margin-bottom:1rem; }
-  .source-pill { display:inline-block; font-size:10px; color:var(--ink-muted); background:rgba(61,57,41,.07); border-radius:4px; padding:2px 7px; margin-top:4px; }
-  .ai-box { background:#fff; border-radius:14px; padding:1.6rem; border:1.5px solid var(--rust-border); margin-bottom:1rem; }
-  .ai-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(201,100,66,.1); border:1px solid var(--rust-border); border-radius:20px; padding:4px 12px; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--rust); margin-bottom:12px; }
-  .diag-link { display:flex; align-items:center; justify-content:center; gap:6px; width:100%; padding:12px; background:transparent; border:1.5px solid var(--border-mid); border-radius:10px; font-size:13px; color:var(--ink-muted); cursor:pointer; text-decoration:none; margin-top:8px; transition:opacity .15s; }
-  .diag-link:hover { opacity:.7; }
-  .field-label { font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:6px; display:block; }
-  .text-input { width:100%; padding:11px 13px; background:#fff; border:1.5px solid var(--border-mid); border-radius:9px; font-size:13px; color:var(--ink); outline:none; transition:border-color .15s; margin-bottom:8px; box-sizing:border-box; }
-  .text-input:focus { border-color:var(--rust); }
-  .divider { display:flex; align-items:center; gap:10px; margin:12px 0; }
-  .divider-line { flex:1; height:1px; background:var(--border); }
-  .divider-text { font-size:11px; color:var(--ink-faint); }
-  .btn-green { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:13px 20px; background:var(--green); color:#fff; border:none; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer; transition:opacity .15s; }
-  .btn-green:hover { opacity:.9; }
-  .thanks-wrap { text-align:center; padding:.5rem 0; }
-  .thanks-circle { width:56px; height:56px; border-radius:50%; background:rgba(201,100,66,.1); display:flex; align-items:center; justify-content:center; margin:0 auto 1rem; font-size:22px; }
-  .progress-bar { height:3px; background:var(--cream); border-radius:2px; margin-bottom:1.6rem; overflow:hidden; }
-  .progress-fill { height:100%; background:var(--rust); border-radius:2px; transition:width .4s ease; }
+  .calc-b { font-family: var(--font-brutalist, system-ui); }
+  .calc-m { font-family: var(--font-mono-brutalist, monospace); }
+
+  .calc-stage { min-height: calc(100svh - 51px); display: grid; grid-template-columns: 42% 58%;
+                border-bottom: 3px solid var(--c-ink); position: relative; }
+  .calc-rail { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: rgba(14,13,11,.12); z-index: 3; }
+  .calc-rail i { display: block; height: 100%; background: var(--c-lime); transition: width .5s cubic-bezier(.16,1,.3,1); }
+
+  .calc-l { background: var(--c-ink); color: var(--c-bg); padding: 54px 44px 40px;
+            display: flex; flex-direction: column; justify-content: space-between; }
+  .calc-r { background: var(--c-bg); padding: 30px 44px 26px; display: flex; flex-direction: column; }
+
+  .calc-qnum { font-family: var(--font-brutalist, system-ui); font-weight: 700;
+               font-size: clamp(70px, 11vw, 160px); line-height: .78; letter-spacing: -.05em;
+               color: transparent; -webkit-text-stroke: 2px rgba(242,240,235,.3); }
+  .calc-q { font-family: var(--font-brutalist, system-ui); font-weight: 700;
+            font-size: clamp(28px, 3.4vw, 54px); line-height: .98; letter-spacing: -.035em;
+            text-transform: uppercase; margin-top: 24px; max-width: 15ch; }
+  .calc-hint { font-size: 15px; line-height: 1.65; color: rgba(242,240,235,.5); max-width: 40ch; margin-top: 20px; }
+  .calc-foot { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: rgba(242,240,235,.3); }
+
+  .calc-opts { flex: 1; display: flex; flex-direction: column; border-top: 2px solid var(--c-ink); }
+  .calc-opt { flex: 1; display: grid; grid-template-columns: 46px 1fr 28px; align-items: center; gap: 18px;
+              background: transparent; border: 0; border-bottom: 2px solid var(--c-ink); cursor: pointer;
+              padding: 22px 8px; text-align: left; transition: background .18s, padding-left .18s; }
+  .calc-opt:hover { background: var(--c-bg2); padding-left: 18px; }
+  .calc-opt .k { font-size: 11px; color: var(--c-muted); border: 1px solid rgba(14,13,11,.25);
+                 width: 26px; height: 26px; display: grid; place-items: center; transition: all .18s; }
+  .calc-opt .t { font-family: var(--font-brutalist, system-ui); font-weight: 700;
+                 font-size: clamp(17px, 1.9vw, 26px); text-transform: uppercase; letter-spacing: -.02em; line-height: 1.05; }
+  .calc-opt .g { font-size: 17px; color: transparent; transition: color .18s; }
+  .calc-opt:hover .g { color: var(--c-orange); }
+  .calc-opt.sel { background: var(--c-lime); padding-left: 18px; }
+  .calc-opt.sel .k { background: var(--c-ink); color: var(--c-lime); border-color: var(--c-ink); }
+  .calc-opt.sel .g { color: var(--c-ink); }
+
+  .calc-back { margin-top: 18px; align-self: flex-start; background: none; border: 0; cursor: pointer;
+               font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--c-muted); }
+  .calc-back:hover { color: var(--c-orange); }
+
+  .calc-amount { font-family: var(--font-brutalist, system-ui); font-weight: 700;
+                 font-size: clamp(56px, 9vw, 150px); line-height: .84; letter-spacing: -.055em;
+                 color: var(--c-orange); margin: 14px 0 10px; }
+  .calc-per { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: rgba(242,240,235,.4); }
+  .calc-year { font-size: 16px; color: rgba(242,240,235,.65); margin-top: 16px; }
+  .calc-year b { color: var(--c-lime); }
+  .calc-bd { margin-top: 34px; border-top: 1px solid rgba(242,240,235,.15); }
+  .calc-bdrow { padding: 18px 0; border-bottom: 1px solid rgba(242,240,235,.15); }
+  .calc-bdtop { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+  .calc-bdname { font-family: var(--font-brutalist, system-ui); font-weight: 700; font-size: 16px;
+                 text-transform: uppercase; letter-spacing: -.01em; }
+  .calc-bdval { font-family: var(--font-brutalist, system-ui); font-weight: 700; font-size: 20px;
+                color: var(--c-lime); letter-spacing: -.02em; }
+  .calc-bdbar { height: 5px; background: rgba(242,240,235,.12); margin-top: 11px; }
+  .calc-bdbar i { display: block; height: 100%; background: var(--c-orange); transition: width 1s cubic-bezier(.16,1,.3,1); }
+  .calc-src { font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: rgba(242,240,235,.32); margin-top: 9px; }
+
+  .calc-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .14em;
+                text-transform: uppercase; background: var(--c-lime); color: var(--c-ink); padding: 7px 12px; align-self: flex-start; }
+  .calc-r h2 { font-family: var(--font-brutalist, system-ui); font-weight: 700;
+               font-size: clamp(24px, 2.6vw, 38px); line-height: .98; text-transform: uppercase;
+               letter-spacing: -.03em; margin: 20px 0 14px; }
+  .calc-r .sell { font-size: 15px; line-height: 1.65; color: var(--c-muted); max-width: 42ch; }
+  .calc-field { margin-top: 18px; }
+  .calc-field label { display: block; font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
+                      color: var(--c-muted); margin-bottom: 7px; }
+  .calc-field input { width: 100%; padding: 15px 16px; border: 2px solid var(--c-ink); background: #fff;
+                      font-family: inherit; font-size: 15px; color: var(--c-ink); outline: none; box-sizing: border-box; }
+  .calc-field input:focus { border-color: var(--c-orange); }
+  .calc-submit { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%;
+                 margin-top: 20px; padding: 17px 24px; background: var(--c-ink); color: var(--c-bg);
+                 border: 2px solid var(--c-ink); font-family: inherit; font-size: 12px; font-weight: 700;
+                 letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: background .15s, border-color .15s; }
+  .calc-submit:hover:not(:disabled) { background: var(--c-green); border-color: var(--c-green); }
+  .calc-submit:disabled { opacity: .4; cursor: not-allowed; }
+  .calc-fine { font-size: 9px; letter-spacing: .08em; color: #a49c92; margin-top: 14px; line-height: 1.7; text-transform: uppercase; }
+
+  .calc-seo { max-width: 760px; margin: 0 auto; padding: 80px 24px 96px; }
+  .calc-seo h2 { font-family: var(--font-brutalist, system-ui); font-weight: 700;
+                 font-size: clamp(24px, 3vw, 38px); text-transform: uppercase; letter-spacing: -.03em;
+                 line-height: 1; margin: 0 0 18px; }
+  .calc-seo h2 + p { margin-top: 0; }
+  .calc-seo p { font-size: 16px; line-height: 1.75; color: #4a453e; margin: 0 0 18px; }
+  .calc-seo section + section { margin-top: 56px; }
+  .calc-seo h3 { font-family: var(--font-brutalist, system-ui); font-weight: 700; font-size: 17px;
+                 text-transform: uppercase; letter-spacing: -.01em; margin: 0 0 8px; }
+  .calc-seo .qa { border-top: 2px solid var(--c-ink); padding: 22px 0; }
+
+  @media (max-width: 900px) {
+    .calc-stage { grid-template-columns: 1fr; }
+    .calc-l { padding: 34px 20px 26px; }
+    .calc-r { padding: 24px 20px 44px; }
+    .calc-qnum { font-size: 62px; }
+    .calc-opt { padding: 18px 4px; grid-template-columns: 34px 1fr 20px; gap: 12px; }
+    .calc-seo { padding: 56px 20px 72px; }
+  }
 `
 
-type Step = 'q1' | 'q2' | 'results' | 'thanks'
+type Step = 1 | 2 | 3 | 4 | 5
 
 export default function CalculatorPage() {
   const { lang } = useLang()
   const nl = lang === 'nl'
   const router = useRouter()
 
-  const [step, setStep] = useState<Step>('q1')
+  const [step, setStep] = useState<Step>(1)
   const [leads, setLeads] = useState('')
   const [deal, setDeal] = useState('')
   const [speed, setSpeed] = useState('')
   const [followup, setFollowup] = useState('')
   const [captureName, setCaptureName] = useState('')
   const [captureEmail, setCaptureEmail] = useState('')
-  const [capturePhone, setCapturePhone] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
   const result = useMemo(() => calcLeak(leads, deal, speed, followup), [leads, deal, speed, followup])
@@ -154,6 +184,59 @@ export default function CalculatorPage() {
     ? ['Geautomatiseerde reeks (5+ keer)', '3 tot 4 keer manueel', '1 tot 2 keer, dan loslaten', 'Zelden of nooit']
     : ['Automated sequence (5+ follow-ups)', '3 to 4 times manually', '1 to 2 times, then leave it', 'Rarely or never follow up']
 
+  const questions = [
+    {
+      title: nl ? 'Hoeveel leads krijg je per maand' : 'How many leads do you get per month',
+      hint: nl
+        ? 'Elke aanvraag telt mee. Formulier, telefoon, mail, WhatsApp, iemand die binnenwipt.'
+        : 'Every enquiry counts. Form, phone, email, WhatsApp, someone walking in.',
+      options: leadsOptions, value: leads, set: setLeads,
+    },
+    {
+      title: nl ? 'Wat is een opdracht gemiddeld waard' : 'What is an average job worth',
+      hint: nl
+        ? 'De omzet van een gemiddelde klant, niet van je grootste project.'
+        : 'Revenue from an average client, not from your biggest project.',
+      options: dealOptions, value: deal, set: setDeal,
+    },
+    {
+      title: nl ? 'Hoe snel antwoord je op een aanvraag' : 'How fast do you answer an enquiry',
+      hint: nl
+        ? 'Denk aan de aanvraag die om kwart voor zes op vrijdag binnenkomt, niet aan je beste dag.'
+        : 'Think of the enquiry landing at 5.45pm on a Friday, not of your best day.',
+      options: speedOptions, value: speed, set: setSpeed,
+    },
+    {
+      title: nl ? 'Hoe vaak volg je op wie niet meteen koopt' : 'How often do you follow up a lead who does not buy',
+      hint: nl
+        ? 'Hier zit doorgaans het grootste stuk van het lek.'
+        : 'This is usually where the biggest part of the leak sits.',
+      options: followupOptions, value: followup, set: setFollowup,
+    },
+  ]
+
+  const pick = (q: typeof questions[number], option: string) => {
+    q.set(option)
+    setTimeout(() => setStep(s => (s < 5 ? (s + 1) as Step : s)), 260)
+  }
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (step === 5) return
+      const q = questions[step - 1]
+      if (e.key >= '1' && e.key <= '4') {
+        const option = q.options[Number(e.key) - 1]
+        if (option) pick(q, option)
+      }
+      if (e.key === 'Backspace' && step > 1) {
+        e.preventDefault()
+        setStep(s => (s - 1) as Step)
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  })
+
   const fmt = (n: number) =>
     n === 0 ? (nl ? 'Minimaal' : 'Minimal') : `€${n.toLocaleString('nl-BE')}`
 
@@ -167,7 +250,7 @@ export default function CalculatorPage() {
         body: JSON.stringify({
           name: captureName,
           email: captureEmail,
-          phone: capturePhone,
+          phone: '',
           lang: nl ? 'nl' : 'en',
           leads,
           deal,
@@ -184,289 +267,185 @@ export default function CalculatorPage() {
     router.push('/bedankt/calculator')
   }
 
-  const progressPct = step === 'q1' ? 25 : step === 'q2' ? 60 : step === 'results' ? 90 : 100
+  const peak = Math.max(result.speedLeak, result.followupLeak, 1)
+  const q = step < 5 ? questions[step - 1] : null
 
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: css }} />
       <Nav />
-      <div className="calc-page">
-        <div className="calc-wrap">
 
-          {/* Header */}
-          <div style={{ textAlign: 'center', marginBottom: '1.8rem' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(201,100,66,.1)', border: '1px solid rgba(201,100,66,.25)', borderRadius: 999, padding: '6px 14px', marginBottom: 12 }}>
-              <TrendingDown size={14} color="#c96442" />
-              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#c96442' }}>
-                {nl ? 'Revenue Calculator' : 'Revenue Calculator'}
-              </span>
-            </div>
-            <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 26, fontWeight: 700, color: '#3d3929', lineHeight: 1.25, margin: '0 0 8px' }}>
-              {nl ? 'Hoeveel omzet mis jij elke maand?' : 'How much revenue are you losing each month?'}
-            </h1>
-            <p style={{ fontSize: 14, color: '#83827d', margin: '0 0 14px' }}>
-              {nl ? '4 vragen. 2 minuten. Direct jouw getal.' : '4 questions. 2 minutes. Your number, instantly.'}
-            </p>
-            <div style={{ background: 'rgba(201,100,66,.07)', border: '1px solid rgba(201,100,66,.2)', borderRadius: 10, padding: '12px 16px', fontSize: 13, color: '#535146', lineHeight: 1.6, textAlign: 'left' }}>
-              {nl
-                ? <><strong style={{ color: '#c96442' }}>Je kan 14 dagen gratis uitproberen</strong> hoe automatische reacties op mails, WhatsApp en telefoons eruitzien voor jouw bedrijf. Maar eerst berekenen we wat jouw huidige reactiesnelheid je vandaag kost.</>
-                : <><strong style={{ color: '#c96442' }}>You can try 14 days free</strong> of automated responses to emails, WhatsApp and phone calls for your business. But first, let&apos;s calculate what your current response speed costs you today.</>
-              }
-            </div>
-          </div>
+      <div className="calc-stage calc-b">
+        <div className="calc-rail"><i style={{ width: `${(step - 1) / 4 * 100}%` }} /></div>
 
-          <div className="calc-card">
-            <div className="calc-top" />
-            <div className="calc-inner">
-              <div className="progress-bar">
-                <div className="progress-fill" style={{ width: `${progressPct}%` }} />
+        {q ? (
+          <>
+            <div className="calc-l">
+              <div>
+                <div className="calc-qnum">{String(step).padStart(2, '0')}</div>
+                <h1 className="calc-q">{q.title}</h1>
+                <p className="calc-hint">{q.hint}</p>
               </div>
-
-              {/* ── Step 1: leads + deal ── */}
-              {step === 'q1' && (
-                <div>
-                  <div className="eyebrow">{nl ? 'Stap 1 van 2' : 'Step 1 of 2'}</div>
-                  <div className="headline">{nl ? 'Jouw pipeline' : 'Your pipeline'}</div>
-                  <div className="subline">{nl ? 'Twee snelle vragen over je bedrijf.' : 'Two quick questions about your business.'}</div>
-
-                  <div className="q-group">
-                    <div className="q-label">{nl ? 'Hoeveel nieuwe leads ontvang je per maand?' : 'How many new leads do you receive per month?'}</div>
-                    <div className="opts">
-                      {leadsOptions.map(o => (
-                        <button key={o} className={`opt${leads === o ? ' sel' : ''}`} onClick={() => setLeads(o)}>{o}</button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="q-group">
-                    <div className="q-label">{nl ? 'Wat is de gemiddelde waarde van een opdracht?' : 'What is your average deal value?'}</div>
-                    <div className="opts">
-                      {dealOptions.map(o => (
-                        <button key={o} className={`opt${deal === o ? ' sel' : ''}`} onClick={() => setDeal(o)}>{o}</button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <button className="btn-primary" disabled={!leads || !deal} onClick={() => setStep('q2')}>
-                    {nl ? 'Verder' : 'Continue'}
-                    <ArrowRight size={16} />
-                  </button>
-                </div>
-              )}
-
-              {/* ── Step 2: speed + follow-up ── */}
-              {step === 'q2' && (
-                <div>
-                  <div className="eyebrow">{nl ? 'Stap 2 van 2' : 'Step 2 of 2'}</div>
-                  <div className="headline">{nl ? 'Jouw opvolging' : 'Your follow-up'}</div>
-                  <div className="subline">{nl ? 'Hier zit het meeste verborgen verlies.' : 'This is where most hidden revenue leaks.'}</div>
-
-                  <div className="q-group">
-                    <div className="q-label">{nl ? 'Hoe snel reageer je op een nieuwe aanvraag?' : 'How quickly do you respond to a new enquiry?'}</div>
-                    <div className="opts">
-                      {speedOptions.map(o => (
-                        <button key={o} className={`opt${speed === o ? ' sel' : ''}`} onClick={() => setSpeed(o)}>{o}</button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="q-group">
-                    <div className="q-label">{nl ? 'Hoe vaak volg je een lead op die niet meteen koopt?' : 'How often do you follow up a lead who does not buy immediately?'}</div>
-                    <div className="opts">
-                      {followupOptions.map(o => (
-                        <button key={o} className={`opt${followup === o ? ' sel' : ''}`} onClick={() => setFollowup(o)}>{o}</button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <button className="btn-primary" disabled={!speed || !followup} onClick={() => setStep('results')}>
-                    {nl ? 'Bereken mijn verlies' : 'Calculate my leak'}
-                    <ArrowRight size={16} />
-                  </button>
-                  <button className="btn-ghost" onClick={() => setStep('q1')}>{nl ? 'Terug' : 'Back'}</button>
-                </div>
-              )}
-
-              {/* ── Results ── */}
-              {step === 'results' && (
-                <div>
-                  <div className="eyebrow">{nl ? 'Jouw resultaat' : 'Your result'}</div>
-
-                  <div className="result-hero">
-                    <div className="rh-eyebrow">{nl ? 'Maandelijks omzetverlies (geschat)' : 'Monthly revenue leak (estimated)'}</div>
-                    <div className="rh-amount">{fmt(result.monthly)}</div>
-                    <div className="rh-period">{nl ? 'per maand' : 'per month'}</div>
-                    {result.annual > 0 && (
-                      <div className="rh-annual">
-                        {nl ? `Dat is ${fmt(result.annual)} per jaar` : `That is ${fmt(result.annual)} per year`}
-                      </div>
-                    )}
-                  </div>
-
-                  {result.monthly > 0 && (
-                    <div className="breakdown">
-                      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: '#b0aea8', marginBottom: 6 }}>
-                        {nl ? 'Hoe is dit berekend?' : 'How is this calculated?'}
-                      </div>
-                      {result.speedLeak > 0 && (
-                        <div className="bk-row" style={{ flexDirection: 'column' as const, alignItems: 'flex-start', gap: 4 }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                            <span className="bk-label">{nl ? 'Trage eerste reactie' : 'Slow first response'}</span>
-                            <span className="bk-value">{fmt(result.speedLeak)}</span>
-                          </div>
-                          <span className="source-pill">
-                            {nl
-                              ? '78% van deals gaat naar de eerste die reageert · InsideSales research'
-                              : '78% of deals go to the first responder · InsideSales research'}
-                          </span>
-                        </div>
-                      )}
-                      {result.followupLeak > 0 && (
-                        <div className="bk-row" style={{ flexDirection: 'column' as const, alignItems: 'flex-start', gap: 4 }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                            <span className="bk-label">{nl ? 'Onvoldoende opvolging' : 'Insufficient follow-up'}</span>
-                            <span className="bk-value">{fmt(result.followupLeak)}</span>
-                          </div>
-                          <span className="source-pill">
-                            {nl
-                              ? '80% van verkopen vereist 5+ contactmomenten · HubSpot Sales Report'
-                              : '80% of sales require 5+ touchpoints · HubSpot Sales Report'}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  {/* ── AI werknemer — primaire CTA ── */}
-                  <div className="ai-box">
-                    <div className="ai-badge">
-                      {nl ? '14 dagen gratis uitproberen' : '14-day free trial'}
-                    </div>
-                    <div className="cta-title" style={{ fontSize: 17, marginBottom: 8 }}>
-                      {nl
-                        ? 'Ontvang jouw rapport + 14 dagen gratis'
-                        : 'Get your report + 14-day free trial'}
-                    </div>
-                    <div className="cta-sub" style={{ marginBottom: '.6rem' }}>
-                      {nl
-                        ? 'Probeer 14 dagen lang een AI werknemer die jouw bedrijf kent, reageert op jouw manier en gekoppeld is aan je CRM, agenda en offertes. Je klanten zoeken niet meer verder naar een oplossing, want ze zijn bij jou ingeboekt.'
-                        : 'Try 14 days of an AI employee that knows your business, responds in your voice and connects to your CRM, calendar and quotes. Your clients stop looking elsewhere — they are booked with you.'}
-                    </div>
-                    <div style={{ fontSize: 12, color: 'var(--green)', marginBottom: '1rem', fontWeight: 500 }}>
-                      {nl ? '✓ Ondernemers sparen gemiddeld tot 20 uur per week aan handwerk uit door e-mails en CRM te automatiseren.' : '✓ Entrepreneurs save up to 20 hours per week of manual work by automating emails and CRM.'}
-                    </div>
-
-                    <label className="field-label">{nl ? 'Naam' : 'Name'}</label>
-                    <input
-                      className="text-input"
-                      type="text"
-                      placeholder={nl ? 'Jouw naam' : 'Your name'}
-                      value={captureName}
-                      onChange={e => setCaptureName(e.target.value)}
-                    />
-                    <label className="field-label">{nl ? 'E-mailadres' : 'Email address'}</label>
-                    <input
-                      className="text-input"
-                      type="email"
-                      placeholder="you@email.com"
-                      value={captureEmail}
-                      onChange={e => setCaptureEmail(e.target.value)}
-                    />
-                    <button
-                      className="btn-primary"
-                      style={{ marginTop: 4 }}
-                      disabled={submitting || !captureEmail.includes('@') || !captureName.trim()}
-                      onClick={handleCapture}
-                    >
-                      {submitting
-                        ? (nl ? 'Versturen...' : 'Sending...')
-                        : (nl ? 'Stuur mijn rapport en start gratis' : 'Send my report and start free')}
-                      <ArrowRight size={16} />
-                    </button>
-                  </div>
-
-                </div>
-              )}
-
-              {/* ── Thanks ── */}
-              {step === 'thanks' && (
-                <div className="thanks-wrap">
-                  <div className="thanks-circle">✓</div>
-                  <div className="headline" style={{ fontSize: 20, marginBottom: 8 }}>
-                    {nl ? 'Onderweg naar jouw inbox' : 'On its way to your inbox'}
-                  </div>
-                  <p style={{ fontSize: 13, color: '#83827d', lineHeight: 1.65, marginBottom: '1.4rem' }}>
-                    {nl
-                      ? 'Check je inbox — en ook je spammap. Je ontvangt je rapport met jouw omzet-inzichten binnenkort.'
-                      : 'Check your inbox — and your spam folder. Your revenue insight report is on its way.'}
-                  </p>
-                  <a
-                    href="/diagnostic"
-                    className="btn-green"
-                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, textDecoration: 'none' }}
-                  >
-                    {nl ? 'Toon mijn 3 lekken' : 'Show me my 3 leaks'}
-                    <ArrowRight size={16} />
-                  </a>
-                </div>
-              )}
-
+              <div className="calc-foot calc-m">
+                {nl ? `Vraag ${step} van 4` : `Question ${step} of 4`} · {nl ? 'gebruik je toetsenbord' : 'use your keyboard'}
+              </div>
             </div>
-          </div>
+            <div className="calc-r">
+              <div className="calc-opts">
+                {q.options.map((o, i) => (
+                  <button
+                    key={o}
+                    className={`calc-opt${q.value === o ? ' sel' : ''}`}
+                    onClick={() => pick(q, o)}
+                  >
+                    <span className="k calc-m">{i + 1}</span>
+                    <span className="t">{o}</span>
+                    <span className="g calc-m">→</span>
+                  </button>
+                ))}
+              </div>
+              <button
+                className="calc-back calc-m"
+                style={{ visibility: step === 1 ? 'hidden' : 'visible' }}
+                onClick={() => setStep(s => (s - 1) as Step)}
+              >
+                ← {nl ? 'Vorige' : 'Back'}
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="calc-l">
+              <div>
+                <div className="calc-foot calc-m">{nl ? 'Geschat omzetverlies' : 'Estimated revenue leak'}</div>
+                <div className="calc-amount">{fmt(result.monthly)}</div>
+                <div className="calc-per calc-m">{nl ? 'Per maand' : 'Per month'}</div>
+                {result.annual > 0 && (
+                  <div className="calc-year">
+                    {nl ? 'Dat is ' : 'That is '}<b>{fmt(result.annual)}</b>{nl ? ' per jaar' : ' per year'}
+                  </div>
+                )}
 
-          <p style={{ textAlign: 'center', fontSize: 11, color: '#b0aea8', marginTop: 16 }}>
-            {nl
-              ? 'Berekeningen gebaseerd op gepubliceerd B2B sales onderzoek. Schattingen, geen garanties.'
-              : 'Estimates based on published B2B sales research. Indicative, not guaranteed.'}
-          </p>
-        </div>
+                {result.monthly > 0 && (
+                  <div className="calc-bd">
+                    <div className="calc-bdrow">
+                      <div className="calc-bdtop">
+                        <span className="calc-bdname">{nl ? 'Trage eerste reactie' : 'Slow first response'}</span>
+                        <span className="calc-bdval">{fmt(result.speedLeak)}</span>
+                      </div>
+                      <div className="calc-bdbar"><i style={{ width: `${result.speedLeak / peak * 100}%` }} /></div>
+                      <div className="calc-src calc-m">
+                        {nl
+                          ? '78% van de deals gaat naar wie eerst antwoordt · InsideSales'
+                          : '78% of deals go to the first responder · InsideSales'}
+                      </div>
+                    </div>
+                    <div className="calc-bdrow">
+                      <div className="calc-bdtop">
+                        <span className="calc-bdname">{nl ? 'Te weinig opvolging' : 'Insufficient follow-up'}</span>
+                        <span className="calc-bdval">{fmt(result.followupLeak)}</span>
+                      </div>
+                      <div className="calc-bdbar"><i style={{ width: `${result.followupLeak / peak * 100}%` }} /></div>
+                      <div className="calc-src calc-m">
+                        {nl
+                          ? '80% van de verkopen vraagt 5 of meer contactmomenten · HubSpot'
+                          : '80% of sales require 5 or more touchpoints · HubSpot'}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <button className="calc-back calc-m" style={{ color: 'rgba(242,240,235,.4)' }} onClick={() => setStep(4)}>
+                ← {nl ? 'Antwoorden aanpassen' : 'Change my answers'}
+              </button>
+            </div>
+
+            <div className="calc-r" style={{ justifyContent: 'center' }}>
+              <span className="calc-badge calc-m">{nl ? '14 dagen gratis' : '14-day free trial'}</span>
+              <h2>{nl ? 'Wil je weten waar dit vandaan komt' : 'Want to know where this comes from'}</h2>
+              <p className="sell">
+                {nl
+                  ? 'Je krijgt het volledige rapport in je inbox, plus veertien dagen een AI werknemer die jouw aanvragen beantwoordt zoals jij dat zou doen. Gekoppeld aan je agenda, je CRM en je offertes.'
+                  : 'You get the full report in your inbox, plus fourteen days of an AI employee that answers your enquiries the way you would. Connected to your calendar, your CRM and your quotes.'}
+              </p>
+              <div className="calc-field">
+                <label className="calc-m" htmlFor="calc-name">{nl ? 'Naam' : 'Name'}</label>
+                <input id="calc-name" type="text" placeholder={nl ? 'Jouw naam' : 'Your name'}
+                  value={captureName} onChange={e => setCaptureName(e.target.value)} />
+              </div>
+              <div className="calc-field">
+                <label className="calc-m" htmlFor="calc-email">{nl ? 'E-mailadres' : 'Email address'}</label>
+                <input id="calc-email" type="email" placeholder={nl ? 'jij@bedrijf.be' : 'you@company.com'}
+                  value={captureEmail} onChange={e => setCaptureEmail(e.target.value)} />
+              </div>
+              <button
+                className="calc-submit"
+                disabled={submitting || !captureEmail.includes('@') || !captureName.trim()}
+                onClick={handleCapture}
+              >
+                {submitting
+                  ? (nl ? 'Versturen...' : 'Sending...')
+                  : (nl ? 'Stuur mijn rapport' : 'Send my report')}
+                <ArrowRight size={16} />
+              </button>
+              <div className="calc-fine calc-m">
+                {nl
+                  ? `Schatting op basis van gepubliceerd B2B onderzoek en een conversie van ${Math.round(CONVERSION_RATE * 100)}% op je aanvragen. Geen garanties, geen nieuwsbrief.`
+                  : `Estimate based on published B2B research and a ${Math.round(CONVERSION_RATE * 100)}% conversion rate on your enquiries. No guarantees, no newsletter.`}
+              </div>
+            </div>
+          </>
+        )}
       </div>
 
-      {/* SEO content section */}
-      <section style={{ maxWidth: 680, margin: '0 auto', padding: '3rem 1.5rem 4rem', color: '#3d3929' }}>
-        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 24, fontWeight: 400, marginBottom: '1rem', color: '#2a2720' }}>
-          {nl ? 'Hoe werkt de omzetverlies calculator?' : 'How does the revenue leak calculator work?'}
-        </h2>
-        <p style={{ fontSize: 15, lineHeight: 1.75, color: '#5c5849', marginBottom: '1.5rem' }}>
-          {nl
-            ? 'De calculator gebruikt twee bewezen oorzaken van omzetverlies: reactiesnelheid op leads en de kwaliteit van opvolging. Op basis van gepubliceerd B2B-verkooponderzoek (InsideSales, HubSpot) berekent de tool je geschat maandelijks verlies per categorie.'
-            : 'The calculator uses two proven drivers of revenue leakage: lead response speed and follow-up quality. Based on published B2B sales research (InsideSales, HubSpot), the tool estimates your monthly loss per category.'}
-        </p>
+      {/* SEO content */}
+      <div className="calc-seo calc-b">
+        <section>
+          <h2>{nl ? 'Hoe werkt de omzetverlies calculator' : 'How the revenue leak calculator works'}</h2>
+          <p>
+            {nl
+              ? `De calculator gebruikt twee bewezen oorzaken van omzetverlies: reactiesnelheid op leads en de kwaliteit van opvolging. Eerst wordt je haalbare maandomzet geschat uit je leadvolume, je gemiddelde opdrachtwaarde en een conversie van ${Math.round(CONVERSION_RATE * 100)}%. Daarop worden de verliesfactoren uit gepubliceerd B2B-verkooponderzoek toegepast.`
+              : `The calculator uses two proven drivers of revenue leakage: lead response speed and follow-up quality. It first estimates your achievable monthly revenue from lead volume, average deal value and a ${Math.round(CONVERSION_RATE * 100)}% conversion rate, then applies loss factors from published B2B sales research.`}
+          </p>
+          <p>
+            {nl
+              ? 'Die conversiefactor zit er bewust in. Zonder die stap zou het model doen alsof elke aanvraag een klant wordt, en dan komen er bedragen uit die niemand herkent.'
+              : 'That conversion step is deliberate. Without it the model would assume every enquiry becomes a customer, which produces numbers nobody recognises.'}
+          </p>
+        </section>
 
-        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 24, fontWeight: 400, marginBottom: '1rem', color: '#2a2720' }}>
-          {nl ? 'Waarom lopen de meeste bedrijven omzet mis?' : 'Why do most businesses leak revenue?'}
-        </h2>
-        <p style={{ fontSize: 15, lineHeight: 1.75, color: '#5c5849', marginBottom: '1rem' }}>
-          {nl
-            ? 'Twee oorzaken domineren. Ten eerste: trage reactiesnelheid. Onderzoek toont aan dat de conversiekans met 80% daalt als je niet binnen 5 minuten reageert op een nieuwe aanvraag. Ten tweede: onvoldoende opvolging. 80% van de verkopen vereist 5 of meer contactmomenten. De meeste bedrijven stoppen bij één.'
-            : 'Two causes dominate. First: slow response speed. Research shows that conversion probability drops by 80% if you do not respond within 5 minutes of a new enquiry. Second: insufficient follow-up. 80% of sales require 5 or more contact moments. Most businesses stop at one.'}
-        </p>
-        <p style={{ fontSize: 15, lineHeight: 1.75, color: '#5c5849', marginBottom: '1.5rem' }}>
-          {nl
-            ? 'Samen verklaren deze twee factoren het merendeel van de omzet die maandelijks ongemerkt wegvloeit bij servicebedrijven.'
-            : 'Together these two factors explain the majority of revenue that silently leaks away each month in service businesses.'}
-        </p>
+        <section>
+          <h2>{nl ? 'Waarom lopen bedrijven omzet mis' : 'Why businesses leak revenue'}</h2>
+          <p>
+            {nl
+              ? 'Twee oorzaken domineren. Ten eerste trage reactiesnelheid: de conversiekans daalt sterk als je niet binnen enkele minuten reageert op een nieuwe aanvraag. Ten tweede onvoldoende opvolging: 80% van de verkopen vereist vijf of meer contactmomenten, en de meeste bedrijven stoppen bij één.'
+              : 'Two causes dominate. First, slow response: conversion probability drops sharply when you do not reply within minutes of a new enquiry. Second, insufficient follow-up: 80% of sales require five or more touchpoints, and most businesses stop at one.'}
+          </p>
+          <p>
+            {nl
+              ? 'Samen verklaren die twee het grootste deel van de omzet die maandelijks ongemerkt wegvloeit bij dienstverlenende bedrijven.'
+              : 'Together these explain the bulk of revenue that silently leaks away each month in service businesses.'}
+          </p>
+        </section>
 
-        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 24, fontWeight: 400, marginBottom: '1rem', color: '#2a2720' }}>
-          {nl ? 'Veelgestelde vragen' : 'Frequently asked questions'}
-        </h2>
-        <div style={{ borderTop: '1px solid rgba(61,57,41,0.1)', paddingTop: '1.5rem', display: 'flex', flexDirection: 'column' as const, gap: '1.5rem' }}>
+        <section>
+          <h2>{nl ? 'Veelgestelde vragen' : 'Frequently asked questions'}</h2>
           {(nl ? [
-            ['Is de calculator gratis?', 'Ja, volledig gratis. Geen registratie, geen betaalwall. Je vult 4 vragen in en ziet meteen jouw geschat maandelijks verlies.'],
-            ['Hoe nauwkeurig is het resultaat?', 'Het resultaat is een onderbouwde schatting op basis van jouw input en gepubliceerde branchegemiddelden. Het is geen accountantsrapport, maar geeft een betrouwbaar beeld van de grootte van het probleem.'],
-            ['Wat moet ik doen met het resultaat?', 'Het resultaat wijst naar de oorzaak. Als het verlies vooral in reactiesnelheid zit, is een geautomatiseerd antwoordsysteem de eerste stap. Als opvolging het probleem is, is een gestructureerde follow-up sequentie de oplossing. De gratis diagnose gaat dieper in op alle 7 groeihefbomen.'],
+            ['Is de calculator gratis', 'Ja. Geen registratie en geen betaalmuur. Je vult vier vragen in en ziet meteen je geschat maandelijks verlies.'],
+            ['Hoe nauwkeurig is het resultaat', `Het is een onderbouwde schatting op basis van jouw input, een conversie van ${Math.round(CONVERSION_RATE * 100)}% en gepubliceerde branchegemiddelden. Geen accountantsrapport, wel een betrouwbaar beeld van de orde van grootte.`],
+            ['Wat doe ik met het resultaat', 'Het resultaat wijst naar de oorzaak. Zit het verlies vooral in reactiesnelheid, dan is een automatisch antwoordsysteem de eerste stap. Zit het in opvolging, dan is een vaste opvolgreeks de oplossing.'],
           ] : [
-            ['Is the calculator free?', 'Yes, completely free. No registration, no paywall. You answer 4 questions and immediately see your estimated monthly loss.'],
-            ['How accurate is the result?', 'The result is a well-founded estimate based on your input and published industry averages. It is not an accountancy report, but gives a reliable picture of the scale of the problem.'],
-            ['What should I do with the result?', 'The result points to the cause. If the loss is mainly in response speed, an automated reply system is the first step. If follow-up is the problem, a structured follow-up sequence is the fix. The free diagnostic goes deeper on all 7 growth levers.'],
-          ]).map(([q, a]) => (
-            <div key={q as string}>
-              <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: '0.5rem', color: '#2a2720' }}>{q}</h3>
-              <p style={{ fontSize: 14, lineHeight: 1.75, color: '#5c5849', margin: 0 }}>{a}</p>
+            ['Is the calculator free', 'Yes. No registration and no paywall. Answer four questions and see your estimated monthly loss right away.'],
+            ['How accurate is the result', `It is a well-founded estimate based on your input, a ${Math.round(CONVERSION_RATE * 100)}% conversion rate and published industry averages. Not an accountancy report, but a reliable picture of the scale.`],
+            ['What do I do with the result', 'The result points to the cause. If the loss sits in response speed, an automated reply system is the first step. If it sits in follow-up, a fixed follow-up sequence is the fix.'],
+          ]).map(([question, answer]) => (
+            <div className="qa" key={question}>
+              <h3>{question}</h3>
+              <p style={{ margin: 0 }}>{answer}</p>
             </div>
           ))}
-        </div>
-      </section>
+        </section>
+      </div>
     </>
   )
 }

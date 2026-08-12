@@ -1,6 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { readFileSync } from 'fs'
 import { join } from 'path'
+import { CONVERSION_RATE, leadsMap, dealMap } from '@/lib/leak'
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
@@ -38,19 +39,6 @@ const leverLabels: Record<string, string> = {
 function estimateRevenueLeak(submission: DiagnosticSubmission): string {
   const { monthlyLeads, avgDealValue } = submission.context
 
-  const leadsMap: Record<string, number> = {
-    'Fewer than 5': 3, 'Minder dan 5': 3,
-    '5 to 20': 12, '5 tot 20': 12,
-    '20 to 50': 35, '20 tot 50': 35,
-    'More than 50': 65, 'Meer dan 50': 65,
-  }
-  const dealMap: Record<string, number> = {
-    'Under €1,000': 600, 'Onder €1.000': 600,
-    '€1,000 to €5,000': 2500, '€1.000 tot €5.000': 2500,
-    '€5,000 to €20,000': 10000, '€5.000 tot €20.000': 10000,
-    'Over €20,000': 25000, 'Boven €20.000': 25000,
-  }
-
   const leads = leadsMap[monthlyLeads] ?? 10
   const deal = dealMap[avgDealValue] ?? 2000
 
@@ -64,7 +52,7 @@ function estimateRevenueLeak(submission: DiagnosticSubmission): string {
   const salesLoss = salesScore === 3 ? 0.35 : salesScore === 2 ? 0.2 : salesScore === 1 ? 0.08 : 0
 
   const totalLossRate = Math.min(stlLoss + pipelineLoss + salesLoss, 0.85)
-  const monthlyLeak = Math.round(leads * deal * totalLossRate / 500) * 500  // round to nearest 500
+  const monthlyLeak = Math.round(leads * deal * CONVERSION_RATE * totalLossRate / 500) * 500  // round to nearest 500
 
   return monthlyLeak > 0
     ? `€${monthlyLeak.toLocaleString('nl-BE')}/month in recoverable revenue`

@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Titels in Gudlak · Lead it, Grow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=clash-display@400,500,600,700&display=swap">
+<link rel="stylesheet" href="brand.css">
+<style>
+  body { padding-bottom: 120px; }
+
+  .bar { position: sticky; top: 0; z-index: 50; background: var(--ink); color: var(--bg);
+         display: flex; align-items: center; justify-content: space-between; gap: 20px;
+         padding: 14px 32px; flex-wrap: wrap; }
+  .bar-name { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: rgba(242,240,235,.45); }
+  .switch { display: flex; border: 2px solid rgba(242,240,235,.25); }
+  .switch button { background: transparent; border: 0; color: rgba(242,240,235,.5); font-family: var(--ui);
+                   font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+                   padding: 9px 18px; cursor: pointer; transition: background .15s, color .15s; }
+  .switch button.on { background: var(--lime); color: var(--ink); }
+
+  section { border-bottom: 3px solid var(--ink); padding: 64px 32px; }
+  .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+         color: var(--muted); margin-bottom: 28px; display: flex; align-items: center; gap: 12px; }
+  .lbl::after { content: ''; flex: 1; height: 1px; background: rgba(14,13,11,.15); }
+
+  /* Vergelijking */
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 3px solid var(--ink); }
+  .vs > div { padding: 40px 32px; }
+  .vs > div:first-child { border-right: 3px solid var(--ink); background: var(--bg2); }
+  .vs-tag { font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+            color: var(--muted); margin-bottom: 20px; }
+  .vs-tag b { color: var(--orange); }
+  .old-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(30px, 4vw, 58px);
+               line-height: .95; letter-spacing: -.035em; text-transform: uppercase; }
+  .new-title { font-family: var(--display); font-weight: 800; font-size: clamp(30px, 4vw, 58px);
+               line-height: .95; letter-spacing: -.035em; text-transform: uppercase; }
+  html.font-clash .new-title { letter-spacing: -.018em; }
+  .accent { color: var(--orange); }
+
+  /* Live titels */
+  .stack > * + * { margin-top: 44px; }
+  .stack .meta { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--muted);
+                 text-transform: uppercase; margin-bottom: 10px; }
+
+  /* Gewichten */
+  .weights { display: grid; gap: 0; border: 3px solid var(--ink); }
+  .w-row { display: grid; grid-template-columns: 130px 1fr; align-items: baseline; gap: 24px;
+           padding: 18px 24px; border-bottom: 1px solid rgba(14,13,11,.14); }
+  .w-row:last-child { border-bottom: 0; }
+  .w-row span { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .w-row p { font-family: var(--display); font-size: 30px; letter-spacing: -.02em; }
+
+  /* Waarschuwing */
+  .warn { border: 3px solid var(--orange); background: rgba(201,100,66,.07); padding: 32px; }
+  .warn h3 { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 22px;
+             letter-spacing: -.02em; margin-bottom: 14px; }
+  .warn p { font-size: 15px; line-height: 1.7; color: #4a453e; max-width: 68ch; }
+  .warn p + p { margin-top: 12px; }
+  .glyphset { font-family: var(--mono); font-size: 12px; background: var(--ink); color: var(--lime);
+              padding: 14px 18px; margin: 18px 0; overflow-x: auto; white-space: nowrap; }
+  .mixdemo { font-family: var(--display); font-weight: 800; font-size: clamp(28px, 4vw, 52px);
+             text-transform: uppercase; letter-spacing: -.03em; margin-top: 8px; }
+
+  /* Toepassing */
+  .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); border: 3px solid var(--ink); }
+  .rule { padding: 28px 26px; border-right: 3px solid var(--ink); }
+  .rule:last-child { border-right: 0; }
+  .rule h4 { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 15px;
+             letter-spacing: .02em; margin-bottom: 10px; }
+  .rule p { font-size: 14px; line-height: 1.6; color: var(--muted); }
+  .rule .sample { margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(14,13,11,.14); }
+
+  @media (max-width: 760px) {
+    .vs { grid-template-columns: 1fr; }
+    .vs > div:first-child { border-right: 0; border-bottom: 3px solid var(--ink); }
+    .rule { border-right: 0; border-bottom: 3px solid var(--ink); }
+    .rule:last-child { border-bottom: 0; }
+    section { padding: 44px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <span class="bar-name">Lead it, Grow · titelfont voorstel 01</span>
+  <div class="switch">
+    <button data-font="gudlak" class="on">Gudlak</button>
+    <button data-font="clash">Clash Display</button>
+    <button data-font="grotesk">Space Grotesk</button>
+  </div>
+</div>
+
+<!-- ── 1. Zij aan zij ── -->
+<section>
+  <div class="lbl">01 — Zelfde titel, twee fonts</div>
+  <div class="vs">
+    <div>
+      <div class="vs-tag">Nu · Space Grotesk 700</div>
+      <div class="old-title">Groei is<br>geen ruis.<br><span class="accent">Het is een<br>systeem.</span></div>
+    </div>
+    <div>
+      <div class="vs-tag">Voorstel · <b id="vsName">Gudlak 800</b></div>
+      <div class="new-title">Groei is<br>geen ruis.<br><span class="accent">Het is een<br>systeem.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 2. Echte titels van de site ── -->
+<section>
+  <div class="lbl">02 — Titels uit de site, in de voorgestelde schaal</div>
+  <div class="stack">
+    <div>
+      <div class="meta">Hero · t-hero · 138px / -3.5% / uppercase</div>
+      <h1 class="t-hero">Elke lead<br>die wacht,<br><span class="accent">koopt elders.</span></h1>
+    </div>
+    <div>
+      <div class="meta">Sectietitel · t-h2 · 76px</div>
+      <h2 class="t-h2">Wat de scan meet</h2>
+    </div>
+    <div>
+      <div class="meta">Subtitel · t-h3 · 36px</div>
+      <h3 class="t-h3">Jouw opvolging lekt</h3>
+    </div>
+    <div>
+      <div class="meta">Kaartkop · t-h4 · 19px · geen uppercase</div>
+      <h4 class="t-h4">Snelheid van eerste reactie</h4>
+    </div>
+    <div>
+      <div class="meta">Eyebrow blijft Space Mono · niet Gudlak</div>
+      <div class="t-kicker">Gratis bedrijfsscan</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 3. Gewichten ── -->
+<section>
+  <div class="lbl">03 — Beschikbare gewichten</div>
+  <div class="weights">
+    <div class="w-row"><span>300 Light</span><p style="font-weight:300">Groeimotor zonder ruis</p></div>
+    <div class="w-row"><span>400 Regular</span><p style="font-weight:400">Groeimotor zonder ruis</p></div>
+    <div class="w-row"><span>500 Medium</span><p style="font-weight:500">Groeimotor zonder ruis</p></div>
+    <div class="w-row"><span>600 SemiBold</span><p style="font-weight:600">Groeimotor zonder ruis</p></div>
+    <div class="w-row"><span>700 Bold</span><p style="font-weight:700">Groeimotor zonder ruis</p></div>
+    <div class="w-row"><span>800 ExtraBold</span><p style="font-weight:800">Groeimotor zonder ruis</p></div>
+  </div>
+</section>
+
+<!-- ── 4. De beperking ── -->
+<section>
+  <div class="lbl">04 — Lees dit voor je beslist</div>
+  <div class="warn">
+    <h3>De gratis Gudlak heeft geen cijfers</h3>
+    <p>De versie die vrij te downloaden is heet <b>GC Gudlak Demo</b> en bevat exact 58 tekens: A tot Z, a tot z, een komma en een punt. Geen cijfers, geen euroteken, geen vraagteken, geen koppelteken, geen accenten.</p>
+    <div class="glyphset">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z &nbsp;·&nbsp; a b c d e f g h i j k l m n o p q r s t u v w x y z &nbsp;·&nbsp; , &nbsp;.</div>
+    <p>In deze mockups is dat opgevangen: het font is per unicode-bereik geladen, dus alles wat Gudlak mist valt automatisch terug op Space Grotesk. Je ziet dat hieronder aan de cijfers en het euroteken.</p>
+    <div class="mixdemo">Je mist <span class="accent">&euro;4.500</span> per maand</div>
+    <p style="margin-top:18px"><b>Twee dingen om te weten:</b> de demo is licentievrij voor persoonlijk gebruik, niet voor een commerciële site. En zonder cijfers werkt geen enkele titel op de calculator. Voor leaditgrow.be heb je de volledige licentie nodig via Glyphonic (glyphonicco@gmail.com). Tot dan zijn deze mockups bruikbaar om de richting te beoordelen, niet om live te zetten.</p>
+  </div>
+
+  <div class="warn" style="border-color:var(--green); background:rgba(26,94,53,.06); margin-top:24px">
+    <h3 style="color:var(--green)">Het gratis alternatief, Clash Display</h3>
+    <p>Van vijftien vrij bruikbare fonts leek Clash Display van Indian Type Foundry het sterkst op Gudlak: dezelfde smalle geometrische letters, dezelfde strakke spatiëring, dezelfde massa in de zware gewichten. Zet de schakelaar bovenaan op Clash Display om het te vergelijken.</p>
+    <p>Het verschil dat telt: Clash Display heeft 380 tekens, dus cijfers, euroteken, vraagteken en accenten zitten erin. En de ITF Free Font License staat commercieel gebruik toe, ook als webfont. Geen licentie te kopen, geen beperking op de calculator.</p>
+  </div>
+</section>
+
+<!-- ── 5. Toepassingsregels ── -->
+<section style="border-bottom:0">
+  <div class="lbl">05 — Waar Gudlak wel en niet komt</div>
+  <div class="rules">
+    <div class="rule">
+      <h4>Wel: display</h4>
+      <p>Hero, sectietitels, resultaatgetallen, cijfers op de scanpagina. Altijd in uppercase, gewicht 700 of 800, letterspacing tussen -2% en -3.5%.</p>
+      <div class="sample t-h3">Bereken je lek</div>
+    </div>
+    <div class="rule">
+      <h4>Niet: lopende tekst</h4>
+      <p>Alinea's, knoplabels, formuliervelden en navigatie blijven Space Grotesk. Gudlak is te nauw voor lange tekst op kleine maten.</p>
+      <div class="sample" style="font-size:14px;line-height:1.6;color:var(--muted)">Dit blijft Space Grotesk, want zo blijft lange tekst leesbaar op mobiel.</div>
+    </div>
+    <div class="rule">
+      <h4>Niet: labels</h4>
+      <p>Eyebrows, stapnummers, bronvermeldingen en meta blijven Space Mono. Dat contrast tussen display en mono is wat de stijl draagt.</p>
+      <div class="sample t-kicker">Stap 02 van 04</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const html = document.documentElement;
+  const names = { gudlak: 'Gudlak 800', clash: 'Clash Display 700', grotesk: 'Space Grotesk 700' };
+  document.querySelectorAll('.switch button').forEach(b => {
+    b.onclick = () => {
+      html.classList.remove('font-clash', 'font-grotesk');
+      if (b.dataset.font !== 'gudlak') html.classList.add('font-' + b.dataset.font);
+      document.querySelectorAll('.switch button').forEach(x => x.classList.toggle('on', x === b));
+      document.getElementById('vsName').textContent = names[b.dataset.font];
+    };
+  });
+</script>
+</body>
+</html>

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { randomUUID } from 'crypto'
 import { createClient } from '@supabase/supabase-js'
 import { type DiagnosticSubmission } from '@/lib/crm/diagnostic'
+import { CONVERSION_RATE, leadsMap, dealMap } from '@/lib/leak'
 import { sendToLead } from '@/lib/crm/email'
 import { saveLead, saveResendIds } from '@/lib/crm/store'
 import { sendDiagnosticNurtureSequence, resolveName } from '@/lib/crm/sequences'
@@ -309,18 +310,6 @@ interface LeakBreakdown {
 }
 
 function computeLeakBreakdown(submission: DiagnosticSubmission): LeakBreakdown {
-  const leadsMap: Record<string, number> = {
-    'Fewer than 5': 3, 'Minder dan 5': 3,
-    '5 to 20': 12, '5 tot 20': 12,
-    '20 to 50': 35, '20 tot 50': 35,
-    'More than 50': 65, 'Meer dan 50': 65,
-  }
-  const dealMap: Record<string, number> = {
-    'Under €1,000': 600, 'Onder €1.000': 600,
-    '€1,000 to €5,000': 2500, '€1.000 tot €5.000': 2500,
-    '€5,000 to €20,000': 10000, '€5.000 tot €20.000': 10000,
-    'Over €20,000': 25000, 'Boven €20.000': 25000,
-  }
   const leads = leadsMap[submission.context.monthlyLeads] ?? 10
   const deal = dealMap[submission.context.avgDealValue] ?? 2000
   const stl = submission.answers['speed_to_lead'] ?? 0
@@ -330,7 +319,7 @@ function computeLeakBreakdown(submission: DiagnosticSubmission): LeakBreakdown {
   const pipLoss = pip === 3 ? 0.4 : pip === 2 ? 0.25 : pip === 1 ? 0.1 : 0
   const salLoss = sal === 3 ? 0.35 : sal === 2 ? 0.2 : sal === 1 ? 0.08 : 0
   const totalLoss = Math.min(stlLoss + pipLoss + salLoss, 0.85)
-  const monthly = Math.round(leads * deal * totalLoss / 500) * 500
+  const monthly = Math.round(leads * deal * CONVERSION_RATE * totalLoss / 500) * 500
   return { leads, deal, stlLoss, pipLoss, salLoss, totalLoss, monthly, annual: monthly * 12 }
 }
 
