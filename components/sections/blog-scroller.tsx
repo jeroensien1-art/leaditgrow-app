@@ -16,7 +16,7 @@ export function BlogScroller() {
       {/* Header */}
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 1.5rem 3rem', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
         <div>
-          <p style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#4ade80', marginBottom: '0.75rem' }}>
+          <p style={{ fontFamily: 'monospace', fontSize: '12px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#4ade80', marginBottom: '0.75rem' }}>
             {t('Van de blog', 'From the blog')}
           </p>
           <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(26px, 4vw, 40px)', fontWeight: 400, color: '#faf9f5', margin: 0, lineHeight: 1.15 }}>
@@ -28,7 +28,7 @@ export function BlogScroller() {
         </div>
         <Link
           href="/blog"
-          style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontFamily: 'monospace', fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#4ade80', textDecoration: 'none', whiteSpace: 'nowrap' }}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontFamily: 'monospace', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#4ade80', textDecoration: 'none', whiteSpace: 'nowrap' }}
         >
           {t('Alle artikels', 'All articles')} <ArrowRight size={12} />
         </Link>
@@ -73,11 +73,11 @@ export function BlogScroller() {
               >
                 {/* Tags row */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
-                  <span style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#4ade80', background: 'rgba(74,222,128,0.12)', padding: '3px 9px', borderRadius: '999px', border: '1px solid rgba(74,222,128,0.2)' }}>
+                  <span style={{ fontFamily: 'monospace', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#4ade80', background: 'rgba(74,222,128,0.12)', padding: '3px 9px', borderRadius: '999px', border: '1px solid rgba(74,222,128,0.2)' }}>
                     {post.category}
                   </span>
                   {post.region && (
-                    <span style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(250,249,245,0.35)', background: 'rgba(250,249,245,0.06)', padding: '3px 9px', borderRadius: '999px', border: '1px solid rgba(250,249,245,0.1)' }}>
+                    <span style={{ fontFamily: 'monospace', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(250,249,245,0.35)', background: 'rgba(250,249,245,0.06)', padding: '3px 9px', borderRadius: '999px', border: '1px solid rgba(250,249,245,0.1)' }}>
                       {post.region}
                     </span>
                   )}
@@ -89,16 +89,16 @@ export function BlogScroller() {
                 </h3>
 
                 {/* Excerpt */}
-                <p style={{ fontSize: '13px', color: 'rgba(250,249,245,0.45)', lineHeight: 1.6, margin: '0 0 1.5rem', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                <p style={{ fontSize: '15px', color: 'rgba(250,249,245,0.45)', lineHeight: 1.6, margin: '0 0 1.5rem', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                   {post.excerpt}
                 </p>
 
                 {/* Footer */}
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontFamily: 'monospace', fontSize: '10px', color: 'rgba(250,249,245,0.25)', letterSpacing: '0.05em' }}>
+                  <span style={{ fontFamily: 'monospace', fontSize: '12px', color: 'rgba(250,249,245,0.25)', letterSpacing: '0.05em' }}>
                     {post.readingTime} {t('min lezen', 'min read')}
                   </span>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#4ade80' }}>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontFamily: 'monospace', fontSize: '12px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#4ade80' }}>
                     {t('Lees meer', 'Read more')} <ArrowRight size={10} />
                   </span>
                 </div>

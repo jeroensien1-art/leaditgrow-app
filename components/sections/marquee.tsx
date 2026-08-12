@@ -37,7 +37,7 @@ export function MarqueeBar() {
               <span
                 className="b-marquee-item"
                 style={{
-                  fontSize: 12,
+                  fontSize: 14,
                   fontWeight: 700,
                   letterSpacing: '.14em',
                   textTransform: 'uppercase',

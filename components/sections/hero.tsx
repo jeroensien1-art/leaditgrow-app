@@ -3,6 +3,7 @@
 import { useLang } from '@/components/lang-context'
 
 const B   = 'var(--font-brutalist, system-ui)'
+const D   = 'var(--font-display, var(--font-brutalist, system-ui))'
 const M   = 'var(--font-mono-brutalist, monospace)'
 const INK = '#0e0d0b'
 const BG  = '#f2f0eb'
@@ -38,7 +39,7 @@ export function Hero() {
         }
         .b-hero-year {
           font-family: ${M};
-          font-size: 11px;
+          font-size: 13px;
           color: ${MUT};
           letter-spacing: .08em;
           margin-bottom: 60px;
@@ -47,10 +48,10 @@ export function Hero() {
           font-size: clamp(48px, 7vw, 112px);
           font-weight: 700;
           line-height: .92;
-          letter-spacing: -.04em;
+          letter-spacing: -.02em;
           color: ${INK};
           text-transform: uppercase;
-          font-family: ${B};
+          font-family: ${D};
         }
         .b-hero-h1 .accent-word { color: ${ORANGE}; display: block; transition: color 0.4s; }
         .b-hero-h1 .outline-word {
@@ -67,7 +68,7 @@ export function Hero() {
           flex-wrap: wrap;
         }
         .b-hero-tagline {
-          font-size: 15px;
+          font-size: 17px;
           color: ${MUT};
           line-height: 1.65;
           max-width: 400px;
@@ -80,7 +81,7 @@ export function Hero() {
           gap: 10px;
           background: ${INK};
           color: ${BG};
-          font-size: 12px;
+          font-size: 14px;
           font-weight: 700;
           letter-spacing: .1em;
           text-transform: uppercase;
@@ -97,7 +98,7 @@ export function Hero() {
           gap: 10px;
           background: transparent;
           color: ${INK};
-          font-size: 12px;
+          font-size: 14px;
           font-weight: 700;
           letter-spacing: .1em;
           text-transform: uppercase;
@@ -130,7 +131,7 @@ export function Hero() {
           font-family: ${M};
         }
         .b-hero-stat-label {
-          font-size: 11px;
+          font-size: 13px;
           color: rgba(242,240,235,.45);
           letter-spacing: .06em;
           text-transform: uppercase;
@@ -147,7 +148,7 @@ export function Hero() {
         }
         .b-hero-right-mid p {
           font-family: ${M};
-          font-size: 10px;
+          font-size: 12px;
           color: rgba(255,255,255,.6);
           text-transform: uppercase;
           letter-spacing: .1em;
@@ -155,7 +156,7 @@ export function Hero() {
         }
         .b-hero-right-mid strong {
           display: block;
-          font-size: 15px;
+          font-size: 17px;
           font-weight: 700;
           color: #fff;
           line-height: 1.4;
@@ -168,7 +169,7 @@ export function Hero() {
         }
         .b-hero-ticker {
           font-family: ${M};
-          font-size: 10px;
+          font-size: 12px;
           letter-spacing: .08em;
           color: rgba(255,255,255,.25);
           white-space: nowrap;

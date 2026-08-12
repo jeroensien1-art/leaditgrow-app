@@ -7,36 +7,87 @@ import { useLang } from '@/components/lang-context'
 import { Turnstile } from '@marsidev/react-turnstile'
 import type { TurnstileInstance } from '@marsidev/react-turnstile'
 
-const inputStyle = {
-  background: '#f3f1eb',
-  border: '1px solid rgba(61,57,41,0.1)',
-  color: '#0e0d0b',
-}
-const selectStyle = {
-  ...inputStyle,
-  appearance: 'none' as const,
-  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2383827d' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
-  backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'right 14px center',
-  paddingRight: 36,
-}
+const B    = 'var(--font-brutalist, system-ui)'
+const D    = 'var(--font-display, var(--font-brutalist, system-ui))'
+const M    = 'var(--font-mono-brutalist, monospace)'
+const INK  = '#0e0d0b'
+const BG   = '#f2f0eb'
+const BG2  = '#eae8e2'
+const GRN  = '#1a5e35'
+const LIME = '#4ade80'
+const ORNG = '#c96442'
+const MUT  = '#787068'
+
+const css = `
+  .b-ct { border-top: 3px solid ${INK}; background: ${BG}; position: relative; z-index: 1; padding: 96px 40px; }
+  .b-ct-inner { max-width: 1180px; margin: 0 auto; }
+  .b-ct-kicker { font-family: ${M}; font-size: 12px; font-weight: 700; letter-spacing: .18em;
+                 text-transform: uppercase; color: ${GRN}; margin-bottom: 18px; }
+  .b-ct-h2 { font-family: ${D}; font-size: clamp(34px, 5vw, 68px); font-weight: 700; line-height: .96;
+             letter-spacing: -.018em; text-transform: uppercase; color: ${INK}; max-width: 16ch; }
+  .b-ct-h2 span { color: ${ORNG}; }
+  .b-ct-sub { font-family: ${B}; font-size: 17px; line-height: 1.6; color: ${MUT}; margin-top: 20px; max-width: 46ch; }
+
+  .b-ct-grid { display: grid; grid-template-columns: 1fr 1fr; border: 3px solid ${INK}; margin-top: 52px; }
+  .b-ct-col { padding: 36px 34px; }
+  .b-ct-col:first-child { border-right: 3px solid ${INK}; }
+
+  .b-ct-label { display: block; font-family: ${M}; font-size: 11px; font-weight: 700; letter-spacing: .16em;
+                text-transform: uppercase; color: ${MUT}; margin-bottom: 8px; }
+  .b-ct-label i { font-style: normal; font-weight: 400; letter-spacing: .06em; }
+  .b-ct-input { width: 100%; padding: 14px 16px; border: 2px solid ${INK}; background: #fff; border-radius: 0;
+                font-family: ${B}; font-size: 16px; color: ${INK}; outline: none; box-sizing: border-box;
+                transition: border-color .15s; }
+  .b-ct-input:focus { border-color: ${ORNG}; }
+  .b-ct-input:disabled { opacity: .4; }
+  .b-ct-field + .b-ct-field { margin-top: 18px; }
+  .b-ct-check { display: flex; align-items: center; gap: 9px; margin-top: 10px; cursor: pointer; user-select: none; }
+  .b-ct-check span { font-family: ${B}; font-size: 14px; color: ${MUT}; }
+
+  .b-ct-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%;
+              margin-top: 22px; padding: 17px 24px; background: ${INK}; color: ${BG}; border: 2px solid ${INK};
+              border-radius: 0; font-family: ${B}; font-size: 13px; font-weight: 700; letter-spacing: .1em;
+              text-transform: uppercase; cursor: pointer; transition: background .15s, border-color .15s; }
+  .b-ct-btn:hover:not(:disabled) { background: ${GRN}; border-color: ${GRN}; }
+  .b-ct-btn:disabled { opacity: .4; cursor: not-allowed; }
+  .b-ct-btn-grn { background: ${GRN}; border-color: ${GRN}; color: #fff; }
+  .b-ct-btn-grn:hover:not(:disabled) { background: ${INK}; border-color: ${INK}; }
+
+  .b-ct-lead { font-family: ${B}; font-size: 16px; line-height: 1.65; color: ${MUT}; }
+  .b-ct-card { display: flex; align-items: center; gap: 18px; width: 100%; text-align: left; padding: 24px;
+               margin-top: 22px; background: transparent; border: 2px solid ${INK}; border-radius: 0;
+               cursor: pointer; transition: background .15s; }
+  .b-ct-card:hover { background: ${BG2}; }
+  .b-ct-card-t { font-family: ${D}; font-size: 21px; font-weight: 700; text-transform: uppercase;
+                 letter-spacing: -.01em; color: ${INK}; }
+  .b-ct-card-s { font-family: ${M}; font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+                 color: ${MUT}; margin-top: 6px; }
+
+  .b-ct-panel { border: 2px solid ${INK}; padding: 26px; margin-top: 22px; }
+  .b-ct-cancel { display: block; width: 100%; margin-top: 14px; background: none; border: 0; cursor: pointer;
+                 font-family: ${M}; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: ${MUT}; }
+  .b-ct-cancel:hover { color: ${ORNG}; }
+
+  .b-ct-risk { margin-top: 22px; background: ${INK}; padding: 26px; }
+  .b-ct-risk-k { font-family: ${M}; font-size: 11px; font-weight: 700; letter-spacing: .18em;
+                 text-transform: uppercase; color: ${LIME}; margin-bottom: 12px; }
+  .b-ct-risk p { font-family: ${B}; font-size: 15px; line-height: 1.7; color: rgba(242,240,235,.7); }
+
+  .b-ct-done { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 20px 0; }
+  .b-ct-done-t { font-family: ${D}; font-size: 24px; font-weight: 700; text-transform: uppercase;
+                 letter-spacing: -.01em; color: ${INK}; }
+  .b-ct-err { font-family: ${B}; font-size: 15px; color: #b91c1c; margin-top: 14px; }
+
+  @media (max-width: 900px) {
+    .b-ct { padding: 56px 20px; }
+    .b-ct-grid { grid-template-columns: 1fr; }
+    .b-ct-col:first-child { border-right: 0; border-bottom: 3px solid ${INK}; }
+    .b-ct-col { padding: 26px 20px; }
+  }
+`
 
 function Label({ children }: { children: React.ReactNode }) {
-  return (
-    <label className="block text-xs font-semibold mb-1.5 uppercase tracking-wide" style={{ color: '#83827d' }}>
-      {children}
-    </label>
-  )
-}
-
-function FieldInput({ ...props }: React.InputHTMLAttributes<HTMLInputElement>) {
-  return (
-    <input
-      {...props}
-      className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all"
-      style={inputStyle}
-    />
-  )
+  return <label className="b-ct-label">{children}</label>
 }
 
 export function Contact() {
@@ -123,114 +174,89 @@ export function Contact() {
     router.push('/bedankt/gesprek')
   }
 
-  const cardBase = {
-    background: '#faf9f5',
-    border: '1px solid rgba(61,57,41,0.1)',
-    boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
-    color: '#0e0d0b',
-  }
+  const optional = <i>({t('optioneel', 'optional')})</i>
 
   return (
-    <section
-      id="contact"
-      className="relative py-28 px-6"
-      style={{ background: '#f2f0eb', borderTop: '3px solid #0e0d0b', position: 'relative', zIndex: 1 }}
-    >
-      <div className="max-w-4xl mx-auto">
-        {/* Heading */}
-        <div className="text-center mb-16">
-          <div className="text-[11px] font-bold uppercase tracking-widest mb-5" style={{ color: '#1a5e35' }}>
-            {t('Laten we beginnen', "Let's get started")}
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-semibold leading-tight" style={{ color: '#0e0d0b' }}>
-            {t('Klaar voor meer ', 'Ready for more ')}
-            <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontWeight: 400 }}>
-              {t('impact?', 'impact?')}
-            </span>
-          </h2>
-          <p className="mt-4 text-base" style={{ color: '#83827d' }}>
-            {t('Stuur een bericht of plan direct een gesprek in.', 'Send a message or book a call directly.')}
-          </p>
-        </div>
+    <section id="contact" className="b-ct">
+      <style dangerouslySetInnerHTML={{ __html: css }} />
+      <div className="b-ct-inner">
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="b-ct-kicker">{t('Laten we beginnen', "Let's get started")}</div>
+        <h2 className="b-ct-h2">
+          {t('Klaar voor meer ', 'Ready for more ')}<span>{t('impact', 'impact')}</span>
+        </h2>
+        <p className="b-ct-sub">
+          {t('Stuur een bericht of plan direct een gesprek in. Je krijgt antwoord van Jeroen, niet van een formulier.',
+             'Send a message or book a call. You get a reply from Jeroen, not from a form.')}
+        </p>
 
-          {/* ── Left: contact form ── */}
-          <div className="rounded-2xl p-8" style={{ background: '#faf9f5', boxShadow: '0 8px 40px rgba(0,0,0,0.08)', border: '1px solid rgba(61,57,41,0.08)' }}>
+        <div className="b-ct-grid">
+
+          {/* ── Links: contactformulier ── */}
+          <div className="b-ct-col">
             {sent ? (
-              <div className="flex flex-col items-center justify-center h-full gap-4 py-8 text-center">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'rgba(201,100,66,0.1)' }}>
-                  <Reply className="w-5 h-5" style={{ color: '#1a5e35' }} />
-                </div>
-                <p className="font-semibold" style={{ color: '#0e0d0b' }}>{t('Bericht ontvangen!', 'Message received!')}</p>
-                <p className="text-sm leading-relaxed" style={{ color: '#83827d' }}>
+              <div className="b-ct-done">
+                <Reply className="w-6 h-6" style={{ color: GRN }} />
+                <div className="b-ct-done-t">{t('Bericht ontvangen', 'Message received')}</div>
+                <p className="b-ct-lead">
                   {t(
-                    'Check je inbox (en ook je spammap). Je krijgt de info die je zoekt binnen enkele minuten.',
-                    "Check your inbox (and spam folder). You'll get the info you're looking for within a few minutes."
+                    'Check je inbox en ook je spammap. Je krijgt de info die je zoekt binnen enkele minuten.',
+                    "Check your inbox and your spam folder. You'll get the info you're looking for within a few minutes."
                   )}
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <div>
+              <form onSubmit={handleSubmit}>
+                <div className="b-ct-field">
                   <Label>{t('Naam', 'Name')}</Label>
-                  <FieldInput type="text" required value={name} onChange={e => setName(e.target.value)} placeholder={t('Jouw naam', 'Your name')} />
+                  <input className="b-ct-input" type="text" required value={name} onChange={e => setName(e.target.value)} placeholder={t('Jouw naam', 'Your name')} />
                 </div>
-                <div>
+                <div className="b-ct-field">
                   <Label>Email</Label>
-                  <FieldInput type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="jou@email.com" />
+                  <input className="b-ct-input" type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="jou@email.com" />
                 </div>
-                <div>
-                  <Label>{t('Telefoonnummer', 'Phone number')} <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>({t('optioneel', 'optional')})</span></Label>
-                  <FieldInput type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="+32 ..." />
+                <div className="b-ct-field">
+                  <Label>{t('Telefoonnummer', 'Phone number')} {optional}</Label>
+                  <input className="b-ct-input" type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="+32 ..." />
                 </div>
-                <div>
-                  <Label>{t('Website', 'Website')} <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>({t('optioneel', 'optional')})</span></Label>
-                  <FieldInput
+                <div className="b-ct-field">
+                  <Label>{t('Website', 'Website')} {optional}</Label>
+                  <input
+                    className="b-ct-input"
                     type="text"
                     value={noWebsite ? '' : website}
                     disabled={noWebsite}
                     onChange={e => setWebsite(e.target.value)}
                     placeholder="https://jouwbedrijf.be"
-                    style={{ ...inputStyle, opacity: noWebsite ? 0.4 : 1 }}
                   />
-                  <label className="flex items-center gap-2 mt-2 cursor-pointer select-none">
-                    <input
-                      type="checkbox"
-                      checked={noWebsite}
-                      onChange={e => setNoWebsite(e.target.checked)}
-                      className="rounded"
-                      style={{ accentColor: '#1a5e35' }}
-                    />
-                    <span className="text-xs" style={{ color: '#83827d' }}>{t('Ik heb nog geen website', "I don't have a website yet")}</span>
+                  <label className="b-ct-check">
+                    <input type="checkbox" checked={noWebsite} onChange={e => setNoWebsite(e.target.checked)} style={{ accentColor: GRN }} />
+                    <span>{t('Ik heb nog geen website', "I don't have a website yet")}</span>
                   </label>
                 </div>
-                <div>
-                  <Label>{t('Bericht', 'Message')} <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>({t('optioneel', 'optional')})</span></Label>
+                <div className="b-ct-field">
+                  <Label>{t('Bericht', 'Message')} {optional}</Label>
                   <textarea
+                    className="b-ct-input"
                     rows={4}
                     value={message}
                     onChange={e => setMessage(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all resize-none"
-                    style={inputStyle}
+                    style={{ resize: 'none' }}
                     placeholder={t('Waar wil je mee aan de slag?', 'What would you like to work on?')}
                   />
                 </div>
-                {error && <p className="text-sm text-red-500">{error}</p>}
-                <Turnstile
-                  ref={turnstileRef}
-                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-                  onSuccess={setTurnstileToken}
-                  onError={() => setTurnstileToken('')}
-                  onExpire={() => setTurnstileToken('')}
-                  options={{ appearance: 'interaction-only' }}
-                />
-                <button
-                  type="submit"
-                  disabled={sending || !turnstileToken}
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90 disabled:opacity-60"
-                  style={{ background: '#c96442' }}
-                >
+                {error && <p className="b-ct-err">{error}</p>}
+                <div style={{ marginTop: 16 }}>
+                  <Turnstile
+                    ref={turnstileRef}
+                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                    onSuccess={setTurnstileToken}
+                    onError={() => setTurnstileToken('')}
+                    onExpire={() => setTurnstileToken('')}
+                    options={{ appearance: 'interaction-only' }}
+                  />
+                </div>
+                <button type="submit" className="b-ct-btn" disabled={sending || !turnstileToken}>
                   {sending ? t('Versturen...', 'Sending...') : t('Verstuur', 'Send')}
                   <ArrowRight className="w-4 h-4" />
                 </button>
@@ -238,114 +264,90 @@ export function Contact() {
             )}
           </div>
 
-          {/* ── Right: how it works + book-a-call ── */}
-          <div className="flex flex-col gap-5">
+          {/* ── Rechts: gesprek plannen ── */}
+          <div className="b-ct-col">
+            <p className="b-ct-lead">
+              {t(
+                'Liever meteen praten? Plan een gesprek van 15 minuten. Je laat je gegevens achter en krijgt direct enkele beschikbare momenten in je mailbox.',
+                'Rather talk right away? Book a 15-minute call. Leave your details and you get available slots in your inbox straight away.'
+              )}
+            </p>
 
-            {/* Short intro above book-a-call */}
-            <div className="px-1">
-              <p className="text-sm leading-relaxed" style={{ color: '#83827d' }}>
-                {t(
-                  'Je kan ook een kort gesprek inplannen van 15 min door je gegevens achter te laten. Je krijgt direct enkele beschikbare contactmomenten in je mailbox.',
-                  'You can also book a quick 15-min call by leaving your details. You will receive available time slots directly in your inbox.'
-                )}
-              </p>
-            </div>
-
-            {/* Book a call — toggles into qualification form */}
             {!bookOpen && !bookSent && (
-              <button
-                onClick={() => setBookOpen(true)}
-                className="flex items-center gap-5 p-6 rounded-2xl transition-all hover:-translate-y-0.5 hover:shadow-lg text-left w-full"
-                style={cardBase}
-              >
-                <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(21,128,61,0.1)' }}>
-                  <Calendar className="w-5 h-5" style={{ color: '#15803d' }} />
-                </div>
+              <button onClick={() => setBookOpen(true)} className="b-ct-card">
+                <Calendar className="w-6 h-6 flex-shrink-0" style={{ color: GRN }} />
                 <div>
-                  <div className="text-sm font-semibold mb-0.5">{t('Plan een gesprek', 'Book a call')}</div>
-                  <div className="text-sm" style={{ color: '#83827d' }}>{t('15 min · Kennismakingsgesprek', '15 min · Intro call')}</div>
+                  <div className="b-ct-card-t">{t('Plan een gesprek', 'Book a call')}</div>
+                  <div className="b-ct-card-s">{t('15 min · kennismaking', '15 min · intro call')}</div>
                 </div>
-                <ArrowRight className="w-4 h-4 ml-auto flex-shrink-0" style={{ color: '#1a5e35' }} />
+                <ArrowRight className="w-5 h-5 ml-auto flex-shrink-0" style={{ color: ORNG }} />
               </button>
             )}
 
             {bookOpen && !bookSent && (
-              <div className="p-6 rounded-2xl" style={cardBase}>
-                <div className="text-[10px] font-bold uppercase tracking-widest mb-4" style={{ color: '#1a5e35' }}>
-                  {t('Snel even kennis maken', 'Quick intro')}
-                </div>
-                <form onSubmit={handleBookSubmit} className="flex flex-col gap-3">
-                  <div>
+              <div className="b-ct-panel">
+                <div className="b-ct-kicker" style={{ marginBottom: 20 }}>{t('Snel even kennismaken', 'Quick intro')}</div>
+                <form onSubmit={handleBookSubmit}>
+                  <div className="b-ct-field">
                     <Label>{t('Naam', 'Name')}</Label>
-                    <FieldInput type="text" required value={bookName} onChange={e => setBookName(e.target.value)} placeholder={t('Jouw naam', 'Your name')} />
+                    <input className="b-ct-input" type="text" required value={bookName} onChange={e => setBookName(e.target.value)} placeholder={t('Jouw naam', 'Your name')} />
                   </div>
-                  <div>
+                  <div className="b-ct-field">
                     <Label>Email</Label>
-                    <FieldInput type="email" required value={bookEmail} onChange={e => setBookEmail(e.target.value)} placeholder="jou@email.com" />
+                    <input className="b-ct-input" type="email" required value={bookEmail} onChange={e => setBookEmail(e.target.value)} placeholder="jou@email.com" />
                   </div>
-                  <div>
-                    <Label>{t('Telefoonnummer', 'Phone number')} <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>({t('optioneel', 'optional')})</span></Label>
-                    <FieldInput type="tel" value={bookPhone} onChange={e => setBookPhone(e.target.value)} placeholder="+32 ..." />
+                  <div className="b-ct-field">
+                    <Label>{t('Telefoonnummer', 'Phone number')} {optional}</Label>
+                    <input className="b-ct-input" type="tel" value={bookPhone} onChange={e => setBookPhone(e.target.value)} placeholder="+32 ..." />
                   </div>
-                  <div>
-                    <Label>{t('Website', 'Website')} <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>({t('optioneel', 'optional')})</span></Label>
-                    <FieldInput
+                  <div className="b-ct-field">
+                    <Label>{t('Website', 'Website')} {optional}</Label>
+                    <input
+                      className="b-ct-input"
                       type="text"
                       value={bookNoWebsite ? '' : bookWebsite}
                       disabled={bookNoWebsite}
                       onChange={e => setBookWebsite(e.target.value)}
                       placeholder="https://jouwbedrijf.be"
-                      style={{ ...inputStyle, opacity: bookNoWebsite ? 0.4 : 1 }}
                     />
-                    <label className="flex items-center gap-2 mt-2 cursor-pointer select-none">
-                      <input type="checkbox" checked={bookNoWebsite} onChange={e => setBookNoWebsite(e.target.checked)} style={{ accentColor: '#1a5e35' }} />
-                      <span className="text-xs" style={{ color: '#83827d' }}>{t('Ik heb nog geen website', "I don't have a website yet")}</span>
+                    <label className="b-ct-check">
+                      <input type="checkbox" checked={bookNoWebsite} onChange={e => setBookNoWebsite(e.target.checked)} style={{ accentColor: GRN }} />
+                      <span>{t('Ik heb nog geen website', "I don't have a website yet")}</span>
                     </label>
                   </div>
-                  <div>
+                  <div className="b-ct-field">
                     <Label>{t('Grootste uitdaging', 'Biggest challenge')}</Label>
-                    <select
-                      required
-                      value={bookChallenge}
-                      onChange={e => setBookChallenge(e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all"
-                      style={selectStyle}
-                    >
+                    <select className="b-ct-input" required value={bookChallenge} onChange={e => setBookChallenge(e.target.value)}>
                       <option value="">{t('Kies een optie', 'Choose an option')}</option>
                       {challenges.map(c => <option key={c} value={c}>{c}</option>)}
                     </select>
                   </div>
-                  <div>
+                  <div className="b-ct-field">
                     <Label>{t('Wanneer wil je actie ondernemen?', 'When do you want to take action?')}</Label>
-                    <select
-                      required
-                      value={bookTimeline}
-                      onChange={e => setBookTimeline(e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all"
-                      style={selectStyle}
-                    >
+                    <select className="b-ct-input" required value={bookTimeline} onChange={e => setBookTimeline(e.target.value)}>
                       <option value="">{t('Kies een optie', 'Choose an option')}</option>
                       {timelines.map(tl => <option key={tl} value={tl}>{tl}</option>)}
                     </select>
                   </div>
-                  <Turnstile
-                    ref={bookTurnstileRef}
-                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-                    onSuccess={setBookTurnstileToken}
-                    onError={() => setBookTurnstileToken('')}
-                    onExpire={() => setBookTurnstileToken('')}
-                    options={{ appearance: 'interaction-only' }}
-                  />
+                  <div style={{ marginTop: 16 }}>
+                    <Turnstile
+                      ref={bookTurnstileRef}
+                      siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                      onSuccess={setBookTurnstileToken}
+                      onError={() => setBookTurnstileToken('')}
+                      onExpire={() => setBookTurnstileToken('')}
+                      options={{ appearance: 'interaction-only' }}
+                    />
+                  </div>
                   <button
                     type="submit"
+                    className="b-ct-btn b-ct-btn-grn"
                     disabled={bookSending || !bookChallenge || !bookTimeline || !bookTurnstileToken}
-                    className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90 disabled:opacity-60"
-                    style={{ background: '#1a5e35' }}
                   >
                     {bookSending ? t('Versturen...', 'Sending...') : t('Plan gesprek', 'Book call')}
                     <Calendar className="w-4 h-4" />
                   </button>
-                  <button type="button" onClick={() => setBookOpen(false)} className="text-xs text-center" style={{ color: '#83827d' }}>
+                  <button type="button" onClick={() => setBookOpen(false)} className="b-ct-cancel">
                     {t('Annuleren', 'Cancel')}
                   </button>
                 </form>
@@ -353,12 +355,10 @@ export function Contact() {
             )}
 
             {bookSent && (
-              <div className="flex flex-col items-center gap-3 p-6 rounded-2xl text-center" style={cardBase}>
-                <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'rgba(21,128,61,0.1)' }}>
-                  <Calendar className="w-5 h-5" style={{ color: '#15803d' }} />
-                </div>
-                <p className="font-semibold text-sm" style={{ color: '#0e0d0b' }}>{t('Gesprek aangevraagd!', 'Call requested!')}</p>
-                <p className="text-xs leading-relaxed" style={{ color: '#83827d' }}>
+              <div className="b-ct-panel">
+                <Calendar className="w-6 h-6" style={{ color: GRN }} />
+                <div className="b-ct-done-t" style={{ marginTop: 12 }}>{t('Gesprek aangevraagd', 'Call requested')}</div>
+                <p className="b-ct-lead" style={{ marginTop: 10 }}>
                   {t(
                     'Check je inbox. Jeroen stelt tijdstippen voor in zijn persoonlijk bericht.',
                     'Check your inbox. Jeroen will propose time slots in his personal message.'
@@ -367,23 +367,17 @@ export function Contact() {
               </div>
             )}
 
-            {/* Value prop */}
-            <div
-              className="mt-auto p-6 rounded-2xl"
-              style={{ background: 'linear-gradient(135deg, rgba(10,30,16,0.96) 0%, rgba(22,51,37,0.96) 100%)' }}
-            >
-              <div className="text-[10px] font-bold uppercase tracking-widest mb-3" style={{ color: '#a3c4a8' }}>
-                {t('Geen risico', 'No risk')}
-              </div>
-              <p className="text-sm leading-relaxed" style={{ color: 'rgba(250,249,245,0.75)' }}>
+            <div className="b-ct-risk">
+              <div className="b-ct-risk-k">{t('Geen risico', 'No risk')}</div>
+              <p>
                 {t(
-                  'De gratis diagnose en het eerste gesprek zijn volledig vrijblijvend. Zelfs ons Actiehandboek heeft een 14-daagse terugbetalingsgarantie als je er niet volledig tevreden mee bent.',
-                  'The free diagnostic and first call are completely no-obligation. Even our Action Manual comes with a 14-day money-back guarantee if you are not fully satisfied.'
+                  'De gratis diagnose en het eerste gesprek zijn volledig vrijblijvend. Zelfs ons Actiehandboek heeft een terugbetalingsgarantie van 14 dagen als je er niet tevreden mee bent.',
+                  'The free diagnostic and first call are completely no-obligation. Even our Action Manual comes with a 14-day money-back guarantee if you are not satisfied.'
                 )}
               </p>
             </div>
-
           </div>
+
         </div>
       </div>
     </section>

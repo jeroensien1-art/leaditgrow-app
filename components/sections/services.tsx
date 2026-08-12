@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useLang } from '@/components/lang-context'
 
 const B    = 'var(--font-brutalist, system-ui)'
+const D   = 'var(--font-display, var(--font-brutalist, system-ui))'
 const M    = 'var(--font-mono-brutalist, monospace)'
 const INK  = '#0e0d0b'
 const GRN  = '#1a5e35'
@@ -154,7 +155,7 @@ export function Services() {
         }
         .b-section-num {
           font-family: ${M};
-          font-size: 11px;
+          font-size: 13px;
           color: ${MUT};
           letter-spacing: .1em;
           margin-bottom: 18px;
@@ -162,15 +163,15 @@ export function Services() {
         .b-section-h2 {
           font-size: clamp(28px, 4vw, 52px);
           font-weight: 700;
-          letter-spacing: -.04em;
+          letter-spacing: -.02em;
           line-height: 1;
           text-transform: uppercase;
-          font-family: ${B};
+          font-family: ${D};
           color: ${INK};
         }
         .b-section-h2 .accent { color: ${GRN}; transition: color 0.4s; }
         .b-ladder-desc-text {
-          font-size: 14px;
+          font-size: 16px;
           color: ${MUT};
           line-height: 1.75;
           max-width: 380px;
@@ -200,7 +201,7 @@ export function Services() {
         .b-lr-num {
           padding: 26px 20px;
           font-family: ${M};
-          font-size: 11px;
+          font-size: 13px;
           font-weight: 700;
           color: ${MUT};
           letter-spacing: .06em;
@@ -212,7 +213,7 @@ export function Services() {
         .b-ladder-row.open .b-lr-num { color: ${GRN}; }
         .b-lr-name {
           padding: 26px 28px;
-          font-size: 14px;
+          font-size: 16px;
           font-weight: 700;
           color: ${INK};
           letter-spacing: -.01em;
@@ -232,7 +233,7 @@ export function Services() {
         }
         .b-lr-keywords { display: flex; gap: 8px; flex-wrap: wrap; padding: 8px 0; }
         .b-lr-kw {
-          font-size: 11px;
+          font-size: 13px;
           font-weight: 500;
           color: ${MUT};
           border: 1px solid rgba(0,0,0,.15);
@@ -256,7 +257,7 @@ export function Services() {
         }
         .b-ladder-row.open .b-lr-expand { display: block; }
         .b-lr-expand-desc {
-          font-size: 13px;
+          font-size: 15px;
           color: ${INK};
           line-height: 1.8;
           font-style: italic;
@@ -271,7 +272,7 @@ export function Services() {
           padding: 9px 12px;
           background: rgba(26,94,53,0.05);
           border-top: 2px solid ${GRN};
-          font-size: 10px;
+          font-size: 12px;
           font-weight: 700;
           letter-spacing: .1em;
           text-transform: uppercase;
@@ -291,18 +292,18 @@ export function Services() {
           flex-wrap: wrap;
         }
         .b-ladder-cta-label {
-          font-size: 10px; font-weight: 700; letter-spacing: .16em;
+          font-size: 12px; font-weight: 700; letter-spacing: .16em;
           text-transform: uppercase; color: ${GRN}; margin-bottom: 6px;
           font-family: ${M};
         }
         .b-ladder-cta-title {
           font-size: 18px; font-weight: 800; color: ${INK};
-          letter-spacing: -.02em; font-family: ${B};
+          letter-spacing: -.02em; font-family: ${D};
         }
         .b-ladder-cta-btn {
           display: inline-flex; align-items: center; gap: 8px;
           background: ${ORANGE}; color: #fff; padding: 12px 22px;
-          font-size: 12px; font-weight: 700; letter-spacing: .06em;
+          font-size: 14px; font-weight: 700; letter-spacing: .06em;
           text-transform: uppercase; text-decoration: none; flex-shrink: 0;
           font-family: ${B};
           transition: background .15s;

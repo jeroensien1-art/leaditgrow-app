@@ -52,7 +52,7 @@ export function StatsBar() {
           transition: color 0.4s, text-shadow 0.4s;
         }
         .stat-t {
-          font-size: 12px;
+          font-size: 14px;
           color: rgba(255,255,255,.38);
           line-height: 1.65;
           letter-spacing: .02em;

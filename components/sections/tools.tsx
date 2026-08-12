@@ -3,6 +3,7 @@
 import { useLang } from '@/components/lang-context'
 
 const B    = 'var(--font-brutalist, system-ui)'
+const D   = 'var(--font-display, var(--font-brutalist, system-ui))'
 const M    = 'var(--font-mono-brutalist, monospace)'
 const INK  = '#0e0d0b'
 const BG   = '#f2f0eb'
@@ -41,7 +42,7 @@ export function Tools() {
         }
         .b-tools-num {
           font-family: ${M};
-          font-size: 11px;
+          font-size: 13px;
           color: rgba(255,255,255,.3);
           letter-spacing: .1em;
           margin-bottom: 18px;
@@ -50,16 +51,16 @@ export function Tools() {
         .b-tools-h2 {
           font-size: clamp(28px, 4vw, 52px);
           font-weight: 700;
-          letter-spacing: -.04em;
+          letter-spacing: -.02em;
           line-height: 1;
           text-transform: uppercase;
-          font-family: ${B};
+          font-family: ${D};
           color: ${BG};
           transition: color 0.4s;
         }
         .b-tools-h2 .accent { color: ${ORANGE}; transition: color 0.4s; }
         .b-tools-desc {
-          font-size: 14px;
+          font-size: 16px;
           color: rgba(242,240,235,.38);
           line-height: 1.75;
           max-width: 380px;
@@ -88,7 +89,7 @@ export function Tools() {
         }
         .b-tool-tag {
           font-family: ${M};
-          font-size: 10px;
+          font-size: 12px;
           font-weight: 700;
           letter-spacing: .14em;
           text-transform: uppercase;
@@ -97,14 +98,14 @@ export function Tools() {
         .b-tool-title {
           font-size: 22px;
           font-weight: 700;
-          letter-spacing: -.03em;
+          letter-spacing: -.015em;
           line-height: 1.1;
           color: ${BG};
-          font-family: ${B};
+          font-family: ${D};
           transition: color 0.4s;
         }
         .b-tool-body {
-          font-size: 13px;
+          font-size: 15px;
           color: rgba(242,240,235,.45);
           line-height: 1.75;
           font-family: ${B};
@@ -116,7 +117,7 @@ export function Tools() {
           align-items: center;
           gap: 8px;
           font-family: ${M};
-          font-size: 11px;
+          font-size: 13px;
           font-weight: 700;
           letter-spacing: .1em;
           text-transform: uppercase;

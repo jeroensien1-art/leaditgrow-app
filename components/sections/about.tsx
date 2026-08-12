@@ -3,6 +3,7 @@
 import { useLang } from '@/components/lang-context'
 
 const B    = 'var(--font-brutalist, system-ui)'
+const D   = 'var(--font-display, var(--font-brutalist, system-ui))'
 const M    = 'var(--font-mono-brutalist, monospace)'
 const INK  = '#0e0d0b'
 const BG   = '#f2f0eb'
@@ -42,7 +43,7 @@ export function About() {
         }
         .b-about-num {
           font-family: ${M};
-          font-size: 11px;
+          font-size: 13px;
           color: rgba(255,255,255,.3);
           letter-spacing: .1em;
           margin-bottom: 4px;
@@ -50,17 +51,17 @@ export function About() {
         .b-about-h2 {
           font-size: clamp(28px, 3.5vw, 48px);
           font-weight: 700;
-          letter-spacing: -.04em;
+          letter-spacing: -.02em;
           line-height: 1;
           text-transform: uppercase;
-          font-family: ${B};
+          font-family: ${D};
           color: ${BG};
           transition: color 0.4s;
         }
         .b-about-h2 .accent { color: ${ORANGE}; transition: color 0.4s; }
         .b-about-h2-link { display: block; text-decoration: none; color: inherit; cursor: pointer; }
         .b-about-body {
-          font-size: 14px;
+          font-size: 16px;
           color: rgba(242,240,235,.5);
           line-height: 1.8;
           font-family: ${B};
@@ -71,7 +72,7 @@ export function About() {
           align-items: center;
           gap: 8px;
           font-family: ${M};
-          font-size: 11px;
+          font-size: 13px;
           font-weight: 700;
           letter-spacing: .12em;
           text-transform: uppercase;
@@ -99,7 +100,7 @@ export function About() {
         }
         .b-about-stat-val-link { color: ${ORANGE}; }
         .b-about-stat-label {
-          font-size: 13px;
+          font-size: 15px;
           color: ${MUT};
           line-height: 1.55;
           font-family: ${B};
@@ -118,7 +119,7 @@ export function About() {
         }
         .b-about-uman-label {
           font-family: ${M};
-          font-size: 10px;
+          font-size: 12px;
           font-weight: 700;
           letter-spacing: .14em;
           text-transform: uppercase;
@@ -126,14 +127,14 @@ export function About() {
           transition: color 0.4s;
         }
         .b-about-uman-title {
-          font-size: 15px;
+          font-size: 17px;
           font-weight: 700;
           color: ${INK};
           font-family: ${B};
           transition: color 0.4s;
         }
         .b-about-uman-sub {
-          font-size: 12px;
+          font-size: 14px;
           color: ${MUT};
           font-family: ${B};
           transition: color 0.4s;
@@ -143,7 +144,7 @@ export function About() {
           align-items: center;
           gap: 6px;
           font-family: ${M};
-          font-size: 10px;
+          font-size: 12px;
           font-weight: 700;
           letter-spacing: .1em;
           text-transform: uppercase;

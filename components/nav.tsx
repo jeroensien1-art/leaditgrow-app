@@ -41,7 +41,7 @@ export function Nav() {
         }
         .b-nav-brand {
           padding: 16px 28px;
-          font-size: 13px;
+          font-size: 15px;
           font-weight: 700;
           letter-spacing: .12em;
           text-transform: uppercase;
@@ -59,7 +59,7 @@ export function Nav() {
           display: flex;
           align-items: center;
           padding: 16px 20px;
-          font-size: 11px;
+          font-size: 13px;
           font-weight: 600;
           letter-spacing: .12em;
           text-transform: uppercase;
@@ -80,7 +80,7 @@ export function Nav() {
         .b-nav-cta:hover { background: #0f3d21 !important; }
         .b-nav-lang {
           padding: 16px 18px;
-          font-size: 11px;
+          font-size: 13px;
           font-weight: 700;
           letter-spacing: .12em;
           text-transform: uppercase;
@@ -109,7 +109,7 @@ export function Nav() {
         }
         .b-mobile-menu a {
           padding: 14px 28px;
-          font-size: 12px;
+          font-size: 14px;
           font-weight: 600;
           letter-spacing: .1em;
           text-transform: uppercase;

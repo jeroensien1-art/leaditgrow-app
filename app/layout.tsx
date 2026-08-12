@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Instrument_Sans, Instrument_Serif, Space_Grotesk, Space_Mono } from 'next/font/google'
+import localFont from 'next/font/local'
 import { headers } from 'next/headers'
 import Script from 'next/script'
 import './globals.css'
@@ -30,6 +31,19 @@ const spaceMono = Space_Mono({
   weight: ['400', '700'],
   style: ['normal', 'italic'],
   variable: '--font-mono-brutalist',
+})
+
+// Titelfont. Clash Display van Indian Type Foundry, ITF Free Font License,
+// vrij voor commercieel gebruik. Alleen voor koppen, niet voor lopende tekst.
+const clashDisplay = localFont({
+  src: [
+    { path: './fonts/ClashDisplay-400.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/ClashDisplay-500.woff2', weight: '500', style: 'normal' },
+    { path: './fonts/ClashDisplay-600.woff2', weight: '600', style: 'normal' },
+    { path: './fonts/ClashDisplay-700.woff2', weight: '700', style: 'normal' },
+  ],
+  variable: '--font-display',
+  display: 'swap',
 })
 
 // Get language from cookie (set by middleware)
@@ -117,7 +131,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           fbq('track', 'PageView');
         `}</Script>
       </head>
-      <body className={`${instrumentSans.variable} ${instrumentSerif.variable} ${spaceGrotesk.variable} ${spaceMono.variable} font-sans antialiased`}>
+      <body className={`${instrumentSans.variable} ${instrumentSerif.variable} ${spaceGrotesk.variable} ${spaceMono.variable} ${clashDisplay.variable} font-sans antialiased`}>
         <LangProvider>{children}</LangProvider>
       </body>
     </html>

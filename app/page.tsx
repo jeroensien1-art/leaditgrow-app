@@ -43,10 +43,10 @@ export default function Home() {
           zIndex: 1,
         }}
       >
-        <span style={{ fontFamily: 'var(--font-mono-brutalist, monospace)', fontSize: '11px', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: 'rgba(242,240,235,.25)' }}>
+        <span style={{ fontFamily: 'var(--font-mono-brutalist, monospace)', fontSize: '13px', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: 'rgba(242,240,235,.25)' }}>
           Lead it, Grow
         </span>
-        <span style={{ fontFamily: 'var(--font-mono-brutalist, monospace)', fontSize: '10px', color: 'rgba(242,240,235,.18)', letterSpacing: '.06em' }}>
+        <span style={{ fontFamily: 'var(--font-mono-brutalist, monospace)', fontSize: '12px', color: 'rgba(242,240,235,.18)', letterSpacing: '.06em' }}>
           © {new Date().getFullYear()} · leaditgrow.be · leaditgrow.com
         </span>
         <FooterCta />

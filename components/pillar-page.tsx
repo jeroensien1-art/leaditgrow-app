@@ -4,6 +4,7 @@ import { Nav } from '@/components/nav'
 import { useLang } from '@/components/lang-context'
 
 const B = 'var(--font-brutalist, system-ui)'
+const D   = 'var(--font-display, var(--font-brutalist, system-ui))'
 const M = 'var(--font-mono-brutalist, monospace)'
 const INK = '#0e0d0b'
 const BG = '#f2f0eb'
@@ -39,12 +40,12 @@ export function PillarPage({
         .b-pillar { background: ${BG}; min-height: 100vh; }
         .b-pillar-inner { max-width: 720px; margin: 0 auto; padding: 80px 24px 100px; }
         .b-pillar-eyebrow {
-          font-family: ${M}; font-size: 11px; font-weight: 700; letter-spacing: .14em;
+          font-family: ${M}; font-size: 13px; font-weight: 700; letter-spacing: .14em;
           text-transform: uppercase; color: ${ORANGE}; margin-bottom: 20px;
         }
         .b-pillar-h1 {
-          font-family: ${B}; font-size: clamp(32px, 5vw, 56px); font-weight: 700;
-          letter-spacing: -.03em; line-height: 1.05; text-transform: uppercase;
+          font-family: ${D}; font-size: clamp(32px, 5vw, 56px); font-weight: 700;
+          letter-spacing: -.015em; line-height: 1.05; text-transform: uppercase;
           color: ${INK}; margin-bottom: 28px;
         }
         .b-pillar-pain {
@@ -53,31 +54,31 @@ export function PillarPage({
         }
         .b-pillar-box { border-left: 3px solid ${GRN}; padding: 4px 0 4px 24px; margin-bottom: 44px; }
         .b-pillar-box-label {
-          font-family: ${M}; font-size: 10px; font-weight: 700; letter-spacing: .12em;
+          font-family: ${M}; font-size: 12px; font-weight: 700; letter-spacing: .12em;
           text-transform: uppercase; color: ${GRN}; margin-bottom: 10px;
         }
-        .b-pillar-box-text { font-size: 15px; color: ${INK}; line-height: 1.75; font-family: ${B}; }
+        .b-pillar-box-text { font-size: 17px; color: ${INK}; line-height: 1.75; font-family: ${B}; }
         .b-pillar-cta {
           display: inline-flex; align-items: center; gap: 10px; background: ${INK};
-          color: ${BG}; font-size: 13px; font-weight: 700; letter-spacing: .08em;
+          color: ${BG}; font-size: 15px; font-weight: 700; letter-spacing: .08em;
           text-transform: uppercase; padding: 16px 28px; text-decoration: none;
           border: 2px solid ${INK}; font-family: ${B};
           transition: background .15s, border-color .15s;
         }
         .b-pillar-cta:hover { background: ${ORANGE}; border-color: ${ORANGE}; }
         .b-pillar-back {
-          display: block; margin-top: 40px; font-family: ${M}; font-size: 11px;
+          display: block; margin-top: 40px; font-family: ${M}; font-size: 13px;
           letter-spacing: .08em; text-transform: uppercase; color: ${MUT}; text-decoration: none;
         }
         .b-pillar-faq { margin-top: 56px; border-top: 2px solid ${INK}; padding-top: 32px; }
         .b-pillar-faq-title {
-          font-family: ${B}; font-size: 20px; font-weight: 700; color: ${INK};
+          font-family: ${D}; font-size: 20px; font-weight: 700; color: ${INK};
           text-transform: uppercase; letter-spacing: -.02em; margin-bottom: 20px;
         }
         .b-pillar-faq-item { padding: 18px 0; border-top: 1px solid rgba(14,13,11,.1); }
         .b-pillar-faq-item:first-child { border-top: none; padding-top: 0; }
-        .b-pillar-faq-q { font-size: 15px; font-weight: 700; color: ${INK}; font-family: ${B}; margin-bottom: 8px; }
-        .b-pillar-faq-a { font-size: 14px; color: ${MUT}; line-height: 1.7; font-family: ${B}; }
+        .b-pillar-faq-q { font-size: 17px; font-weight: 700; color: ${INK}; font-family: ${B}; margin-bottom: 8px; }
+        .b-pillar-faq-a { font-size: 16px; color: ${MUT}; line-height: 1.7; font-family: ${B}; }
       `}</style>
       <div className="b-pillar">
         <div className="b-pillar-inner">
