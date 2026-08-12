@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const DASHBOARD_PASSWORD = process.env.DASHBOARD_PASSWORD ?? 'changeme'
+const DASHBOARD_PASSWORD = process.env.DASHBOARD_PASSWORD
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -8,7 +8,10 @@ export function middleware(request: NextRequest) {
   // ── Dashboard protection ──────────────────────────────────────────────────
   if (pathname.startsWith('/dashboard') || pathname.startsWith('/api/dashboard') || pathname.startsWith('/api/analytics')) {
     const token = request.cookies.get('dashboard_token')?.value
-    if (token !== DASHBOARD_PASSWORD) {
+    // Zonder ingesteld wachtwoord gaat alles dicht, niet open. Let op de volgorde:
+    // enkel `token !== DASHBOARD_PASSWORD` zou bij een ontbrekende env-var undefined
+    // met undefined vergelijken en dus juist iedereen doorlaten.
+    if (!DASHBOARD_PASSWORD || !token || token !== DASHBOARD_PASSWORD) {
       if (pathname.startsWith('/api/')) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
       }
