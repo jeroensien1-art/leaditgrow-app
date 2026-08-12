@@ -19,6 +19,8 @@ Marketing site + funnel voor Lead it, Grow (Jeroen's agency). Bezoekers landen o
 | `/diagnostic` | Gratis diagnose (scored quiz, email-gate) | Live |
 | `/diensten` | Dienstenoverzicht | Live |
 | `/content-strategie` | Sales page content intelligence systeem | Live (deploy 2026-07-15) |
+| `/vastgoed` | Niche-salespagina Mandaten-Machine (vastgoedkantoren, pilot €1.500 → €997/mo, database-reactivatie op 15% commissie) | Live (2026-08-03) |
+| `/laadpalen` | Niche-salespagina Offerte-Versneller (laadpaal-installateurs, pilot €1.500 → €747/mo) | Live (2026-08-03) |
 | `/gratis` | Freebie-hub: alle 7 freebies op één pagina, e-mailgate per kaart | Live (2026-07-30) |
 | `/api/freebie-optin` | Freebie opt-in: mail + lead + e-maillijst met tag | Live |
 | `/api/leads` | Lead opslaan vanuit diagnostic | Live |
@@ -52,7 +54,7 @@ Tabel `email_list`: één rij per e-mailadres, `tags text[]` bevat de freebie-id
 
 ## Open punten
 
-- [ ] **Migratie `supabase/migrations/20260730_email_list.sql` nog draaien** in de Supabase SQL editor. Tot dan faalt het wegschrijven naar de e-maillijst stil (gelogd, blokkeert de opt-in niet).
+- [x] Migratie `supabase/migrations/20260730_email_list.sql` gedraaid op 2026-08-01 (tabel + 2 indexen + RLS geverifieerd).
 - [ ] ManyChat-flows per keyword: KADER, RUST, TIJD, PROMPTS, GESPREK, SCORE, START, VRAGEN, SYSTEEM. Blauwdruk: `leaditgrow-content/LIG-manychat-checklist-flow.md`.
 - [ ] Freebies SCORE (preselectie-scorekaart), START (integratieplan) en VRAGEN (50 verkoopvragen) bestaan nog niet, worden wel in de content genoemd.
 - [ ] Groeiladder component porten naar React (vervangt PineTreeLadder, design: variant-2.html "Het Pad")

@@ -196,7 +196,7 @@ Daarna is elke nieuwe klant een config-entry, geen code.
 
 ## Verkoopgesprek — wat je zegt
 
-> "Elke lead die jou contacteert krijgt vandaag waarschijnlijk een antwoord na 4-48 uur, als ze al een antwoord krijgen. Studies tonen aan dat je kans om die lead te converteren met 21x daalt als je niet binnen 5 minuten reageert. Ik zet een systeem op dat elke lead automatisch kwalificeert en een persoonlijk antwoord stuurt, vanuit jouw naam, in jouw toon, met concrete tijdstippen voor een gesprek — binnen 60 seconden na inzending. Jij hoeft er niets voor te doen."
+> "Elke lead die jou contacteert krijgt vandaag waarschijnlijk een antwoord na 4-48 uur, als ze al een antwoord krijgen. Onderzoek van MIT/InsideSales.com toont dat je kans om die lead te kwalificeren 21 keer hoger ligt als je binnen 5 minuten reageert dan na 30 minuten. Ik zet een systeem op dat elke lead automatisch kwalificeert en een persoonlijk antwoord stuurt, vanuit jouw naam, in jouw toon, met concrete tijdstippen voor een gesprek — binnen 60 seconden na inzending. Jij hoeft er niets voor te doen."
 
 **Haak voor discovery call:**
 > "Hoeveel leads per maand bereiken jou via je website? En hoeveel daarvan zetten door naar een gesprek?"

@@ -74,7 +74,7 @@ const nl: Record<string, LeverData> = {
     headline: 'Je verliest klanten voordat je ze ooit hebt gehad.',
     subline: 'De diagnose toont dat leads te lang wachten op een reactie. Elk uur dat verstrijkt na een eerste contact verlaagt de kans op conversie. Dat is omzet die verdwijnt zonder dat je het ziet.',
     costs: [
-      'Leads die binnen 5 minuten worden opgevolgd, converteren 21x beter dan leads die een uur wachten. Dat is geen theorie,dat zijn metingen uit honderden servicebedrijven.',
+      'Leads die binnen 5 minuten worden opgevolgd, hebben 21x meer kans om gekwalificeerd te worden dan leads die een half uur wachten (MIT/InsideSales.com-onderzoek, 15.000+ leads).',
       'Elke lead die koud wordt terwijl jij of je team "te druk is", kost je gemiddeld de waarde van twee tot drie deals per maand.',
       'Concurrenten die sneller reageren winnen die opdrachten,niet omdat ze beter zijn, maar omdat ze eerder aanwezig waren.',
     ],
@@ -231,7 +231,7 @@ const en: Record<string, LeverData> = {
     headline: 'You are losing clients before you ever had them.',
     subline: 'The diagnostic shows leads are waiting too long for a response. Every hour after first contact reduces conversion likelihood. That is revenue disappearing without you seeing it.',
     costs: [
-      'Leads followed up within 5 minutes convert 21x better than leads that wait an hour. That is not theory,it is measured across hundreds of service businesses.',
+      'Leads followed up within 5 minutes are 21x more likely to qualify than leads that wait 30 minutes (MIT/InsideSales.com study, 15,000+ leads).',
       'Every lead that goes cold while you or your team are "too busy" costs you the value of two to three deals per month.',
       'Competitors who respond faster win those jobs,not because they are better, but because they were there first.',
     ],

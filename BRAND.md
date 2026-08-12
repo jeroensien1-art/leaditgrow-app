@@ -124,7 +124,7 @@ Elk stuk content gebruikt één van deze angles als insteek:
 | **Contrarian** | Aanname omdraaien die de ICP als waarheid ziet | "Jouw concurrent wint niet omdat hij beter is" |
 | **Story / Founder** | Persoonlijk verhaal van mislukking of doorbraak | "Ik heb een bedrijf stopgezet na 7 maanden" |
 | **Pijn / Question** | Directe vraag die de pijn raakt | "Als jij morgen ziek bent, wat stopt er dan?" |
-| **Stats / Social Proof** | Cijfer dat schokt of bewijst | "21x meer kans op afspraak bij opvolging binnen 5 min" |
+| **Stats / Social Proof** | Cijfer dat schokt of bewijst | "21x meer kans om een lead te kwalificeren bij opvolging binnen 5 min (MIT/InsideSales.com-onderzoek)" |
 | **Identiteit / Empathy** | Erkenning van wie de ondernemer is | "Ondernemers zijn de ruggengraat van de samenleving" |
 | **Before / After** | Van situatie A naar situatie B | "Van 60u/week naar een bedrijf dat draait zonder jou" |
 | **How-to / Tool** | Concrete stap of tool tonen | "Lead opvolging automatiseren met Make in 1 uur" |
