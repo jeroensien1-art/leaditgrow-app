@@ -31,7 +31,7 @@ export function Hero() {
           grid-template-columns: 1fr 320px;
         }
         .b-hero-left {
-          padding: 80px 60px;
+          padding: 60px 60px;
           border-right: 2px solid ${INK};
           display: flex;
           flex-direction: column;
@@ -42,7 +42,7 @@ export function Hero() {
           font-size: 13px;
           color: ${MUT};
           letter-spacing: .08em;
-          margin-bottom: 60px;
+          margin-bottom: 36px;
         }
         .b-hero-h1 {
           font-size: clamp(40px, 6vw, 96px);
@@ -64,14 +64,18 @@ export function Hero() {
           align-items: flex-end;
           justify-content: space-between;
           gap: 20px;
-          margin-top: 60px;
+          margin-top: 36px;
           flex-wrap: wrap;
         }
+        /* Ongeveer de helft van de hoofdkop, zodat de belofte meeleest als
+           tweede kop en niet als bijschrift. */
         .b-hero-tagline {
-          font-size: 17px;
+          font-size: clamp(20px, 3vw, 48px);
           color: ${MUT};
-          line-height: 1.65;
-          max-width: 470px;
+          line-height: 1.2;
+          letter-spacing: -.01em;
+          max-width: 24ch;
+          margin-top: 28px;
           font-family: ${B};
         }
         .b-hero-ctas { display: flex; gap: 0; flex-shrink: 0; }
@@ -203,6 +207,7 @@ export function Hero() {
           .b-hero-right { display: none; }
           .b-hero-left { padding: 40px 24px; }
           .b-hero-h1 { font-size: 38px; }
+          .b-hero-tagline { font-size: 20px; margin-top: 20px; }
           .b-hero-bottom { flex-direction: column; align-items: flex-start; }
         }
       `}</style>
@@ -214,20 +219,23 @@ export function Hero() {
               {t('Vrijheid en groei voor ondernemers', 'Freedom and growth for entrepreneurs')} · 2026
             </div>
 
-            <h1 className="b-hero-h1">
-              <span>{t('Een lead die wacht', 'A lead that waits')}</span>
-              <span className="accent-word">{t('koopt elders', 'buys elsewhere')}</span>
-              <span className="outline-word">{t('en is een handrem', 'and is a handbrake')}</span>
-              <span className="outline-word">{t('op je groei.', 'on your growth.')}</span>
-            </h1>
+            <div className="b-hero-copy">
+              <h1 className="b-hero-h1">
+                <span>{t('Een lead die wacht', 'A lead that waits')}</span>
+                <span className="accent-word">{t('koopt elders', 'buys elsewhere')}</span>
+                <span className="outline-word">{t('= de handrem', '= the handbrake')}</span>
+                <span className="outline-word">{t('op je groei.', 'on your growth.')}</span>
+              </h1>
 
-            <div className="b-hero-bottom">
               <p className="b-hero-tagline">
                 {t(
                   'Wij zetten die verloren tijd en moeite om in omzet die zichzelf doet groeien voor jou.',
                   'We turn that lost time and effort into revenue that grows itself for you.'
                 )}
               </p>
+            </div>
+
+            <div className="b-hero-bottom">
               <div className="b-hero-ctas">
                 <a href="/diagnostic" className="b-btn-black">{t('Toon mijn lek', 'Show me my leak')} →</a>
                 <a href="#contact" className="b-btn-outline">{t('Plan gesprek', 'Book a call')}</a>
