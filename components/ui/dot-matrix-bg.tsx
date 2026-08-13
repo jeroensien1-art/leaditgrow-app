@@ -1,7 +1,14 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import DottedBackground from '@/components/ui/dot-matrix'
+
+// Paden waar de achtergrond niet hoort. De calculator en de diagnose zijn
+// schermvullende tools met eigen donkere vlakken, daar zou de laag alleen
+// afleiden en GPU kosten terwijl iemand een formulier invult. Dashboard en
+// login zijn intern.
+const UITGESLOTEN = ['/calculator', '/diagnostic', '/dashboard', '/login', '/logo-preview']
 
 // Merkpalet. De shader interpoleert van donker naar licht over deze lijst, dus
 // de eerste kleur is de rustige zone en de laatste de accentzone. Alles met een
@@ -53,6 +60,7 @@ export function DotMatrixBg({
   // begrijpt geen CSS-variabelen, dus var(--font-mono-brutalist) zou stil
   // terugvallen op het standaardlettertype. Daarom de waarde hier uitlezen.
   const [monoFamily, setMonoFamily] = useState('monospace')
+  const pathname = usePathname()
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -69,6 +77,7 @@ export function DotMatrixBg({
   }, [])
 
   if (!allowed) return null
+  if (UITGESLOTEN.some(p => pathname?.startsWith(p))) return null
 
   return (
     <div
@@ -76,7 +85,10 @@ export function DotMatrixBg({
       style={{
         position: 'fixed',
         inset: 0,
-        zIndex: 0,
+        // Negatief, niet 0. Een fixed laag op z-index 0 schildert over gewone
+        // tekst die zelf geen z-index heeft, en dat is op de meeste pagina's
+        // buiten de homepage het geval.
+        zIndex: -1,
         pointerEvents: 'none',
         opacity,
       }}

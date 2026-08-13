@@ -5,6 +5,7 @@ import { headers } from 'next/headers'
 import Script from 'next/script'
 import './globals.css'
 import { LangProvider } from '@/components/lang-context'
+import { DotMatrixBg } from '@/components/ui/dot-matrix-bg'
 import { seoMetadata } from '@/lib/seo'
 
 const instrumentSans = Instrument_Sans({
@@ -132,6 +133,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         `}</Script>
       </head>
       <body className={`${instrumentSans.variable} ${instrumentSerif.variable} ${spaceGrotesk.variable} ${spaceMono.variable} ${clashDisplay.variable} font-sans antialiased`}>
+        <DotMatrixBg />
         <LangProvider>{children}</LangProvider>
       </body>
     </html>
