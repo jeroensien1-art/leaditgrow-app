@@ -145,6 +145,95 @@ function useServices(nl: boolean): Service[] {
   ]
 }
 
+const INK = '#0e0d0b'
+const BG = '#f2f0eb'
+const BG2 = '#eae8e2'
+const ORNG = '#c96442'
+const GRN = '#1a5e35'
+const LIME = '#4ade80'
+const MUT = '#787068'
+const D = 'var(--font-display, var(--font-brutalist, system-ui))'
+const B = 'var(--font-brutalist, system-ui)'
+const M = 'var(--font-mono-brutalist, monospace)'
+
+const css = `
+  .dn-main { background: ${BG}; min-height: 100vh; }
+
+  .dn-hero { background: ${INK}; color: ${BG}; border-bottom: 3px solid ${INK}; padding: 84px 44px 72px; }
+  .dn-wrap { max-width: 1180px; margin: 0 auto; }
+  .dn-kicker { font-family: ${M}; font-size: 12px; font-weight: 700; letter-spacing: .2em;
+               text-transform: uppercase; color: ${ORNG}; margin-bottom: 20px; }
+  .dn-hero h1 { font-family: ${D}; font-weight: 700; font-size: clamp(38px, 6vw, 86px); line-height: .94;
+                letter-spacing: -.018em; text-transform: uppercase; max-width: 15ch; margin: 0; }
+  .dn-hero h1 span { color: ${ORNG}; }
+  .dn-hero p { font-family: ${B}; font-size: 18px; line-height: 1.6; color: rgba(242,240,235,.55);
+               max-width: 50ch; margin: 26px 0 0; }
+
+  .dn-strip { background: ${BG2}; border-bottom: 3px solid ${INK}; padding: 18px 44px; }
+  .dn-strip-in { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .dn-strip-lbl { font-family: ${M}; font-size: 11px; font-weight: 700; letter-spacing: .16em;
+                  text-transform: uppercase; color: ${MUT}; }
+  .dn-strip a { font-family: ${B}; font-size: 14px; font-weight: 700; letter-spacing: .06em;
+                text-transform: uppercase; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; }
+  .dn-strip a:hover { text-decoration: underline; }
+  .dn-strip-sep { font-family: ${M}; font-size: 12px; color: ${MUT}; }
+
+  .dn-list { max-width: 1180px; margin: 0 auto; padding: 64px 44px 96px; }
+  .dn-svc { display: grid; grid-template-columns: 56px 1fr; gap: 24px; align-items: start;
+            border: 3px solid ${INK}; padding: 32px 30px; margin-bottom: -3px; position: relative;
+            background: transparent; transition: background .18s; }
+  .dn-svc:hover { background: ${BG2}; }
+  .dn-svc.feat { background: ${INK}; color: ${BG}; }
+  .dn-svc.feat:hover { background: ${INK}; }
+  .dn-ico { width: 44px; height: 44px; border: 2px solid ${INK}; display: flex; align-items: center;
+            justify-content: center; flex-shrink: 0; }
+  .dn-svc.feat .dn-ico { border-color: ${LIME}; }
+  .dn-badge { position: absolute; top: 0; right: 0; font-family: ${M}; font-size: 10px; font-weight: 700;
+              letter-spacing: .14em; text-transform: uppercase; background: ${LIME}; color: ${INK}; padding: 6px 12px; }
+  .dn-tag { font-family: ${M}; font-size: 11px; font-weight: 700; letter-spacing: .14em;
+            text-transform: uppercase; color: ${MUT}; margin-bottom: 10px; }
+  .dn-svc.feat .dn-tag { color: rgba(242,240,235,.45); }
+  .dn-svc h2 { font-family: ${D}; font-weight: 700; font-size: clamp(24px, 3vw, 38px); line-height: 1.02;
+               letter-spacing: -.015em; text-transform: uppercase; margin: 0 0 12px; color: ${INK}; }
+  .dn-svc.feat h2 { color: ${BG}; }
+  .dn-out { font-family: ${B}; font-size: 17px; font-weight: 600; line-height: 1.5; margin: 0 0 12px; max-width: 62ch; }
+  .dn-desc { font-family: ${B}; font-size: 16px; line-height: 1.7; color: ${MUT}; margin: 0 0 22px; max-width: 68ch; }
+  .dn-svc.feat .dn-desc { color: rgba(242,240,235,.6); }
+
+  .dn-cta { display: inline-flex; align-items: center; gap: 9px; font-family: ${B}; font-size: 13px;
+            font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 15px 26px;
+            text-decoration: none; border: 2px solid ${INK}; color: ${INK}; background: transparent;
+            transition: background .15s, color .15s, border-color .15s; }
+  .dn-cta:hover { background: ${INK}; color: ${BG}; }
+  .dn-cta.green { background: ${LIME}; border-color: ${LIME}; color: ${INK}; }
+  .dn-cta.green:hover { background: #fff; border-color: #fff; }
+  .dn-svc.feat .dn-cta { border-color: ${BG}; color: ${BG}; }
+  .dn-svc.feat .dn-cta:hover { background: ${BG}; color: ${INK}; }
+
+  .dn-help { border: 3px solid ${INK}; background: ${INK}; color: ${BG}; padding: 40px; margin-top: 52px; }
+  .dn-help-k { font-family: ${M}; font-size: 11px; font-weight: 700; letter-spacing: .18em;
+               text-transform: uppercase; color: ${LIME}; margin-bottom: 14px; }
+  .dn-help h3 { font-family: ${D}; font-weight: 700; font-size: clamp(24px, 3vw, 40px); line-height: 1.02;
+                letter-spacing: -.02em; text-transform: uppercase; margin: 0 0 14px; max-width: 20ch; }
+  .dn-help p { font-family: ${B}; font-size: 16px; line-height: 1.7; color: rgba(242,240,235,.6);
+               margin: 0 0 24px; max-width: 60ch; }
+
+  .dn-foot { background: ${INK}; border-top: 3px solid ${INK}; padding: 28px 44px; display: flex;
+             align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .dn-foot span { font-family: ${M}; font-size: 11px; letter-spacing: .1em; color: rgba(242,240,235,.25); }
+  .dn-foot b { font-family: ${M}; font-size: 11px; font-weight: 700; letter-spacing: .1em;
+               text-transform: uppercase; color: rgba(242,240,235,.35); }
+
+  @media (max-width: 900px) {
+    .dn-hero { padding: 48px 20px 44px; }
+    .dn-strip { padding: 14px 20px; }
+    .dn-list { padding: 40px 20px 64px; }
+    .dn-svc { grid-template-columns: 1fr; gap: 16px; padding: 26px 20px; }
+    .dn-help { padding: 26px 22px; }
+    .dn-foot { padding: 22px 20px; }
+  }
+`
+
 export default function DienstenPage() {
   const { lang } = useLang()
   const nl = lang === 'nl'
@@ -152,146 +241,91 @@ export default function DienstenPage() {
 
   return (
     <>
+      <style dangerouslySetInnerHTML={{ __html: css }} />
       <Nav />
-      <main style={{ background: '#faf9f5', minHeight: '100vh', paddingTop: '6rem' }}>
+      <main className="dn-main">
 
         {/* ── HERO ── */}
-        <div style={{ background: 'linear-gradient(160deg, #0a1e10 0%, #163320 100%)', padding: '4rem 1.5rem 5rem' }}>
-          <div style={{ maxWidth: '760px', margin: '0 auto' }}>
-            <div style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c96442', marginBottom: '1rem' }}>
-              {nl ? 'Diensten' : 'Services'}
-            </div>
-            <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(28px, 5vw, 48px)', fontWeight: 400, lineHeight: 1.15, color: '#faf9f5', margin: '0 0 1.25rem' }}>
+        <div className="dn-hero">
+          <div className="dn-wrap">
+            <div className="dn-kicker">{nl ? 'Diensten' : 'Services'}</div>
+            <h1>
               {nl
-                ? <>Jouw business is een ketting.<br /><em style={{ color: 'rgba(250,249,245,0.6)' }}>Leer welk onderdeel jou het meeste omzet en energie kost, en vind de oplossing hier.</em></>
-                : <>Your business is a chain.<br /><em style={{ color: 'rgba(250,249,245,0.6)' }}>Learn which link costs you the most revenue and energy, and find the solution here.</em></>
-              }
+                ? <>Jouw business<br />is een <span>ketting.</span></>
+                : <>Your business<br />is a <span>chain.</span></>}
             </h1>
-            <p style={{ fontSize: '16px', color: 'rgba(250,249,245,0.5)', lineHeight: 1.7, maxWidth: '520px', margin: 0 }}>
+            <p>
               {nl
-                ? 'Start gratis met de diagnose of calculator. Ga verder met wat past bij jouw fase.'
-                : 'Start free with the diagnostic or calculator. Move forward with whatever fits your stage.'
-              }
+                ? 'Leer welk onderdeel jou het meeste omzet en energie kost, en vind de oplossing hier. Start gratis met de diagnose of de calculator, ga verder met wat past bij jouw fase.'
+                : 'Learn which link costs you the most revenue and energy, and find the solution here. Start free with the diagnostic or the calculator, then move forward with whatever fits your stage.'}
             </p>
           </div>
         </div>
 
         {/* ── WIDGET STRIP ── */}
-        <div style={{ background: '#f3f1eb', borderBottom: '1px solid rgba(61,57,41,0.08)', padding: '1rem 1.5rem' }}>
-          <div style={{ maxWidth: '760px', margin: '0 auto', display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-            <span style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#83827d' }}>
-              {nl ? 'Weet je niet waar te starten?' : "Don't know where to start?"}
-            </span>
-            <Link href="/calculator" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: 600, color: '#c96442', textDecoration: 'none' }}>
-              {nl ? 'Bereken je omzetverlies' : 'Calculate your revenue leak'} <ArrowRight size={12} />
+        <div className="dn-strip">
+          <div className="dn-strip-in">
+            <span className="dn-strip-lbl">{nl ? 'Weet je niet waar te starten?' : "Don't know where to start?"}</span>
+            <Link href="/calculator" style={{ color: ORNG }}>
+              {nl ? 'Bereken je omzetverlies' : 'Calculate your revenue leak'} <ArrowRight size={13} />
             </Link>
-            <span style={{ color: 'rgba(61,57,41,0.2)', fontSize: '12px' }}>{nl ? 'of' : 'or'}</span>
-            <Link href="/diagnostic" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: 600, color: '#15803d', textDecoration: 'none' }}>
-              {nl ? 'Start de gratis diagnose' : 'Start the free diagnostic'} <ArrowRight size={12} />
+            <span className="dn-strip-sep">{nl ? 'of' : 'or'}</span>
+            <Link href="/diagnostic" style={{ color: GRN }}>
+              {nl ? 'Start de gratis diagnose' : 'Start the free diagnostic'} <ArrowRight size={13} />
             </Link>
           </div>
         </div>
 
-        {/* ── SERVICE GRID ── */}
-        <div style={{ maxWidth: '760px', margin: '0 auto', padding: '3.5rem 1.5rem' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            {services.map((s) => {
-              const Icon = s.icon
-              return (
-                <div
-                  key={s.title}
-                  style={{
-                    background: s.featured ? '#0a1e10' : '#fff',
-                    border: `1px solid ${s.featured ? 'transparent' : s.border}`,
-                    borderRadius: '16px',
-                    padding: '2rem',
-                    boxShadow: s.featured ? '0 8px 32px rgba(10,30,16,0.15)' : '0 2px 8px rgba(0,0,0,0.04)',
-                    position: 'relative',
-                    overflow: 'hidden',
-                  }}
-                >
-                  {s.featured && (
-                    <div style={{ position: 'absolute', top: '1rem', right: '1rem', fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#c96442', background: 'rgba(201,100,66,0.15)', padding: '3px 8px', borderRadius: '999px', border: '1px solid rgba(201,100,66,0.25)' }}>
-                      {nl ? 'Aanbevolen start' : 'Recommended start'}
-                    </div>
-                  )}
-
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-                    <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: s.featured ? 'rgba(201,100,66,0.15)' : s.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <Icon size={18} color={s.featured ? '#c96442' : s.accent} />
-                    </div>
-
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: s.featured ? 'rgba(250,249,245,0.4)' : '#83827d', marginBottom: '4px' }}>
-                        {s.tag}
-                      </div>
-                      <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(20px, 3vw, 26px)', fontWeight: 400, color: s.featured ? '#faf9f5' : '#0a1e10', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
-                        {s.title}
-                      </h2>
-                      <p style={{ fontSize: '15px', fontWeight: 600, color: s.featured ? '#c96442' : s.accent, margin: '0 0 0.75rem', lineHeight: 1.4 }}>
-                        {s.outcome}
-                      </p>
-                      <p style={{ fontSize: '14px', color: s.featured ? 'rgba(250,249,245,0.55)' : '#83827d', margin: '0 0 1.25rem', lineHeight: 1.65 }}>
-                        {s.description}
-                      </p>
-
-                      <Link
-                        href={s.href}
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '8px',
-                          padding: '11px 20px',
-                          borderRadius: '999px',
-                          fontSize: '13px',
-                          fontWeight: 600,
-                          textDecoration: 'none',
-                          ...(s.ctaStyle === 'solid-green'
-                            ? { background: '#15803d', color: '#fff', boxShadow: '0 4px 16px rgba(21,128,61,0.35)' }
-                            : s.ctaStyle === 'ghost-neutral'
-                            ? { background: 'transparent', color: '#535146', border: '1px solid rgba(61,57,41,0.2)' }
-                            : s.featured
-                            ? { background: 'rgba(201,100,66,0.15)', color: '#c96442', border: '1px solid rgba(201,100,66,0.3)' }
-                            : { background: 'transparent', color: s.accent, border: `1px solid ${s.border}` }),
-                        }}
-                      >
-                        {s.cta} <ArrowRight size={14} />
-                      </Link>
-                    </div>
-                  </div>
+        {/* ── SERVICE LIJST ── */}
+        <div className="dn-list">
+          {services.map((s) => {
+            const Icon = s.icon
+            return (
+              <div key={s.title} className={`dn-svc${s.featured ? ' feat' : ''}`}>
+                {s.featured && (
+                  <div className="dn-badge">{nl ? 'Aanbevolen start' : 'Recommended start'}</div>
+                )}
+                <div className="dn-ico">
+                  <Icon size={20} color={s.featured ? LIME : s.accent} />
                 </div>
-              )
-            })}
-          </div>
+                <div>
+                  <div className="dn-tag">{s.tag}</div>
+                  <h2>{s.title}</h2>
+                  <p className="dn-out" style={{ color: s.featured ? LIME : s.accent }}>{s.outcome}</p>
+                  <p className="dn-desc">{s.description}</p>
+                  <Link
+                    href={s.href}
+                    className={`dn-cta${s.ctaStyle === 'solid-green' ? ' green' : ''}`}
+                  >
+                    {s.cta} <ArrowRight size={15} />
+                  </Link>
+                </div>
+              </div>
+            )
+          })}
 
-          {/* ── NOT SURE WIDGET ── */}
-          <div style={{ marginTop: '3rem', padding: '2rem', borderRadius: '16px', background: '#f3f1eb', border: '1px solid rgba(61,57,41,0.08)', display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-            <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'rgba(201,100,66,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <MessageCircle size={16} color="#c96442" />
+          {/* ── NIET ZEKER ── */}
+          <div className="dn-help">
+            <div className="dn-help-k">
+              <MessageCircle size={13} style={{ display: 'inline', verticalAlign: '-2px', marginRight: 7 }} />
+              {nl ? 'Niet zeker welke dienst past?' : 'Not sure which service fits?'}
             </div>
-            <div>
-              <p style={{ fontSize: '15px', fontWeight: 600, color: '#0a1e10', margin: '0 0 0.25rem' }}>
-                {nl ? 'Niet zeker welke dienst past?' : 'Not sure which service fits?'}
-              </p>
-              <p style={{ fontSize: '14px', color: '#83827d', margin: '0 0 1rem', lineHeight: 1.6 }}>
-                {nl
-                  ? 'Start met de gratis diagnose. Die brengt in 4 minuten in kaart waar jouw bedrijf staat en welke dienst de meeste impact heeft voor jouw fase.'
-                  : 'Start with the free diagnostic. In 4 minutes it maps where your business stands and which service has the most impact for your stage.'
-                }
-              </p>
-              <Link
-                href="/diagnostic"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '10px 18px', borderRadius: '999px', background: '#c96442', color: '#fff', fontSize: '13px', fontWeight: 600, textDecoration: 'none', boxShadow: '0 4px 16px rgba(201,100,66,0.3)' }}
-              >
-                {nl ? 'Start gratis diagnose' : 'Start free diagnostic'} <ArrowRight size={14} />
-              </Link>
-            </div>
+            <h3>{nl ? 'Begin bij de diagnose' : 'Start with the diagnostic'}</h3>
+            <p>
+              {nl
+                ? 'Die brengt in 4 minuten in kaart waar jouw bedrijf staat en welke dienst de meeste impact heeft voor jouw fase.'
+                : 'In 4 minutes it maps where your business stands and which service has the most impact for your stage.'}
+            </p>
+            <Link href="/diagnostic" className="dn-cta green">
+              {nl ? 'Start gratis diagnose' : 'Start free diagnostic'} <ArrowRight size={15} />
+            </Link>
           </div>
         </div>
       </main>
 
-      <footer className="py-8 text-center text-xs" style={{ background: '#051209', color: 'rgba(250,249,245,0.3)' }}>
-        © {new Date().getFullYear()} Lead it, Grow · leaditgrow.com · leaditgrow.be
+      <footer className="dn-foot">
+        <b>Lead it, Grow</b>
+        <span>© {new Date().getFullYear()} · leaditgrow.be · leaditgrow.com</span>
       </footer>
     </>
   )
