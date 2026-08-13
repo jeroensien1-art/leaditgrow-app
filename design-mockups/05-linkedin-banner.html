@@ -39,21 +39,34 @@
             color: rgba(242,240,235,.45); margin-top: 9px; line-height: 1.45; }
   .v1 .cell:last-child .cl { color: rgba(14,13,11,.65); }
 
-  /* ── Variant 2, papier ── */
-  .v2 { background: var(--bg); color: var(--ink); border: 4px solid var(--ink); }
-  .v2 .left { padding: 54px 60px 54px 400px; display: flex; flex-direction: column; justify-content: center; }
-  .v2 .kick { font-family: var(--mono); font-size: 15px; font-weight: 700; letter-spacing: .24em;
-              text-transform: uppercase; color: var(--orange); margin-bottom: 22px; }
-  .v2 h1 { font-family: var(--display); font-weight: 700; font-size: 72px; line-height: .92;
-           letter-spacing: -.02em; text-transform: uppercase; }
+  /* ── Variant 2, papier ──
+     Alles wat moet overkomen staat binnen de veilige zone: vanaf 300px links,
+     tot 150px voor de rechterrand, en boven de onderste 80px. Het groene vlak
+     rechts mag doorlopen tot de rand, want dat is kleur, geen informatie. */
+  /* Merkblok links bovenaan. LinkedIn legt de avatar over de ONDERSTE helft
+     links (ongeveer vanaf y 240), dus hierboven is die hoek wel bruikbaar. */
+  .brand { position: absolute; left: 48px; top: 34px; width: 300px; z-index: 2; }
+  .brand svg { display: block; height: 118px; width: auto; }
+  .brand .bn { font-family: var(--display); font-weight: 700; font-size: 30px; line-height: 1;
+               letter-spacing: -.015em; text-transform: uppercase; color: var(--ink); margin-top: 16px; }
+  .brand .bt { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+               color: var(--muted); margin-top: 8px; }
+
+  .v2 { background: var(--bg); color: var(--ink); border: 4px solid var(--ink); grid-template-columns: 1fr 420px; }
+  .v2 .left { padding: 38px 34px 38px 396px; display: flex; flex-direction: column; justify-content: center; }
+  .v2 .kick { font-family: var(--mono); font-size: 14px; font-weight: 700; letter-spacing: .24em;
+              text-transform: uppercase; color: var(--orange); margin-bottom: 14px; }
+  .v2 h1 { font-family: var(--display); font-weight: 700; font-size: 44px; line-height: .98;
+           letter-spacing: -.018em; text-transform: uppercase; }
   .v2 h1 .out { -webkit-text-stroke: 2.5px var(--ink); color: transparent; }
-  .v2 .sub { font-family: var(--ui); font-size: 21px; line-height: 1.45; color: var(--muted); margin-top: 20px; max-width: 42ch; }
+  .v2 .sub { font-family: var(--ui); font-size: 18px; line-height: 1.42; color: var(--muted); margin-top: 14px; max-width: 52ch; }
+  .v2 .ru { font-family: var(--mono); font-size: 15px; font-weight: 700; letter-spacing: .1em;
+            color: var(--green); margin-top: 12px; }
   .v2 .right { background: var(--green); color: #fff; border-left: 4px solid var(--ink);
-               padding: 44px 36px; display: flex; flex-direction: column; justify-content: space-between; }
-  .v2 .rk { font-family: var(--mono); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.6); }
-  .v2 .rt { font-family: var(--display); font-weight: 700; font-size: 34px; line-height: 1.02;
+               padding: 40px 140px 40px 34px; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+  .v2 .rk { font-family: var(--mono); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--lime); }
+  .v2 .rt { font-family: var(--display); font-weight: 700; font-size: 26px; line-height: 1.04;
             letter-spacing: -.015em; text-transform: uppercase; }
-  .v2 .ru { font-family: var(--mono); font-size: 15px; letter-spacing: .1em; color: var(--lime); }
 
   /* ── Variant 3, statement ── */
   .v3 { background: var(--orange); color: #fff; grid-template-columns: 1fr; }
@@ -65,11 +78,19 @@
   .v3 .sub { font-family: var(--mono); font-size: 17px; letter-spacing: .12em; text-transform: uppercase;
              color: rgba(255,255,255,.75); margin-top: 24px; }
 
-  .safe { position: absolute; left: 62px; bottom: 34px; width: 260px; height: 260px; border-radius: 50%;
-          border: 2px dashed rgba(255,255,255,.28); display: grid; place-items: center;
-          font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
-          color: rgba(255,255,255,.4); text-align: center; pointer-events: none; }
-  .v2 .safe { border-color: rgba(14,13,11,.22); color: rgba(14,13,11,.35); }
+  /* Hulplijnen. Nooit mee-exporteren: zet .hide-guides op body of gebruik het
+     exportbestand. De profielfoto van LinkedIn dekt ongeveer 200px vanaf links
+     en 150px vanaf onder af. De veilige zone is wat op mobiel overblijft. */
+  .safe { position: absolute; left: 56px; bottom: -60px; width: 290px; height: 290px; border-radius: 50%;
+          border: 2px dashed rgba(255,255,255,.3); display: grid; place-items: start center;
+          padding-top: 40px; font-family: var(--mono); font-size: 11px; letter-spacing: .12em;
+          text-transform: uppercase; color: rgba(255,255,255,.4); text-align: center; pointer-events: none; }
+  .v2 .safe { border-color: rgba(14,13,11,.25); color: rgba(14,13,11,.4); }
+  .zone { position: absolute; left: 300px; right: 150px; top: 60px; bottom: 80px;
+          border: 1px dashed rgba(74,222,128,.5); pointer-events: none;
+          font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+          color: rgba(74,222,128,.75); padding: 3px 6px; }
+  body.hide-guides .safe, body.hide-guides .zone { display: none; }
 </style>
 </head>
 <body>
@@ -100,17 +121,32 @@
 
 <div class="note">Variant 2 · papier · rustiger, meer ruimte voor de tekst</div>
 <div class="banner v2">
+  <div class="brand">
+    <svg viewBox="-2 -2 104 123" xmlns="http://www.w3.org/2000/svg" aria-label="Lead it, Grow">
+      <defs>
+        <linearGradient id="lg2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#c96342"/>
+          <stop offset="100%" stop-color="#ff904d"/>
+        </linearGradient>
+      </defs>
+      <path d="M 0,62 L 0,119 L 100,119 Z" fill="none" stroke="url(#lg2)" stroke-width="7" stroke-linejoin="miter"/>
+      <path d="M 10.5,37 L 10.5,88 L 59,88 Z" fill="none" stroke="url(#lg2)" stroke-width="7" stroke-linejoin="miter"/>
+      <path d="M 0,0 L 0,57 L 41,57 Z" fill="none" stroke="url(#lg2)" stroke-width="7" stroke-linejoin="miter"/>
+    </svg>
+    <div class="bn">Lead it, Grow</div>
+  </div>
   <div class="left">
     <div class="kick">Groeisystemen voor zaakvoerders</div>
-    <h1>Elke lead die<br>wacht, <span class="out">koopt elders.</span></h1>
-    <div class="sub">Wij dichten het duurste gat eerst. Daarna pas de rest.</div>
+    <h1>Een lead die wacht<br><span class="out">koopt elders</span><br>en is een handrem op je groei.</h1>
+    <div class="sub">Wij zetten die verloren tijd en moeite om in omzet die zichzelf doet groeien voor jou.</div>
+    <div class="ru">leaditgrow.be/calculator</div>
   </div>
   <div class="right">
     <div class="rk">Gratis, vier vragen</div>
-    <div class="rt">Bereken wat je<br>stilte kost</div>
-    <div class="ru">leaditgrow.be/calculator</div>
+    <div class="rt">Bereken wat<br>je stilte kost</div>
   </div>
-  <div class="safe">Profielfoto</div>
+  <div class="safe">LinkedIn legt hier<br>je avatar over</div>
+  <div class="zone">Veilige zone</div>
 </div>
 
 <div class="note">Variant 3 · statement · één zin, maximale leesbaarheid in de feed</div>
