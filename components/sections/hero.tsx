@@ -45,7 +45,7 @@ export function Hero() {
           margin-bottom: 36px;
         }
         .b-hero-h1 {
-          font-size: clamp(40px, 6vw, 96px);
+          font-size: clamp(48px, 7vw, 112px);
           font-weight: 700;
           line-height: .92;
           letter-spacing: -.02em;
@@ -206,7 +206,7 @@ export function Hero() {
           .b-hero-main { grid-template-columns: 1fr; }
           .b-hero-right { display: none; }
           .b-hero-left { padding: 40px 24px; }
-          .b-hero-h1 { font-size: 38px; }
+          .b-hero-h1 { font-size: 52px; }
           .b-hero-tagline { font-size: 20px; margin-top: 20px; }
           .b-hero-bottom { flex-direction: column; align-items: flex-start; }
         }
@@ -221,10 +221,9 @@ export function Hero() {
 
             <div className="b-hero-copy">
               <h1 className="b-hero-h1">
-                <span>{t('Een lead die wacht', 'A lead that waits')}</span>
-                <span className="accent-word">{t('koopt elders', 'buys elsewhere')}</span>
-                <span className="outline-word">{t('= de handrem', '= the handbrake')}</span>
-                <span className="outline-word">{t('op je groei.', 'on your growth.')}</span>
+                <span>{t('Je omzet', 'Your revenue')}</span>
+                <span className="accent-word">{t('lekt.', 'leaks.')}</span>
+                <span className="outline-word">{t('Elke maand.', 'Every month.')}</span>
               </h1>
 
               <p className="b-hero-tagline">
