@@ -45,7 +45,7 @@ export function Hero() {
           margin-bottom: 60px;
         }
         .b-hero-h1 {
-          font-size: clamp(48px, 7vw, 112px);
+          font-size: clamp(40px, 6vw, 96px);
           font-weight: 700;
           line-height: .92;
           letter-spacing: -.02em;
@@ -71,7 +71,7 @@ export function Hero() {
           font-size: 17px;
           color: ${MUT};
           line-height: 1.65;
-          max-width: 400px;
+          max-width: 470px;
           font-family: ${B};
         }
         .b-hero-ctas { display: flex; gap: 0; flex-shrink: 0; }
@@ -202,7 +202,7 @@ export function Hero() {
           .b-hero-main { grid-template-columns: 1fr; }
           .b-hero-right { display: none; }
           .b-hero-left { padding: 40px 24px; }
-          .b-hero-h1 { font-size: 52px; }
+          .b-hero-h1 { font-size: 38px; }
           .b-hero-bottom { flex-direction: column; align-items: flex-start; }
         }
       `}</style>
@@ -215,16 +215,17 @@ export function Hero() {
             </div>
 
             <h1 className="b-hero-h1">
-              <span>{t('Je omzet', 'Your revenue')}</span>
-              <span className="accent-word">{t('lekt.', 'leaks.')}</span>
-              <span className="outline-word">{t('Elke maand.', 'Every month.')}</span>
+              <span>{t('Een lead die wacht', 'A lead that waits')}</span>
+              <span className="accent-word">{t('koopt elders', 'buys elsewhere')}</span>
+              <span className="outline-word">{t('en is een handrem', 'and is a handbrake')}</span>
+              <span className="outline-word">{t('op je groei.', 'on your growth.')}</span>
             </h1>
 
             <div className="b-hero-bottom">
               <p className="b-hero-tagline">
                 {t(
-                  '78% van je aanvragen koopt bij wie het eerst antwoordt. Terwijl jij offertes maakt of op de werf staat, tekent jouw lead bij een ander.',
-                  '78% of buyers go with whoever answers first. While you are drafting quotes or on site, your lead is signing with someone else.'
+                  'Wij zetten die verloren tijd en moeite om in omzet die zichzelf doet groeien voor jou.',
+                  'We turn that lost time and effort into revenue that grows itself for you.'
                 )}
               </p>
               <div className="b-hero-ctas">
