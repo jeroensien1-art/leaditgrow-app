@@ -20,14 +20,15 @@ const PALETTES: Record<string, string[]> = {
 }
 
 export default function AchtergrondLab() {
-  const [cellSize, setCellSize] = useState(6)
-  const [gamma, setGamma] = useState(8)
-  const [bias, setBias] = useState(2)
+  // Startwaarden zijn de door Jeroen gekozen instelling van 2026-08-14
+  const [cellSize, setCellSize] = useState(23)
+  const [gamma, setGamma] = useState(6)
+  const [bias, setBias] = useState(4)
   const [frequency, setFrequency] = useState(1)
   const [speed, setSpeed] = useState(1)
   const [opacity, setOpacity] = useState(1)
   const [palette, setPalette] = useState('Merk')
-  const [glyphs, setGlyphs] = useState(false)
+  const [glyphs, setGlyphs] = useState(true)
   const [showLogo, setShowLogo] = useState(true)
   const [fps, setFps] = useState(0)
 
@@ -75,9 +76,6 @@ export default function AchtergrondLab() {
         opacity={opacity}
         useGlyphAtlas={glyphs}
         characters="LIG"
-        fontFamily="var(--font-mono-brutalist, monospace)"
-        fontWeight={700}
-        fontSizePx={42}
       />
       {showLogo && <BgLogo />}
 

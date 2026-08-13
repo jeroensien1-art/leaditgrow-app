@@ -12,6 +12,17 @@ export const BRAND_COLORS = [
   'rgba(201,100,66,0.16)',
 ]
 
+// Door Jeroen gekozen op de testpagina, 2026-08-14.
+export const PRESET = {
+  cellSize: 23,
+  gamma: 6,
+  paletteBias: 4,
+  frequency: 1,
+  speed: 1,
+  useGlyphAtlas: true,
+  characters: 'LIG',
+}
+
 type Props = {
   colors?: string[]
   frequency?: number
@@ -21,7 +32,6 @@ type Props = {
   paletteBias?: number
   useGlyphAtlas?: boolean
   characters?: string
-  fontFamily?: string
   fontWeight?: string | number
   fontSizePx?: number
   /** Doorschijnendheid van de hele laag, los van de kleuren zelf. */
@@ -31,17 +41,30 @@ type Props = {
 export function DotMatrixBg({
   colors = BRAND_COLORS,
   opacity = 1,
+  fontWeight = 700,
+  fontSizePx = 42,
   ...rest
 }: Props) {
   // De animatie draait continu op de GPU. Wie beweging heeft uitgezet krijgt
   // hem dus helemaal niet, in plaats van een stilstaand frame.
   const [allowed, setAllowed] = useState(false)
 
+  // De glyph-atlas wordt op een 2D canvas getekend met ctx.font. Dat veld
+  // begrijpt geen CSS-variabelen, dus var(--font-mono-brutalist) zou stil
+  // terugvallen op het standaardlettertype. Daarom de waarde hier uitlezen.
+  const [monoFamily, setMonoFamily] = useState('monospace')
+
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
     const apply = () => setAllowed(!mq.matches)
     apply()
     mq.addEventListener('change', apply)
+
+    const resolved = getComputedStyle(document.body)
+      .getPropertyValue('--font-mono-brutalist')
+      .trim()
+    if (resolved) setMonoFamily(`${resolved}, monospace`)
+
     return () => mq.removeEventListener('change', apply)
   }, [])
 
@@ -58,7 +81,15 @@ export function DotMatrixBg({
         opacity,
       }}
     >
-      <DottedBackground bgColor="transparent" colors={colors} {...rest} />
+      <DottedBackground
+        bgColor="transparent"
+        colors={colors}
+        fontFamily={monoFamily}
+        fontWeight={fontWeight}
+        fontSizePx={fontSizePx}
+        {...PRESET}
+        {...rest}
+      />
     </div>
   )
 }

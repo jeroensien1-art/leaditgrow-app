@@ -1,5 +1,6 @@
 import { Nav } from '@/components/nav'
 import { BgLogo } from '@/components/ui/bg-logo'
+import { DotMatrixBg } from '@/components/ui/dot-matrix-bg'
 import { ScrollSpotlight } from '@/components/ui/scroll-spotlight'
 import { Hero } from '@/components/sections/hero'
 import { MarqueeBar } from '@/components/sections/marquee'
@@ -16,6 +17,7 @@ export default function Home() {
   return (
     <>
       <style>{`body { background: #f2f0eb; }`}</style>
+      <DotMatrixBg />
       <BgLogo />
       <ScrollSpotlight />
       <Nav />
