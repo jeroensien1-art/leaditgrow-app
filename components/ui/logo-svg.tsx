@@ -95,18 +95,18 @@ export function LogoFull({
       <LogoSVG size={markSize} />
       <span
         style={{
-          fontFamily: 'var(--font-serif)',
-          fontStyle: 'italic',
-          fontWeight: 400,
+          fontFamily: 'var(--font-display, var(--font-brutalist, system-ui))',
+          fontWeight: 700,
           fontSize: fs,
           color: textColor,
           letterSpacing: '-0.01em',
+          textTransform: 'uppercase',
           lineHeight: 1,
           whiteSpace: 'nowrap',
         }}
       >
         Lead it,{' '}
-        <span style={{ color: '#c96442', fontWeight: 500 }}>Grow</span>
+        <span style={{ color: '#c96442' }}>Grow</span>
       </span>
     </div>
   )

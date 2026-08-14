@@ -64,9 +64,11 @@ export function ChatWidget() {
         setTyping(false)
         setMessages([{
           from: 'bot',
+          // Kort houden: de naam staat al in de kop erboven, en niemand leest
+          // vijf regels voor hij op een knop klikt.
           text: nl
-            ? 'Hoi! Lead it, Grow hier. Beantwoord 2 korte vragen, dan weten we of een samenwerking nuttig kan zijn en tonen we je de weg naar meer omzet mét meer controle en vrijheid.'
-            : 'Hi! Lead it, Grow here. Answer 2 short questions, then we\'ll know if working together makes sense and we\'ll show you the way to more revenue with more control and freedom.',
+            ? 'Hoi! Twee korte vragen en we weten of we iets voor je kunnen betekenen.'
+            : 'Hi! Two quick questions and we\'ll know if we can help you.',
         }])
         setBotStep('challenge')
       }, 700)
