@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<title>LinkedIn banner EN · Lead it, Grow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=clash-display@400,500,600,700&display=swap">
+<style>
+  :root{--ink:#0e0d0b;--bg:#f2f0eb;--bg2:#eae8e2;--orange:#c96442;--green:#1a5e35;
+        --lime:#4ade80;--muted:#787068;
+        --display:'Clash Display','Space Grotesk',system-ui,sans-serif;
+        --ui:'Space Grotesk',system-ui,sans-serif;--mono:'Space Mono',ui-monospace,monospace;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#55524d;padding:40px 20px;font-family:var(--ui)}
+
+  .note{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+        color:rgba(255,255,255,.55);max-width:1584px;margin:0 auto 14px}
+  .note b{color:var(--lime)}
+
+  /* 1584 x 396. Profile photo covers roughly the lower left, up to 200px in
+     and 150px up. Everything that must be read sits inside the safe band:
+     from 300px on the left, up to 150px before the right edge. */
+  .banner{width:1584px;height:396px;margin:0 auto 44px;position:relative;overflow:hidden;
+          background:var(--bg);color:var(--ink);border:4px solid var(--ink)}
+  #matrix{position:absolute;inset:0;z-index:0}
+  #matrix canvas{display:block;width:100%;height:100%}
+
+  .brand{position:absolute;left:48px;top:34px;z-index:2;width:300px}
+  .brand svg{display:block;height:104px;width:auto}
+  .brand .bn{font-family:var(--display);font-weight:700;font-size:27px;line-height:1;
+             letter-spacing:-.015em;text-transform:uppercase;color:var(--ink);margin-top:14px}
+
+  .content{position:relative;z-index:2;height:100%;display:grid;grid-template-columns:1fr 420px}
+  .left{padding:44px 40px 44px 396px;display:flex;flex-direction:column;justify-content:center}
+  .kick{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.24em;
+        text-transform:uppercase;color:var(--orange);margin-bottom:18px}
+  h1{font-family:var(--display);font-weight:700;font-size:56px;line-height:.98;
+     letter-spacing:-.02em;text-transform:uppercase;max-width:17ch}
+  h1 .hl{color:var(--orange)}
+  .sub{font-family:var(--ui);font-size:18px;line-height:1.45;color:var(--muted);
+       margin-top:16px;max-width:50ch;background:rgba(242,240,235,.82);
+       box-shadow:0 0 0 8px rgba(242,240,235,.82);width:fit-content}
+
+  .right{background:var(--green);color:#fff;border-left:4px solid var(--ink);
+         padding:44px 140px 44px 34px;display:flex;flex-direction:column;justify-content:space-between}
+  .rk{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+  .rt{font-family:var(--display);font-weight:700;font-size:32px;line-height:1.02;
+      letter-spacing:-.015em;text-transform:uppercase;color:#fff}
+  .ru{font-family:var(--mono);font-size:15px;letter-spacing:.1em;color:var(--lime)}
+
+  .safe{position:absolute;left:56px;bottom:-60px;width:290px;height:290px;border-radius:50%;
+        border:2px dashed rgba(14,13,11,.25);display:grid;place-items:start center;padding-top:40px;
+        font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+        color:rgba(14,13,11,.4);text-align:center;pointer-events:none;z-index:3}
+  .zone{position:absolute;left:300px;right:150px;top:60px;bottom:80px;z-index:3;
+        border:1px dashed rgba(74,222,128,.45);pointer-events:none;font-family:var(--mono);
+        font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(74,222,128,.7);padding:3px 6px}
+  body.hide-guides .safe,body.hide-guides .zone{display:none}
+
+  /* One-liner picker */
+  .picker{max-width:1584px;margin:0 auto;background:#fff;border:3px solid var(--ink);padding:24px}
+  .picker h3{font-family:var(--display);font-weight:700;font-size:19px;text-transform:uppercase;color:var(--ink);margin-bottom:6px}
+  .picker .hint{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+  .lines{display:flex;flex-wrap:wrap}
+  .line{font-family:var(--ui);font-size:14px;font-weight:600;color:var(--ink);background:transparent;
+        border:2px solid var(--ink);margin:-2px 0 0 -2px;padding:12px 16px;cursor:pointer;text-align:left}
+  .line:hover{background:var(--bg2)}
+  .line.on{background:var(--lime)}
+  .line small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+              text-transform:uppercase;color:var(--muted);margin-top:5px;font-weight:400}
+  .line.on small{color:rgba(14,13,11,.6)}
+</style>
+</head>
+<body>
+
+<div class="note">English banner with the dot matrix behind it · <b>1584 &times; 396</b> · guides are hidden on export</div>
+
+<div class="banner" id="banner">
+  <div id="matrix"></div>
+
+  <div class="brand">
+    <svg viewBox="-2 -2 104 123" xmlns="http://www.w3.org/2000/svg" aria-label="Lead it, Grow">
+      <defs><linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#c96342"/><stop offset="100%" stop-color="#ff904d"/>
+      </linearGradient></defs>
+      <path d="M 0,62 L 0,119 L 100,119 Z" fill="none" stroke="url(#lg)" stroke-width="7"/>
+      <path d="M 10.5,37 L 10.5,88 L 59,88 Z" fill="none" stroke="url(#lg)" stroke-width="7"/>
+      <path d="M 0,0 L 0,57 L 41,57 Z" fill="none" stroke="url(#lg)" stroke-width="7"/>
+    </svg>
+    <div class="bn">Lead it, Grow</div>
+  </div>
+
+  <div class="content">
+    <div class="left">
+      <div class="kick" id="kick">Growth systems for business owners</div>
+      <h1 id="head">Turn leaks into<br><span class="hl">more leads</span></h1>
+      <div class="sub" id="sub">We build the system that answers first, follows up on its own and hands you the booked call.</div>
+    </div>
+    <div class="right">
+      <div class="rk">Free · four questions</div>
+      <div class="rt">See what your<br>silence costs</div>
+      <div class="ru">leaditgrow.com/calculator</div>
+    </div>
+  </div>
+
+  <div class="safe">LinkedIn puts<br>your avatar here</div>
+  <div class="zone">Safe zone</div>
+</div>
+
+<div class="picker">
+  <h3>One-liners</h3>
+  <div class="hint">Click to preview in the banner above</div>
+  <div class="lines" id="lines"></div>
+</div>
+
+<script type="module">
+import { Renderer, Camera, Mesh, Plane, Program, RenderTarget, Texture } from 'https://esm.sh/ogl@1.0.11';
+
+const vert = `#version 300 es
+in vec2 uv; in vec2 position; out vec2 vUv;
+void main(){ vUv = uv; gl_Position = vec4(position,0.,1.); }`;
+
+const perlinFrag = `#version 300 es
+precision mediump float;
+uniform float uFrequency; uniform float uTime; uniform float uSpeed; uniform float uValue;
+uniform vec2 uResolution; in vec2 vUv; out vec4 fragColor;
+vec3 mod289(vec3 x){return x - floor(x*(1.0/289.0))*289.0;}
+vec4 mod289(vec4 x){return x - floor(x*(1.0/289.0))*289.0;}
+vec4 permute(vec4 x){return mod289(((x*34.0)+1.0)*x);}
+vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314*r;}
+float snoise(vec3 v){
+  const vec2 C = vec2(1.0/6.0,1.0/3.0); const vec4 D = vec4(0.0,0.5,1.0,2.0);
+  vec3 i=floor(v+dot(v,C.yyy)); vec3 x0=v-i+dot(i,C.xxx);
+  vec3 g=step(x0.yzx,x0.xyz); vec3 l=1.0-g; vec3 i1=min(g.xyz,l.zxy); vec3 i2=max(g.xyz,l.zxy);
+  vec3 x1=x0-i1+C.xxx; vec3 x2=x0-i2+C.yyy; vec3 x3=x0-D.yyy; i=mod289(i);
+  vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));
+  float n_=0.142857142857; vec3 ns=n_*D.wyz-D.xzx;
+  vec4 j=p-49.0*floor(p*ns.z*ns.z); vec4 x_=floor(j*ns.z); vec4 y_=floor(j-7.0*x_);
+  vec4 x=x_*ns.x+ns.yyyy; vec4 y=y_*ns.x+ns.yyyy; vec4 h=1.0-abs(x)-abs(y);
+  vec4 b0=vec4(x.xy,y.xy); vec4 b1=vec4(x.zw,y.zw);
+  vec4 s0=floor(b0)*2.0+1.0; vec4 s1=floor(b1)*2.0+1.0; vec4 sh=-step(h,vec4(0.0));
+  vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy; vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;
+  vec3 p0=vec3(a0.xy,h.x); vec3 p1=vec3(a0.zw,h.y); vec3 p2=vec3(a1.xy,h.z); vec3 p3=vec3(a1.zw,h.w);
+  vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));
+  p0*=norm.x; p1*=norm.y; p2*=norm.z; p3*=norm.w;
+  vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0); m=m*m;
+  return 42.0*dot(m*m, vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));
+}
+vec3 hsv2rgb(vec3 c){ vec4 K=vec4(1.0,2.0/3.0,1.0/3.0,3.0);
+  vec3 p=abs(fract(c.xxx+K.xyz)*6.0-K.www); return c.z*mix(K.xxx,clamp(p-K.xxx,0.0,1.0),c.y); }
+void main(){
+  vec2 uv=vUv; float aspect=uResolution.x/max(uResolution.y,1.0);
+  uv=(uv-0.5)*vec2(aspect,1.0)+0.5;
+  float hue=abs(snoise(vec3(uv*uFrequency, uTime*uSpeed)));
+  fragColor=vec4(hsv2rgb(vec3(hue,1.0,uValue)),1.0);
+}`;
+
+const dotFrag = `#version 300 es
+precision highp float;
+uniform vec2 uResolution; uniform sampler2D uTexture;
+uniform int uPaletteCount; uniform vec3 uPalette[10]; uniform float uPaletteA[10];
+uniform float uCellSize; uniform float uGamma; uniform float uPaletteBias;
+uniform int uUseGlyphAtlas; uniform sampler2D uGlyphAtlas; uniform ivec2 uGlyphGrid; uniform int uCharCount;
+out vec4 fragColor;
+void main(){
+  vec2 pix=gl_FragCoord.xy; float cell=max(uCellSize,1.0);
+  vec2 cellIdx=floor(pix/cell); vec2 cellCenter=(cellIdx+0.5)*cell;
+  vec3 col=texture(uTexture, cellCenter/uResolution.xy).rgb;
+  float gray=0.3*col.r+0.59*col.g+0.11*col.b;
+  gray=pow(clamp(gray,0.0001,1.0),uGamma);
+  float mark=0.0;
+  if(uUseGlyphAtlas==1 && uCharCount>0 && uGlyphGrid.x>0 && uGlyphGrid.y>0){
+    float g=clamp(gray+uPaletteBias,0.0,1.0);
+    int idx=int(clamp(floor(g*float(uCharCount-1)+0.5),0.0,float(uCharCount-1)));
+    vec2 cellUV=fract(pix/cell); vec2 grid=vec2(uGlyphGrid); vec2 tileSize=1.0/grid;
+    float colIdx=float(idx%uGlyphGrid.x); float rowIdx=floor(float(idx)/float(uGlyphGrid.x));
+    vec2 atlasUV=(vec2(colIdx,rowIdx)+cellUV)*tileSize;
+    mark=dot(texture(uGlyphAtlas,atlasUV).rgb, vec3(0.299,0.587,0.114));
+  } else {
+    vec2 cellUV=fract(pix/cell)-0.5; float dist=length(cellUV);
+    float radius=clamp(gray+uPaletteBias,0.0,1.0)*0.5;
+    float aa=fwidth(dist)+1e-4;
+    mark=1.0-smoothstep(radius-aa,radius+aa,dist);
+  }
+  float g2=clamp(gray+uPaletteBias,0.0,1.0);
+  int cnt=max(uPaletteCount,1);
+  vec3 dotCol; float dotOpacity;
+  if(cnt<=1){ dotCol=uPalette[0]; dotOpacity=uPaletteA[0]; }
+  else{
+    float scaled=g2*float(cnt-1); int i0=clamp(int(floor(scaled)),0,cnt-2);
+    float f=scaled-float(i0);
+    dotCol=mix(uPalette[i0],uPalette[i0+1],f);
+    dotOpacity=mix(uPaletteA[i0],uPaletteA[i0+1],f);
+  }
+  fragColor=vec4(dotCol, mark*dotOpacity);
+}`;
+
+/* Same palette as the site: dark marks on the paper background. */
+const COLORS = ['rgba(26,94,53,0.07)','rgba(26,94,53,0.14)','rgba(201,100,66,0.22)'];
+const parse = s => {
+  const m = String(s).match(/rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*(?:,\s*([\d.]+)\s*)?\)/i);
+  return m ? [+m[1]/255, +m[2]/255, +m[3]/255, m[4] !== undefined ? +m[4] : 1] : [0,0,0,1];
+};
+const rgb = [], alpha = [];
+for (let i = 0; i < 10; i++) {
+  if (COLORS[i]) { const c = parse(COLORS[i]); rgb.push([c[0],c[1],c[2]]); alpha.push(c[3]); }
+  else { rgb.push([0,0,0]); alpha.push(0); }
+}
+const mapLin = (v,a,b,c,d) => c + ((v-a)/(b-a))*(d-c);
+
+const host = document.getElementById('matrix');
+const renderer = new Renderer({ dpr: Math.min(devicePixelRatio || 1, 2), alpha: true, premultipliedAlpha: false });
+const gl = renderer.gl;
+host.appendChild(gl.canvas);
+const camera = new Camera(gl, { near: 0.1, far: 100 });
+camera.position.set(0, 0, 3);
+
+const perlin = new Program(gl, { vertex: vert, fragment: perlinFrag, uniforms: {
+  uTime:{value:0}, uFrequency:{value:mapLin(1,1,10,0.3,6)}, uSpeed:{value:0.05},
+  uValue:{value:1}, uResolution:{value:[gl.canvas.width, gl.canvas.height]} } });
+const perlinMesh = new Mesh(gl, { geometry: new Plane(gl,{width:2,height:2}), program: perlin });
+const target = new RenderTarget(gl);
+
+// LIG letters, same as on the site
+const chars = 'LIG', cols = 2, rows = 2, cellPx = 46;
+const dpr = Math.min(devicePixelRatio || 1, 2);
+const cv = document.createElement('canvas');
+cv.width = cols*cellPx*dpr; cv.height = rows*cellPx*dpr;
+const ctx = cv.getContext('2d'); ctx.scale(dpr, dpr);
+ctx.fillStyle = '#000'; ctx.fillRect(0,0,cv.width/dpr,cv.height/dpr);
+ctx.fillStyle = '#fff'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+ctx.font = `700 42px 'Space Mono', monospace`;
+for (let i = 0; i < chars.length; i++) {
+  ctx.fillText(chars[i], (i%cols)*cellPx + cellPx/2, Math.floor(i/cols)*cellPx + cellPx/2);
+}
+const atlas = new Texture(gl, { image: cv, generateMipmaps: false, flipY: true });
+
+const dot = new Program(gl, { vertex: vert, fragment: dotFrag, uniforms: {
+  uResolution:{value:[gl.canvas.width, gl.canvas.height]}, uTexture:{value:target.texture},
+  uPaletteCount:{value:3}, uPalette:{value:rgb}, uPaletteA:{value:alpha},
+  uCellSize:{value:mapLin(23,1,100,6,60)}, uGamma:{value:mapLin(3,1,20,0.5,8)}, uPaletteBias:{value:0.35},
+  uUseGlyphAtlas:{value:1}, uGlyphAtlas:{value:atlas}, uGlyphGrid:{value:[cols,rows]}, uCharCount:{value:3} } });
+const dotMesh = new Mesh(gl, { geometry: new Plane(gl,{width:2,height:2}), program: dot });
+
+function resize() {
+  renderer.setSize(host.clientWidth || 1584, host.clientHeight || 396);
+  camera.perspective({ aspect: gl.canvas.width / gl.canvas.height });
+  target.setSize(gl.canvas.width, gl.canvas.height);
+  perlin.uniforms.uResolution.value = [gl.canvas.width, gl.canvas.height];
+  dot.uniforms.uResolution.value = [gl.canvas.width, gl.canvas.height];
+}
+addEventListener('resize', resize); resize();
+
+let last = 0;
+function loop(t) {
+  requestAnimationFrame(loop);
+  if (t - last < 1000/30) return;
+  last = t;
+  perlin.uniforms.uTime.value = t * 0.001;
+  renderer.render({ scene: perlinMesh, camera, target });
+  renderer.render({ scene: dotMesh, camera });
+}
+requestAnimationFrame(loop);
+
+/* ── One-liners ── */
+const LINES = [
+  { h: ['Turn leaks into ', 'more leads'],        s: 'We build the system that answers first, follows up on its own and hands you the booked call.' },
+  { h: ['Turn leaks into ', 'automated leads'],   s: 'Every enquiry gets a personal reply within a minute, in your voice, day or night.' },
+  { h: ['Fewer leaks. ', 'More leads.'],          s: 'We fix the one thing that costs you most today, then the next.' },
+  { h: ['A lead that waits ', 'buys elsewhere'],  s: 'We turn that lost time and effort into revenue that grows itself for you.' },
+  { h: ['Answer first. ', 'Win the deal.'],       s: 'Speed is the cheapest advantage you have, and the easiest one to automate.' },
+  { h: ['Stop chasing. ', 'Start closing.'],      s: 'Follow-up runs on its own, so warm leads stop going cold while you work.' },
+  { h: ['Your quietest hour ', 'costs the most'], s: 'The enquiry that lands at 5.45pm on a Friday is the one you never answer.' },
+  { h: ['Sell while ', 'you sleep'],              s: 'Your business keeps booking calls on the evenings and weekends you take off.' },
+];
+
+const linesEl = document.getElementById('lines');
+const headEl = document.getElementById('head');
+const subEl = document.getElementById('sub');
+LINES.forEach((l, i) => {
+  const b = document.createElement('button');
+  b.className = 'line' + (i === 0 ? ' on' : '');
+  b.innerHTML = l.h[0] + l.h[1] + '<small>' + (l.h[0] + l.h[1]).length + ' characters</small>';
+  b.onclick = () => {
+    headEl.innerHTML = l.h[0].trim() + '<br><span class="hl">' + l.h[1] + '</span>';
+    subEl.textContent = l.s;
+    [...linesEl.children].forEach(c => c.classList.toggle('on', c === b));
+  };
+  linesEl.appendChild(b);
+});
+</script>
+</body>
+</html>
