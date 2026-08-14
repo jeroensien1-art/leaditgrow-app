@@ -37,8 +37,8 @@
   .left{padding:44px 40px 44px 396px;display:flex;flex-direction:column;justify-content:center}
   .kick{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.24em;
         text-transform:uppercase;color:var(--orange);margin-bottom:18px}
-  h1{font-family:var(--display);font-weight:700;font-size:56px;line-height:.98;
-     letter-spacing:-.02em;text-transform:uppercase;max-width:17ch}
+  h1{font-family:var(--display);font-weight:700;font-size:42px;line-height:1.04;
+     letter-spacing:-.018em;text-transform:uppercase}
   h1 .hl{color:var(--orange)}
   .sub{font-family:var(--ui);font-size:18px;line-height:1.45;color:var(--muted);
        margin-top:16px;max-width:50ch;background:rgba(242,240,235,.82);
@@ -96,8 +96,8 @@
   <div class="content">
     <div class="left">
       <div class="kick" id="kick">Growth systems for business owners</div>
-      <h1 id="head">Turn leaks into<br><span class="hl">more leads</span></h1>
-      <div class="sub" id="sub">We build the system that answers first, follows up on its own and hands you the booked call.</div>
+      <h1 id="head">Fewer leaks. <span class="hl">More leads.</span><br>Revenue lost<br>turned into growth.</h1>
+      <div class="sub" id="sub">We fix the one thing that costs you most today, then the next.</div>
     </div>
     <div class="right">
       <div class="rk">Free · four questions</div>
@@ -267,14 +267,24 @@ requestAnimationFrame(loop);
 
 /* ── One-liners ── */
 const LINES = [
-  { h: ['Turn leaks into ', 'more leads'],        s: 'We build the system that answers first, follows up on its own and hands you the booked call.' },
-  { h: ['Turn leaks into ', 'automated leads'],   s: 'Every enquiry gets a personal reply within a minute, in your voice, day or night.' },
-  { h: ['Fewer leaks. ', 'More leads.'],          s: 'We fix the one thing that costs you most today, then the next.' },
-  { h: ['A lead that waits ', 'buys elsewhere'],  s: 'We turn that lost time and effort into revenue that grows itself for you.' },
-  { h: ['Answer first. ', 'Win the deal.'],       s: 'Speed is the cheapest advantage you have, and the easiest one to automate.' },
-  { h: ['Stop chasing. ', 'Start closing.'],      s: 'Follow-up runs on its own, so warm leads stop going cold while you work.' },
-  { h: ['Your quietest hour ', 'costs the most'], s: 'The enquiry that lands at 5.45pm on a Friday is the one you never answer.' },
-  { h: ['Sell while ', 'you sleep'],              s: 'Your business keeps booking calls on the evenings and weekends you take off.' },
+  { h: ['Fewer leaks. ', 'More leads.'], tail: 'Revenue lost<br>turned into growth.',
+    s: 'We fix the one thing that costs you most today, then the next.' },
+  { h: ['Turn leaks into ', 'more leads'],
+    s: 'We build the system that answers first, follows up on its own and hands you the booked call.' },
+  { h: ['Turn leaks into ', 'automated leads'],
+    s: 'Every enquiry gets a personal reply within a minute, in your voice, day or night.' },
+  { h: ['Fewer leaks. ', 'More leads.'],
+    s: 'We fix the one thing that costs you most today, then the next.' },
+  { h: ['A lead that waits ', 'buys elsewhere'],
+    s: 'We turn that lost time and effort into revenue that grows itself for you.' },
+  { h: ['Answer first. ', 'Win the deal.'],
+    s: 'Speed is the cheapest advantage you have, and the easiest one to automate.' },
+  { h: ['Stop chasing. ', 'Start closing.'],
+    s: 'Follow-up runs on its own, so warm leads stop going cold while you work.' },
+  { h: ['Your quietest hour ', 'costs the most'],
+    s: 'The enquiry that lands at 5.45pm on a Friday is the one you never answer.' },
+  { h: ['Sell while ', 'you sleep'],
+    s: 'Your business keeps booking calls on the evenings and weekends you take off.' },
 ];
 
 const linesEl = document.getElementById('lines');
@@ -283,9 +293,11 @@ const subEl = document.getElementById('sub');
 LINES.forEach((l, i) => {
   const b = document.createElement('button');
   b.className = 'line' + (i === 0 ? ' on' : '');
-  b.innerHTML = l.h[0] + l.h[1] + '<small>' + (l.h[0] + l.h[1]).length + ' characters</small>';
+  b.innerHTML = l.h[0] + l.h[1] + (l.tail ? ' ' + l.tail : '') + '<small>' + (l.h[0] + l.h[1] + (l.tail || '')).length + ' characters</small>';
   b.onclick = () => {
-    headEl.innerHTML = l.h[0].trim() + '<br><span class="hl">' + l.h[1] + '</span>';
+    headEl.innerHTML = l.tail
+      ? l.h[0] + '<span class="hl">' + l.h[1] + '</span><br>' + l.tail
+      : l.h[0].trim() + '<br><span class="hl">' + l.h[1] + '</span>';
     subEl.textContent = l.s;
     [...linesEl.children].forEach(c => c.classList.toggle('on', c === b));
   };
