@@ -345,6 +345,18 @@ const css = `
   * { box-sizing: border-box; margin: 0; padding: 0; }
   .diag-page { font-family: var(--font-body); background: var(--bg); min-height: 100svh; padding: 0; }
 
+  .diag-bar { border-bottom: 3px solid var(--ink); background: var(--ink); display: flex;
+              align-items: center; justify-content: space-between; gap: 16px; padding: 0 40px; }
+  .diag-brand { font-family: var(--font-display); font-weight: 700; font-size: 16px;
+                text-transform: uppercase; letter-spacing: -.01em; color: var(--bg);
+                text-decoration: none; padding: 17px 0; }
+  .diag-lang { font-family: var(--font-body); font-size: 13px; font-weight: 700; letter-spacing: .1em;
+               text-transform: uppercase; color: var(--ink); background: var(--lime);
+               text-decoration: none; padding: 12px 20px; display: inline-flex; align-items: center;
+               gap: 8px; transition: background .15s; }
+  .diag-lang::after { content: '\\2192'; }
+  .diag-lang:hover { background: #fff; }
+
   /* Paginabreed in plaats van een kaart van 520px in het midden */
   .wrap { width: 100%; max-width: 1180px; margin: 0 auto; background: transparent; border-radius: 0; overflow: visible; box-shadow: none; }
   .top-stripe { display: none; }
@@ -449,6 +461,8 @@ const css = `
   @keyframes dot-pulse { 0%,100%{opacity:.25} 50%{opacity:1} }
 
   @media (max-width: 900px) {
+    .diag-bar { padding: 0 20px; }
+    .diag-lang { font-size: 11px; padding: 10px 14px; }
     .inner { padding: 40px 20px 64px; }
     .choice-cards { grid-template-columns: 1fr; }
     .choice-card { border-right: 0; }
@@ -594,6 +608,19 @@ export default function DiagnosticPage() {
     <>
       <style dangerouslySetInnerHTML={{ __html: css }} />
       <div className="diag-page">
+        {/* Deze pagina heeft geen navigatie, dus de taalwissel moet hier zelf
+            staan. Wisselen gaat via het domein: .be is Nederlands, .com Engels. */}
+        <div className="diag-bar">
+          <a className="diag-brand" href={nl ? 'https://leaditgrow.be' : 'https://leaditgrow.com'}>
+            Lead it, Grow
+          </a>
+          <a
+            className="diag-lang"
+            href={nl ? 'https://leaditgrow.com/diagnostic' : 'https://leaditgrow.be/diagnostic'}
+          >
+            {nl ? 'Switch to English' : 'Bekijk in het Nederlands'}
+          </a>
+        </div>
         <div className="wrap">
           <div className="top-stripe" />
           <div className="inner">
